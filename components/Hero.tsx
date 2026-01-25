@@ -28,7 +28,7 @@ const Hero = () => {
           >
             <div className="inline-block px-5 py-2.5 bg-white/50 backdrop-blur-md border border-blue-200/40 rounded-full shadow-lg shadow-blue-500/15 mb-8">
               <span className="text-sm font-semibold text-slate-700">
-                National Business Infrastructure Firm
+                National Growth & Business Infrastructure Firm
               </span>
             </div>
           </motion.div>
@@ -39,7 +39,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="heading-1 mb-8"
           >
-            Complete Business Systems, Built as One
+            Complete Business Systems, Engineered for Growth
           </motion.h1>
 
           <motion.p
@@ -48,8 +48,8 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="body-large mb-10 max-w-2xl mx-auto"
           >
-            Formation. Websites. Applications. AI tools. Compliance. Email infrastructure. 
-            Everything your business needs to operate — coordinated by one team.
+            Formation. Funding. Social Visibility. Custom AI Tools. Licensing & Compliance. 
+            Everything your business needs to operate and scale — coordinated by one expert team.
           </motion.p>
 
           <motion.div
@@ -59,10 +59,10 @@ const Hero = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
           >
             <Link href="/contact" className="btn-primary text-lg">
-              Get Started Today
+              Start Scaling Today
             </Link>
             <Link href="/services" className="btn-secondary text-lg">
-              Our Services
+              Our Infrastructure
             </Link>
           </motion.div>
 
@@ -74,16 +74,16 @@ const Hero = () => {
           >
             <div className="grid grid-cols-3 gap-8">
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">Since 2015</div>
-                <div className="text-sm text-slate-600 font-medium">In Business</div>
+                <div className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">Multi-State</div>
+                <div className="text-sm text-slate-600 font-medium">Operations Served</div>
               </div>
               <div className="text-center border-l border-r border-blue-200/30">
                 <div className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">50+</div>
-                <div className="text-sm text-slate-600 font-medium">States Served</div>
+                <div className="text-sm text-slate-600 font-medium">States Active</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">All-in-One</div>
-                <div className="text-sm text-slate-600 font-medium">Complete Infrastructure</div>
+                <div className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">Scalable</div>
+                <div className="text-sm text-slate-600 font-medium">Infrastructure Built</div>
               </div>
             </div>
           </motion.div>

@@ -37,8 +37,7 @@ const Footer = () => {
               </div>
             </Link>
             <p className="text-neutral-400 leading-relaxed max-w-md mb-6">
-              Complete business infrastructure as one coordinated system. Formation, websites, 
-              applications, AI tools, email, and compliance — all built by one team.
+              National business scaling infrastructure. From multi-state licensing and formation to custom AI and digital growth, we build the systems you need to expand with confidence.
             </p>
           </div>
 

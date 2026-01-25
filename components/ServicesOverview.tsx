@@ -5,19 +5,19 @@ import Link from 'next/link'
 
 const services = [
   {
-    title: 'Business Formation',
-    description: 'Complete LLC and nonprofit formation with all required state filings, EIN acquisition, and compliance coordination.',
-    features: ['Entity formation', 'EIN registration', 'State compliance', 'Operating agreements'],
+    title: 'Formation & Licensing',
+    description: 'Complete LLC and nonprofit formation with all required licensing, multi-state filings, and EIN acquisition.',
+    features: ['Entity structure & licensing', 'EIN & state registration', 'Multi-location compliance', 'Operating agreements'],
   },
   {
-    title: 'Digital Infrastructure',
-    description: 'Professional websites, custom domains, email systems, and ongoing hosting managed as part of your business stack.',
-    features: ['Website development', 'Domain management', 'Email infrastructure', 'Hosting & maintenance'],
+    title: 'Growth Infrastructure',
+    description: 'Professional websites and social media presence managed to maximize your visibility and market growth.',
+    features: ['High-visibility websites', 'Social media presence', 'Email infrastructure', 'Market expansion tools'],
   },
   {
-    title: 'Custom Applications',
-    description: 'Tailored applications and AI-powered tools including chatbots and AI receptionists built to support your operations.',
-    features: ['Custom app development', 'AI chatbots', 'AI receptionist', 'Automation tools'],
+    title: 'Scalable AI Systems',
+    description: 'Custom AI tools and automation built to accelerate your scaling and support distributed operations.',
+    features: ['Custom scalable apps', 'AI chatbots & receptionists', 'Workflow automation', 'Distributed team tools'],
   },
 ]
 
@@ -33,7 +33,7 @@ const ServicesOverview = () => {
             transition={{ duration: 0.6 }}
             className="heading-2 mb-6"
           >
-            Everything Your Business Needs
+            Built for Scaling and Growth
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -42,7 +42,7 @@ const ServicesOverview = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="body-large"
           >
-            Formation, websites, applications, AI tools, and compliance — coordinated as one system
+            From licensing and multi-location formation to social visibility and AI tools — engineered as one system
           </motion.p>
         </div>
 

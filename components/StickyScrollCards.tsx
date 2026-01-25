@@ -12,28 +12,28 @@ import Link from 'next/link'
 const cards = [
   {
     step: 'Step 1',
-    title: 'We build complete business systems',
-    text: 'From legal formation to digital infrastructure, we assemble everything your business needs to operate properly — as one system.',
+    title: 'We build scalable business systems',
+    text: 'From legal formation and licensing to digital growth, we assemble everything your business needs to scale properly — as one coordinated system.',
   },
   {
     step: 'Step 2',
-    title: 'We handle the backend',
-    text: 'Formation, compliance, websites, applications, AI tools, and infrastructure — coordinated by one team.',
+    title: 'We handle the backend & visibility',
+    text: 'Formation, multi-state licensing, social media presence, and custom AI tools — all managed by a single expert team.',
   },
   {
     step: 'Step 3',
-    title: 'Stability over shortcuts',
-    text: 'No missed steps. No vendor handoffs. No guessing what comes next.',
+    title: 'Stability for Multi-State Growth',
+    text: 'Operate in more than one place with confidence. No missed steps. No vendor handoffs. Just a clear path to expansion.',
   },
   {
     step: 'Step 4',
-    title: 'Built from proven systems',
-    text: 'We’ve studied what works, refined it, and built a repeatable process that delivers results.',
+    title: 'Engineered for Funding & Scaling',
+    text: 'We build the structure that investors and growth require. Refined, repeatable processes that deliver operational excellence.',
   },
   {
     step: 'Step 5',
-    title: 'You focus on the business',
-    text: 'We handle the structure so owners can operate with confidence and clarity.',
+    title: 'You focus on scaling the business',
+    text: 'We handle the infrastructure and compliance so you can focus on growth, visibility, and your bottom line.',
     cta: true,
   },
 ]
@@ -75,7 +75,7 @@ const RevealCard = ({ card, index }: { card: typeof cards[0]; index: number }) =
                 href="/contact"
                 className="btn-primary inline-flex items-center px-10 py-4 text-lg"
               >
-                Schedule a Consultation
+                Start Scaling Now
               </Link>
             </motion.div>
           )}
@@ -100,10 +100,10 @@ export default function StickyScrollCards() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="heading-2 mb-6 text-slate-900 tracking-tight">
-              Complete Business Infrastructure
+              Scalable Business Infrastructure
             </h2>
             <p className="body-large text-slate-600 max-w-2xl mx-auto">
-              One team. One system. Everything your business needs to operate.
+              One team. One system. Everything your business needs to grow across multiple locations.
             </p>
           </motion.div>
         </div>

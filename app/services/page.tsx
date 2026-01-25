@@ -6,91 +6,91 @@ import Link from 'next/link'
 const services = [
   {
     id: 'formation',
-    title: 'Business Formation',
-    description: 'Complete LLC and nonprofit entity formation with all required state filings, EIN acquisition, and compliance coordination.',
-    longDescription: 'Business formation is the foundation of your infrastructure. We handle entity selection, state registration, EIN acquisition, operating agreements, and initial compliance setup — all coordinated as part of your complete business system.',
+    title: 'Formation & Licensing',
+    description: 'Complete multi-state entity formation and licensing coordination for local and national scaling.',
+    longDescription: 'Scaling requires a solid legal foundation. We handle complex entity selection, multi-state registration, professional licensing acquisition, and coordination for businesses ready to expand across domestic jurisdictions.',
     features: [
-      'LLC and nonprofit formation',
-      'Multi-state registration',
-      'Federal EIN acquisition',
+      'Multi-state LLC/Nonprofit formation',
+      'Professional licensing coordination',
+      'Foreign qualification filings',
       'Operating agreement preparation',
-      'Initial compliance coordination',
-      'Registered agent service',
+      'Federal EIN & Tax IDs',
+      'Registered agent services',
     ],
     pricing: 'Custom pricing',
   },
   {
     id: 'websites',
-    title: 'Websites & Domains',
-    description: 'Professional websites and custom domains managed as part of your business infrastructure.',
-    longDescription: 'Your website is not separate from your business — it is your business infrastructure. We build professional sites, secure custom domains, manage DNS, and maintain everything as part of your complete system.',
+    title: 'Growth Infrastructure',
+    description: 'High-performance digital presence and social visibility systems built to scale with your brand.',
+    longDescription: 'Visibility is the engine of growth. We build conversion-optimized websites and social media infrastructure that act as a unified system, ensuring your brand remains professional as you expand.',
     features: [
-      'Custom website development',
-      'Domain registration and management',
-      'DNS configuration',
-      'SSL certificates',
-      'Hosting and maintenance',
-      'Content management systems',
+      'Conversion-focused development',
+      'Social media infrastructure setup',
+      'Domain and DNS scaling',
+      'SSL and advanced security',
+      'Automated digital assets',
+      'Performance analytics integration',
     ],
     pricing: 'Custom pricing',
   },
   {
     id: 'applications',
     title: 'Custom Applications',
-    description: 'Tailored applications built to support your specific business operations and workflows.',
-    longDescription: 'Standard software rarely fits every business. We build custom applications designed for your exact workflows, integrated with your existing systems, and maintained as part of your infrastructure.',
+    description: 'Proprietary software and apps engineered to handle increased operational complexity as you grow.',
+    longDescription: 'Manual processes break at scale. We build bespoke software that automates your unique workflows, allowing you to manage more locations and higher volume without increasing overhead.',
     features: [
-      'Custom web applications',
-      'Mobile application development',
-      'API integrations',
-      'Database design and management',
-      'User authentication systems',
-      'Ongoing updates and support',
+      'Scalable web applications',
+      'Mobile app development',
+      'Enterprise API integrations',
+      'Database architecture',
+      'Multi-user permission systems',
+      'Operational dashboards',
     ],
     pricing: 'Custom pricing',
   },
   {
     id: 'ai-tools',
-    title: 'AI Tools',
-    description: 'AI-powered chatbots, receptionists, and automation tools integrated into your business operations.',
-    longDescription: 'AI is not a separate service — it is operational infrastructure. We build and deploy AI chatbots for customer support, AI receptionists for call handling, and automation tools that work within your existing systems.',
+    title: 'Scalable AI Systems',
+    description: 'Next-generation AI chatbots, receptionists, and automation that replace manual labor.',
+    longDescription: 'AI is the key to scaling without hiring. We deploy AI-powered infrastructure to handle customer support, sales inquiries, and call routing across your entire multi-location operation.',
     features: [
-      'AI chatbot development',
-      'AI receptionist systems',
-      'Natural language processing',
-      'Workflow automation',
-      'CRM integrations',
-      'Training and optimization',
+      'Multi-channel AI chatbots',
+      '24/7 AI receptionist systems',
+      'Automated lead qualification',
+      'Voice AI integration',
+      'CRM process automation',
+      'Ongoing model optimization',
     ],
     pricing: 'Custom pricing',
   },
   {
     id: 'email',
-    title: 'Email & Digital Infrastructure',
-    description: 'Professional email systems, digital communication tools, and infrastructure managed as one system.',
-    longDescription: 'Email, communication tools, and digital infrastructure should work seamlessly. We set up professional email, configure security, integrate with your domain, and manage everything as part of your business backend.',
+    title: 'Digital Communication',
+    description: 'Hardened email and communication systems designed for distributed teams and national operations.',
+    longDescription: 'Communication failure is a growth killer. We implement professional, secure, and unified communication systems that allow your team to operate seamlessly regardless of location.',
     features: [
-      'Professional email setup',
-      'Custom domain email',
-      'Email security and spam filtering',
-      'Digital communication tools',
-      'Cloud storage integration',
-      'Ongoing infrastructure management',
+      'Secure enterprise email',
+      'Distributed team protocols',
+      'DMARC/SPF security setup',
+      'Unified cloud directories',
+      'Encrypted internal comms',
+      'Digital asset management',
     ],
     pricing: 'Custom pricing',
   },
   {
     id: 'compliance',
-    title: 'Ongoing Compliance & Support',
-    description: 'Continuous compliance monitoring, annual reports, and ongoing support for all business systems.',
-    longDescription: 'Compliance is not a one-time task. We monitor your business obligations, handle annual reports, track renewal deadlines, and provide ongoing support for all aspects of your business infrastructure.',
+    title: 'Licensing & Compliance',
+    description: 'Ongoing monitoring of licenses, renewals, and legal obligations across all operational states.',
+    longDescription: 'Expansion brings regulation. We proactively monitor your licensing renewals, annual report deadlines, and state-specific compliance requirements so your growth remains uninterrupted.',
     features: [
-      'Annual report filing',
-      'Compliance monitoring',
-      'Renewal tracking and reminders',
-      'State requirement updates',
-      'Document management',
-      'Ongoing technical support',
+      'Proactive license renewals',
+      'Annual report management',
+      'Multi-state compliance audits',
+      'Secretary of State monitoring',
+      'Document retention systems',
+      'Growth consulting & support',
     ],
     pricing: 'Annual plans available',
   },
@@ -132,7 +132,7 @@ export default function ServicesPage() {
               transition={{ duration: 0.6 }}
               className="heading-1 mb-6"
             >
-              Complete Business Infrastructure
+              Scalable Growth Infrastructure
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -140,8 +140,8 @@ export default function ServicesPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="body-large"
             >
-              Formation. Websites. Applications. AI tools. Email. Compliance. 
-              Everything your business needs to operate — built and managed as one system.
+              Formation. Licensing. Growth Systems. AI Automation. Compliance. 
+              Everything your business needs to scale — built and managed as one system.
             </motion.p>
           </div>
         </div>

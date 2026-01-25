@@ -315,8 +315,9 @@ export default function WhoWeServePage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="body-large"
             >
-              We support businesses across all industries and entity types — from tech startups 
-              to local services, from sole proprietorships to complex holding structures.
+              We build growth infrastructure for businesses across all industries. 
+              Whether you are a single-state operator or scaling national franchises, 
+              our systems are engineered for your expansion and legal compliance.
             </motion.p>
           </div>
         </div>

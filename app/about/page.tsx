@@ -5,27 +5,27 @@ import Link from 'next/link'
 
 const values = [
   {
-    title: 'Systems, Not Services',
-    description: 'We build complete business infrastructure, not disconnected services. Formation, websites, apps, compliance — coordinated as one system.',
+    title: 'Systems Built for Scaling',
+    description: 'We build business infrastructure with the future in mind. Formation, licensing, websites, and custom AI — coordinated to handle growth without breaking.',
   },
   {
-    title: 'No Vendor Handoffs',
-    description: 'No referrals to lawyers, web designers, or app developers. One team builds your complete infrastructure.',
+    title: 'No Vendor Roadblocks',
+    description: 'Avoid the friction of multiple agencies. We handle the technical, legal, and creative infrastructure in-house so you can scale faster.',
   },
   {
-    title: 'Operational Stability',
-    description: 'Infrastructure should be stable and reliable. We build systems that work correctly from the start and remain operational as you grow.',
+    title: 'Multi-State Stability',
+    description: 'National growth comes with compliance complexity. We build systems that remain stable and compliant as you expand across state lines.',
   },
   {
-    title: 'National Reach',
-    description: 'We serve businesses across all 50 states. Multi-state operations, distributed teams, national compliance — all coordinated.',
+    title: 'Growth & Visibility',
+    description: 'Structure without visibility is wasted potential. We integrate social media presence and digital growth strategies into your core operations.',
   },
 ]
 
 const stats = [
   { number: '1000+', label: 'Systems Built' },
   { number: '50', label: 'States Served' },
-  { number: '6', label: 'Core Services' },
+  { number: 'Growth', label: 'Engineered' },
   { number: 'All-in-One', label: 'Infrastructure' },
 ]
 
@@ -42,7 +42,7 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
               className="heading-1 mb-6"
             >
-              We Build Complete Business Infrastructure
+              Engineered for Growth & Multi-Location Scaling
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -50,8 +50,8 @@ export default function AboutPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="body-large"
             >
-              Innovation Business Services is a national business infrastructure firm. 
-              We assemble everything your business needs to operate — as one coordinated system.
+              Innovation Business Services is a national business scaling firm. 
+              We assemble the legal, technical, and digital infrastructure your business needs to grow — as one coordinated system.
             </motion.p>
           </div>
         </div>
@@ -93,21 +93,25 @@ export default function AboutPage() {
             >
               <p>
                 Most businesses are built in pieces. Formation through a lawyer. Website through 
-                a designer. Applications through a developer. Compliance through an accountant. 
-                Email through IT. All separate. All disconnected.
+                a designer. Visibility through a marketing agency. Compliance through an accountant. 
+                All separate. All disconnected.
               </p>
               <p>
-                This creates gaps. Vendor handoffs fail. Systems {"don't"} integrate. No one sees 
-                the complete picture. And when something breaks, no one owns the infrastructure.
+                When you try to scale, these gaps become roadblocks. Vendor handoffs fail. 
+                Multi-state licensing gets missed. Social presence doesn{"'"}t match the operations. 
+                And when you hit your next growth milestone, the infrastructure collapses because 
+                no one owns the complete picture.
               </p>
               <p>
-                We started Innovation Business Services to fix this. We build complete business 
-                infrastructure — formation, websites, applications, AI tools, email, and compliance — 
-                all coordinated by one team. No handoffs. No gaps. One system.
+                We started Innovation Business Services to fix this. We build comprehensive growth 
+                infrastructure — from formation and multi-state licensing to scalable AI tools and 
+                digital visibility — all coordinated by one team. No handoffs. No gaps. 
+                One system engineered for expansion.
               </p>
               <p>
-                This is not faster or cheaper. It is more stable. When your business infrastructure 
-                is built as one system, everything works together correctly. That is what we build.
+                This isn{"'"}t just about getting started; it{"'"}s about being prepared for what comes next. 
+                When your business infrastructure is built as one system, everything works together 
+                to support your bottom line. That is what we build.
               </p>
             </motion.div>
           </div>
