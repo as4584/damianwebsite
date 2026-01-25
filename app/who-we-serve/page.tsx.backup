@@ -1,0 +1,331 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+
+const industries = [
+  {
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    ),
+    title: 'Trucking & Transportation',
+    description: 'DOT compliance, carrier authority, permit coordination, and operational systems for trucking companies and logistics firms.',
+    requirements: ['DOT registration', 'UCR compliance', 'IFTA coordination', 'Operating authority'],
+  },
+  {
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+    title: 'Business Consultants',
+    description: 'Professional entity structuring, client management systems, compliance frameworks, and operational infrastructure for consulting practices.',
+    requirements: ['Professional liability setup', 'Client contracts', 'Engagement systems', 'Compliance documentation'],
+  },
+  {
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+      </svg>
+    ),
+    title: 'Restaurants & Catering',
+    description: 'Health permits, liquor licensing coordination, food service compliance, online ordering systems, and operational infrastructure.',
+    requirements: ['Health department permits', 'Liquor licensing', 'Food handler compliance', 'Point of sale integration'],
+  },
+  {
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+    ),
+    title: 'Security Firms',
+    description: 'State licensing coordination, bonding requirements, armed guard permits, liability structuring, and client management systems.',
+    requirements: ['State security licenses', 'Bonding coordination', 'Insurance structuring', 'Guard certification tracking'],
+  },
+  {
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+    ),
+    title: 'Private Investigators',
+    description: 'State licensing applications, continuing education tracking, liability coverage, case management systems, and compliance documentation.',
+    requirements: ['PI licensing', 'Background verification', 'Continuing education', 'Evidence management systems'],
+  },
+  {
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+      </svg>
+    ),
+    title: 'Exterminators & Pest Control',
+    description: 'Pesticide licensing, EPA compliance, chemical handling permits, service scheduling systems, and customer management.',
+    requirements: ['Pesticide licensing', 'EPA registration', 'Chemical storage compliance', 'Service documentation'],
+  },
+  {
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+      </svg>
+    ),
+    title: 'Law Firms & Professional Offices',
+    description: 'Bar compliance coordination, trust accounting systems, client intake processes, case management, and professional liability structuring.',
+    requirements: ['Bar registration', 'Trust accounting', 'Client confidentiality systems', 'Malpractice insurance coordination'],
+  },
+  {
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
+    ),
+    title: 'Regulated & Licensed Entities',
+    description: 'Professional licensing coordination, regulatory compliance tracking, continuing education management, and operational systems for any licensed profession.',
+    requirements: ['Professional licensing', 'Regulatory compliance', 'Renewal tracking', 'Documentation systems'],
+  },
+]
+
+const approaches = [
+  {
+    title: 'Understanding Your Requirements',
+    description: 'Every industry has unique regulatory, licensing, and operational needs. We start by understanding what applies to your specific business.',
+  },
+  {
+    title: 'Tailored Infrastructure',
+    description: 'No generic templates. We build systems that match your regulatory requirements and operational workflows.',
+  },
+  {
+    title: 'Compliance Coordination',
+    description: `Whether it's DOT filings, professional licenses, or health permits — we coordinate the compliance components that apply to your industry.`,
+  },
+  {
+    title: 'Operational Integration',
+    description: 'Formation, websites, compliance, and systems work together. Everything is built to support how your business actually operates.',
+  },
+]
+
+export default function WhoWeServePage() {
+  return (
+    <div className="pt-20 md:pt-24">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-b from-neutral-50 to-white py-16 md:py-24">
+        <div className="container-custom">
+          <div className="max-w-3xl mx-auto text-center">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="heading-1 mb-6"
+            >
+              Who We Serve
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="body-large"
+            >
+              We support businesses across industries and entity types — from regulated professions 
+              to service-based operations. Every business has unique requirements. We build 
+              infrastructure tailored to yours.
+            </motion.p>
+          </div>
+        </div>
+      </section>
+
+      {/* Industries Grid */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="heading-2 mb-6"
+            >
+              Industries & Business Types
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="body-large"
+            >
+              Including but not limited to these industries and entity types
+            </motion.p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {industries.map((industry, index) => (
+              <motion.div
+                key={industry.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
+                className="bg-neutral-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300"
+              >
+                <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center mb-6 text-neutral-900">
+                  {industry.icon}
+                </div>
+                <h3 className="text-xl font-semibold mb-3 text-neutral-900">
+                  {industry.title}
+                </h3>
+                <p className="text-neutral-600 mb-4 leading-relaxed">
+                  {industry.description}
+                </p>
+                <div className="space-y-2">
+                  {industry.requirements.map((req) => (
+                    <div key={req} className="flex items-start text-sm text-neutral-600">
+                      <span className="mr-2 text-neutral-400">•</span>
+                      <span>{req}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Approach Section */}
+      <section className="section-padding bg-neutral-50">
+        <div className="container-custom">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="heading-2 mb-6"
+            >
+              Our Approach
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="body-large"
+            >
+              Services tailored to your regulatory and operational requirements
+            </motion.p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {approaches.map((approach, index) => (
+              <motion.div
+                key={approach.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-white rounded-xl p-8"
+              >
+                <h3 className="text-xl font-semibold mb-4 text-neutral-900">
+                  {approach.title}
+                </h3>
+                <p className="text-neutral-600 leading-relaxed">
+                  {approach.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Multi-State Support */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="heading-2 mb-6">National Coverage</h2>
+              <p className="body-large">
+                We serve businesses across all 50 states. Multi-state operations, 
+                distributed teams, and varying state requirements — all coordinated.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-neutral-50 rounded-xl p-8 md:p-12"
+            >
+              <div className="grid md:grid-cols-3 gap-8 text-center">
+                <div>
+                  <div className="text-4xl md:text-5xl font-bold text-neutral-900 mb-2">
+                    50
+                  </div>
+                  <div className="text-neutral-600">States Covered</div>
+                </div>
+                <div className="border-l border-r border-neutral-200">
+                  <div className="text-4xl md:text-5xl font-bold text-neutral-900 mb-2">
+                    Multi-State
+                  </div>
+                  <div className="text-neutral-600">Operations Supported</div>
+                </div>
+                <div>
+                  <div className="text-4xl md:text-5xl font-bold text-neutral-900 mb-2">
+                    Coordinated
+                  </div>
+                  <div className="text-neutral-600">Compliance Tracking</div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="section-padding bg-neutral-900 text-white">
+        <div className="container-custom">
+          <div className="max-w-3xl mx-auto text-center">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="heading-2 mb-6"
+            >
+              Tell Us About Your Business
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-xl text-neutral-300 mb-8"
+            >
+              {"We'll"} understand your industry requirements and build infrastructure that fits 
+              your regulatory and operational needs.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-md text-neutral-900 bg-white hover:bg-neutral-100 transition-colors duration-200"
+              >
+                Schedule a Consultation
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}

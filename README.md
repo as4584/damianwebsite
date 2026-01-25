@@ -1,0 +1,173 @@
+# Innovation Business Services Website
+
+A modern, production-ready website for Innovation Business Services - a professional business services company specializing in LLC formation, business setup, compliance, and entrepreneurial guidance.
+
+## 🚀 Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Animation**: Framer Motion
+- **Design**: Mobile-first, responsive
+
+## ✨ Features
+
+- **Sticky Scroll Cards**: Smooth card stacking interaction on the homepage
+- **Professional Design**: Trust-first, authority-driven aesthetic
+- **Responsive**: Mobile-first design that works on all devices
+- **Accessible**: Semantic HTML and ARIA labels
+- **Performance**: Optimized with Next.js Image component and lazy loading
+- **SEO Ready**: Meta tags and structured content
+
+## 📁 Project Structure
+
+```
+├── app/
+│   ├── about/page.tsx        # About page
+│   ├── contact/page.tsx      # Contact page with form
+│   ├── services/page.tsx     # Services page
+│   ├── privacy/page.tsx      # Privacy policy
+│   ├── terms/page.tsx        # Terms of service
+│   ├── layout.tsx            # Root layout
+│   ├── page.tsx              # Home page
+│   └── globals.css           # Global styles
+├── components/
+│   ├── layout/
+│   │   ├── Header.tsx        # Navigation header
+│   │   └── Footer.tsx        # Footer
+│   ├── StickyScrollCards.tsx # Sticky scroll interaction
+│   ├── Hero.tsx              # Hero section
+│   ├── ServicesOverview.tsx  # Services grid
+│   └── CTASection.tsx        # Call-to-action section
+├── public/
+│   └── assets/
+│       └── brand/            # Brand images (used as textures)
+└── Configuration files
+```
+
+## 🛠️ Setup & Installation
+
+### Prerequisites
+
+- Node.js 18+ installed
+- npm or yarn package manager
+
+### Installation Steps
+
+1. **Install Dependencies**
+
+```bash
+npm install
+```
+
+2. **Run Development Server**
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+3. **Build for Production**
+
+```bash
+npm run build
+npm start
+```
+
+## 🎨 Design Philosophy
+
+- **Trust-First**: Professional, calm design that builds authority
+- **No Distractions**: Motion improves clarity without being playful
+- **Clear Hierarchy**: Easy-to-scan content structure
+- **Accessible**: WCAG compliant with semantic HTML
+
+## 📄 Pages
+
+- **Home** (`/`): Hero, sticky scroll cards, services overview, CTA
+- **Services** (`/services`): Detailed service offerings with pricing
+- **About** (`/about`): Company story, values, team info
+- **Contact** (`/contact`): Consultation form with contact details
+- **Privacy** (`/privacy`): Privacy policy
+- **Terms** (`/terms`): Terms of service
+
+## 🎯 Key Components
+
+### Sticky Scroll Cards
+
+The signature feature - cards stack vertically with smooth transitions as you scroll. Each card scales and fades in/out based on scroll position.
+
+### Hero Section
+
+Engaging hero with clear value proposition, CTA buttons, and social proof metrics.
+
+### Contact Form
+
+Professional consultation booking form with validation and success states.
+
+## 🔧 Customization
+
+### Colors
+
+Edit `tailwind.config.ts` to customize the color palette. Current scheme uses neutral grays with black accents.
+
+### Content
+
+All content is stored directly in the page components for easy editing. Update text in:
+- `app/page.tsx` - Home page content
+- `app/services/page.tsx` - Services content
+- `app/about/page.tsx` - About content
+
+### Brand Images
+
+Place images in `/public/assets/brand/` and they'll automatically be used as subtle background textures with blur and low opacity.
+
+## 📱 Responsive Breakpoints
+
+- **Mobile**: < 768px
+- **Tablet**: 768px - 1024px
+- **Desktop**: > 1024px
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+1. Push code to GitHub
+2. Import project to Vercel
+3. Deploy automatically
+
+### Other Platforms
+
+Build the production bundle:
+
+```bash
+npm run build
+```
+
+Deploy the `.next` folder to any Node.js hosting platform.
+
+## 📝 Environment Variables
+
+For production, create a `.env.local` file:
+
+```env
+# Add any API keys or configuration here
+NEXT_PUBLIC_SITE_URL=https://yourdomain.com
+```
+
+## 🔒 Security
+
+- Form validation on client and server
+- No sensitive data in client bundle
+- Environment variables for secrets
+- HTTPS enforced in production
+
+## 📧 Contact
+
+For questions or support:
+- Email: info@innovationbusinessservices.com
+- Phone: (123) 456-7890
+
+## 📄 License
+
+© 2026 Innovation Business Services. All rights reserved.
