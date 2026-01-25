@@ -42,7 +42,7 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
               className="heading-1 mb-6"
             >
-              Engineered for Growth & Multi-Location Scaling
+              Engineered for <span className="text-blue-600">Growth</span> & Multi-Location <span className="text-blue-600">Scaling</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -51,7 +51,7 @@ export default function AboutPage() {
               className="body-large"
             >
               Innovation Business Services is a national business scaling firm. 
-              We assemble the legal, technical, and digital infrastructure your business needs to grow — as one coordinated system.
+              We assemble the legal, technical, and digital infrastructure your business needs to <span className="text-slate-900 font-semibold">grow</span> — as one coordinated system.
             </motion.p>
           </div>
         </div>
@@ -70,10 +70,10 @@ export default function AboutPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-2">
+                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-blue-600 mb-2">
                   {stat.number}
                 </div>
-                <div className="text-neutral-600">{stat.label}</div>
+                <div className="text-slate-600 font-medium">{stat.label}</div>
               </motion.div>
             ))}
           </div>

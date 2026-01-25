@@ -33,7 +33,7 @@ const ServicesOverview = () => {
             transition={{ duration: 0.6 }}
             className="heading-2 mb-6"
           >
-            Built for Scaling and Growth
+            Built for <span className="text-blue-600">Scaling</span> and <span className="text-blue-600">Growth</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -42,7 +42,7 @@ const ServicesOverview = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="body-large"
           >
-            From licensing and multi-location formation to social visibility and AI tools — engineered as one system
+            From <span className="text-slate-900 font-semibold">licensing</span> and multi-location formation to social visibility and AI tools — engineered as one system
           </motion.p>
         </div>
 
@@ -56,7 +56,7 @@ const ServicesOverview = () => {
               transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="card-premium p-8 hover:shadow-2xl hover:shadow-blue-500/20 hover:scale-[1.02] transition-all duration-500"
             >
-              <h3 className="text-2xl font-semibold mb-4 text-slate-900">
+              <h3 className="text-2xl font-semibold mb-4 text-blue-600">
                 {service.title}
               </h3>
               <p className="text-slate-600 mb-6 leading-relaxed">

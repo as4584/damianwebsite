@@ -305,7 +305,7 @@ export default function WhoWeServePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="heading-1 mb-6"
+              className="heading-1 mb-6 text-blue-600"
             >
               Who We Serve
             </motion.h1>
@@ -315,9 +315,9 @@ export default function WhoWeServePage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="body-large"
             >
-              We build growth infrastructure for businesses across all industries. 
+              We build <span className="text-slate-900 font-semibold">growth infrastructure</span> for businesses across all industries. 
               Whether you are a single-state operator or scaling national franchises, 
-              our systems are engineered for your expansion and legal compliance.
+              our systems are engineered for your <span className="text-blue-600 font-semibold">expansion</span> and legal compliance.
             </motion.p>
           </div>
         </div>

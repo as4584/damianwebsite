@@ -58,7 +58,7 @@ const RevealCard = ({ card, index }: { card: typeof cards[0]; index: number }) =
           <span className="inline-block px-5 py-2 bg-blue-100/50 backdrop-blur-sm border border-blue-200/40 rounded-full shadow-sm mb-8 text-sm font-semibold text-blue-600 tracking-wide uppercase">
             {card.step}
           </span>
-          <h3 className="heading-2 mb-6 text-slate-900 leading-tight">
+          <h3 className="heading-2 mb-6 text-blue-600 leading-tight">
             {card.title}
           </h3>
           <p className="body-large text-slate-600 leading-relaxed font-normal">
@@ -99,11 +99,11 @@ export default function StickyScrollCards() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="heading-2 mb-6 text-slate-900 tracking-tight">
+            <h2 className="heading-2 mb-6 text-blue-600 tracking-tight">
               Scalable Business Infrastructure
             </h2>
             <p className="body-large text-slate-600 max-w-2xl mx-auto">
-              One team. One system. Everything your business needs to grow across multiple locations.
+              One team. One system. Everything your business needs to grow across <span className="text-slate-900 font-semibold">multiple locations</span>.
             </p>
           </motion.div>
         </div>

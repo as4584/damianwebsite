@@ -132,7 +132,7 @@ export default function ServicesPage() {
               transition={{ duration: 0.6 }}
               className="heading-1 mb-6"
             >
-              Scalable Growth Infrastructure
+              Scalable <span className="text-blue-600">Growth</span> Infrastructure
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -140,8 +140,8 @@ export default function ServicesPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="body-large"
             >
-              Formation. Licensing. Growth Systems. AI Automation. Compliance. 
-              Everything your business needs to scale — built and managed as one system.
+              Formation. <span className="text-slate-900 font-semibold">Licensing</span>. Growth Systems. AI Automation. <span className="text-slate-900 font-semibold">Compliance</span>. 
+              Everything your business needs to <span className="text-blue-600 font-semibold">scale</span> — built and managed as one system.
             </motion.p>
           </div>
         </div>

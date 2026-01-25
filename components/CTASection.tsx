@@ -26,7 +26,7 @@ const CTASection = () => {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="heading-2 mb-6"
           >
-            Ready to Build Your Business System?
+            Ready to <span className="text-blue-400">Scale</span> Your Business System?
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -35,8 +35,8 @@ const CTASection = () => {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-xl text-neutral-300 mb-10 leading-relaxed"
           >
-            Tell us what {"you're"} building. {"We'll"} handle the formation, infrastructure, 
-            and systems so you can focus on your business.
+            Tell us about your <span className="text-white font-semibold">growth goals</span>. We handle the formation, infrastructure, 
+            and <span className="text-blue-400">multi-state licensing</span> so you can focus on scaling.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}

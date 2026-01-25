@@ -10,8 +10,8 @@ function ContactForm() {
 
   return (
     <div className="bg-neutral-50 rounded-2xl p-8 md:p-10">
-      <h2 className="text-2xl font-semibold mb-6 text-neutral-900">
-        Schedule Your Consultation
+      <h2 className="text-2xl font-semibold mb-6 text-blue-600">
+        Start Your Scaling Journey
       </h2>
 
       {isSubmitted ? (
@@ -131,7 +131,7 @@ function ContactInfo() {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <h2 className="heading-3 mb-6">Get in Touch</h2>
+      <h2 className="heading-3 mb-6 text-blue-600">Get in Touch</h2>
       <p className="body-regular mb-8">
         Fill out the form and {"we'll"} get back to you within 24 hours. Or reach out 
         directly using the contact information below.
@@ -317,7 +317,7 @@ export default function ContactPage() {
               transition={{ duration: 0.6 }}
               className="heading-1 mb-6"
             >
-              {"Let's Talk About Your Business"}
+              Let{"'"}s Scale Your <span className="text-blue-600">Business</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -325,7 +325,7 @@ export default function ContactPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="body-large"
             >
-              Schedule a free consultation to discuss your business goals and learn how we can help
+              Schedule a free consultation to discuss your <span className="text-slate-900 font-semibold">growth goals</span> and learn how our infrastructure scales with you.
             </motion.p>
           </div>
         </div>
