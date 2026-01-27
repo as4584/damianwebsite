@@ -39,7 +39,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="heading-1 mb-8"
           >
-            Complete Business Systems, Engineered for <span className="text-blue-600">Growth</span>
+            The one-stop business development solution for new and existing businesses.
           </motion.h1>
 
           <motion.p
@@ -48,8 +48,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="body-large mb-10 max-w-2xl mx-auto"
           >
-            Formation. Funding. Social Visibility. Custom AI Tools. <span className="text-blue-600 font-semibold">Licensing & Compliance</span>. 
-            Everything your business needs to operate and <span className="text-blue-600 font-semibold">scale</span> — coordinated by one expert team.
+            From first-time founders to established enterprises, we support businesses at every stage — from the beginning to the elite level.
           </motion.p>
 
           <motion.div

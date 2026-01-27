@@ -159,15 +159,16 @@ const entityStructures = [
     category: 'Limited Liability Companies (LLCs)',
     icon: '🏢',
     structures: [
+      'Standard LLC',
       'Single-Member LLC',
       'Multi-Member LLC',
-      'Member-Managed LLC',
+      'Series LLC (state-specific)',
+      'Professional LLC (PLLC / P.C.C.)',
+      'L3C (low-profit, mission-driven, state-specific)',
       'Manager-Managed LLC',
-      'Series LLC (allowed in certain states)',
-      'Professional LLC (PLLC)',
-      'Low-Profit LLC (L3C) (for social enterprises; limited states)',
-      'Anonymous LLC (via state privacy laws, e.g., WY, NM)'
-    ]
+      'Member-Managed LLC'
+    ],
+    disclaimer: 'Entity availability and requirements vary by state. We guide you through the correct structure based on your business, industry, and location.'
   },
   {
     category: 'Corporations (For-Profit)',
@@ -315,9 +316,9 @@ export default function WhoWeServePage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="body-large"
             >
-              We build <span className="text-slate-900 font-semibold">growth infrastructure</span> for businesses across all industries. 
-              Whether you are a single-state operator or scaling national franchises, 
-              our systems are engineered for your <span className="text-blue-600 font-semibold">expansion</span> and legal compliance.
+              We serve people who want to turn their ideas into reality — and those who have already built something meaningful.
+              From first-time entrepreneurs to experienced business owners, inherited businesses, partnerships, and professional services, we support organizations that are growing, expanding, or protecting what they’ve worked hard to build.
+              We also work with mission-driven entities, including nonprofits and organizations created to support a cause.
             </motion.p>
           </div>
         </div>
@@ -421,6 +422,11 @@ export default function WhoWeServePage() {
                       </div>
                     ))}
                   </div>
+                  {(category as any).disclaimer && (
+                    <p className="mt-6 text-sm text-slate-500 italic border-t border-slate-100 pt-4">
+                      {(category as any).disclaimer}
+                    </p>
+                  )}
                 </motion.div>
               ))}
             </div>

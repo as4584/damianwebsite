@@ -83,7 +83,7 @@ const faqs = [
   },
   {
     question: 'How long does it take to get everything set up?',
-    answer: 'Formation usually takes 1-2 weeks depending on the state. Getting your EIN is quick (often same day). Building your website and systems depends on complexity — typically 2-4 weeks. We coordinate everything so it happens in the right order.',
+    answer: 'Business formation typically takes 24–48 hours once the intake information is completed accurately. Your EIN is often issued the same day. Website and system development timelines vary based on complexity, but typically take 2–4 weeks, as we work closely with you to ensure everything is built exactly the way you want it.',
   },
   {
     question: 'Do I need a lawyer to start a business?',
