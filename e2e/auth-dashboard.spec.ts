@@ -61,7 +61,7 @@ test.describe('Authentication & Dashboard Security', () => {
       }
       
       // Verify dashboard loaded
-      await expect(page.getByRole('heading', { name: /leads dashboard/i })).toBeVisible({ timeout: 10000 });
+      await expect(page.getByRole('heading', { name: /Innovation Business Development Solutions/i })).toBeVisible({ timeout: 10000 });
       
       console.log('✅ Login successful with King1000$ - dashboard loaded');
       
@@ -87,7 +87,7 @@ test.describe('Authentication & Dashboard Security', () => {
     await page.waitForTimeout(2000); // Give time for API calls
     
     // Verify dashboard header is visible
-    await expect(page.getByRole('heading', { name: /leads dashboard/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Innovation Business Development Solutions/i })).toBeVisible();
     
     // Get lead count badges (Hot, Warm, Cold)
     // These should be visible even if 0
@@ -134,8 +134,7 @@ test.describe('Authentication & Dashboard Security', () => {
     await page.waitForTimeout(2000);
     
     // Verify dashboard header
-    await expect(page.getByRole('heading', { name: /leads dashboard/i })).toBeVisible();
-    
+      await expect(page.getByRole('heading', { name: /Innovation Business Development Solutions/i })).toBeVisible();
     // Verify Overview section exists (metrics may be loading)
     const overviewHeading = page.locator('text=/Overview/i');
     if (await overviewHeading.isVisible({ timeout: 5000 })) {
@@ -159,7 +158,7 @@ test.describe('Authentication & Dashboard Security', () => {
     await page.waitForURL('/dashboard');
     
     // Verify dashboard loaded
-    await expect(page.getByRole('heading', { name: /leads dashboard/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Innovation Business Development Solutions/i })).toBeVisible();
     
     // Clear cookies (simulate logout)
     await page.context().clearCookies();

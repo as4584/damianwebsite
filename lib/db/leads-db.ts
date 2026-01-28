@@ -214,54 +214,9 @@ export function getLeadById(id: string): Lead | null {
 }
 
 /**
- * Initialize with sample lead for testing
+ * Database is now production-ready with zero mock data
+ * All leads must be created via chatbot or API
  */
-export function initializeSampleLead() {
-  if (leadsStore.size > 0) return;
-  
-  const sampleLead: Lead = {
-    id: 'lead-sample-001',
-    businessId: DEFAULT_BUSINESS_ID,
-    fullName: 'Sample User',
-    email: 'sample@example.com',
-    phone: '(555) 123-4567',
-    source: { page: '/chat' },
-    conversation: [
-      { role: 'bot', content: 'Hello! How can I help you today?', timestamp: new Date(Date.now() - 300000) },
-      { role: 'user', content: 'I want to start an LLC', timestamp: new Date(Date.now() - 280000) },
-      { role: 'bot', content: 'Great! What type of business?', timestamp: new Date(Date.now() - 260000) },
-      { role: 'user', content: 'Consulting business in California', timestamp: new Date(Date.now() - 240000) }
-    ],
-    intent: 'sales',
-    hotness: 'warm',
-    hotnessFactors: [
-      {
-        type: 'contact_provided',
-        name: 'Contact Information',
-        present: true
-      },
-      {
-        name: 'Business Details',
-        present: true
-      }
-    ],
-    extractedInfo: {
-      businessType: 'Consulting',
-      location: 'California'
-    },
-    suggestedAction: {
-      type: 'email',
-      label: 'Follow Up',
-      reason: 'Interested prospect',
-      priority: 'medium'
-    },
-    internalNotes: '',
-    createdAt: new Date(Date.now() - 300000),
-    updatedAt: new Date(Date.now() - 240000)
-  };
-  
-  leadsStore.set(sampleLead.id, sampleLead);
-}
 
-// Initialize sample lead on module load
-initializeSampleLead();
+// No initialization - database starts empty
+// Leads will be created only through createLead() function

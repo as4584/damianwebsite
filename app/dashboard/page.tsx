@@ -1,22 +1,24 @@
 'use client';
 
 /**
- * Dashboard Main Page
+ * Dashboard Main Page - Production Version
  * Displays metrics overview and lead list
  * 
  * SECURITY:
- * - Uses API routes instead of direct service calls
- * - Session validation happens on server (middleware + API routes)
- * - businessId scoping enforced by backend
+ * - Session validation at middleware level
+ * - Logout redirects to main site
+ * - No public navigation - dashboard only
  */
 
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
+import { signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { MetricsGrid } from './components/MetricsCard';
 import { LeadList } from './components/LeadCard';
 import { DashboardMetrics, LeadCardPreview, LeadHotness } from './types';
 
 export default function DashboardPage() {
+  const router = useRouter();
   const [metrics, setMetrics] = useState<DashboardMetrics | null>(null);
   const [leads, setLeads] = useState<LeadCardPreview[]>([]);
   const [counts, setCounts] = useState<{ hot: number; warm: number; cold: number; total: number } | null>(null);
@@ -46,6 +48,11 @@ export default function DashboardPage() {
     
     loadDashboard();
   }, []);
+
+  const handleLogout = async () => {
+    await signOut({ redirect: false });
+    router.push('/');
+  };
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
@@ -54,34 +61,41 @@ export default function DashboardPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Leads Dashboard
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Innovation Business Development Solutions
               </h1>
               <p className="text-sm text-gray-600 mt-1">
-                Track and manage your incoming leads
+                Leads Dashboard
               </p>
             </div>
             
-            {counts && (
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-2 px-5 py-3 bg-gradient-to-br from-red-500/10 to-red-600/10 backdrop-blur-sm rounded-2xl border border-red-300/20 shadow-lg shadow-red-100/50 hover:shadow-xl hover:shadow-red-200/50 transition-all duration-300">
-                  <span className="text-2xl drop-shadow-md">🔥</span>
-                  <span className="font-bold text-xl text-red-600">{counts.hot}</span>
-                  <span className="text-sm font-medium text-red-500">Hot</span>
-                </div>
-                <div className="flex items-center gap-2 px-5 py-3 bg-gradient-to-br from-amber-500/10 to-yellow-600/10 backdrop-blur-sm rounded-2xl border border-amber-300/20 shadow-lg shadow-amber-100/50 hover:shadow-xl hover:shadow-amber-200/50 transition-all duration-300">
-                  <span className="text-2xl drop-shadow-md">🟡</span>
-                  <span className="font-bold text-xl text-amber-600">{counts.warm}</span>
-                  <span className="text-sm font-medium text-amber-500">Warm</span>
-                </div>
-                <div className="flex items-center gap-2 px-5 py-3 bg-gradient-to-br from-slate-500/10 to-gray-600/10 backdrop-blur-sm rounded-2xl border border-slate-300/20 shadow-lg shadow-slate-100/50 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300">
-                  <span className="text-2xl drop-shadow-md">⚪</span>
-                  <span className="font-bold text-xl text-slate-600">{counts.cold}</span>
-                  <span className="text-sm font-medium text-slate-500">Cold</span>
-                </div>
-              </div>
-            )}
+            <button
+              onClick={handleLogout}
+              className="px-6 py-2.5 bg-gradient-to-r from-red-500 to-red-600 text-white font-medium rounded-xl shadow-lg shadow-red-200/50 hover:shadow-xl hover:shadow-red-300/50 transition-all duration-300 hover:scale-105"
+            >
+              Logout
+            </button>
           </div>
+
+          {counts && (
+            <div className="flex items-center gap-3 mt-4">
+              <div className="flex items-center gap-2 px-5 py-3 bg-gradient-to-br from-red-500/10 to-red-600/10 backdrop-blur-sm rounded-2xl border border-red-300/20 shadow-lg shadow-red-100/50 hover:shadow-xl hover:shadow-red-200/50 transition-all duration-300">
+                <span className="text-2xl drop-shadow-md">🔥</span>
+                <span className="font-bold text-xl text-red-600">{counts.hot}</span>
+                <span className="text-sm font-medium text-red-500">Hot</span>
+              </div>
+              <div className="flex items-center gap-2 px-5 py-3 bg-gradient-to-br from-amber-500/10 to-yellow-600/10 backdrop-blur-sm rounded-2xl border border-amber-300/20 shadow-lg shadow-amber-100/50 hover:shadow-xl hover:shadow-amber-200/50 transition-all duration-300">
+                <span className="text-2xl drop-shadow-md">🟡</span>
+                <span className="font-bold text-xl text-amber-600">{counts.warm}</span>
+                <span className="text-sm font-medium text-amber-500">Warm</span>
+              </div>
+              <div className="flex items-center gap-2 px-5 py-3 bg-gradient-to-br from-slate-500/10 to-gray-600/10 backdrop-blur-sm rounded-2xl border border-slate-300/20 shadow-lg shadow-slate-100/50 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300">
+                <span className="text-2xl drop-shadow-md">⚪</span>
+                <span className="font-bold text-xl text-slate-600">{counts.cold}</span>
+                <span className="text-sm font-medium text-slate-500">Cold</span>
+              </div>
+            </div>
+          )}
         </div>
       </header>
       
@@ -118,10 +132,10 @@ export default function DashboardPage() {
       </main>
       
       {/* Footer */}
-      <footer className="backdrop-blur-xl bg-white/70 border-t border-white/20 shadow-lg shadow-blue-100/50 mt-auto">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <p className="text-sm text-gray-600 text-center font-medium">
-            Innovation Development Solutions — Leads Dashboard
+      <footer className="backdrop-blur-xl bg-white/70 border-t border-white/20 shadow-lg shadow-blue-100/50 mt-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <p className="text-xs text-gray-500 text-center">
+            © {new Date().getFullYear()} Innovation Business Development Solutions. All rights reserved.
           </p>
         </div>
       </footer>

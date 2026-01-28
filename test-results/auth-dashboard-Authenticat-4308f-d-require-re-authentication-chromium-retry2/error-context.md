@@ -27,91 +27,93 @@
             - /url: /contact
   - main [ref=e17]:
     - generic [ref=e18]:
-      - generic [ref=e22]:
-        - heading "Leads Dashboard" [level=1] [ref=e23]
-        - paragraph [ref=e24]: Track and manage your incoming leads
-      - main [ref=e25]:
-        - heading "Overview" [level=2] [ref=e27]
-        - generic [ref=e28]:
-          - heading "Recent Leads" [level=2] [ref=e30]
-          - generic [ref=e31]:
-            - generic [ref=e32]:
-              - button "📋 All" [ref=e33] [cursor=pointer]:
-                - generic [ref=e34]: 📋
-                - generic [ref=e35]: All
-              - button "🔥 Hot (0)" [ref=e36] [cursor=pointer]:
-                - generic [ref=e37]: 🔥
-                - generic [ref=e38]: Hot
-                - generic [ref=e39]: (0)
-              - button "🟡 Warm (0)" [ref=e40] [cursor=pointer]:
-                - generic [ref=e41]: 🟡
-                - generic [ref=e42]: Warm
-                - generic [ref=e43]: (0)
-              - button "⚪ Cold (0)" [ref=e44] [cursor=pointer]:
-                - generic [ref=e45]: ⚪
-                - generic [ref=e46]: Cold
-                - generic [ref=e47]: (0)
-            - generic [ref=e49]:
-              - generic [ref=e50]: 📭
-              - paragraph [ref=e51]: No leads found
-      - paragraph [ref=e54]: Innovation Development Solutions — Leads Dashboard
-  - contentinfo [ref=e55]:
-    - generic [ref=e57]:
-      - generic [ref=e58]:
-        - generic [ref=e59]:
-          - link "Innovation Business Development Solutions" [ref=e60] [cursor=pointer]:
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - heading "Innovation Business Development Solutions" [level=1] [ref=e23]
+          - paragraph [ref=e24]: Leads Dashboard
+        - button "Logout" [ref=e25] [cursor=pointer]
+      - main [ref=e26]:
+        - heading "Overview" [level=2] [ref=e28]
+        - generic [ref=e29]:
+          - heading "Recent Leads" [level=2] [ref=e31]
+          - generic [ref=e32]:
+            - generic [ref=e33]:
+              - button "📋 All" [ref=e34] [cursor=pointer]:
+                - generic [ref=e35]: 📋
+                - generic [ref=e36]: All
+              - button "🔥 Hot (0)" [ref=e37] [cursor=pointer]:
+                - generic [ref=e38]: 🔥
+                - generic [ref=e39]: Hot
+                - generic [ref=e40]: (0)
+              - button "🟡 Warm (0)" [ref=e41] [cursor=pointer]:
+                - generic [ref=e42]: 🟡
+                - generic [ref=e43]: Warm
+                - generic [ref=e44]: (0)
+              - button "⚪ Cold (0)" [ref=e45] [cursor=pointer]:
+                - generic [ref=e46]: ⚪
+                - generic [ref=e47]: Cold
+                - generic [ref=e48]: (0)
+            - generic [ref=e50]:
+              - generic [ref=e51]: 📭
+              - paragraph [ref=e52]: No leads found
+      - paragraph [ref=e55]: © 2026 Innovation Business Development Solutions. All rights reserved.
+  - contentinfo [ref=e56]:
+    - generic [ref=e58]:
+      - generic [ref=e59]:
+        - generic [ref=e60]:
+          - link "Innovation Business Development Solutions" [ref=e61] [cursor=pointer]:
             - /url: /
-            - generic [ref=e61]:
-              - generic [ref=e62]: Innovation
-              - generic [ref=e63]: Business Development Solutions
-          - paragraph [ref=e64]: National business scaling infrastructure. From multi-state licensing and formation to custom AI and digital growth, we build the systems you need to expand with confidence.
-        - generic [ref=e65]:
-          - heading "Company" [level=3] [ref=e66]
-          - list [ref=e67]:
-            - listitem [ref=e68]:
-              - link "About Us" [ref=e69] [cursor=pointer]:
+            - generic [ref=e62]:
+              - generic [ref=e63]: Innovation
+              - generic [ref=e64]: Business Development Solutions
+          - paragraph [ref=e65]: National business scaling infrastructure. From multi-state licensing and formation to custom AI and digital growth, we build the systems you need to expand with confidence.
+        - generic [ref=e66]:
+          - heading "Company" [level=3] [ref=e67]
+          - list [ref=e68]:
+            - listitem [ref=e69]:
+              - link "About Us" [ref=e70] [cursor=pointer]:
                 - /url: /about
-            - listitem [ref=e70]:
-              - link "Services" [ref=e71] [cursor=pointer]:
+            - listitem [ref=e71]:
+              - link "Services" [ref=e72] [cursor=pointer]:
                 - /url: /services
-            - listitem [ref=e72]:
-              - link "Who We Serve" [ref=e73] [cursor=pointer]:
+            - listitem [ref=e73]:
+              - link "Who We Serve" [ref=e74] [cursor=pointer]:
                 - /url: /who-we-serve
-            - listitem [ref=e74]:
-              - link "Starting a Business" [ref=e75] [cursor=pointer]:
+            - listitem [ref=e75]:
+              - link "Starting a Business" [ref=e76] [cursor=pointer]:
                 - /url: /starting-a-business
-            - listitem [ref=e76]:
-              - link "Contact" [ref=e77] [cursor=pointer]:
+            - listitem [ref=e77]:
+              - link "Contact" [ref=e78] [cursor=pointer]:
                 - /url: /contact
-        - generic [ref=e78]:
-          - heading "Services" [level=3] [ref=e79]
-          - list [ref=e80]:
-            - listitem [ref=e81]:
-              - link "Business Formation" [ref=e82] [cursor=pointer]:
+        - generic [ref=e79]:
+          - heading "Services" [level=3] [ref=e80]
+          - list [ref=e81]:
+            - listitem [ref=e82]:
+              - link "Business Formation" [ref=e83] [cursor=pointer]:
                 - /url: /services#formation
-            - listitem [ref=e83]:
-              - link "Websites & Domains" [ref=e84] [cursor=pointer]:
+            - listitem [ref=e84]:
+              - link "Websites & Domains" [ref=e85] [cursor=pointer]:
                 - /url: /services#websites
-            - listitem [ref=e85]:
-              - link "Custom Applications" [ref=e86] [cursor=pointer]:
+            - listitem [ref=e86]:
+              - link "Custom Applications" [ref=e87] [cursor=pointer]:
                 - /url: /services#applications
-            - listitem [ref=e87]:
-              - link "AI Tools" [ref=e88] [cursor=pointer]:
+            - listitem [ref=e88]:
+              - link "AI Tools" [ref=e89] [cursor=pointer]:
                 - /url: /services#ai
-            - listitem [ref=e89]:
-              - link "Email Infrastructure" [ref=e90] [cursor=pointer]:
+            - listitem [ref=e90]:
+              - link "Email Infrastructure" [ref=e91] [cursor=pointer]:
                 - /url: /services#email
-            - listitem [ref=e91]:
-              - link "Compliance Support" [ref=e92] [cursor=pointer]:
+            - listitem [ref=e92]:
+              - link "Compliance Support" [ref=e93] [cursor=pointer]:
                 - /url: /services#compliance
-      - generic [ref=e93]:
-        - paragraph [ref=e94]: © 2026 Innovation Business Development Solutions. All rights reserved.
-        - generic [ref=e95]:
-          - link "Privacy Policy" [ref=e96] [cursor=pointer]:
+      - generic [ref=e94]:
+        - paragraph [ref=e95]: © 2026 Innovation Business Development Solutions. All rights reserved.
+        - generic [ref=e96]:
+          - link "Privacy Policy" [ref=e97] [cursor=pointer]:
             - /url: /privacy
-          - link "Terms of Service" [ref=e97] [cursor=pointer]:
+          - link "Terms of Service" [ref=e98] [cursor=pointer]:
             - /url: /terms
-  - alert [ref=e98]
-  - button "Open chat" [ref=e99] [cursor=pointer]:
-    - img [ref=e100]
+  - alert [ref=e99]
+  - button "Open chat" [ref=e100] [cursor=pointer]:
+    - img [ref=e101]
 ```
