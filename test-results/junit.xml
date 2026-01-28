@@ -1,408 +1,175 @@
-<testsuites id="" name="" tests="12" failures="2" skipped="0" errors="0" time="74.692849">
-<testsuite name="auth-dashboard.spec.ts" timestamp="2026-01-28T15:48:55.546Z" hostname="chromium" tests="6" failures="2" skipped="0" time="137.76" errors="0">
-<testcase name="Authentication &amp; Dashboard Security › should login successfully with King1000$ password" classname="auth-dashboard.spec.ts" time="5.222">
-<system-out>
-<![CDATA[📍 Current URL after login: http://localhost:3001/dashboard
-✅ Login successful with King1000$ - dashboard loaded
-]]>
-</system-out>
-</testcase>
-<testcase name="Authentication &amp; Dashboard Security › should show real lead data (not mock data)" classname="auth-dashboard.spec.ts" time="6.057">
-<system-out>
-<![CDATA[✅ Dashboard loaded with lead metrics
-]]>
-</system-out>
-</testcase>
-<testcase name="Authentication &amp; Dashboard Security › should prevent unauthorized access to dashboard" classname="auth-dashboard.spec.ts" time="46.835">
-<failure message="auth-dashboard.spec.ts:107:7 should prevent unauthorized access to dashboard" type="FAILURE">
-<![CDATA[  [chromium] › auth-dashboard.spec.ts:107:7 › Authentication & Dashboard Security › should prevent unauthorized access to dashboard 
+<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="56.321522">
+<testsuite name="chatbot-comprehensive.spec.ts" timestamp="2026-01-28T16:15:08.588Z" hostname="chromium" tests="1" failures="1" skipped="0" time="52.038" errors="0">
+<testcase name="Chatbot Comprehensive Tests - Development › should have visible text with proper contrast (no white-on-white)" classname="chatbot-comprehensive.spec.ts" time="52.038">
+<failure message="chatbot-comprehensive.spec.ts:31:9 should have visible text with proper contrast (no white-on-white)" type="FAILURE">
+<![CDATA[  [chromium] › chatbot-comprehensive.spec.ts:31:9 › Chatbot Comprehensive Tests - Development › should have visible text with proper contrast (no white-on-white) 
 
-    TimeoutError: page.waitForURL: Timeout 10000ms exceeded.
-    =========================== logs ===========================
-    waiting for navigation to "/login" until "load"
-      navigated to "http://localhost:3001/dashboard"
-    ============================================================
+    Error: expect(locator).toBeVisible() failed
 
-      114 |     
-      115 |     // Should redirect to login
-    > 116 |     await page.waitForURL('/login', { timeout: 10000 });
-          |                ^
-      117 |     
-      118 |     // Verify we're on login page
-      119 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();
-        at /root/damaian/e2e/auth-dashboard.spec.ts:116:16
+    Locator: locator('button').filter({ hasText: /chat|help|message/i }).first()
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 10000ms
+      - waiting for locator('button').filter({ hasText: /chat|help|message/i }).first()
+
+
+      35 |       // Find and click chatbot button
+      36 |       const chatButton = page.locator('button').filter({ hasText: /chat|help|message/i }).first();
+    > 37 |       await expect(chatButton).toBeVisible({ timeout: 10000 });
+         |                                ^
+      38 |       await chatButton.click();
+      39 |       await page.waitForTimeout(2000);
+      40 |       
+        at /root/damaian/e2e/chatbot-comprehensive.spec.ts:37:32
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium/test-failed-1.png
+    ../test-results/chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium/test-failed-1.png
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
     attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium/video.webm
+    ../test-results/chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium/video.webm
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-    Error Context: ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium/error-context.md
+    Error Context: ../test-results/chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium/error-context.md
 
     Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
 
-    TimeoutError: page.waitForURL: Timeout 10000ms exceeded.
-    =========================== logs ===========================
-    waiting for navigation to "/login" until "load"
-      navigated to "http://localhost:3001/dashboard"
-    ============================================================
+    Error: expect(locator).toBeVisible() failed
 
-      114 |     
-      115 |     // Should redirect to login
-    > 116 |     await page.waitForURL('/login', { timeout: 10000 });
-          |                ^
-      117 |     
-      118 |     // Verify we're on login page
-      119 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();
-        at /root/damaian/e2e/auth-dashboard.spec.ts:116:16
+    Locator: locator('button').filter({ hasText: /chat|help|message/i }).first()
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 10000ms
+      - waiting for locator('button').filter({ hasText: /chat|help|message/i }).first()
+
+
+      35 |       // Find and click chatbot button
+      36 |       const chatButton = page.locator('button').filter({ hasText: /chat|help|message/i }).first();
+    > 37 |       await expect(chatButton).toBeVisible({ timeout: 10000 });
+         |                                ^
+      38 |       await chatButton.click();
+      39 |       await page.waitForTimeout(2000);
+      40 |       
+        at /root/damaian/e2e/chatbot-comprehensive.spec.ts:37:32
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/test-failed-1.png
+    ../test-results/chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry1/test-failed-1.png
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
     attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/video.webm
+    ../test-results/chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry1/video.webm
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-    Error Context: ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/error-context.md
+    Error Context: ../test-results/chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry1/error-context.md
 
     attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
-    ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/trace.zip
+    ../test-results/chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry1/trace.zip
     Usage:
 
-        npx playwright show-trace ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/trace.zip
+        npx playwright show-trace ../test-results/chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry1/trace.zip
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
     Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
 
-    TimeoutError: page.waitForURL: Timeout 10000ms exceeded.
-    =========================== logs ===========================
-    waiting for navigation to "/login" until "load"
-      navigated to "http://localhost:3001/dashboard"
-    ============================================================
+    Error: expect(locator).toBeVisible() failed
 
-      114 |     
-      115 |     // Should redirect to login
-    > 116 |     await page.waitForURL('/login', { timeout: 10000 });
-          |                ^
-      117 |     
-      118 |     // Verify we're on login page
-      119 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();
-        at /root/damaian/e2e/auth-dashboard.spec.ts:116:16
+    Locator: locator('button').filter({ hasText: /chat|help|message/i }).first()
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 10000ms
+      - waiting for locator('button').filter({ hasText: /chat|help|message/i }).first()
+
+
+      35 |       // Find and click chatbot button
+      36 |       const chatButton = page.locator('button').filter({ hasText: /chat|help|message/i }).first();
+    > 37 |       await expect(chatButton).toBeVisible({ timeout: 10000 });
+         |                                ^
+      38 |       await chatButton.click();
+      39 |       await page.waitForTimeout(2000);
+      40 |       
+        at /root/damaian/e2e/chatbot-comprehensive.spec.ts:37:32
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry2/test-failed-1.png
+    ../test-results/chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry2/test-failed-1.png
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
     attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry2/video.webm
+    ../test-results/chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry2/video.webm
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-    Error Context: ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry2/error-context.md
+    Error Context: ../test-results/chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry2/error-context.md
 
     Retry #3 ───────────────────────────────────────────────────────────────────────────────────────
 
-    TimeoutError: page.waitForURL: Timeout 10000ms exceeded.
-    =========================== logs ===========================
-    waiting for navigation to "/login" until "load"
-      navigated to "http://localhost:3001/dashboard"
-    ============================================================
+    Error: expect(locator).toBeVisible() failed
 
-      114 |     
-      115 |     // Should redirect to login
-    > 116 |     await page.waitForURL('/login', { timeout: 10000 });
-          |                ^
-      117 |     
-      118 |     // Verify we're on login page
-      119 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();
-        at /root/damaian/e2e/auth-dashboard.spec.ts:116:16
+    Locator: locator('button').filter({ hasText: /chat|help|message/i }).first()
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 10000ms
+      - waiting for locator('button').filter({ hasText: /chat|help|message/i }).first()
+
+
+      35 |       // Find and click chatbot button
+      36 |       const chatButton = page.locator('button').filter({ hasText: /chat|help|message/i }).first();
+    > 37 |       await expect(chatButton).toBeVisible({ timeout: 10000 });
+         |                                ^
+      38 |       await chatButton.click();
+      39 |       await page.waitForTimeout(2000);
+      40 |       
+        at /root/damaian/e2e/chatbot-comprehensive.spec.ts:37:32
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry3/test-failed-1.png
+    ../test-results/chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry3/test-failed-1.png
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
     attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry3/video.webm
+    ../test-results/chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry3/video.webm
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-    Error Context: ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry3/error-context.md
+    Error Context: ../test-results/chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry3/error-context.md
 ]]>
 </failure>
 <system-out>
 <![CDATA[
-[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium/test-failed-1.png]]
+[[ATTACHMENT|chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium/test-failed-1.png]]
 
-[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium/video.webm]]
+[[ATTACHMENT|chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium/video.webm]]
 
-[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium/error-context.md]]
+[[ATTACHMENT|chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium/error-context.md]]
 
-[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/test-failed-1.png]]
+[[ATTACHMENT|chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry1/test-failed-1.png]]
 
-[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/video.webm]]
+[[ATTACHMENT|chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry1/video.webm]]
 
-[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/error-context.md]]
+[[ATTACHMENT|chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry1/error-context.md]]
 
-[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/trace.zip]]
+[[ATTACHMENT|chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry1/trace.zip]]
 
-[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry2/test-failed-1.png]]
+[[ATTACHMENT|chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry2/test-failed-1.png]]
 
-[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry2/video.webm]]
+[[ATTACHMENT|chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry2/video.webm]]
 
-[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry2/error-context.md]]
+[[ATTACHMENT|chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry2/error-context.md]]
 
-[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry3/test-failed-1.png]]
+[[ATTACHMENT|chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry3/test-failed-1.png]]
 
-[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry3/video.webm]]
+[[ATTACHMENT|chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry3/video.webm]]
 
-[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry3/error-context.md]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Authentication &amp; Dashboard Security › should show accurate metrics on dashboard" classname="auth-dashboard.spec.ts" time="6.115">
-<system-out>
-<![CDATA[✅ Dashboard metrics section loaded
-✅ Dashboard accessible and rendering
-]]>
-</system-out>
-</testcase>
-<testcase name="Authentication &amp; Dashboard Security › should logout and require re-authentication" classname="auth-dashboard.spec.ts" time="70.746">
-<failure message="auth-dashboard.spec.ts:152:7 should logout and require re-authentication" type="FAILURE">
-<![CDATA[  [chromium] › auth-dashboard.spec.ts:152:7 › Authentication & Dashboard Security › should logout and require re-authentication 
-
-    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
-    =========================== logs ===========================
-    waiting for navigation to "/login" until "load"
-      navigated to "http://localhost:3001/dashboard"
-    ============================================================
-
-      168 |     
-      169 |     // Should redirect to login
-    > 170 |     await page.waitForURL('/login', { timeout: 15000 });
-          |                ^
-      171 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();
-      172 |     
-      173 |     console.log('✅ Session cleared - re-authentication required');
-        at /root/damaian/e2e/auth-dashboard.spec.ts:170:16
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium/error-context.md
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
-    =========================== logs ===========================
-    waiting for navigation to "/login" until "load"
-    ============================================================
-
-      168 |     
-      169 |     // Should redirect to login
-    > 170 |     await page.waitForURL('/login', { timeout: 15000 });
-          |                ^
-      171 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();
-      172 |     
-      173 |     console.log('✅ Session cleared - re-authentication required');
-        at /root/damaian/e2e/auth-dashboard.spec.ts:170:16
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/error-context.md
-
-    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
-    ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/trace.zip
-    Usage:
-
-        npx playwright show-trace ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-
-    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
-    =========================== logs ===========================
-    waiting for navigation to "/login" until "load"
-      navigated to "http://localhost:3001/dashboard"
-    ============================================================
-
-      168 |     
-      169 |     // Should redirect to login
-    > 170 |     await page.waitForURL('/login', { timeout: 15000 });
-          |                ^
-      171 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();
-      172 |     
-      173 |     console.log('✅ Session cleared - re-authentication required');
-        at /root/damaian/e2e/auth-dashboard.spec.ts:170:16
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry2/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry2/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry2/error-context.md
-
-    Retry #3 ───────────────────────────────────────────────────────────────────────────────────────
-
-    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
-    =========================== logs ===========================
-    waiting for navigation to "/login" until "load"
-      navigated to "http://localhost:3001/dashboard"
-    ============================================================
-
-      168 |     
-      169 |     // Should redirect to login
-    > 170 |     await page.waitForURL('/login', { timeout: 15000 });
-          |                ^
-      171 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();
-      172 |     
-      173 |     console.log('✅ Session cleared - re-authentication required');
-        at /root/damaian/e2e/auth-dashboard.spec.ts:170:16
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry3/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry3/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry3/error-context.md
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium/video.webm]]
-
-[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium/error-context.md]]
-
-[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/test-failed-1.png]]
-
-[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/video.webm]]
-
-[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/error-context.md]]
-
-[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/trace.zip]]
-
-[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry2/test-failed-1.png]]
-
-[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry2/video.webm]]
-
-[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry2/error-context.md]]
-
-[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry3/test-failed-1.png]]
-
-[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry3/video.webm]]
-
-[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry3/error-context.md]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Login Error Handling › should show error with wrong password" classname="auth-dashboard.spec.ts" time="2.785">
-<system-out>
-<![CDATA[✅ Wrong password rejected correctly
-]]>
-</system-out>
-</testcase>
-</testsuite>
-<testsuite name="confidence-score.spec.ts" timestamp="2026-01-28T15:48:55.546Z" hostname="chromium" tests="6" failures="0" skipped="0" time="8.765" errors="0">
-<testcase name="Confidence Score - Code Quality Validation › CONFIDENCE TEST: Validate no mock data in codebase" classname="confidence-score.spec.ts" time="0.011">
-<system-out>
-<![CDATA[🔍 Running confidence score analysis...
-
-=== CONFIDENCE SCORE REPORT ===
-Final Score: 100/100
-Status: ✅ PASS
-
-✅ No issues detected - code is production ready!
-
-=== DETAILED ANALYSIS ===
-Files Checked:
-  - lib/db/leads-db.ts
-  - app/dashboard/page.tsx
-
-Mock Patterns Searched: 5
-Patterns Found: 0
-
-📄 Full report saved to: test-results/confidence-score-report.md
-
-✅ Confidence test PASSED
-]]>
-</system-out>
-</testcase>
-<testcase name="Confidence Score - Code Quality Validation › VISUAL CONFIDENCE: Compare dashboard screenshots" classname="confidence-score.spec.ts" time="8.695">
-<system-out>
-<![CDATA[📸 Running visual confidence test...
-
-=== VISUAL VALIDATION ===
-✅ hasLogoutButton
-✅ hasBranding
-✅ noMockEmail
-✅ noMockName
-❌ hasMetrics
-✅ hasLeadCounts
-
-Visual Confidence: 83.3%
-✅ Visual confidence test PASSED
-]]>
-</system-out>
-</testcase>
-<testcase name="Confidence Score - Code Quality Validation › DATABASE CONFIDENCE: Verify empty on fresh start" classname="confidence-score.spec.ts" time="0.008">
-<system-out>
-<![CDATA[🗄️  Testing database initialization...
-✅ Database starts empty - no auto-initialization
-✅ Production-ready comments verified
-]]>
-</system-out>
-</testcase>
-<testcase name="Confidence Score - Code Quality Validation › AUTHENTICATION CONFIDENCE: Verify middleware protection" classname="confidence-score.spec.ts" time="0.019">
-<system-out>
-<![CDATA[🔐 Testing authentication enforcement...
-
-=== SECURITY VALIDATION ===
-✅ hasGetToken
-✅ hasProtectedRoutes
-✅ hasRedirectToLogin
-✅ hasJWTValidation
-
-✅ Authentication properly configured
-]]>
-</system-out>
-</testcase>
-<testcase name="Production Deployment Confidence › DOMAIN CONFIDENCE: Verify production domain support" classname="confidence-score.spec.ts" time="0.014">
-<system-out>
-<![CDATA[🌐 Checking production domain configuration...
-✅ Localhost development: SUPPORTED
-✅ Production subdomain: SUPPORTED
-✅ Domain configuration ready for deployment
-]]>
-</system-out>
-</testcase>
-<testcase name="Production Deployment Confidence › ENVIRONMENT CONFIDENCE: Verify production settings" classname="confidence-score.spec.ts" time="0.018">
-<system-out>
-<![CDATA[⚙️  Checking environment configuration...
-✅ Environment variables: CONFIGURED
-✅ Secure cookies: ENABLED
-✅ Redirect callbacks: IMPLEMENTED
+[[ATTACHMENT|chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry3/error-context.md]]
 ]]>
 </system-out>
 </testcase>
