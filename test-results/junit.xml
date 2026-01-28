@@ -1,29 +1,45 @@
-<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="56.321522">
-<testsuite name="chatbot-comprehensive.spec.ts" timestamp="2026-01-28T16:15:08.588Z" hostname="chromium" tests="1" failures="1" skipped="0" time="52.038" errors="0">
-<testcase name="Chatbot Comprehensive Tests - Development › should have visible text with proper contrast (no white-on-white)" classname="chatbot-comprehensive.spec.ts" time="52.038">
+<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="80.814286">
+<testsuite name="chatbot-comprehensive.spec.ts" timestamp="2026-01-28T16:25:30.059Z" hostname="chromium" tests="1" failures="1" skipped="0" time="77.867" errors="0">
+<testcase name="Chatbot Comprehensive Tests - Development › should have visible text with proper contrast (no white-on-white)" classname="chatbot-comprehensive.spec.ts" time="77.867">
 <failure message="chatbot-comprehensive.spec.ts:31:9 should have visible text with proper contrast (no white-on-white)" type="FAILURE">
 <![CDATA[  [chromium] › chatbot-comprehensive.spec.ts:31:9 › Chatbot Comprehensive Tests - Development › should have visible text with proper contrast (no white-on-white) 
 
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: locator('button').filter({ hasText: /chat|help|message/i }).first()
-    Expected: visible
-    Timeout: 10000ms
-    Error: element(s) not found
-
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
     Call log:
-      - Expect "toBeVisible" with timeout 10000ms
-      - waiting for locator('button').filter({ hasText: /chat|help|message/i }).first()
+      - waiting for locator('button[aria-label="Open chat"]')
+        - locator resolved to <button aria-label="Open chat" class="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105 active:scale-95 touch-manipulation">…</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - element is outside of the viewport
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - element is outside of the viewport
+        - retrying click action
+          - waiting 100ms
+        29 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - element is outside of the viewport
+         - retrying click action
+           - waiting 500ms
 
 
-      35 |       // Find and click chatbot button
-      36 |       const chatButton = page.locator('button').filter({ hasText: /chat|help|message/i }).first();
-    > 37 |       await expect(chatButton).toBeVisible({ timeout: 10000 });
-         |                                ^
-      38 |       await chatButton.click();
-      39 |       await page.waitForTimeout(2000);
-      40 |       
-        at /root/damaian/e2e/chatbot-comprehensive.spec.ts:37:32
+      39 |       const chatButton = page.locator('button[aria-label="Open chat"]');
+      40 |       await expect(chatButton).toBeVisible({ timeout: 10000 });
+    > 41 |       await chatButton.click();
+         |                        ^
+      42 |       await page.waitForTimeout(2000);
+      43 |       
+      44 |       // Wait for chat modal to appear
+        at /root/damaian/e2e/chatbot-comprehensive.spec.ts:41:24
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     ../test-results/chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium/test-failed-1.png
@@ -37,26 +53,42 @@
 
     Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
 
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: locator('button').filter({ hasText: /chat|help|message/i }).first()
-    Expected: visible
-    Timeout: 10000ms
-    Error: element(s) not found
-
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
     Call log:
-      - Expect "toBeVisible" with timeout 10000ms
-      - waiting for locator('button').filter({ hasText: /chat|help|message/i }).first()
+      - waiting for locator('button[aria-label="Open chat"]')
+        - locator resolved to <button aria-label="Open chat" class="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105 active:scale-95 touch-manipulation">…</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - element is outside of the viewport
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - element is outside of the viewport
+        - retrying click action
+          - waiting 100ms
+        29 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - element is outside of the viewport
+         - retrying click action
+           - waiting 500ms
 
 
-      35 |       // Find and click chatbot button
-      36 |       const chatButton = page.locator('button').filter({ hasText: /chat|help|message/i }).first();
-    > 37 |       await expect(chatButton).toBeVisible({ timeout: 10000 });
-         |                                ^
-      38 |       await chatButton.click();
-      39 |       await page.waitForTimeout(2000);
-      40 |       
-        at /root/damaian/e2e/chatbot-comprehensive.spec.ts:37:32
+      39 |       const chatButton = page.locator('button[aria-label="Open chat"]');
+      40 |       await expect(chatButton).toBeVisible({ timeout: 10000 });
+    > 41 |       await chatButton.click();
+         |                        ^
+      42 |       await page.waitForTimeout(2000);
+      43 |       
+      44 |       // Wait for chat modal to appear
+        at /root/damaian/e2e/chatbot-comprehensive.spec.ts:41:24
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     ../test-results/chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry1/test-failed-1.png
@@ -78,26 +110,42 @@
 
     Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
 
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: locator('button').filter({ hasText: /chat|help|message/i }).first()
-    Expected: visible
-    Timeout: 10000ms
-    Error: element(s) not found
-
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
     Call log:
-      - Expect "toBeVisible" with timeout 10000ms
-      - waiting for locator('button').filter({ hasText: /chat|help|message/i }).first()
+      - waiting for locator('button[aria-label="Open chat"]')
+        - locator resolved to <button aria-label="Open chat" class="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105 active:scale-95 touch-manipulation">…</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - element is outside of the viewport
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - element is outside of the viewport
+        - retrying click action
+          - waiting 100ms
+        29 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - element is outside of the viewport
+         - retrying click action
+           - waiting 500ms
 
 
-      35 |       // Find and click chatbot button
-      36 |       const chatButton = page.locator('button').filter({ hasText: /chat|help|message/i }).first();
-    > 37 |       await expect(chatButton).toBeVisible({ timeout: 10000 });
-         |                                ^
-      38 |       await chatButton.click();
-      39 |       await page.waitForTimeout(2000);
-      40 |       
-        at /root/damaian/e2e/chatbot-comprehensive.spec.ts:37:32
+      39 |       const chatButton = page.locator('button[aria-label="Open chat"]');
+      40 |       await expect(chatButton).toBeVisible({ timeout: 10000 });
+    > 41 |       await chatButton.click();
+         |                        ^
+      42 |       await page.waitForTimeout(2000);
+      43 |       
+      44 |       // Wait for chat modal to appear
+        at /root/damaian/e2e/chatbot-comprehensive.spec.ts:41:24
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     ../test-results/chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry2/test-failed-1.png
@@ -111,26 +159,42 @@
 
     Retry #3 ───────────────────────────────────────────────────────────────────────────────────────
 
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: locator('button').filter({ hasText: /chat|help|message/i }).first()
-    Expected: visible
-    Timeout: 10000ms
-    Error: element(s) not found
-
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
     Call log:
-      - Expect "toBeVisible" with timeout 10000ms
-      - waiting for locator('button').filter({ hasText: /chat|help|message/i }).first()
+      - waiting for locator('button[aria-label="Open chat"]')
+        - locator resolved to <button aria-label="Open chat" class="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105 active:scale-95 touch-manipulation">…</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - element is outside of the viewport
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - element is outside of the viewport
+        - retrying click action
+          - waiting 100ms
+        29 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - element is outside of the viewport
+         - retrying click action
+           - waiting 500ms
 
 
-      35 |       // Find and click chatbot button
-      36 |       const chatButton = page.locator('button').filter({ hasText: /chat|help|message/i }).first();
-    > 37 |       await expect(chatButton).toBeVisible({ timeout: 10000 });
-         |                                ^
-      38 |       await chatButton.click();
-      39 |       await page.waitForTimeout(2000);
-      40 |       
-        at /root/damaian/e2e/chatbot-comprehensive.spec.ts:37:32
+      39 |       const chatButton = page.locator('button[aria-label="Open chat"]');
+      40 |       await expect(chatButton).toBeVisible({ timeout: 10000 });
+    > 41 |       await chatButton.click();
+         |                        ^
+      42 |       await page.waitForTimeout(2000);
+      43 |       
+      44 |       // Wait for chat modal to appear
+        at /root/damaian/e2e/chatbot-comprehensive.spec.ts:41:24
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     ../test-results/chatbot-comprehensive-Chat-a40e0-contrast-no-white-on-white--chromium-retry3/test-failed-1.png

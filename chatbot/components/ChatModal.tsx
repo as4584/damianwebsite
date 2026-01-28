@@ -211,9 +211,10 @@ export default function ChatModal({ isOpen, onClose }: ChatModalProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 md:inset-auto md:bottom-20 md:right-4 lg:right-5 w-full md:w-[400px] lg:w-[420px] h-full md:h-[600px] md:max-h-[calc(100vh-100px)] z-[9999] bg-white md:rounded-xl md:shadow-2xl overflow-hidden flex flex-col"
+            className="fixed inset-0 md:inset-auto md:bottom-20 md:right-4 lg:right-5 w-full md:w-[400px] lg:w-[420px] h-full md:h-[600px] md:max-h-[calc(100vh-100px)] bg-white md:rounded-xl md:shadow-2xl overflow-hidden flex flex-col"
             style={{ 
-              pointerEvents: 'auto'
+              pointerEvents: 'auto',
+              zIndex: 9999
             }}
           >
             {/* Header */}

@@ -35,10 +35,12 @@ for (const { name, url } of TEST_URLS) {
       // Give chatbot time to load (it might be dynamically rendered)
       await page.waitForTimeout(3000);
       
-      // Find chatbot button - look for various selectors
-      const chatButton = page.locator('button:has-text("Chat"), button:has-text("Help"), button:has-text("Message"), button[aria-label*="chat" i], [class*="chat"][role="button"]').first();
+      // Find chatbot button by aria-label (from debug test we know it has aria-label="Open chat")
+      const chatButton = page.locator('button[aria-label="Open chat"]');
       await expect(chatButton).toBeVisible({ timeout: 10000 });
-      await chatButton.click();
+      
+      // Force click since it's fixed position and might be reported as outside viewport
+      await chatButton.click({ force: true });
       await page.waitForTimeout(2000);
       
       // Wait for chat modal to appear
@@ -358,7 +360,7 @@ for (const { name, url } of TEST_URLS) {
         await page.waitForLoadState('networkidle');
         
         // Find chatbot button
-        const chatButton = page.locator('button').filter({ hasText: /chat|help|message/i }).first();
+        const chatButton = page.locator('button[aria-label="Open chat"]');
         
         // Must be visible within 10 seconds
         await expect(chatButton).toBeVisible({ timeout: 10000 });
