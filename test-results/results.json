@@ -11,7 +11,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 2
+      "actualWorkers": 5
     },
     "preserveOutput": "always",
     "projects": [
@@ -20,7 +20,7 @@
         "repeatEach": 1,
         "retries": 3,
         "metadata": {
-          "actualWorkers": 2
+          "actualWorkers": 5
         },
         "id": "chromium",
         "name": "chromium",
@@ -36,7 +36,7 @@
         "repeatEach": 1,
         "retries": 3,
         "metadata": {
-          "actualWorkers": 2
+          "actualWorkers": 5
         },
         "id": "mobile-chrome",
         "name": "mobile-chrome",
@@ -52,7 +52,7 @@
         "repeatEach": 1,
         "retries": 3,
         "metadata": {
-          "actualWorkers": 2
+          "actualWorkers": 5
         },
         "id": "tablet",
         "name": "tablet",
@@ -100,26 +100,26 @@
     "updateSnapshots": "missing",
     "updateSourceMethod": "patch",
     "version": "1.58.0",
-    "workers": 2,
+    "workers": 16,
     "webServer": null
   },
   "suites": [
     {
-      "title": "chatbot-comprehensive.spec.ts",
-      "file": "chatbot-comprehensive.spec.ts",
+      "title": "chatbot-visual-validation.spec.ts",
+      "file": "chatbot-visual-validation.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Chatbot Comprehensive Tests - Production",
-          "file": "chatbot-comprehensive.spec.ts",
-          "line": 25,
+          "title": "Chatbot Visual Validation - Production",
+          "file": "chatbot-visual-validation.spec.ts",
+          "line": 14,
           "column": 8,
           "specs": [
             {
-              "title": "should have visible text with proper contrast (no white-on-white)",
-              "ok": true,
+              "title": "should render with correct size and position",
+              "ok": false,
               "tags": [],
               "tests": [
                 {
@@ -132,114 +132,284 @@
                     {
                       "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 7059,
-                      "errors": [],
+                      "status": "failed",
+                      "duration": 7212,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m\n    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:37:27",
+                        "location": {
+                          "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                          "column": 27,
+                          "line": 37
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 35 |\u001b[39m         \n \u001b[90m 36 |\u001b[39m         \u001b[90m// Button should be at least 50px wide/tall (accounting for mobile/desktop difference)\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 37 |\u001b[39m         expect(box\u001b[33m.\u001b[39mwidth)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 38 |\u001b[39m         expect(box\u001b[33m.\u001b[39mheight)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m         \n \u001b[90m 40 |\u001b[39m         \u001b[90m// Button should be in right portion of screen (x > 50% of viewport)\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                            "column": 27,
+                            "line": 37
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m\n\n\u001b[0m \u001b[90m 35 |\u001b[39m         \n \u001b[90m 36 |\u001b[39m         \u001b[90m// Button should be at least 50px wide/tall (accounting for mobile/desktop difference)\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 37 |\u001b[39m         expect(box\u001b[33m.\u001b[39mwidth)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 38 |\u001b[39m         expect(box\u001b[33m.\u001b[39mheight)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m         \n \u001b[90m 40 |\u001b[39m         \u001b[90m// Button should be in right portion of screen (x > 50% of viewport)\u001b[39m\u001b[0m\n\u001b[2m    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:37:27\u001b[22m"
+                        }
+                      ],
                       "stdout": [
                         {
-                          "text": "Bot message styles: {\n  color: \u001b[32m'rgb(15, 23, 42)'\u001b[39m,\n  backgroundColor: \u001b[32m'rgba(0, 0, 0, 0)'\u001b[39m,\n  backgroundImage: \u001b[32m'none'\u001b[39m\n}\n"
+                          "text": "\n=== Production Chat Button Dimensions ===\n"
                         },
                         {
-                          "text": "✅ Text visibility check passed: Text RGB(15,23,42)\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-01-28T16:53:24.244Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "13a4c1ac9e2578153bce-b1f0068fd644246f4ed3",
-              "file": "chatbot-comprehensive.spec.ts",
-              "line": 31,
-              "column": 9
-            },
-            {
-              "title": "should allow sending messages and receive bot responses",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 11229,
-                      "errors": [],
-                      "stdout": [
+                          "text": "Position: x=0, y=5865.59375\n"
+                        },
                         {
-                          "text": "✅ Message interaction successful: 4 → 71 messages\n"
+                          "text": "Size: 24x24px\n"
+                        },
+                        {
+                          "text": "Expected: 56-64px square at bottom-right\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-01-28T16:53:24.237Z",
+                      "startTime": "2026-01-28T17:07:29.073Z",
                       "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "13a4c1ac9e2578153bce-e0c229cf53493dfd93c0",
-              "file": "chatbot-comprehensive.spec.ts",
-              "line": 106,
-              "column": 9
-            },
-            {
-              "title": "should be collapsible (open and close)",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--35862-h-correct-size-and-position-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--35862-h-correct-size-and-position-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--35862-h-correct-size-and-position-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                        "column": 27,
+                        "line": 37
+                      }
+                    },
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 6,
                       "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 6680,
-                      "errors": [],
+                      "status": "failed",
+                      "duration": 6672,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m\n    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:37:27",
+                        "location": {
+                          "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                          "column": 27,
+                          "line": 37
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 35 |\u001b[39m         \n \u001b[90m 36 |\u001b[39m         \u001b[90m// Button should be at least 50px wide/tall (accounting for mobile/desktop difference)\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 37 |\u001b[39m         expect(box\u001b[33m.\u001b[39mwidth)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 38 |\u001b[39m         expect(box\u001b[33m.\u001b[39mheight)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m         \n \u001b[90m 40 |\u001b[39m         \u001b[90m// Button should be in right portion of screen (x > 50% of viewport)\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                            "column": 27,
+                            "line": 37
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m\n\n\u001b[0m \u001b[90m 35 |\u001b[39m         \n \u001b[90m 36 |\u001b[39m         \u001b[90m// Button should be at least 50px wide/tall (accounting for mobile/desktop difference)\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 37 |\u001b[39m         expect(box\u001b[33m.\u001b[39mwidth)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 38 |\u001b[39m         expect(box\u001b[33m.\u001b[39mheight)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m         \n \u001b[90m 40 |\u001b[39m         \u001b[90m// Button should be in right portion of screen (x > 50% of viewport)\u001b[39m\u001b[0m\n\u001b[2m    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:37:27\u001b[22m"
+                        }
+                      ],
                       "stdout": [
                         {
-                          "text": "✅ Chat opened successfully\n"
+                          "text": "\n=== Production Chat Button Dimensions ===\n"
                         },
                         {
-                          "text": "✅ Chat closed successfully\n"
+                          "text": "Position: x=0, y=5865.59375\n"
+                        },
+                        {
+                          "text": "Size: 24x24px\n"
+                        },
+                        {
+                          "text": "Expected: 56-64px square at bottom-right\n"
                         }
                       ],
                       "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-01-28T16:53:31.357Z",
+                      "retry": 1,
+                      "startTime": "2026-01-28T17:07:37.566Z",
                       "annotations": [],
-                      "attachments": []
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--35862-h-correct-size-and-position-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--35862-h-correct-size-and-position-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--35862-h-correct-size-and-position-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--35862-h-correct-size-and-position-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                        "column": 27,
+                        "line": 37
+                      }
+                    },
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 6835,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m\n    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:37:27",
+                        "location": {
+                          "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                          "column": 27,
+                          "line": 37
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 35 |\u001b[39m         \n \u001b[90m 36 |\u001b[39m         \u001b[90m// Button should be at least 50px wide/tall (accounting for mobile/desktop difference)\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 37 |\u001b[39m         expect(box\u001b[33m.\u001b[39mwidth)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 38 |\u001b[39m         expect(box\u001b[33m.\u001b[39mheight)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m         \n \u001b[90m 40 |\u001b[39m         \u001b[90m// Button should be in right portion of screen (x > 50% of viewport)\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                            "column": 27,
+                            "line": 37
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m\n\n\u001b[0m \u001b[90m 35 |\u001b[39m         \n \u001b[90m 36 |\u001b[39m         \u001b[90m// Button should be at least 50px wide/tall (accounting for mobile/desktop difference)\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 37 |\u001b[39m         expect(box\u001b[33m.\u001b[39mwidth)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 38 |\u001b[39m         expect(box\u001b[33m.\u001b[39mheight)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m         \n \u001b[90m 40 |\u001b[39m         \u001b[90m// Button should be in right portion of screen (x > 50% of viewport)\u001b[39m\u001b[0m\n\u001b[2m    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:37:27\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "\n=== Production Chat Button Dimensions ===\n"
+                        },
+                        {
+                          "text": "Position: x=0, y=5865.59375\n"
+                        },
+                        {
+                          "text": "Size: 24x24px\n"
+                        },
+                        {
+                          "text": "Expected: 56-64px square at bottom-right\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 2,
+                      "startTime": "2026-01-28T17:07:45.378Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--35862-h-correct-size-and-position-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--35862-h-correct-size-and-position-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--35862-h-correct-size-and-position-chromium-retry2/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                        "column": 27,
+                        "line": 37
+                      }
+                    },
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 6455,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m\n    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:37:27",
+                        "location": {
+                          "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                          "column": 27,
+                          "line": 37
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 35 |\u001b[39m         \n \u001b[90m 36 |\u001b[39m         \u001b[90m// Button should be at least 50px wide/tall (accounting for mobile/desktop difference)\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 37 |\u001b[39m         expect(box\u001b[33m.\u001b[39mwidth)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 38 |\u001b[39m         expect(box\u001b[33m.\u001b[39mheight)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m         \n \u001b[90m 40 |\u001b[39m         \u001b[90m// Button should be in right portion of screen (x > 50% of viewport)\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                            "column": 27,
+                            "line": 37
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m\n\n\u001b[0m \u001b[90m 35 |\u001b[39m         \n \u001b[90m 36 |\u001b[39m         \u001b[90m// Button should be at least 50px wide/tall (accounting for mobile/desktop difference)\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 37 |\u001b[39m         expect(box\u001b[33m.\u001b[39mwidth)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 38 |\u001b[39m         expect(box\u001b[33m.\u001b[39mheight)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m         \n \u001b[90m 40 |\u001b[39m         \u001b[90m// Button should be in right portion of screen (x > 50% of viewport)\u001b[39m\u001b[0m\n\u001b[2m    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:37:27\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "\n=== Production Chat Button Dimensions ===\n"
+                        },
+                        {
+                          "text": "Position: x=0, y=5865.59375\n"
+                        },
+                        {
+                          "text": "Size: 24x24px\n"
+                        },
+                        {
+                          "text": "Expected: 56-64px square at bottom-right\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 3,
+                      "startTime": "2026-01-28T17:07:53.014Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--35862-h-correct-size-and-position-chromium-retry3/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--35862-h-correct-size-and-position-chromium-retry3/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--35862-h-correct-size-and-position-chromium-retry3/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                        "column": 27,
+                        "line": 37
+                      }
                     }
                   ],
-                  "status": "expected"
+                  "status": "unexpected"
                 }
               ],
-              "id": "13a4c1ac9e2578153bce-008ca44a70d88807c4ac",
-              "file": "chatbot-comprehensive.spec.ts",
-              "line": 150,
+              "id": "3039d3db56cd021cfe94-887c5bc46efa85d97270",
+              "file": "chatbot-visual-validation.spec.ts",
+              "line": 16,
               "column": 9
             },
             {
-              "title": "should have appropriate sizing for different viewports",
-              "ok": true,
+              "title": "should not be covered by other elements",
+              "ok": false,
               "tags": [],
               "tests": [
                 {
@@ -252,38 +422,228 @@
                     {
                       "workerIndex": 1,
                       "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 10732,
-                      "errors": [],
-                      "stdout": [
+                      "status": "failed",
+                      "duration": 7689,
+                      "error": {
+                        "message": "Error: page.evaluate: TypeError: Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'.\n    at eval (eval at evaluate (:290:30), <anonymous>:7:28)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+                        "stack": "Error: page.evaluate: TypeError: Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'.\n    at eval (eval at evaluate (:290:30), <anonymous>:7:28)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at eval (eval at evaluate (:290:30), <anonymous>:7:28)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:111:43",
+                        "location": {
+                          "file": "eval at evaluate (:290:30), <anonymous>",
+                          "column": 28,
+                          "line": 7
+                        }
+                      },
+                      "errors": [
                         {
-                          "text": "Desktop chat size: { x: \u001b[33m36\u001b[39m, y: \u001b[33m12\u001b[39m, width: \u001b[33m108\u001b[39m, height: \u001b[33m36\u001b[39m }\n"
-                        },
-                        {
-                          "text": "Mobile chat size: { x: \u001b[33m36\u001b[39m, y: \u001b[33m12\u001b[39m, width: \u001b[33m108\u001b[39m, height: \u001b[33m36\u001b[39m }\n"
-                        },
-                        {
-                          "text": "✅ Chat sizing adapts correctly to viewport\n"
+                          "location": {
+                            "file": "eval at evaluate (:290:30), <anonymous>",
+                            "column": 28,
+                            "line": 7
+                          },
+                          "message": "Error: page.evaluate: TypeError: Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'.\n\u001b[2m    at eval (eval at evaluate (:290:30), <anonymous>:7:28)\u001b[22m\n\u001b[2m    at UtilityScript.evaluate (<anonymous>:292:16)\u001b[22m\n\u001b[2m    at UtilityScript.<anonymous> (<anonymous>:1:44)\u001b[22m\n\u001b[2m    at eval (eval at evaluate (:290:30), <anonymous>:7:28)\u001b[22m\n\u001b[2m    at UtilityScript.evaluate (<anonymous>:292:16)\u001b[22m\n\u001b[2m    at UtilityScript.<anonymous> (<anonymous>:1:44)\u001b[22m\n\u001b[2m    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:111:43\u001b[22m"
                         }
                       ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-01-28T16:53:35.524Z",
+                      "startTime": "2026-01-28T17:07:29.080Z",
                       "annotations": [],
-                      "attachments": []
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--5f6f5-e-covered-by-other-elements-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--5f6f5-e-covered-by-other-elements-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--5f6f5-e-covered-by-other-elements-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "eval at evaluate (:290:30), <anonymous>",
+                        "column": 28,
+                        "line": 7
+                      }
+                    },
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 6775,
+                      "error": {
+                        "message": "Error: page.evaluate: TypeError: Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'.\n    at eval (eval at evaluate (:290:30), <anonymous>:7:28)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+                        "stack": "Error: page.evaluate: TypeError: Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'.\n    at eval (eval at evaluate (:290:30), <anonymous>:7:28)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at eval (eval at evaluate (:290:30), <anonymous>:7:28)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:111:43",
+                        "location": {
+                          "file": "eval at evaluate (:290:30), <anonymous>",
+                          "column": 28,
+                          "line": 7
+                        }
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "eval at evaluate (:290:30), <anonymous>",
+                            "column": 28,
+                            "line": 7
+                          },
+                          "message": "Error: page.evaluate: TypeError: Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'.\n\u001b[2m    at eval (eval at evaluate (:290:30), <anonymous>:7:28)\u001b[22m\n\u001b[2m    at UtilityScript.evaluate (<anonymous>:292:16)\u001b[22m\n\u001b[2m    at UtilityScript.<anonymous> (<anonymous>:1:44)\u001b[22m\n\u001b[2m    at eval (eval at evaluate (:290:30), <anonymous>:7:28)\u001b[22m\n\u001b[2m    at UtilityScript.evaluate (<anonymous>:292:16)\u001b[22m\n\u001b[2m    at UtilityScript.<anonymous> (<anonymous>:1:44)\u001b[22m\n\u001b[2m    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:111:43\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-01-28T17:07:37.967Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--5f6f5-e-covered-by-other-elements-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--5f6f5-e-covered-by-other-elements-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--5f6f5-e-covered-by-other-elements-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--5f6f5-e-covered-by-other-elements-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "eval at evaluate (:290:30), <anonymous>",
+                        "column": 28,
+                        "line": 7
+                      }
+                    },
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 6969,
+                      "error": {
+                        "message": "Error: page.evaluate: TypeError: Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'.\n    at eval (eval at evaluate (:290:30), <anonymous>:7:28)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+                        "stack": "Error: page.evaluate: TypeError: Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'.\n    at eval (eval at evaluate (:290:30), <anonymous>:7:28)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at eval (eval at evaluate (:290:30), <anonymous>:7:28)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:111:43",
+                        "location": {
+                          "file": "eval at evaluate (:290:30), <anonymous>",
+                          "column": 28,
+                          "line": 7
+                        }
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "eval at evaluate (:290:30), <anonymous>",
+                            "column": 28,
+                            "line": 7
+                          },
+                          "message": "Error: page.evaluate: TypeError: Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'.\n\u001b[2m    at eval (eval at evaluate (:290:30), <anonymous>:7:28)\u001b[22m\n\u001b[2m    at UtilityScript.evaluate (<anonymous>:292:16)\u001b[22m\n\u001b[2m    at UtilityScript.<anonymous> (<anonymous>:1:44)\u001b[22m\n\u001b[2m    at eval (eval at evaluate (:290:30), <anonymous>:7:28)\u001b[22m\n\u001b[2m    at UtilityScript.evaluate (<anonymous>:292:16)\u001b[22m\n\u001b[2m    at UtilityScript.<anonymous> (<anonymous>:1:44)\u001b[22m\n\u001b[2m    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:111:43\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 2,
+                      "startTime": "2026-01-28T17:07:45.812Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--5f6f5-e-covered-by-other-elements-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--5f6f5-e-covered-by-other-elements-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--5f6f5-e-covered-by-other-elements-chromium-retry2/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "eval at evaluate (:290:30), <anonymous>",
+                        "column": 28,
+                        "line": 7
+                      }
+                    },
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 6477,
+                      "error": {
+                        "message": "Error: page.evaluate: TypeError: Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'.\n    at eval (eval at evaluate (:290:30), <anonymous>:7:28)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+                        "stack": "Error: page.evaluate: TypeError: Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'.\n    at eval (eval at evaluate (:290:30), <anonymous>:7:28)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at eval (eval at evaluate (:290:30), <anonymous>:7:28)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:111:43",
+                        "location": {
+                          "file": "eval at evaluate (:290:30), <anonymous>",
+                          "column": 28,
+                          "line": 7
+                        }
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "eval at evaluate (:290:30), <anonymous>",
+                            "column": 28,
+                            "line": 7
+                          },
+                          "message": "Error: page.evaluate: TypeError: Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'.\n\u001b[2m    at eval (eval at evaluate (:290:30), <anonymous>:7:28)\u001b[22m\n\u001b[2m    at UtilityScript.evaluate (<anonymous>:292:16)\u001b[22m\n\u001b[2m    at UtilityScript.<anonymous> (<anonymous>:1:44)\u001b[22m\n\u001b[2m    at eval (eval at evaluate (:290:30), <anonymous>:7:28)\u001b[22m\n\u001b[2m    at UtilityScript.evaluate (<anonymous>:292:16)\u001b[22m\n\u001b[2m    at UtilityScript.<anonymous> (<anonymous>:1:44)\u001b[22m\n\u001b[2m    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:111:43\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 3,
+                      "startTime": "2026-01-28T17:07:53.504Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--5f6f5-e-covered-by-other-elements-chromium-retry3/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--5f6f5-e-covered-by-other-elements-chromium-retry3/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--5f6f5-e-covered-by-other-elements-chromium-retry3/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "eval at evaluate (:290:30), <anonymous>",
+                        "column": 28,
+                        "line": 7
+                      }
                     }
                   ],
-                  "status": "expected"
+                  "status": "unexpected"
                 }
               ],
-              "id": "13a4c1ac9e2578153bce-8413ef92abc26fe757d1",
-              "file": "chatbot-comprehensive.spec.ts",
-              "line": 207,
+              "id": "3039d3db56cd021cfe94-cfb9df7038700348392e",
+              "file": "chatbot-visual-validation.spec.ts",
+              "line": 93,
               "column": 9
             },
             {
-              "title": "should have scrollable content for long conversations",
-              "ok": true,
+              "title": "should be clickable by real users",
+              "ok": false,
               "tags": [],
               "tests": [
                 {
@@ -294,36 +654,233 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 20850,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "✅ Chat has scrollable content for long conversations\n"
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 12705,
+                      "error": {
+                        "message": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[aria-label=\"Open chat\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button aria-label=\"Open chat\" class=\"fixed bottom-4 right-4 sm:bottom-5 sm:right-5 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105 active:scale-95 touch-manipulation\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    10 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - element is outside of the viewport\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+                        "stack": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[aria-label=\"Open chat\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button aria-label=\"Open chat\" class=\"fixed bottom-4 right-4 sm:bottom-5 sm:right-5 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105 active:scale-95 touch-manipulation\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    10 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - element is outside of the viewport\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:141:24",
+                        "location": {
+                          "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                          "column": 24,
+                          "line": 141
                         },
+                        "snippet": "\u001b[0m \u001b[90m 139 |\u001b[39m       \u001b[90m// Try to click using normal user interaction (not force)\u001b[39m\n \u001b[90m 140 |\u001b[39m       \u001b[90m// This will fail if the button is not actually clickable\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 141 |\u001b[39m       \u001b[36mawait\u001b[39m chatButton\u001b[33m.\u001b[39mclick({ timeout\u001b[33m:\u001b[39m \u001b[35m5000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 142 |\u001b[39m       \n \u001b[90m 143 |\u001b[39m       \u001b[90m// Verify modal opened\u001b[39m\n \u001b[90m 144 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m1000\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
                         {
-                          "text": "✅ Scrolling functionality works correctly\n"
+                          "location": {
+                            "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                            "column": 24,
+                            "line": 141
+                          },
+                          "message": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[aria-label=\"Open chat\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button aria-label=\"Open chat\" class=\"fixed bottom-4 right-4 sm:bottom-5 sm:right-5 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105 active:scale-95 touch-manipulation\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    10 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - element is outside of the viewport\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n\n\u001b[0m \u001b[90m 139 |\u001b[39m       \u001b[90m// Try to click using normal user interaction (not force)\u001b[39m\n \u001b[90m 140 |\u001b[39m       \u001b[90m// This will fail if the button is not actually clickable\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 141 |\u001b[39m       \u001b[36mawait\u001b[39m chatButton\u001b[33m.\u001b[39mclick({ timeout\u001b[33m:\u001b[39m \u001b[35m5000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 142 |\u001b[39m       \n \u001b[90m 143 |\u001b[39m       \u001b[90m// Verify modal opened\u001b[39m\n \u001b[90m 144 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m1000\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:141:24\u001b[22m"
                         }
                       ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-01-28T16:53:38.045Z",
+                      "startTime": "2026-01-28T17:07:29.081Z",
                       "annotations": [],
-                      "attachments": []
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--1a4a6--be-clickable-by-real-users-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--1a4a6--be-clickable-by-real-users-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--1a4a6--be-clickable-by-real-users-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                        "column": 24,
+                        "line": 141
+                      }
+                    },
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 11803,
+                      "error": {
+                        "message": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[aria-label=\"Open chat\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button aria-label=\"Open chat\" class=\"fixed bottom-4 right-4 sm:bottom-5 sm:right-5 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105 active:scale-95 touch-manipulation\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    10 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - element is outside of the viewport\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+                        "stack": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[aria-label=\"Open chat\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button aria-label=\"Open chat\" class=\"fixed bottom-4 right-4 sm:bottom-5 sm:right-5 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105 active:scale-95 touch-manipulation\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    10 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - element is outside of the viewport\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:141:24",
+                        "location": {
+                          "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                          "column": 24,
+                          "line": 141
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 139 |\u001b[39m       \u001b[90m// Try to click using normal user interaction (not force)\u001b[39m\n \u001b[90m 140 |\u001b[39m       \u001b[90m// This will fail if the button is not actually clickable\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 141 |\u001b[39m       \u001b[36mawait\u001b[39m chatButton\u001b[33m.\u001b[39mclick({ timeout\u001b[33m:\u001b[39m \u001b[35m5000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 142 |\u001b[39m       \n \u001b[90m 143 |\u001b[39m       \u001b[90m// Verify modal opened\u001b[39m\n \u001b[90m 144 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m1000\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                            "column": 24,
+                            "line": 141
+                          },
+                          "message": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[aria-label=\"Open chat\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button aria-label=\"Open chat\" class=\"fixed bottom-4 right-4 sm:bottom-5 sm:right-5 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105 active:scale-95 touch-manipulation\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    10 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - element is outside of the viewport\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n\n\u001b[0m \u001b[90m 139 |\u001b[39m       \u001b[90m// Try to click using normal user interaction (not force)\u001b[39m\n \u001b[90m 140 |\u001b[39m       \u001b[90m// This will fail if the button is not actually clickable\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 141 |\u001b[39m       \u001b[36mawait\u001b[39m chatButton\u001b[33m.\u001b[39mclick({ timeout\u001b[33m:\u001b[39m \u001b[35m5000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 142 |\u001b[39m       \n \u001b[90m 143 |\u001b[39m       \u001b[90m// Verify modal opened\u001b[39m\n \u001b[90m 144 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m1000\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:141:24\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-01-28T17:07:42.718Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--1a4a6--be-clickable-by-real-users-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--1a4a6--be-clickable-by-real-users-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--1a4a6--be-clickable-by-real-users-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--1a4a6--be-clickable-by-real-users-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                        "column": 24,
+                        "line": 141
+                      }
+                    },
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 11535,
+                      "error": {
+                        "message": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[aria-label=\"Open chat\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button aria-label=\"Open chat\" class=\"fixed bottom-4 right-4 sm:bottom-5 sm:right-5 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105 active:scale-95 touch-manipulation\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    10 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - element is outside of the viewport\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+                        "stack": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[aria-label=\"Open chat\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button aria-label=\"Open chat\" class=\"fixed bottom-4 right-4 sm:bottom-5 sm:right-5 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105 active:scale-95 touch-manipulation\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    10 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - element is outside of the viewport\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:141:24",
+                        "location": {
+                          "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                          "column": 24,
+                          "line": 141
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 139 |\u001b[39m       \u001b[90m// Try to click using normal user interaction (not force)\u001b[39m\n \u001b[90m 140 |\u001b[39m       \u001b[90m// This will fail if the button is not actually clickable\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 141 |\u001b[39m       \u001b[36mawait\u001b[39m chatButton\u001b[33m.\u001b[39mclick({ timeout\u001b[33m:\u001b[39m \u001b[35m5000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 142 |\u001b[39m       \n \u001b[90m 143 |\u001b[39m       \u001b[90m// Verify modal opened\u001b[39m\n \u001b[90m 144 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m1000\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                            "column": 24,
+                            "line": 141
+                          },
+                          "message": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[aria-label=\"Open chat\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button aria-label=\"Open chat\" class=\"fixed bottom-4 right-4 sm:bottom-5 sm:right-5 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105 active:scale-95 touch-manipulation\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    10 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - element is outside of the viewport\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n\n\u001b[0m \u001b[90m 139 |\u001b[39m       \u001b[90m// Try to click using normal user interaction (not force)\u001b[39m\n \u001b[90m 140 |\u001b[39m       \u001b[90m// This will fail if the button is not actually clickable\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 141 |\u001b[39m       \u001b[36mawait\u001b[39m chatButton\u001b[33m.\u001b[39mclick({ timeout\u001b[33m:\u001b[39m \u001b[35m5000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 142 |\u001b[39m       \n \u001b[90m 143 |\u001b[39m       \u001b[90m// Verify modal opened\u001b[39m\n \u001b[90m 144 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m1000\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:141:24\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 2,
+                      "startTime": "2026-01-28T17:07:55.234Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--1a4a6--be-clickable-by-real-users-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--1a4a6--be-clickable-by-real-users-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--1a4a6--be-clickable-by-real-users-chromium-retry2/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                        "column": 24,
+                        "line": 141
+                      }
+                    },
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 11725,
+                      "error": {
+                        "message": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[aria-label=\"Open chat\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button aria-label=\"Open chat\" class=\"fixed bottom-4 right-4 sm:bottom-5 sm:right-5 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105 active:scale-95 touch-manipulation\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    10 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - element is outside of the viewport\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+                        "stack": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[aria-label=\"Open chat\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button aria-label=\"Open chat\" class=\"fixed bottom-4 right-4 sm:bottom-5 sm:right-5 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105 active:scale-95 touch-manipulation\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    10 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - element is outside of the viewport\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:141:24",
+                        "location": {
+                          "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                          "column": 24,
+                          "line": 141
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 139 |\u001b[39m       \u001b[90m// Try to click using normal user interaction (not force)\u001b[39m\n \u001b[90m 140 |\u001b[39m       \u001b[90m// This will fail if the button is not actually clickable\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 141 |\u001b[39m       \u001b[36mawait\u001b[39m chatButton\u001b[33m.\u001b[39mclick({ timeout\u001b[33m:\u001b[39m \u001b[35m5000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 142 |\u001b[39m       \n \u001b[90m 143 |\u001b[39m       \u001b[90m// Verify modal opened\u001b[39m\n \u001b[90m 144 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m1000\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                            "column": 24,
+                            "line": 141
+                          },
+                          "message": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[aria-label=\"Open chat\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button aria-label=\"Open chat\" class=\"fixed bottom-4 right-4 sm:bottom-5 sm:right-5 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105 active:scale-95 touch-manipulation\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    10 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - element is outside of the viewport\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n\n\u001b[0m \u001b[90m 139 |\u001b[39m       \u001b[90m// Try to click using normal user interaction (not force)\u001b[39m\n \u001b[90m 140 |\u001b[39m       \u001b[90m// This will fail if the button is not actually clickable\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 141 |\u001b[39m       \u001b[36mawait\u001b[39m chatButton\u001b[33m.\u001b[39mclick({ timeout\u001b[33m:\u001b[39m \u001b[35m5000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 142 |\u001b[39m       \n \u001b[90m 143 |\u001b[39m       \u001b[90m// Verify modal opened\u001b[39m\n \u001b[90m 144 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m1000\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:141:24\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 3,
+                      "startTime": "2026-01-28T17:08:07.484Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--1a4a6--be-clickable-by-real-users-chromium-retry3/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--1a4a6--be-clickable-by-real-users-chromium-retry3/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--1a4a6--be-clickable-by-real-users-chromium-retry3/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                        "column": 24,
+                        "line": 141
+                      }
                     }
                   ],
-                  "status": "expected"
+                  "status": "unexpected"
                 }
               ],
-              "id": "13a4c1ac9e2578153bce-d8a04c3e1d5e5e4bdc42",
-              "file": "chatbot-comprehensive.spec.ts",
-              "line": 265,
+              "id": "3039d3db56cd021cfe94-295b9068608c0f51be88",
+              "file": "chatbot-visual-validation.spec.ts",
+              "line": 130,
               "column": 9
             },
             {
-              "title": "should capture lead information for dashboard",
+              "title": "should have proper CSS loaded",
               "ok": true,
               "tags": [],
               "tests": [
@@ -335,22 +892,25 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 16091,
+                      "duration": 7688,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "✅ Lead capture flow completed: test-lead-1769619232187@example.com\n"
+                          "text": "\n=== CSS Validation ===\n"
                         },
                         {
-                          "text": "✅ Lead information captured in conversation\n"
+                          "text": "Has gradient background: true\n"
+                        },
+                        {
+                          "text": "Has box shadow: true\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-01-28T16:53:46.264Z",
+                      "startTime": "2026-01-28T17:07:29.087Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -358,14 +918,14 @@
                   "status": "expected"
                 }
               ],
-              "id": "13a4c1ac9e2578153bce-ea7d227145e19d31b12b",
-              "file": "chatbot-comprehensive.spec.ts",
-              "line": 324,
+              "id": "3039d3db56cd021cfe94-71cab590c4e86baf0c83",
+              "file": "chatbot-visual-validation.spec.ts",
+              "line": 151,
               "column": 9
             },
             {
-              "title": "should be visible on /",
-              "ok": true,
+              "title": "should be visible on mobile viewport",
+              "ok": false,
               "tags": [],
               "tests": [
                 {
@@ -376,310 +936,270 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 4381,
-                      "errors": [],
-                      "stdout": [
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "failed",
+                      "duration": 7028,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m\n    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:199:27",
+                        "location": {
+                          "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                          "column": 27,
+                          "line": 199
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 197 |\u001b[39m         \n \u001b[90m 198 |\u001b[39m         \u001b[90m// Should still be at least 50px\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 199 |\u001b[39m         expect(box\u001b[33m.\u001b[39mwidth)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 200 |\u001b[39m         expect(box\u001b[33m.\u001b[39mheight)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 201 |\u001b[39m         \n \u001b[90m 202 |\u001b[39m         \u001b[90m// Should be in right portion (x > 50%)\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
                         {
-                          "text": "✅ Chatbot visible on /\n"
+                          "location": {
+                            "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                            "column": 27,
+                            "line": 199
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m\n\n\u001b[0m \u001b[90m 197 |\u001b[39m         \n \u001b[90m 198 |\u001b[39m         \u001b[90m// Should still be at least 50px\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 199 |\u001b[39m         expect(box\u001b[33m.\u001b[39mwidth)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 200 |\u001b[39m         expect(box\u001b[33m.\u001b[39mheight)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 201 |\u001b[39m         \n \u001b[90m 202 |\u001b[39m         \u001b[90m// Should be in right portion (x > 50%)\u001b[39m\u001b[0m\n\u001b[2m    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:199:27\u001b[22m"
                         }
                       ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-01-28T16:53:58.901Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "13a4c1ac9e2578153bce-97f598bb28536a09bc5a",
-              "file": "chatbot-comprehensive.spec.ts",
-              "line": 391,
-              "column": 11
-            },
-            {
-              "title": "should be visible on /services",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 4226,
-                      "errors": [],
                       "stdout": [
                         {
-                          "text": "✅ Chatbot visible on /services\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-01-28T16:54:02.364Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "13a4c1ac9e2578153bce-c87b6884539ae049d38a",
-              "file": "chatbot-comprehensive.spec.ts",
-              "line": 391,
-              "column": 11
-            },
-            {
-              "title": "should be visible on /about",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 4307,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "✅ Chatbot visible on /about\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-01-28T16:54:03.289Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "13a4c1ac9e2578153bce-8288d13a5727a73f4dc3",
-              "file": "chatbot-comprehensive.spec.ts",
-              "line": 391,
-              "column": 11
-            },
-            {
-              "title": "should be visible on /contact",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 4627,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "✅ Chatbot visible on /contact\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-01-28T16:54:06.600Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "13a4c1ac9e2578153bce-3b73b4ccab16639464af",
-              "file": "chatbot-comprehensive.spec.ts",
-              "line": 391,
-              "column": 11
-            },
-            {
-              "title": "should be visible on /industries",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 4417,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "✅ Chatbot visible on /industries\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-01-28T16:54:07.611Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "13a4c1ac9e2578153bce-8a3ee21d0a99ecef19d2",
-              "file": "chatbot-comprehensive.spec.ts",
-              "line": 391,
-              "column": 11
-            },
-            {
-              "title": "should be visible on /who-we-serve",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 4385,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "✅ Chatbot visible on /who-we-serve\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-01-28T16:54:11.233Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "13a4c1ac9e2578153bce-54274762ef4a80bcfeee",
-              "file": "chatbot-comprehensive.spec.ts",
-              "line": 391,
-              "column": 11
-            },
-            {
-              "title": "should load and open quickly (performance)",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 4337,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "Page load time: 4030ms\n"
+                          "text": "\n=== Mobile (375x667) ===\n"
                         },
                         {
-                          "text": "Chat open time: 12ms\n"
+                          "text": "Size: 24x24px\n"
                         },
                         {
-                          "text": "✅ Chat performance is acceptable\n"
+                          "text": "Position: x=0, y=7248.75\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-01-28T16:54:12.034Z",
+                      "startTime": "2026-01-28T17:07:29.073Z",
                       "annotations": [],
-                      "attachments": []
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--88702--visible-on-mobile-viewport-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--88702--visible-on-mobile-viewport-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--88702--visible-on-mobile-viewport-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                        "column": 27,
+                        "line": 199
+                      }
+                    },
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 4,
+                      "status": "failed",
+                      "duration": 6368,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m\n    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:199:27",
+                        "location": {
+                          "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                          "column": 27,
+                          "line": 199
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 197 |\u001b[39m         \n \u001b[90m 198 |\u001b[39m         \u001b[90m// Should still be at least 50px\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 199 |\u001b[39m         expect(box\u001b[33m.\u001b[39mwidth)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 200 |\u001b[39m         expect(box\u001b[33m.\u001b[39mheight)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 201 |\u001b[39m         \n \u001b[90m 202 |\u001b[39m         \u001b[90m// Should be in right portion (x > 50%)\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                            "column": 27,
+                            "line": 199
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m\n\n\u001b[0m \u001b[90m 197 |\u001b[39m         \n \u001b[90m 198 |\u001b[39m         \u001b[90m// Should still be at least 50px\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 199 |\u001b[39m         expect(box\u001b[33m.\u001b[39mwidth)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 200 |\u001b[39m         expect(box\u001b[33m.\u001b[39mheight)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 201 |\u001b[39m         \n \u001b[90m 202 |\u001b[39m         \u001b[90m// Should be in right portion (x > 50%)\u001b[39m\u001b[0m\n\u001b[2m    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:199:27\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "\n=== Mobile (375x667) ===\n"
+                        },
+                        {
+                          "text": "Size: 24x24px\n"
+                        },
+                        {
+                          "text": "Position: x=0, y=7248.75\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-01-28T17:07:37.349Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--88702--visible-on-mobile-viewport-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--88702--visible-on-mobile-viewport-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--88702--visible-on-mobile-viewport-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--88702--visible-on-mobile-viewport-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                        "column": 27,
+                        "line": 199
+                      }
+                    },
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 6242,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m\n    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:199:27",
+                        "location": {
+                          "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                          "column": 27,
+                          "line": 199
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 197 |\u001b[39m         \n \u001b[90m 198 |\u001b[39m         \u001b[90m// Should still be at least 50px\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 199 |\u001b[39m         expect(box\u001b[33m.\u001b[39mwidth)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 200 |\u001b[39m         expect(box\u001b[33m.\u001b[39mheight)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 201 |\u001b[39m         \n \u001b[90m 202 |\u001b[39m         \u001b[90m// Should be in right portion (x > 50%)\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                            "column": 27,
+                            "line": 199
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m\n\n\u001b[0m \u001b[90m 197 |\u001b[39m         \n \u001b[90m 198 |\u001b[39m         \u001b[90m// Should still be at least 50px\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 199 |\u001b[39m         expect(box\u001b[33m.\u001b[39mwidth)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 200 |\u001b[39m         expect(box\u001b[33m.\u001b[39mheight)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 201 |\u001b[39m         \n \u001b[90m 202 |\u001b[39m         \u001b[90m// Should be in right portion (x > 50%)\u001b[39m\u001b[0m\n\u001b[2m    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:199:27\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "\n=== Mobile (375x667) ===\n"
+                        },
+                        {
+                          "text": "Size: 24x24px\n"
+                        },
+                        {
+                          "text": "Position: x=0, y=7248.75\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 2,
+                      "startTime": "2026-01-28T17:07:44.746Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--88702--visible-on-mobile-viewport-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--88702--visible-on-mobile-viewport-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--88702--visible-on-mobile-viewport-chromium-retry2/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                        "column": 27,
+                        "line": 199
+                      }
+                    },
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 6629,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m\n    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:199:27",
+                        "location": {
+                          "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                          "column": 27,
+                          "line": 199
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 197 |\u001b[39m         \n \u001b[90m 198 |\u001b[39m         \u001b[90m// Should still be at least 50px\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 199 |\u001b[39m         expect(box\u001b[33m.\u001b[39mwidth)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 200 |\u001b[39m         expect(box\u001b[33m.\u001b[39mheight)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 201 |\u001b[39m         \n \u001b[90m 202 |\u001b[39m         \u001b[90m// Should be in right portion (x > 50%)\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                            "column": 27,
+                            "line": 199
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m50\u001b[39m\nReceived:    \u001b[31m24\u001b[39m\n\n\u001b[0m \u001b[90m 197 |\u001b[39m         \n \u001b[90m 198 |\u001b[39m         \u001b[90m// Should still be at least 50px\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 199 |\u001b[39m         expect(box\u001b[33m.\u001b[39mwidth)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 200 |\u001b[39m         expect(box\u001b[33m.\u001b[39mheight)\u001b[33m.\u001b[39mtoBeGreaterThanOrEqual(\u001b[35m50\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 201 |\u001b[39m         \n \u001b[90m 202 |\u001b[39m         \u001b[90m// Should be in right portion (x > 50%)\u001b[39m\u001b[0m\n\u001b[2m    at /root/damaian/e2e/chatbot-visual-validation.spec.ts:199:27\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "\n=== Mobile (375x667) ===\n"
+                        },
+                        {
+                          "text": "Size: 24x24px\n"
+                        },
+                        {
+                          "text": "Position: x=0, y=7248.75\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 3,
+                      "startTime": "2026-01-28T17:07:51.701Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--88702--visible-on-mobile-viewport-chromium-retry3/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--88702--visible-on-mobile-viewport-chromium-retry3/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/chatbot-visual-validation--88702--visible-on-mobile-viewport-chromium-retry3/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/root/damaian/e2e/chatbot-visual-validation.spec.ts",
+                        "column": 27,
+                        "line": 199
+                      }
                     }
                   ],
-                  "status": "expected"
+                  "status": "unexpected"
                 }
               ],
-              "id": "13a4c1ac9e2578153bce-6f99419bda832a0d249a",
-              "file": "chatbot-comprehensive.spec.ts",
-              "line": 416,
+              "id": "3039d3db56cd021cfe94-bf12566004f4500e2fbf",
+              "file": "chatbot-visual-validation.spec.ts",
+              "line": 181,
               "column": 9
-            }
-          ]
-        },
-        {
-          "title": "Production Validation",
-          "file": "chatbot-comprehensive.spec.ts",
-          "line": 459,
-          "column": 6,
-          "specs": [
-            {
-              "title": "should verify production chatbot is fully functional",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 9027,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "✅ Production chatbot fully functional\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-01-28T16:54:15.624Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "13a4c1ac9e2578153bce-99d03add04a13ef3b2e9",
-              "file": "chatbot-comprehensive.spec.ts",
-              "line": 462,
-              "column": 7
             }
           ]
         }
@@ -688,11 +1208,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-01-28T16:53:23.563Z",
-    "duration": 61150.121,
-    "expected": 14,
+    "startTime": "2026-01-28T17:07:28.136Z",
+    "duration": 51174.975,
+    "expected": 1,
     "skipped": 0,
-    "unexpected": 0,
+    "unexpected": 4,
     "flaky": 0
   }
 }

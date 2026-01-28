@@ -33,7 +33,9 @@ export default function ChatBubble({ onClick, isOpen, hasUnread = false }: ChatB
       style={{ 
         pointerEvents: 'auto',
         WebkitTapHighlightColor: 'transparent',
-        zIndex: 10000
+        zIndex: 10000,
+        width: '56px',
+        height: '56px'
       }}
     >
           {/* Icon changes based on state */}
