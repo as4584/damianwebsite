@@ -9,15 +9,20 @@ A modern, production-ready website for Innovation Business Services - a professi
 - **Styling**: Tailwind CSS
 - **Animation**: Framer Motion
 - **Design**: Mobile-first, responsive
+- **Testing**: Jest (112 passing tests)
+- **Routing**: Subdomain-aware middleware
 
 ## ✨ Features
 
 - **Sticky Scroll Cards**: Smooth card stacking interaction on the homepage
+- **Leads Dashboard**: Production-ready subdomain at `dashboard.innovationdevelopmentsolutions.com`
+- **Subdomain Routing**: Host header detection with automatic URL rewriting
 - **Professional Design**: Trust-first, authority-driven aesthetic
 - **Responsive**: Mobile-first design that works on all devices
 - **Accessible**: Semantic HTML and ARIA labels
 - **Performance**: Optimized with Next.js Image component and lazy loading
 - **SEO Ready**: Meta tags and structured content
+- **AI-Powered**: Intelligent lead scoring and action suggestions
 
 ## 📁 Project Structure
 
@@ -26,11 +31,24 @@ A modern, production-ready website for Innovation Business Services - a professi
 │   ├── about/page.tsx        # About page
 │   ├── contact/page.tsx      # Contact page with form
 │   ├── services/page.tsx     # Services page
+│   ├── dashboard/            # 🆕 Leads Dashboard (subdomain)
+│   │   ├── page.tsx          # Dashboard home
+│   │   ├── layout.tsx        # Dashboard layout
+│   │   ├── leads/[leadId]/   # Lead detail view
+│   │   ├── components/       # Dashboard UI components
+│   │   ├── services/         # Lead & scoring services
+│   │   ├── utils/            # Intent extraction, actions
+│   │   ├── middleware/       # 🆕 Subdomain routing logic
+│   │   │   ├── hostRouter.ts       # Host header detection
+│   │   │   └── hostRouter.test.ts  # 14 routing tests
+│   │   ├── api/              # Dashboard API routes
+│   │   └── tests/            # 98 dashboard tests
 │   ├── privacy/page.tsx      # Privacy policy
 │   ├── terms/page.tsx        # Terms of service
 │   ├── layout.tsx            # Root layout
 │   ├── page.tsx              # Home page
 │   └── globals.css           # Global styles
+├── middleware.ts             # 🆕 Root middleware (subdomain routing)
 ├── components/
 │   ├── layout/
 │   │   ├── Header.tsx        # Navigation header
@@ -42,6 +60,7 @@ A modern, production-ready website for Innovation Business Services - a professi
 ├── public/
 │   └── assets/
 │       └── brand/            # Brand images (used as textures)
+├── SUBDOMAIN_DEPLOYMENT.md   # 🆕 Production subdomain deployment guide
 └── Configuration files
 ```
 
@@ -130,7 +149,49 @@ Place images in `/public/assets/brand/` and they'll automatically be used as sub
 
 ## 🚀 Deployment
 
-### Vercel (Recommended)
+### Dashboard Subdomain Deployment (Production)
+
+**📘 For complete subdomain deployment instructions, see [SUBDOMAIN_DEPLOYMENT.md](./SUBDOMAIN_DEPLOYMENT.md)**
+
+The dashboard is deployed at `dashboard.innovationdevelopmentsolutions.com` using subdomain routing:
+
+**Quick Start:**
+1. Configure DNS CNAME: `dashboard` → hosting provider
+2. Add domain to Vercel/hosting provider
+3. Deploy: `vercel --prod`
+4. Verify: Visit `https://dashboard.innovationdevelopmentsolutions.com`
+
+**Verification:**
+```bash
+# Check DNS
+dig dashboard.innovationdevelopmentsolutions.com
+
+# Check subdomain serves dashboard
+curl -s https://dashboard.innovationdevelopmentsolutions.com | grep -o "<title>[^<]*</title>"
+# Expected: <title>Leads Dashboard</title>
+
+# Run all tests
+npm test -- --watchAll=false
+# Expected: 112 tests passing
+```
+
+**Key Features:**
+- ✅ Host header detection (no /dashboard in URL)
+- ✅ Automatic URL rewriting (dashboard.* → /dashboard internally)
+- ✅ 4-case routing logic (subdomain protection)
+- ✅ 112 passing tests (14 subdomain + 98 dashboard)
+- ✅ Local testing with dashboard.localhost
+
+**See [SUBDOMAIN_DEPLOYMENT.md](./SUBDOMAIN_DEPLOYMENT.md) for:**
+- Exact DNS records by provider (Vercel, Netlify, Custom)
+- Hosting configuration steps
+- SSL certificate setup
+- Local subdomain testing
+- Production verification checklist
+- Troubleshooting guide
+- Rollback procedure
+
+### Main Site Deployment (Vercel Recommended)
 
 1. Push code to GitHub
 2. Import project to Vercel
