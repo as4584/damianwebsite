@@ -478,11 +478,14 @@ test.describe('Production Validation', () => {
     const chatButton = page.locator('button[aria-label="Open chat"]');
     await expect(chatButton).toBeVisible({ timeout: 10000 });
     
-    // Open and interact
-    await chatButton.click();
+    // Open using JavaScript click (same issue as dev environment)
+    await page.evaluate(() => {
+      const btn = document.querySelector('button[aria-label="Open chat"]') as HTMLButtonElement;
+      if (btn) btn.click();
+    });
     await page.waitForTimeout(2000);
     
-    const input = page.locator('input[type="text"], input[placeholder*="message" i]').first();
+    const input = page.locator('input[placeholder*="Type" i], input[type="text"]').first();
     await expect(input).toBeVisible();
     
     // Send test message

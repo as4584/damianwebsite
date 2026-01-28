@@ -1,6 +1,6 @@
-<testsuites id="" name="" tests="13" failures="0" skipped="0" errors="0" time="28.782010000000003">
-<testsuite name="chatbot-comprehensive.spec.ts" timestamp="2026-01-28T16:39:42.717Z" hostname="chromium" tests="13" failures="0" skipped="0" time="102.06" errors="0">
-<testcase name="Chatbot Comprehensive Tests - Development › should have visible text with proper contrast (no white-on-white)" classname="chatbot-comprehensive.spec.ts" time="7.386">
+<testsuites id="" name="" tests="27" failures="0" skipped="0" errors="0" time="60.432430000000004">
+<testsuite name="chatbot-comprehensive.spec.ts" timestamp="2026-01-28T16:42:59.157Z" hostname="chromium" tests="27" failures="0" skipped="0" time="215.136" errors="0">
+<testcase name="Chatbot Comprehensive Tests - Development › should have visible text with proper contrast (no white-on-white)" classname="chatbot-comprehensive.spec.ts" time="7.345">
 <system-out>
 <![CDATA[Bot message styles: {
   color: [32m'rgb(15, 23, 42)'[39m,
@@ -11,20 +11,20 @@
 ]]>
 </system-out>
 </testcase>
-<testcase name="Chatbot Comprehensive Tests - Development › should allow sending messages and receive bot responses" classname="chatbot-comprehensive.spec.ts" time="11.458">
+<testcase name="Chatbot Comprehensive Tests - Development › should allow sending messages and receive bot responses" classname="chatbot-comprehensive.spec.ts" time="11.428">
 <system-out>
 <![CDATA[✅ Message interaction successful: 4 → 71 messages
 ]]>
 </system-out>
 </testcase>
-<testcase name="Chatbot Comprehensive Tests - Development › should be collapsible (open and close)" classname="chatbot-comprehensive.spec.ts" time="7.013">
+<testcase name="Chatbot Comprehensive Tests - Development › should be collapsible (open and close)" classname="chatbot-comprehensive.spec.ts" time="6.953">
 <system-out>
 <![CDATA[✅ Chat opened successfully
 ✅ Chat closed successfully
 ]]>
 </system-out>
 </testcase>
-<testcase name="Chatbot Comprehensive Tests - Development › should have appropriate sizing for different viewports" classname="chatbot-comprehensive.spec.ts" time="11.002">
+<testcase name="Chatbot Comprehensive Tests - Development › should have appropriate sizing for different viewports" classname="chatbot-comprehensive.spec.ts" time="10.98">
 <system-out>
 <![CDATA[Desktop chat size: { x: [33m36[39m, y: [33m12[39m, width: [33m108[39m, height: [33m36[39m }
 Mobile chat size: { x: [33m36[39m, y: [33m12[39m, width: [33m108[39m, height: [33m36[39m }
@@ -32,61 +32,157 @@ Mobile chat size: { x: [33m36[39m, y: [33m12[39m, width: [33m108[39m, height: [3
 ]]>
 </system-out>
 </testcase>
-<testcase name="Chatbot Comprehensive Tests - Development › should have scrollable content for long conversations" classname="chatbot-comprehensive.spec.ts" time="20.789">
+<testcase name="Chatbot Comprehensive Tests - Development › should have scrollable content for long conversations" classname="chatbot-comprehensive.spec.ts" time="20.858">
 <system-out>
 <![CDATA[✅ Chat has scrollable content for long conversations
 ✅ Scrolling functionality works correctly
 ]]>
 </system-out>
 </testcase>
-<testcase name="Chatbot Comprehensive Tests - Development › should capture lead information for dashboard" classname="chatbot-comprehensive.spec.ts" time="15.981">
+<testcase name="Chatbot Comprehensive Tests - Development › should capture lead information for dashboard" classname="chatbot-comprehensive.spec.ts" time="16.004">
 <system-out>
-<![CDATA[✅ Lead capture flow completed: test-lead-1769618396701@example.com
+<![CDATA[✅ Lead capture flow completed: test-lead-1769618593133@example.com
 ✅ Lead information captured in conversation
 ]]>
 </system-out>
 </testcase>
-<testcase name="Chatbot Comprehensive Tests - Development › should be visible on /" classname="chatbot-comprehensive.spec.ts" time="4.199">
+<testcase name="Chatbot Comprehensive Tests - Development › should be visible on /" classname="chatbot-comprehensive.spec.ts" time="4.151">
 <system-out>
 <![CDATA[✅ Chatbot visible on /
 ]]>
 </system-out>
 </testcase>
-<testcase name="Chatbot Comprehensive Tests - Development › should be visible on /services" classname="chatbot-comprehensive.spec.ts" time="3.989">
+<testcase name="Chatbot Comprehensive Tests - Development › should be visible on /services" classname="chatbot-comprehensive.spec.ts" time="3.967">
 <system-out>
 <![CDATA[✅ Chatbot visible on /services
 ]]>
 </system-out>
 </testcase>
-<testcase name="Chatbot Comprehensive Tests - Development › should be visible on /about" classname="chatbot-comprehensive.spec.ts" time="3.973">
+<testcase name="Chatbot Comprehensive Tests - Development › should be visible on /about" classname="chatbot-comprehensive.spec.ts" time="3.962">
 <system-out>
 <![CDATA[✅ Chatbot visible on /about
 ]]>
 </system-out>
 </testcase>
-<testcase name="Chatbot Comprehensive Tests - Development › should be visible on /contact" classname="chatbot-comprehensive.spec.ts" time="3.927">
+<testcase name="Chatbot Comprehensive Tests - Development › should be visible on /contact" classname="chatbot-comprehensive.spec.ts" time="3.935">
 <system-out>
 <![CDATA[✅ Chatbot visible on /contact
 ]]>
 </system-out>
 </testcase>
-<testcase name="Chatbot Comprehensive Tests - Development › should be visible on /industries" classname="chatbot-comprehensive.spec.ts" time="4.026">
+<testcase name="Chatbot Comprehensive Tests - Development › should be visible on /industries" classname="chatbot-comprehensive.spec.ts" time="3.948">
 <system-out>
 <![CDATA[✅ Chatbot visible on /industries
 ]]>
 </system-out>
 </testcase>
-<testcase name="Chatbot Comprehensive Tests - Development › should be visible on /who-we-serve" classname="chatbot-comprehensive.spec.ts" time="4.136">
+<testcase name="Chatbot Comprehensive Tests - Development › should be visible on /who-we-serve" classname="chatbot-comprehensive.spec.ts" time="4.097">
 <system-out>
 <![CDATA[✅ Chatbot visible on /who-we-serve
 ]]>
 </system-out>
 </testcase>
-<testcase name="Chatbot Comprehensive Tests - Development › should load and open quickly (performance)" classname="chatbot-comprehensive.spec.ts" time="4.181">
+<testcase name="Chatbot Comprehensive Tests - Development › should load and open quickly (performance)" classname="chatbot-comprehensive.spec.ts" time="4.072">
 <system-out>
-<![CDATA[Page load time: 3729ms
-Chat open time: 16ms
+<![CDATA[Page load time: 3763ms
+Chat open time: 13ms
 ✅ Chat performance is acceptable
+]]>
+</system-out>
+</testcase>
+<testcase name="Chatbot Comprehensive Tests - Production › should have visible text with proper contrast (no white-on-white)" classname="chatbot-comprehensive.spec.ts" time="7.217">
+<system-out>
+<![CDATA[Bot message styles: {
+  color: [32m'rgb(15, 23, 42)'[39m,
+  backgroundColor: [32m'rgba(0, 0, 0, 0)'[39m,
+  backgroundImage: [32m'none'[39m
+}
+✅ Text visibility check passed: Text RGB(15,23,42)
+]]>
+</system-out>
+</testcase>
+<testcase name="Chatbot Comprehensive Tests - Production › should allow sending messages and receive bot responses" classname="chatbot-comprehensive.spec.ts" time="11.441">
+<system-out>
+<![CDATA[✅ Message interaction successful: 4 → 71 messages
+]]>
+</system-out>
+</testcase>
+<testcase name="Chatbot Comprehensive Tests - Production › should be collapsible (open and close)" classname="chatbot-comprehensive.spec.ts" time="6.707">
+<system-out>
+<![CDATA[✅ Chat opened successfully
+✅ Chat closed successfully
+]]>
+</system-out>
+</testcase>
+<testcase name="Chatbot Comprehensive Tests - Production › should have appropriate sizing for different viewports" classname="chatbot-comprehensive.spec.ts" time="10.944">
+<system-out>
+<![CDATA[Desktop chat size: { x: [33m36[39m, y: [33m12[39m, width: [33m108[39m, height: [33m36[39m }
+Mobile chat size: { x: [33m36[39m, y: [33m12[39m, width: [33m108[39m, height: [33m36[39m }
+✅ Chat sizing adapts correctly to viewport
+]]>
+</system-out>
+</testcase>
+<testcase name="Chatbot Comprehensive Tests - Production › should have scrollable content for long conversations" classname="chatbot-comprehensive.spec.ts" time="20.911">
+<system-out>
+<![CDATA[✅ Chat has scrollable content for long conversations
+✅ Scrolling functionality works correctly
+]]>
+</system-out>
+</testcase>
+<testcase name="Chatbot Comprehensive Tests - Production › should capture lead information for dashboard" classname="chatbot-comprehensive.spec.ts" time="16.323">
+<system-out>
+<![CDATA[✅ Lead capture flow completed: test-lead-1769618620076@example.com
+✅ Lead information captured in conversation
+]]>
+</system-out>
+</testcase>
+<testcase name="Chatbot Comprehensive Tests - Production › should be visible on /" classname="chatbot-comprehensive.spec.ts" time="4.422">
+<system-out>
+<![CDATA[✅ Chatbot visible on /
+]]>
+</system-out>
+</testcase>
+<testcase name="Chatbot Comprehensive Tests - Production › should be visible on /services" classname="chatbot-comprehensive.spec.ts" time="4.665">
+<system-out>
+<![CDATA[✅ Chatbot visible on /services
+]]>
+</system-out>
+</testcase>
+<testcase name="Chatbot Comprehensive Tests - Production › should be visible on /about" classname="chatbot-comprehensive.spec.ts" time="4.397">
+<system-out>
+<![CDATA[✅ Chatbot visible on /about
+]]>
+</system-out>
+</testcase>
+<testcase name="Chatbot Comprehensive Tests - Production › should be visible on /contact" classname="chatbot-comprehensive.spec.ts" time="4.126">
+<system-out>
+<![CDATA[✅ Chatbot visible on /contact
+]]>
+</system-out>
+</testcase>
+<testcase name="Chatbot Comprehensive Tests - Production › should be visible on /industries" classname="chatbot-comprehensive.spec.ts" time="4.136">
+<system-out>
+<![CDATA[✅ Chatbot visible on /industries
+]]>
+</system-out>
+</testcase>
+<testcase name="Chatbot Comprehensive Tests - Production › should be visible on /who-we-serve" classname="chatbot-comprehensive.spec.ts" time="4.399">
+<system-out>
+<![CDATA[✅ Chatbot visible on /who-we-serve
+]]>
+</system-out>
+</testcase>
+<testcase name="Chatbot Comprehensive Tests - Production › should load and open quickly (performance)" classname="chatbot-comprehensive.spec.ts" time="4.52">
+<system-out>
+<![CDATA[Page load time: 4067ms
+Chat open time: 12ms
+✅ Chat performance is acceptable
+]]>
+</system-out>
+</testcase>
+<testcase name="Production Validation › should verify production chatbot is fully functional" classname="chatbot-comprehensive.spec.ts" time="9.228">
+<system-out>
+<![CDATA[✅ Production chatbot fully functional
 ]]>
 </system-out>
 </testcase>

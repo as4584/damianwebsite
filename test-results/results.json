@@ -133,7 +133,7 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 7386,
+                      "duration": 7345,
                       "errors": [],
                       "stdout": [
                         {
@@ -145,7 +145,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-01-28T16:39:43.481Z",
+                      "startTime": "2026-01-28T16:42:59.934Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -174,7 +174,7 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 11458,
+                      "duration": 11428,
                       "errors": [],
                       "stdout": [
                         {
@@ -183,7 +183,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-01-28T16:39:43.543Z",
+                      "startTime": "2026-01-28T16:42:59.929Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -212,7 +212,7 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 7013,
+                      "duration": 6953,
                       "errors": [],
                       "stdout": [
                         {
@@ -224,7 +224,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-01-28T16:39:43.540Z",
+                      "startTime": "2026-01-28T16:42:59.911Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -253,7 +253,7 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 11002,
+                      "duration": 10980,
                       "errors": [],
                       "stdout": [
                         {
@@ -268,7 +268,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-01-28T16:39:43.531Z",
+                      "startTime": "2026-01-28T16:42:59.921Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -297,7 +297,7 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 20789,
+                      "duration": 20858,
                       "errors": [],
                       "stdout": [
                         {
@@ -309,7 +309,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-01-28T16:39:50.635Z",
+                      "startTime": "2026-01-28T16:43:06.942Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -338,11 +338,11 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 15981,
+                      "duration": 16004,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "✅ Lead capture flow completed: test-lead-1769618396701@example.com\n"
+                          "text": "✅ Lead capture flow completed: test-lead-1769618593133@example.com\n"
                         },
                         {
                           "text": "✅ Lead information captured in conversation\n"
@@ -350,7 +350,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-01-28T16:39:50.948Z",
+                      "startTime": "2026-01-28T16:43:07.355Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -379,7 +379,7 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 4199,
+                      "duration": 4151,
                       "errors": [],
                       "stdout": [
                         {
@@ -388,7 +388,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-01-28T16:39:54.614Z",
+                      "startTime": "2026-01-28T16:43:10.971Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -417,7 +417,7 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 3989,
+                      "duration": 3967,
                       "errors": [],
                       "stdout": [
                         {
@@ -426,7 +426,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-01-28T16:39:55.087Z",
+                      "startTime": "2026-01-28T16:43:11.435Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -455,7 +455,7 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 3973,
+                      "duration": 3962,
                       "errors": [],
                       "stdout": [
                         {
@@ -464,7 +464,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-01-28T16:39:58.825Z",
+                      "startTime": "2026-01-28T16:43:15.133Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -493,7 +493,7 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 3927,
+                      "duration": 3935,
                       "errors": [],
                       "stdout": [
                         {
@@ -502,7 +502,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-01-28T16:39:59.086Z",
+                      "startTime": "2026-01-28T16:43:15.413Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -531,7 +531,7 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 4026,
+                      "duration": 3948,
                       "errors": [],
                       "stdout": [
                         {
@@ -540,7 +540,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-01-28T16:40:02.809Z",
+                      "startTime": "2026-01-28T16:43:19.103Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -569,7 +569,7 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 4136,
+                      "duration": 4097,
                       "errors": [],
                       "stdout": [
                         {
@@ -578,7 +578,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-01-28T16:40:03.025Z",
+                      "startTime": "2026-01-28T16:43:19.356Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -607,14 +607,14 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 4181,
+                      "duration": 4072,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "Page load time: 3729ms\n"
+                          "text": "Page load time: 3763ms\n"
                         },
                         {
-                          "text": "Chat open time: 16ms\n"
+                          "text": "Chat open time: 13ms\n"
                         },
                         {
                           "text": "✅ Chat performance is acceptable\n"
@@ -622,7 +622,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-01-28T16:40:06.847Z",
+                      "startTime": "2026-01-28T16:43:23.060Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -636,15 +636,587 @@
               "column": 9
             }
           ]
+        },
+        {
+          "title": "Chatbot Comprehensive Tests - Production",
+          "file": "chatbot-comprehensive.spec.ts",
+          "line": 25,
+          "column": 8,
+          "specs": [
+            {
+              "title": "should have visible text with proper contrast (no white-on-white)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 7217,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Bot message styles: {\n  color: \u001b[32m'rgb(15, 23, 42)'\u001b[39m,\n  backgroundColor: \u001b[32m'rgba(0, 0, 0, 0)'\u001b[39m,\n  backgroundImage: \u001b[32m'none'\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "✅ Text visibility check passed: Text RGB(15,23,42)\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-28T16:43:23.372Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "13a4c1ac9e2578153bce-b1f0068fd644246f4ed3",
+              "file": "chatbot-comprehensive.spec.ts",
+              "line": 31,
+              "column": 9
+            },
+            {
+              "title": "should allow sending messages and receive bot responses",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 11441,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Message interaction successful: 4 → 71 messages\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-28T16:43:23.462Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "13a4c1ac9e2578153bce-e0c229cf53493dfd93c0",
+              "file": "chatbot-comprehensive.spec.ts",
+              "line": 106,
+              "column": 9
+            },
+            {
+              "title": "should be collapsible (open and close)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 6707,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Chat opened successfully\n"
+                        },
+                        {
+                          "text": "✅ Chat closed successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-28T16:43:27.140Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "13a4c1ac9e2578153bce-008ca44a70d88807c4ac",
+              "file": "chatbot-comprehensive.spec.ts",
+              "line": 150,
+              "column": 9
+            },
+            {
+              "title": "should have appropriate sizing for different viewports",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 10944,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Desktop chat size: { x: \u001b[33m36\u001b[39m, y: \u001b[33m12\u001b[39m, width: \u001b[33m108\u001b[39m, height: \u001b[33m36\u001b[39m }\n"
+                        },
+                        {
+                          "text": "Mobile chat size: { x: \u001b[33m36\u001b[39m, y: \u001b[33m12\u001b[39m, width: \u001b[33m108\u001b[39m, height: \u001b[33m36\u001b[39m }\n"
+                        },
+                        {
+                          "text": "✅ Chat sizing adapts correctly to viewport\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-28T16:43:27.814Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "13a4c1ac9e2578153bce-8413ef92abc26fe757d1",
+              "file": "chatbot-comprehensive.spec.ts",
+              "line": 207,
+              "column": 9
+            },
+            {
+              "title": "should have scrollable content for long conversations",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 20911,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Chat has scrollable content for long conversations\n"
+                        },
+                        {
+                          "text": "✅ Scrolling functionality works correctly\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-28T16:43:30.598Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "13a4c1ac9e2578153bce-d8a04c3e1d5e5e4bdc42",
+              "file": "chatbot-comprehensive.spec.ts",
+              "line": 265,
+              "column": 9
+            },
+            {
+              "title": "should capture lead information for dashboard",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 16323,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Lead capture flow completed: test-lead-1769618620076@example.com\n"
+                        },
+                        {
+                          "text": "✅ Lead information captured in conversation\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-28T16:43:33.853Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "13a4c1ac9e2578153bce-ea7d227145e19d31b12b",
+              "file": "chatbot-comprehensive.spec.ts",
+              "line": 324,
+              "column": 9
+            },
+            {
+              "title": "should be visible on /",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4422,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Chatbot visible on /\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-28T16:43:34.907Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "13a4c1ac9e2578153bce-97f598bb28536a09bc5a",
+              "file": "chatbot-comprehensive.spec.ts",
+              "line": 391,
+              "column": 11
+            },
+            {
+              "title": "should be visible on /services",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4665,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Chatbot visible on /services\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-28T16:43:38.766Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "13a4c1ac9e2578153bce-c87b6884539ae049d38a",
+              "file": "chatbot-comprehensive.spec.ts",
+              "line": 391,
+              "column": 11
+            },
+            {
+              "title": "should be visible on /about",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4397,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Chatbot visible on /about\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-28T16:43:39.336Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "13a4c1ac9e2578153bce-8288d13a5727a73f4dc3",
+              "file": "chatbot-comprehensive.spec.ts",
+              "line": 391,
+              "column": 11
+            },
+            {
+              "title": "should be visible on /contact",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4126,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Chatbot visible on /contact\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-28T16:43:43.439Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "13a4c1ac9e2578153bce-3b73b4ccab16639464af",
+              "file": "chatbot-comprehensive.spec.ts",
+              "line": 391,
+              "column": 11
+            },
+            {
+              "title": "should be visible on /industries",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4136,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Chatbot visible on /industries\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-28T16:43:43.740Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "13a4c1ac9e2578153bce-8a3ee21d0a99ecef19d2",
+              "file": "chatbot-comprehensive.spec.ts",
+              "line": 391,
+              "column": 11
+            },
+            {
+              "title": "should be visible on /who-we-serve",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4399,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Chatbot visible on /who-we-serve\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-28T16:43:47.571Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "13a4c1ac9e2578153bce-54274762ef4a80bcfeee",
+              "file": "chatbot-comprehensive.spec.ts",
+              "line": 391,
+              "column": 11
+            },
+            {
+              "title": "should load and open quickly (performance)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4520,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Page load time: 4067ms\n"
+                        },
+                        {
+                          "text": "Chat open time: 12ms\n"
+                        },
+                        {
+                          "text": "✅ Chat performance is acceptable\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-28T16:43:47.883Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "13a4c1ac9e2578153bce-6f99419bda832a0d249a",
+              "file": "chatbot-comprehensive.spec.ts",
+              "line": 416,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "Production Validation",
+          "file": "chatbot-comprehensive.spec.ts",
+          "line": 459,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should verify production chatbot is fully functional",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 9228,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Production chatbot fully functional\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-28T16:43:50.181Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "13a4c1ac9e2578153bce-99d03add04a13ef3b2e9",
+              "file": "chatbot-comprehensive.spec.ts",
+              "line": 462,
+              "column": 7
+            }
+          ]
         }
       ]
     }
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-01-28T16:39:42.693Z",
-    "duration": 28782.010000000002,
-    "expected": 13,
+    "startTime": "2026-01-28T16:42:59.034Z",
+    "duration": 60432.43,
+    "expected": 27,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0
