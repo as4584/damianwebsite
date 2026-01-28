@@ -1,7 +1,7 @@
-# Production Deployment Guide - dashboard.lexmakesit.com
+# Production Deployment Guide - dashboard.innovationdevelopmentsolutions.com
 
 ## Overview
-This guide covers deploying the Innovation Business Development Solutions dashboard to production with the domain `dashboard.lexmakesit.com`.
+This guide covers deploying the Innovation Business Development Solutions dashboard to production with the domain `dashboard.innovationdevelopmentsolutions.com`.
 
 ## Pre-Deployment Checklist
 
@@ -32,11 +32,11 @@ This guide covers deploying the Innovation Business Development Solutions dashbo
 ```bash
 # NextAuth
 NEXTAUTH_SECRET=<generate-with-openssl-rand-base64-32>
-NEXTAUTH_URL=https://lexmakesit.com
+NEXTAUTH_URL=https://innovationdevelopmentsolutions.com
 
 # Site URLs
-NEXT_PUBLIC_SITE_URL=https://lexmakesit.com
-NEXT_PUBLIC_DASHBOARD_URL=https://dashboard.lexmakesit.com
+NEXT_PUBLIC_SITE_URL=https://innovationdevelopmentsolutions.com
+NEXT_PUBLIC_DASHBOARD_URL=https://dashboard.innovationdevelopmentsolutions.com
 
 # Business
 DEFAULT_BUSINESS_ID=biz_innovation_001
@@ -57,16 +57,16 @@ openssl rand -base64 32
 
 ```
 # Main domain
-lexmakesit.com A 123.456.789.0
+innovationdevelopmentsolutions.com A 123.456.789.0
 
 # Dashboard subdomain
-dashboard.lexmakesit.com CNAME lexmakesit.com
+dashboard.innovationdevelopmentsolutions.com CNAME cname.vercel-dns.com
 # OR
-dashboard.lexmakesit.com A 123.456.789.0
+dashboard.innovationdevelopmentsolutions.com A 123.456.789.0
 ```
 
 ### SSL/TLS Certificate
-- Must cover both `lexmakesit.com` and `*.lexmakesit.com` (wildcard)
+- Must cover both `innovationdevelopmentsolutions.com` and `*.innovationdevelopmentsolutions.com` (wildcard)
 - Or separate certificates for each domain
 - Let's Encrypt recommended for free SSL
 
@@ -88,8 +88,8 @@ vercel --prod
 1. Go to project settings
 2. Add environment variables (see above)
 3. Configure domains:
-   - `lexmakesit.com` → main site
-   - `dashboard.lexmakesit.com` → dashboard subdomain
+   - `innovationdevelopmentsolutions.com` → main site
+   - `dashboard.innovationdevelopmentsolutions.com` → dashboard subdomain
 
 ### Option 2: Docker + VPS
 
@@ -153,7 +153,7 @@ server {
 # Dashboard subdomain
 server {
     listen 80;
-    server_name dashboard.lexmakesit.com;
+    server_name dashboard.innovationdevelopmentsolutions.com;
     return 301 https://$server_name$request_uri;
 }
 
@@ -161,8 +161,8 @@ server {
     listen 443 ssl http2;
     server_name dashboard.innovationdevelopmentsolutions.com;
 
-    ssl_certificate /etc/letsencrypt/live/lexmakesit.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/lexmakesit.com/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/innovationdevelopmentsolutions.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/innovationdevelopmentsolutions.com/privkey.pem;
 
     location / {
         proxy_pass http://localhost:3000;
@@ -179,18 +179,18 @@ server {
 
 ### 1. Test Main Site
 ```bash
-curl -I https://lexmakesit.com
+curl -I https://innovationdevelopmentsolutions.com
 # Should return 200 OK
 ```
 
 ### 2. Test Dashboard Redirect
 ```bash
-curl -I https://dashboard.lexmakesit.com
+curl -I https://dashboard.innovationdevelopmentsolutions.com
 # Should redirect to login if not authenticated
 ```
 
 ### 3. Test Login
-- Go to `https://lexmakesit.com/login`
+- Go to `https://innovationdevelopmentsolutions.com/login`
 - Login with credentials
 - Verify redirect to dashboard
 - Check logout button works
@@ -198,7 +198,7 @@ curl -I https://dashboard.lexmakesit.com
 ### 4. Run E2E Tests
 ```bash
 # Update playwright.config.ts baseURL
-# baseURL: 'https://lexmakesit.com'
+# baseURL: 'https://innovationdevelopmentsolutions.com'
 
 npm run test:e2e
 ```
@@ -228,7 +228,7 @@ docker logs <container-id> -f
 
 ### Uptime Monitoring
 - Recommended: UptimeRobot or Pingdom
-- Monitor: `https://lexmakesit.com` and `https://dashboard.lexmakesit.com`
+- Monitor: `https://innovationdevelopmentsolutions.com` and `https://dashboard.innovationdevelopmentsolutions.com`
 - Alert if downtime > 1 minute
 
 ## Security Hardening
@@ -316,8 +316,8 @@ docker start <old-container-id>
 
 ## Success Criteria
 
-- [ ] Main site accessible at `lexmakesit.com`
-- [ ] Dashboard accessible at `dashboard.lexmakesit.com`
+- [ ] Main site accessible at `innovationdevelopmentsolutions.com`
+- [ ] Dashboard accessible at `dashboard.innovationdevelopmentsolutions.com`
 - [ ] Login required for dashboard access
 - [ ] Logout button redirects to main site
 - [ ] No mock data visible
