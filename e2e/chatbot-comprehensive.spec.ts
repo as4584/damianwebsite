@@ -29,6 +29,9 @@ for (const { name, url } of TEST_URLS) {
      * Ensures text is readable with proper contrast
      */
     test('should have visible text with proper contrast (no white-on-white)', async ({ page }) => {
+      // Set proper viewport size BEFORE navigation
+      await page.setViewportSize({ width: 1920, height: 1080 });
+      
       await page.goto(url);
       await page.waitForLoadState('networkidle');
       
@@ -39,20 +42,24 @@ for (const { name, url } of TEST_URLS) {
       const chatButton = page.locator('button[aria-label="Open chat"]');
       await expect(chatButton).toBeVisible({ timeout: 10000 });
       
-      // Force click since it's fixed position and might be reported as outside viewport
-      await chatButton.click({ force: true });
+      // Click directly via JavaScript since Playwright can't interact with fixed elements properly
+      await page.evaluate(() => {
+        const btn = document.querySelector('button[aria-label="Open chat"]') as HTMLButtonElement;
+        if (btn) btn.click();
+      });
       await page.waitForTimeout(2000);
       
-      // Wait for chat modal to appear
-      const chatModal = page.locator('[class*="chat"]').filter({ hasText: /message|hey|help/i }).first();
-      await expect(chatModal).toBeVisible({ timeout: 5000 });
+      // Wait for chat modal to appear - look for specific modal elements
+      // The modal should have a header with "Chat with us"
+      const modalHeader = page.getByText('Chat with us');
+      await expect(modalHeader).toBeVisible({ timeout: 5000 });
       
-      // Check the first bot message
-      const botMessage = page.locator('div').filter({ hasText: /hey there|hello|hi/i }).first();
-      await expect(botMessage).toBeVisible();
+      // Check for the greeting message - starts with "Hey there!"
+      const greetingMessage = page.getByText(/Hey there/i);
+      await expect(greetingMessage).toBeVisible({ timeout: 5000 });
       
       // Get computed styles of message
-      const messageColor = await botMessage.evaluate((el) => {
+      const messageColor = await greetingMessage.evaluate((el) => {
         const style = window.getComputedStyle(el);
         return {
           color: style.color,
