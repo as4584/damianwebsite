@@ -14,7 +14,7 @@ The dashboard has been completely overhauled to eliminate ALL mock data and impl
 2. ✅ **100% Confidence Score** - Code quality validated
 3. ✅ **Authentication Working** - Login with King1000$ password
 4. ✅ **UI Improved** - Logout button, proper branding, no 404s
-5. ✅ **Production Ready** - Configured for dashboard.lexmakesit.com
+5. ✅ **Production Ready** - Configured for dashboard.innovationdevelopmentsolutions.com
 
 ---
 
@@ -115,16 +115,16 @@ AFTER:
 ## 🌐 Production Deployment
 
 ### Domain Configuration
-- **Main Site:** lexmakesit.com
-- **Dashboard:** dashboard.lexmakesit.com
+- **Main Site:** innovationdevelopmentsolutions.com
+- **Dashboard:** dashboard.innovationdevelopmentsolutions.com
 - **Status:** Configuration complete, ready to deploy
 
 ### Environment Variables Required
 ```env
 NEXTAUTH_SECRET=<generate-secure-secret>
-NEXTAUTH_URL=https://lexmakesit.com
-NEXT_PUBLIC_SITE_URL=https://lexmakesit.com
-NEXT_PUBLIC_DASHBOARD_URL=https://dashboard.lexmakesit.com
+NEXTAUTH_URL=https://innovationdevelopmentsolutions.com
+NEXT_PUBLIC_SITE_URL=https://innovationdevelopmentsolutions.com
+NEXT_PUBLIC_DASHBOARD_URL=https://dashboard.innovationdevelopmentsolutions.com
 DEFAULT_BUSINESS_ID=biz_innovation_001
 NODE_ENV=production
 ```
@@ -206,7 +206,7 @@ See `PRODUCTION_DEPLOYMENT.md` for complete instructions.
 ## 📝 Recommendations
 
 ### Immediate Actions
-1. ✅ Deploy to dashboard.lexmakesit.com
+1. ✅ Deploy to dashboard.innovationdevelopmentsolutions.com
 2. ✅ Test with real users
 3. ⚠️  Debug chatbot lead creation
 4. ⚠️  Add monitoring (uptime, errors)
@@ -272,7 +272,7 @@ npx playwright show-report
 - UI: **Improved**
 - Deployment: **Configured**
 
-**Ready to deploy to dashboard.lexmakesit.com** 🚀
+**Ready to deploy to dashboard.innovationdevelopmentsolutions.com** 🚀
 
 ---
 
