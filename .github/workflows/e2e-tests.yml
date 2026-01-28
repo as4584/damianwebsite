@@ -1,0 +1,308 @@
+name: E2E Tests - Chatbot & Dashboard
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run daily at 9 AM UTC to ensure chatbot visibility
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+    # Allow manual trigger
+
+jobs:
+  test:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [chromium, mobile-chrome, tablet]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps ${{ matrix.project }}
+      
+      - name: Build Next.js application
+        run: npm run build
+      
+      - name: Start Next.js server
+        run: |
+          npm run start &
+          npx wait-on http://localhost:3001 --timeout 60000
+        env:
+          PORT: 3001
+      
+      - name: Run E2E tests for ${{ matrix.project }}
+        run: npx playwright test --project=${{ matrix.project }}
+        env:
+          CI: true
+      
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ matrix.project }}
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 30
+      
+      - name: Upload screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failure-screenshots-${{ matrix.project }}
+          path: test-results/*.png
+          retention-days: 7
+      
+      - name: Comment PR with test results
+        if: github.event_name == 'pull_request' && failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `❌ E2E tests failed for **${{ matrix.project }}**. Check the [workflow run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.`
+            })
+
+  chatbot-visibility:
+    name: Chatbot Visibility Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+      
+      - name: Build application
+        run: npm run build
+      
+      - name: Start server
+        run: |
+          npm run start &
+          npx wait-on http://localhost:3001 --timeout 60000
+        env:
+          PORT: 3001
+      
+      - name: Test chatbot visibility
+        run: npx playwright test chatbot-visibility.spec.ts
+        env:
+          CI: true
+      
+      - name: Upload visibility test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chatbot-visibility-results
+          path: |
+            test-results/chatbot-*.png
+            playwright-report/
+          retention-days: 30
+      
+      - name: Notify on chatbot visibility failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = '🚨 Chatbot Visibility Issue Detected';
+            const body = `
+            The chatbot visibility test has failed on \`${{ github.ref_name }}\`.
+            
+            **Details:**
+            - Run: ${{ github.run_id }}
+            - Commit: ${{ github.sha }}
+            - Timestamp: ${{ github.event.head_commit.timestamp }}
+            
+            Please check that the chatbot is visible on:
+            - ✅ Desktop (1920x1080)
+            - ✅ Tablet (iPad)
+            - ✅ Mobile (iPhone SE)
+            
+            [View full results](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            `;
+            
+            // Create an issue if chatbot is not visible
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: title,
+              body: body,
+              labels: ['bug', 'chatbot', 'urgent']
+            });
+
+  auth-and-data:
+    name: Authentication & Real Data Verification
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+      
+      - name: Build application
+        run: npm run build
+      
+      - name: Start server
+        run: |
+          npm run start &
+          npx wait-on http://localhost:3001 --timeout 60000
+        env:
+          PORT: 3001
+      
+      - name: Run auth tests
+        run: npx playwright test auth-dashboard.spec.ts
+        env:
+          CI: true
+      
+      - name: Verify real data (no mocks)
+        run: |
+          echo "Checking for mock data in codebase..."
+          if grep -r "mockLeadsStore\|initializeMockData" app/dashboard/services/leadService.ts; then
+            echo "❌ FOUND MOCK DATA IN LEAD SERVICE!"
+            exit 1
+          else
+            echo "✅ No mock data found - using real data only"
+          fi
+      
+      - name: Upload auth test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: auth-test-results
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 30
+
+  integration:
+    name: Chatbot → Dashboard Integration
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+      
+      - name: Build application
+        run: npm run build
+      
+      - name: Start server
+        run: |
+          npm run start &
+          npx wait-on http://localhost:3001 --timeout 60000
+        env:
+          PORT: 3001
+      
+      - name: Run integration tests
+        run: npx playwright test chatbot-to-dashboard.spec.ts
+        env:
+          CI: true
+      
+      - name: Upload integration test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: integration-test-results
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 30
+      
+      - name: Notify on integration failure
+        if: failure()
+        run: |
+          echo "❌ Integration test failed: Chatbot → Dashboard flow is broken"
+          echo "This means leads created via chatbot are NOT appearing in the dashboard"
+          exit 1
+
+  summary:
+    name: Test Summary
+    runs-on: ubuntu-latest
+    needs: [test, chatbot-visibility, auth-and-data, integration]
+    if: always()
+    
+    steps:
+      - name: Generate summary
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: run } = await github.rest.actions.getWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId
+            });
+            
+            const conclusion = run.conclusion;
+            const emoji = conclusion === 'success' ? '✅' : '❌';
+            
+            const summary = `
+            # ${emoji} E2E Test Results
+            
+            **Status:** ${conclusion}
+            **Branch:** ${context.ref}
+            **Commit:** ${context.sha.substring(0, 7)}
+            
+            ## Test Jobs
+            - Chatbot Visibility: ${emoji}
+            - Authentication & Data: ${emoji}
+            - Chatbot → Dashboard Integration: ${emoji}
+            - Cross-Browser Tests: ${emoji}
+            
+            [View detailed results](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})
+            `;
+            
+            core.summary.addRaw(summary).write();

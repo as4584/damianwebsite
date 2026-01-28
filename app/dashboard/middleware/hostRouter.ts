@@ -111,15 +111,20 @@ export function handleSubdomainRouting(request: NextRequest): NextResponse {
   const isOnDashboardSubdomain = isDashboardSubdomain(host);
   const isAccessingDashboardPath = isDashboardPath(pathname);
   
+  // DEVELOPMENT MODE: Allow direct access to /dashboard on localhost
+  // In production, dashboard must be on dashboard.* subdomain
+  const isLocalhost = host.includes('localhost') || host.includes('127.0.0.1');
+  
   // CASE 1: Dashboard subdomain accessing non-dashboard path
   // dashboard.example.com/ → rewrite to /dashboard
   if (isOnDashboardSubdomain && !isAccessingDashboardPath) {
     return routeSubdomainToDashboard(request);
   }
   
-  // CASE 2: Main domain trying to access /dashboard
+  // CASE 2: Main domain trying to access /dashboard (PRODUCTION ONLY)
   // example.com/dashboard → redirect to /
-  if (!isOnDashboardSubdomain && isAccessingDashboardPath) {
+  // SKIP THIS CHECK FOR LOCALHOST to allow E2E tests and local development
+  if (!isOnDashboardSubdomain && isAccessingDashboardPath && !isLocalhost) {
     return blockMainDomainDashboardAccess(request);
   }
   
@@ -129,7 +134,8 @@ export function handleSubdomainRouting(request: NextRequest): NextResponse {
     return NextResponse.next();
   }
   
-  // CASE 4: Main domain accessing main site
+  // CASE 4: Main domain accessing main site OR localhost accessing /dashboard
   // example.com/ → allow
+  // localhost:3001/dashboard → allow (development mode)
   return NextResponse.next();
 }

@@ -109,7 +109,7 @@ export async function POST(request: NextRequest) {
     
     // Log lead capture for backend processing (in production, save to database)
     if (response.nextState === 'CONFIRMATION' && response.sessionData.email) {
-      console.log('Lead captured:', {
+      const leadData = {
         name: response.sessionData.name,
         email: response.sessionData.email,
         phone: response.sessionData.phone,
@@ -118,14 +118,30 @@ export async function POST(request: NextRequest) {
         hasPartners: response.sessionData.hasPartners,
         multiState: response.sessionData.multiState,
         intakeData: response.sessionData.intakeMode?.fieldsCollected || {},
-        timestamp: new Date().toISOString()
-      });
+        sourcePage: '/chat',
+        conversationHistory: response.sessionData.conversationHistory?.map((msg: any) => ({
+          role: msg.role,
+          content: msg.content,
+          timestamp: new Date(msg.timestamp || Date.now())
+        })) || []
+      };
       
-      // In production, you would:
-      // 1. Save to database
-      // 2. Send to CRM (HubSpot, Salesforce, etc.)
-      // 3. Trigger email notification
-      // 4. Add to consultation scheduling system
+      console.log('Lead captured:', leadData);
+      
+      // Save lead to database via API call
+      try {
+        // In edge runtime, we use fetch to call our own API
+        const origin = request.headers.get('origin') || 'http://localhost:3000';
+        await fetch(`${origin}/api/leads/create`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(leadData)
+        });
+        console.log('✅ Lead saved to database');
+      } catch (err) {
+        console.error('Failed to save lead:', err);
+        // Don't fail the chat response if lead save fails
+      }
     }
     
     return NextResponse.json(response);

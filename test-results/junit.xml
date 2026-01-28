@@ -1,0 +1,326 @@
+<testsuites id="" name="" tests="6" failures="2" skipped="0" errors="0" time="73.627771">
+<testsuite name="auth-dashboard.spec.ts" timestamp="2026-01-28T15:21:50.674Z" hostname="chromium" tests="6" failures="2" skipped="0" time="135.406" errors="0">
+<testcase name="Authentication &amp; Dashboard Security › should login successfully with King1000$ password" classname="auth-dashboard.spec.ts" time="4.855">
+<system-out>
+<![CDATA[📍 Current URL after login: http://localhost:3001/dashboard
+✅ Login successful with King1000$ - dashboard loaded
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication &amp; Dashboard Security › should show real lead data (not mock data)" classname="auth-dashboard.spec.ts" time="5.679">
+<system-out>
+<![CDATA[✅ Dashboard loaded with lead metrics
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication &amp; Dashboard Security › should prevent unauthorized access to dashboard" classname="auth-dashboard.spec.ts" time="46.476">
+<failure message="auth-dashboard.spec.ts:107:7 should prevent unauthorized access to dashboard" type="FAILURE">
+<![CDATA[  [chromium] › auth-dashboard.spec.ts:107:7 › Authentication & Dashboard Security › should prevent unauthorized access to dashboard 
+
+    TimeoutError: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/login" until "load"
+      navigated to "http://localhost:3001/dashboard"
+    ============================================================
+
+      114 |     
+      115 |     // Should redirect to login
+    > 116 |     await page.waitForURL('/login', { timeout: 10000 });
+          |                ^
+      117 |     
+      118 |     // Verify we're on login page
+      119 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();
+        at /root/damaian/e2e/auth-dashboard.spec.ts:116:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    TimeoutError: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/login" until "load"
+    ============================================================
+
+      114 |     
+      115 |     // Should redirect to login
+    > 116 |     await page.waitForURL('/login', { timeout: 10000 });
+          |                ^
+      117 |     
+      118 |     // Verify we're on login page
+      119 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();
+        at /root/damaian/e2e/auth-dashboard.spec.ts:116:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    TimeoutError: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/login" until "load"
+      navigated to "http://localhost:3001/dashboard"
+    ============================================================
+
+      114 |     
+      115 |     // Should redirect to login
+    > 116 |     await page.waitForURL('/login', { timeout: 10000 });
+          |                ^
+      117 |     
+      118 |     // Verify we're on login page
+      119 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();
+        at /root/damaian/e2e/auth-dashboard.spec.ts:116:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry2/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry2/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry2/error-context.md
+
+    Retry #3 ───────────────────────────────────────────────────────────────────────────────────────
+
+    TimeoutError: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/login" until "load"
+      navigated to "http://localhost:3001/dashboard"
+    ============================================================
+
+      114 |     
+      115 |     // Should redirect to login
+    > 116 |     await page.waitForURL('/login', { timeout: 10000 });
+          |                ^
+      117 |     
+      118 |     // Verify we're on login page
+      119 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();
+        at /root/damaian/e2e/auth-dashboard.spec.ts:116:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry3/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry3/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry3/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium/video.webm]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium/error-context.md]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/test-failed-1.png]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/video.webm]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/error-context.md]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/trace.zip]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry2/test-failed-1.png]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry2/video.webm]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry2/error-context.md]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry3/test-failed-1.png]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry3/video.webm]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry3/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication &amp; Dashboard Security › should show accurate metrics on dashboard" classname="auth-dashboard.spec.ts" time="5.656">
+<system-out>
+<![CDATA[✅ Dashboard metrics section loaded
+✅ Dashboard accessible and rendering
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication &amp; Dashboard Security › should logout and require re-authentication" classname="auth-dashboard.spec.ts" time="70.124">
+<failure message="auth-dashboard.spec.ts:153:7 should logout and require re-authentication" type="FAILURE">
+<![CDATA[  [chromium] › auth-dashboard.spec.ts:153:7 › Authentication & Dashboard Security › should logout and require re-authentication 
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/login" until "load"
+      navigated to "http://localhost:3001/dashboard"
+    ============================================================
+
+      169 |     
+      170 |     // Should redirect to login
+    > 171 |     await page.waitForURL('/login', { timeout: 15000 });
+          |                ^
+      172 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();
+      173 |     
+      174 |     console.log('✅ Session cleared - re-authentication required');
+        at /root/damaian/e2e/auth-dashboard.spec.ts:171:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/login" until "load"
+    ============================================================
+
+      169 |     
+      170 |     // Should redirect to login
+    > 171 |     await page.waitForURL('/login', { timeout: 15000 });
+          |                ^
+      172 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();
+      173 |     
+      174 |     console.log('✅ Session cleared - re-authentication required');
+        at /root/damaian/e2e/auth-dashboard.spec.ts:171:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/login" until "load"
+      navigated to "http://localhost:3001/dashboard"
+    ============================================================
+
+      169 |     
+      170 |     // Should redirect to login
+    > 171 |     await page.waitForURL('/login', { timeout: 15000 });
+          |                ^
+      172 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();
+      173 |     
+      174 |     console.log('✅ Session cleared - re-authentication required');
+        at /root/damaian/e2e/auth-dashboard.spec.ts:171:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry2/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry2/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry2/error-context.md
+
+    Retry #3 ───────────────────────────────────────────────────────────────────────────────────────
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/login" until "load"
+      navigated to "http://localhost:3001/dashboard"
+    ============================================================
+
+      169 |     
+      170 |     // Should redirect to login
+    > 171 |     await page.waitForURL('/login', { timeout: 15000 });
+          |                ^
+      172 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();
+      173 |     
+      174 |     console.log('✅ Session cleared - re-authentication required');
+        at /root/damaian/e2e/auth-dashboard.spec.ts:171:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry3/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry3/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry3/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium/video.webm]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium/error-context.md]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/test-failed-1.png]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/video.webm]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/error-context.md]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/trace.zip]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry2/test-failed-1.png]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry2/video.webm]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry2/error-context.md]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry3/test-failed-1.png]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry3/video.webm]]
+
+[[ATTACHMENT|auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry3/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Login Error Handling › should show error with wrong password" classname="auth-dashboard.spec.ts" time="2.616">
+<system-out>
+<![CDATA[✅ Wrong password rejected correctly
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>

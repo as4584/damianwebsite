@@ -3,13 +3,17 @@
 /**
  * Lead Detail Page
  * Full view for a single lead
+ * 
+ * SECURITY:
+ * - Uses API routes instead of direct service calls
+ * - Session validation happens on server (middleware + API routes)
+ * - businessId scoping enforced by backend
  */
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { LeadDetail } from '../../components/LeadDetail';
-import { getLeadById, updateLead } from '../../services/leadService';
 import { Lead } from '../../types';
 
 export default function LeadDetailPage() {
@@ -24,7 +28,11 @@ export default function LeadDetailPage() {
   useEffect(() => {
     async function loadLead() {
       try {
-        const result = await getLeadById(leadId);
+        // SECURITY: Call API route (not direct service call)
+        // API validates session and businessId ownership
+        const response = await fetch(`/dashboard/api/leads/${leadId}`);
+        const result = await response.json();
+        
         if (result.success && result.data) {
           setLead(result.data);
         } else {
@@ -45,7 +53,14 @@ export default function LeadDetailPage() {
   const handleUpdateNotes = async (notes: string) => {
     if (!lead) return;
     
-    const result = await updateLead(lead.id, { internalNotes: notes });
+    // SECURITY: Call API route (not direct service call)
+    const response = await fetch(`/dashboard/api/leads/${lead.id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ internalNotes: notes })
+    });
+    
+    const result = await response.json();
     if (result.success && result.data) {
       setLead(result.data);
     }

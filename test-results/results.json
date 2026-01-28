@@ -1,0 +1,776 @@
+{
+  "config": {
+    "configFile": "/root/damaian/playwright.config.ts",
+    "rootDir": "/root/damaian/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 6
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/root/damaian/test-results",
+        "repeatEach": 1,
+        "retries": 3,
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/root/damaian/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/root/damaian/test-results",
+        "repeatEach": 1,
+        "retries": 3,
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "mobile-chrome",
+        "name": "mobile-chrome",
+        "testDir": "/root/damaian/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/root/damaian/test-results",
+        "repeatEach": 1,
+        "retries": 3,
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "tablet",
+        "name": "tablet",
+        "testDir": "/root/damaian/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "playwright-report",
+          "open": "never"
+        }
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "test-results/junit.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.0",
+    "workers": 16,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "auth-dashboard.spec.ts",
+      "file": "auth-dashboard.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Authentication & Dashboard Security",
+          "file": "auth-dashboard.spec.ts",
+          "line": 14,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should login successfully with King1000$ password",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4855,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "📍 Current URL after login: http://localhost:3001/dashboard\n"
+                        },
+                        {
+                          "text": "✅ Login successful with King1000$ - dashboard loaded\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-28T15:21:51.635Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "052a9e210c7d6dda09a9-2705f91948b4f7e1d643",
+              "file": "auth-dashboard.spec.ts",
+              "line": 21,
+              "column": 7
+            },
+            {
+              "title": "should show real lead data (not mock data)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 5679,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Dashboard loaded with lead metrics\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-28T15:21:51.649Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "052a9e210c7d6dda09a9-623af07bc013b389c7a4",
+              "file": "auth-dashboard.spec.ts",
+              "line": 77,
+              "column": 7
+            },
+            {
+              "title": "should prevent unauthorized access to dashboard",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 12698,
+                      "error": {
+                        "message": "TimeoutError: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n  navigated to \"http://localhost:3001/dashboard\"\n============================================================",
+                        "stack": "TimeoutError: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n  navigated to \"http://localhost:3001/dashboard\"\n============================================================\n    at /root/damaian/e2e/auth-dashboard.spec.ts:116:16",
+                        "location": {
+                          "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                          "column": 16,
+                          "line": 116
+                        },
+                        "snippet": "  114 |     \n  115 |     // Should redirect to login\n> 116 |     await page.waitForURL('/login', { timeout: 10000 });\n      |                ^\n  117 |     \n  118 |     // Verify we're on login page\n  119 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                            "column": 16,
+                            "line": 116
+                          },
+                          "message": "TimeoutError: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n  navigated to \"http://localhost:3001/dashboard\"\n============================================================\n\n  114 |     \n  115 |     // Should redirect to login\n> 116 |     await page.waitForURL('/login', { timeout: 10000 });\n      |                ^\n  117 |     \n  118 |     // Verify we're on login page\n  119 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();\n    at /root/damaian/e2e/auth-dashboard.spec.ts:116:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-28T15:21:51.645Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                        "column": 16,
+                        "line": 116
+                      }
+                    },
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 11505,
+                      "error": {
+                        "message": "TimeoutError: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n============================================================",
+                        "stack": "TimeoutError: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n============================================================\n    at /root/damaian/e2e/auth-dashboard.spec.ts:116:16",
+                        "location": {
+                          "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                          "column": 16,
+                          "line": 116
+                        },
+                        "snippet": "  114 |     \n  115 |     // Should redirect to login\n> 116 |     await page.waitForURL('/login', { timeout: 10000 });\n      |                ^\n  117 |     \n  118 |     // Verify we're on login page\n  119 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                            "column": 16,
+                            "line": 116
+                          },
+                          "message": "TimeoutError: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n============================================================\n\n  114 |     \n  115 |     // Should redirect to login\n> 116 |     await page.waitForURL('/login', { timeout: 10000 });\n      |                ^\n  117 |     \n  118 |     // Verify we're on login page\n  119 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();\n    at /root/damaian/e2e/auth-dashboard.spec.ts:116:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-01-28T15:22:05.095Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                        "column": 16,
+                        "line": 116
+                      }
+                    },
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 11144,
+                      "error": {
+                        "message": "TimeoutError: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n  navigated to \"http://localhost:3001/dashboard\"\n============================================================",
+                        "stack": "TimeoutError: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n  navigated to \"http://localhost:3001/dashboard\"\n============================================================\n    at /root/damaian/e2e/auth-dashboard.spec.ts:116:16",
+                        "location": {
+                          "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                          "column": 16,
+                          "line": 116
+                        },
+                        "snippet": "  114 |     \n  115 |     // Should redirect to login\n> 116 |     await page.waitForURL('/login', { timeout: 10000 });\n      |                ^\n  117 |     \n  118 |     // Verify we're on login page\n  119 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                            "column": 16,
+                            "line": 116
+                          },
+                          "message": "TimeoutError: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n  navigated to \"http://localhost:3001/dashboard\"\n============================================================\n\n  114 |     \n  115 |     // Should redirect to login\n> 116 |     await page.waitForURL('/login', { timeout: 10000 });\n      |                ^\n  117 |     \n  118 |     // Verify we're on login page\n  119 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();\n    at /root/damaian/e2e/auth-dashboard.spec.ts:116:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 2,
+                      "startTime": "2026-01-28T15:22:17.376Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry2/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                        "column": 16,
+                        "line": 116
+                      }
+                    },
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 11129,
+                      "error": {
+                        "message": "TimeoutError: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n  navigated to \"http://localhost:3001/dashboard\"\n============================================================",
+                        "stack": "TimeoutError: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n  navigated to \"http://localhost:3001/dashboard\"\n============================================================\n    at /root/damaian/e2e/auth-dashboard.spec.ts:116:16",
+                        "location": {
+                          "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                          "column": 16,
+                          "line": 116
+                        },
+                        "snippet": "  114 |     \n  115 |     // Should redirect to login\n> 116 |     await page.waitForURL('/login', { timeout: 10000 });\n      |                ^\n  117 |     \n  118 |     // Verify we're on login page\n  119 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                            "column": 16,
+                            "line": 116
+                          },
+                          "message": "TimeoutError: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n  navigated to \"http://localhost:3001/dashboard\"\n============================================================\n\n  114 |     \n  115 |     // Should redirect to login\n> 116 |     await page.waitForURL('/login', { timeout: 10000 });\n      |                ^\n  117 |     \n  118 |     // Verify we're on login page\n  119 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();\n    at /root/damaian/e2e/auth-dashboard.spec.ts:116:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 3,
+                      "startTime": "2026-01-28T15:22:29.244Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry3/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry3/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-3450b-horized-access-to-dashboard-chromium-retry3/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                        "column": 16,
+                        "line": 116
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "052a9e210c7d6dda09a9-572e2458455e5a0fe203",
+              "file": "auth-dashboard.spec.ts",
+              "line": 107,
+              "column": 7
+            },
+            {
+              "title": "should show accurate metrics on dashboard",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 5656,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Dashboard metrics section loaded\n"
+                        },
+                        {
+                          "text": "✅ Dashboard accessible and rendering\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-28T15:21:51.650Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "052a9e210c7d6dda09a9-45dc6750a3f22e1dad3c",
+              "file": "auth-dashboard.spec.ts",
+              "line": 124,
+              "column": 7
+            },
+            {
+              "title": "should logout and require re-authentication",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "failed",
+                      "duration": 19305,
+                      "error": {
+                        "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n  navigated to \"http://localhost:3001/dashboard\"\n============================================================",
+                        "stack": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n  navigated to \"http://localhost:3001/dashboard\"\n============================================================\n    at /root/damaian/e2e/auth-dashboard.spec.ts:171:16",
+                        "location": {
+                          "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                          "column": 16,
+                          "line": 171
+                        },
+                        "snippet": "  169 |     \n  170 |     // Should redirect to login\n> 171 |     await page.waitForURL('/login', { timeout: 15000 });\n      |                ^\n  172 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();\n  173 |     \n  174 |     console.log('✅ Session cleared - re-authentication required');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                            "column": 16,
+                            "line": 171
+                          },
+                          "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n  navigated to \"http://localhost:3001/dashboard\"\n============================================================\n\n  169 |     \n  170 |     // Should redirect to login\n> 171 |     await page.waitForURL('/login', { timeout: 15000 });\n      |                ^\n  172 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();\n  173 |     \n  174 |     console.log('✅ Session cleared - re-authentication required');\n    at /root/damaian/e2e/auth-dashboard.spec.ts:171:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-28T15:21:51.644Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                        "column": 16,
+                        "line": 171
+                      }
+                    },
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 17505,
+                      "error": {
+                        "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n============================================================",
+                        "stack": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n============================================================\n    at /root/damaian/e2e/auth-dashboard.spec.ts:171:16",
+                        "location": {
+                          "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                          "column": 16,
+                          "line": 171
+                        },
+                        "snippet": "  169 |     \n  170 |     // Should redirect to login\n> 171 |     await page.waitForURL('/login', { timeout: 15000 });\n      |                ^\n  172 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();\n  173 |     \n  174 |     console.log('✅ Session cleared - re-authentication required');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                            "column": 16,
+                            "line": 171
+                          },
+                          "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n============================================================\n\n  169 |     \n  170 |     // Should redirect to login\n> 171 |     await page.waitForURL('/login', { timeout: 15000 });\n      |                ^\n  172 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();\n  173 |     \n  174 |     console.log('✅ Session cleared - re-authentication required');\n    at /root/damaian/e2e/auth-dashboard.spec.ts:171:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-01-28T15:22:11.690Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                        "column": 16,
+                        "line": 171
+                      }
+                    },
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 16619,
+                      "error": {
+                        "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n  navigated to \"http://localhost:3001/dashboard\"\n============================================================",
+                        "stack": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n  navigated to \"http://localhost:3001/dashboard\"\n============================================================\n    at /root/damaian/e2e/auth-dashboard.spec.ts:171:16",
+                        "location": {
+                          "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                          "column": 16,
+                          "line": 171
+                        },
+                        "snippet": "  169 |     \n  170 |     // Should redirect to login\n> 171 |     await page.waitForURL('/login', { timeout: 15000 });\n      |                ^\n  172 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();\n  173 |     \n  174 |     console.log('✅ Session cleared - re-authentication required');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                            "column": 16,
+                            "line": 171
+                          },
+                          "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n  navigated to \"http://localhost:3001/dashboard\"\n============================================================\n\n  169 |     \n  170 |     // Should redirect to login\n> 171 |     await page.waitForURL('/login', { timeout: 15000 });\n      |                ^\n  172 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();\n  173 |     \n  174 |     console.log('✅ Session cleared - re-authentication required');\n    at /root/damaian/e2e/auth-dashboard.spec.ts:171:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 2,
+                      "startTime": "2026-01-28T15:22:30.158Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry2/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                        "column": 16,
+                        "line": 171
+                      }
+                    },
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 16695,
+                      "error": {
+                        "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n  navigated to \"http://localhost:3001/dashboard\"\n============================================================",
+                        "stack": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n  navigated to \"http://localhost:3001/dashboard\"\n============================================================\n    at /root/damaian/e2e/auth-dashboard.spec.ts:171:16",
+                        "location": {
+                          "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                          "column": 16,
+                          "line": 171
+                        },
+                        "snippet": "  169 |     \n  170 |     // Should redirect to login\n> 171 |     await page.waitForURL('/login', { timeout: 15000 });\n      |                ^\n  172 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();\n  173 |     \n  174 |     console.log('✅ Session cleared - re-authentication required');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                            "column": 16,
+                            "line": 171
+                          },
+                          "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"/login\" until \"load\"\n  navigated to \"http://localhost:3001/dashboard\"\n============================================================\n\n  169 |     \n  170 |     // Should redirect to login\n> 171 |     await page.waitForURL('/login', { timeout: 15000 });\n      |                ^\n  172 |     await expect(page.getByRole('heading', { name: /sign in/i })).toBeVisible();\n  173 |     \n  174 |     console.log('✅ Session cleared - re-authentication required');\n    at /root/damaian/e2e/auth-dashboard.spec.ts:171:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 3,
+                      "startTime": "2026-01-28T15:22:47.467Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry3/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry3/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/root/damaian/test-results/auth-dashboard-Authenticat-4308f-d-require-re-authentication-chromium-retry3/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/root/damaian/e2e/auth-dashboard.spec.ts",
+                        "column": 16,
+                        "line": 171
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "052a9e210c7d6dda09a9-410c3bb3f25b21874e6d",
+              "file": "auth-dashboard.spec.ts",
+              "line": 153,
+              "column": 7
+            }
+          ]
+        },
+        {
+          "title": "Login Error Handling",
+          "file": "auth-dashboard.spec.ts",
+          "line": 181,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should show error with wrong password",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 5,
+                      "status": "passed",
+                      "duration": 2616,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Wrong password rejected correctly\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-28T15:21:51.684Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "052a9e210c7d6dda09a9-65ab290590f7e9d176bc",
+              "file": "auth-dashboard.spec.ts",
+              "line": 183,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-01-28T15:21:50.651Z",
+    "duration": 73627.771,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

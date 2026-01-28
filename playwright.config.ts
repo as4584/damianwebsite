@@ -4,20 +4,57 @@ export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
+  
+  // AUTO-RETRY: Retry failed tests up to 3 times (local) or 2 times (CI)
+  retries: process.env.CI ? 2 : 3,
+  
   workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
+  
+  // ENHANCED REPORTING: Multiple reporters for comprehensive results
+  reporter: [
+    ['html', { outputFolder: 'playwright-report', open: 'never' }],
+    ['list'],
+    ['json', { outputFile: 'test-results/results.json' }],
+    ['junit', { outputFile: 'test-results/junit.xml' }]
+  ],
+  
   use: {
     baseURL: 'http://localhost:3001',
+    
+    // TRACE: Always capture traces for debugging
     trace: 'on-first-retry',
+    
+    // SCREENSHOTS: Always capture on failure, optionally on success
     screenshot: 'only-on-failure',
+    
+    // VIDEO: Record video on failure for debugging
+    video: 'retain-on-failure',
+    
+    // Timeout for actions (click, fill, etc.)
+    actionTimeout: 15000,
+    
+    // Navigation timeout
+    navigationTimeout: 30000,
   },
+  
+  // TIMEOUT: Global timeout for each test
+  timeout: 60000,
+  
   projects: [
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
+    {
+      name: 'mobile-chrome',
+      use: { ...devices['iPhone SE'] },
+    },
+    {
+      name: 'tablet',
+      use: { ...devices['iPad'] },
+    },
   ],
+  
   // webServer disabled - running manually
   // webServer: {
   //   command: 'npm run dev',

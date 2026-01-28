@@ -19,6 +19,7 @@ export interface LeadSource {
 // Core Lead interface
 export interface Lead {
   id: string;
+  businessId: string; // SECURITY: Every lead belongs to a business
   fullName: string | null;
   email: string | null;
   phone: string | null;
