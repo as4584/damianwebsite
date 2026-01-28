@@ -4,8 +4,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getLeads, getLeadPreviews } from '../../../services/leadService';
-import { LeadHotness } from '../../../types';
+import { getLeads, getLeadPreviews } from '../../services/leadService';
+import { LeadHotness } from '../../types';
 
 export async function GET(request: NextRequest) {
   try {

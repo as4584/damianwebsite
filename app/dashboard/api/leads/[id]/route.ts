@@ -5,7 +5,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getLeadById, updateLead } from '../../../../services/leadService';
+import { getLeadById, updateLead } from '../../../services/leadService';
 
 export async function GET(
   request: NextRequest,

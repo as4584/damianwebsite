@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getDashboardMetrics, getLeadCounts } from '../../../services/leadService';
+import { getDashboardMetrics, getLeadCounts } from '../../services/leadService';
 
 export async function GET(request: NextRequest) {
   try {

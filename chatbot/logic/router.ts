@@ -21,6 +21,7 @@ import {
   shouldSkipQuestion,
   hasMinimumDataForEscalation
 } from './state';
+import { initializeIntakeMode } from './intakeMode';
 import {
   evaluateEscalation,
   getEscalationMessage,
@@ -402,7 +403,7 @@ function handleMissionDriven(userInput: string, sessionData: SessionData): ChatR
 }
 
 function handleSummary(sessionData: SessionData): ChatResponse {
-  let summaryParts = [messages.summary.intro];
+  const summaryParts: string[] = [messages.summary.intro];
   
   if (sessionData.businessType) {
     summaryParts.push(messages.summary.businessType.replace('{type}', sessionData.businessType));
@@ -550,7 +551,8 @@ function handleConfirmation(sessionData: SessionData): ChatResponse {
  */
 export function getWelcomeMessage(): ChatResponse {
   const sessionData: SessionData = {
-    conversationHistory: []
+    conversationHistory: [],
+    intakeMode: initializeIntakeMode()
   };
   
   return {

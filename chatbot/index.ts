@@ -19,5 +19,5 @@ export { evaluateEscalation, getEscalationMessage, validateResponse } from './lo
 export { routeConversation } from './logic/router';
 
 export type { ConversationState, SessionData } from './logic/state';
-export type { Intent, BusinessType, Location } from './logic/intents';
+export type { Intent } from './logic/intents';
 export type { EscalationType } from './logic/gatekeeper';
