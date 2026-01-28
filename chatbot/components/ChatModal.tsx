@@ -211,27 +211,17 @@ export default function ChatModal({ isOpen, onClose }: ChatModalProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 md:inset-auto md:bottom-20 md:right-4 lg:right-5 w-full md:w-[400px] lg:w-[420px] h-full md:h-[600px] md:max-h-[calc(100vh-100px)] z-[9999] bg-white md:rounded-xl md:shadow-2xl overflow-hidden flex flex-col"
             style={{ 
-              position: 'fixed',
-              bottom: '90px',
-              right: '20px',
-              width: '360px',
-              maxWidth: 'calc(100vw - 40px)',
-              height: '600px',
-              maxHeight: 'calc(100vh - 120px)',
-              zIndex: 9999,
-              pointerEvents: 'auto',
-              display: 'flex',
-              flexDirection: 'column'
+              pointerEvents: 'auto'
             }}
-            className="bg-white rounded-xl shadow-2xl overflow-hidden"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 flex items-center justify-between flex-shrink-0">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+            <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-3 md:p-4 flex items-center justify-between flex-shrink-0 safe-area-top">
+              <div className="flex items-center gap-2 md:gap-3">
+                <div className="w-9 h-9 md:w-10 md:h-10 bg-white/20 rounded-full flex items-center justify-center">
                   <svg
-                    className="w-5 h-5"
+                    className="w-4 h-4 md:w-5 md:h-5"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -245,18 +235,18 @@ export default function ChatModal({ isOpen, onClose }: ChatModalProps) {
                   </svg>
                 </div>
                 <div>
-                  <div className="font-semibold">Chat with us</div>
+                  <div className="font-semibold text-sm md:text-base">Chat with us</div>
                   <div className="text-xs text-white/80">We're here to help</div>
                 </div>
               </div>
               
               <button
                 onClick={onClose}
-                className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/20 transition-colors"
+                className="w-9 h-9 md:w-8 md:h-8 flex items-center justify-center rounded-lg hover:bg-white/20 transition-colors active:scale-95 touch-manipulation"
                 aria-label="Close chat"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-6 h-6 md:w-5 md:h-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -264,7 +254,7 @@ export default function ChatModal({ isOpen, onClose }: ChatModalProps) {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
+                    strokeWidth={2.5}
                     d="M6 18L18 6M6 6l12 12"
                   />
                 </svg>
@@ -356,7 +346,7 @@ export default function ChatModal({ isOpen, onClose }: ChatModalProps) {
             </div>
             
             {/* Input */}
-            <div className="p-4 bg-white border-t border-slate-200 flex-shrink-0">
+            <div className="p-3 md:p-4 bg-white border-t border-slate-200 flex-shrink-0 safe-area-bottom">
               <form onSubmit={handleSubmit} className="flex gap-2">
                 <input
                   ref={inputRef}
@@ -365,12 +355,12 @@ export default function ChatModal({ isOpen, onClose }: ChatModalProps) {
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Type your message..."
                   disabled={isLoading}
-                  className="flex-1 px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-slate-100 disabled:cursor-not-allowed text-sm"
+                  className="flex-1 px-3 md:px-4 py-2 md:py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-slate-100 disabled:cursor-not-allowed text-sm"
                 />
                 <button
                   type="submit"
                   disabled={!input.trim() || isLoading}
-                  className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:bg-slate-300 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
+                  className="px-3 md:px-4 py-2 md:py-2.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:bg-slate-300 disabled:cursor-not-allowed transition-colors flex items-center justify-center active:scale-95 touch-manipulation min-w-[44px]"
                 >
                   <svg
                     className="w-5 h-5"

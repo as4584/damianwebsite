@@ -28,21 +28,18 @@ export default function ChatBubble({ onClick, isOpen, hasUnread = false }: ChatB
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="fixed bottom-5 right-5 z-[10000] w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105 active:scale-95"
+      className="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-[10000] w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:scale-105 active:scale-95 touch-manipulation"
       aria-label={isOpen ? "Close chat" : "Open chat"}
       style={{ 
         pointerEvents: 'auto',
-        position: 'fixed',
-        bottom: '20px',
-        right: '20px',
-        zIndex: 10000
+        WebkitTapHighlightColor: 'transparent'
       }}
     >
           {/* Icon changes based on state */}
           {isOpen ? (
             // Close X icon when open
             <svg
-              className="w-7 h-7"
+              className="w-6 h-6 sm:w-7 sm:h-7"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -50,14 +47,14 @@ export default function ChatBubble({ onClick, isOpen, hasUnread = false }: ChatB
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={2}
+                strokeWidth={2.5}
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>
           ) : (
             // Chat icon when closed
             <svg
-              className="w-7 h-7"
+              className="w-6 h-6 sm:w-7 sm:h-7"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
