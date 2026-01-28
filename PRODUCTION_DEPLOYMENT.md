@@ -101,9 +101,9 @@ docker build -t innovation-dashboard .
 docker run -d \
   -p 3000:3000 \
   -e NEXTAUTH_SECRET="your-secret" \
-  -e NEXTAUTH_URL="https://lexmakesit.com" \
-  -e NEXT_PUBLIC_SITE_URL="https://lexmakesit.com" \
-  -e NEXT_PUBLIC_DASHBOARD_URL="https://dashboard.lexmakesit.com" \
+  -e NEXTAUTH_URL="https://innovationdevelopmentsolutions.com" \
+  -e NEXT_PUBLIC_SITE_URL="https://innovationdevelopmentsolutions.com" \
+  -e NEXT_PUBLIC_DASHBOARD_URL="https://dashboard.innovationdevelopmentsolutions.com" \
   -e NODE_ENV="production" \
   innovation-dashboard
 ```
@@ -129,16 +129,16 @@ pm2 start npm --name "innovation-dashboard" -- start
 # Main site
 server {
     listen 80;
-    server_name lexmakesit.com;
+    server_name innovationdevelopmentsolutions.com;
     return 301 https://$server_name$request_uri;
 }
 
 server {
     listen 443 ssl http2;
-    server_name lexmakesit.com;
+    server_name innovationdevelopmentsolutions.com;
 
-    ssl_certificate /etc/letsencrypt/live/lexmakesit.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/lexmakesit.com/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/innovationdevelopmentsolutions.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/innovationdevelopmentsolutions.com/privkey.pem;
 
     location / {
         proxy_pass http://localhost:3000;
@@ -159,7 +159,7 @@ server {
 
 server {
     listen 443 ssl http2;
-    server_name dashboard.lexmakesit.com;
+    server_name dashboard.innovationdevelopmentsolutions.com;
 
     ssl_certificate /etc/letsencrypt/live/lexmakesit.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/lexmakesit.com/privkey.pem;

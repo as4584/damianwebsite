@@ -182,8 +182,9 @@ check "Production deployment guide exists" \
 check "Test summary report exists" \
     "[ -f 'TEST_SUMMARY_REPORT.md' ]"
 
-check "Deployment guide has lexmakesit.com" \
-    "grep -q 'lexmakesit.com' 'PRODUCTION_DEPLOYMENT.md'"
+check_file_contains "Deployment guide has correct domain" \
+    "PRODUCTION_DEPLOYMENT.md" \
+    "innovationdevelopmentsolutions.com"
 
 echo ""
 echo -e "${YELLOW}=== 6. Environment Configuration ===${NC}"
@@ -231,6 +232,24 @@ check_file_contains "Confidence test validates score" \
 check_file_contains "Visual confidence test exists" \
     "e2e/confidence-score.spec.ts" \
     "VISUAL CONFIDENCE"
+
+echo ""
+echo -e "${YELLOW}=== 9. Domain Verification ===${NC}"
+echo ""
+
+# Check that wrong domains are NOT present in critical files
+check "No lexmakesit.com in .env.production" \
+    "! grep -q 'lexmakesit.com' '.env.production'"
+
+check "No lexmakesit.com in PRODUCTION_DEPLOYMENT.md" \
+    "! grep -q 'lexmakesit.com' 'PRODUCTION_DEPLOYMENT.md'"
+
+check "SOURCE_OF_TRUTH.md exists" \
+    "[ -f 'SOURCE_OF_TRUTH.md' ]"
+
+check_file_contains "SOURCE_OF_TRUTH has correct domain" \
+    "SOURCE_OF_TRUTH.md" \
+    "innovationdevelopmentsolutions.com"
 
 echo ""
 echo -e "${BLUE}========================================${NC}"

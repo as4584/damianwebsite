@@ -71,7 +71,7 @@
 **Documentation Files** (3/3 ✅)
 - ✅ Production deployment guide exists
 - ✅ Test summary report exists
-- ✅ Deployment guide has lexmakesit.com
+- ✅ Deployment guide has innovationdevelopmentsolutions.com
 
 **Environment Configuration** (3/3 ✅)
 - ✅ Production env file exists
@@ -150,12 +150,12 @@ The verification script runs automatically on every push to `main` branch:
 - **Business ID:** biz_innovation_001
 
 ### Production Domain
-- **Main Site:** https://lexmakesit.com
-- **Dashboard:** https://dashboard.lexmakesit.com
+- **Main Site:** https://innovationdevelopmentsolutions.com
+- **Dashboard:** https://dashboard.innovationdevelopmentsolutions.com
 
 ### Next Steps to Deploy
 1. Follow [PRODUCTION_DEPLOYMENT.md](PRODUCTION_DEPLOYMENT.md) guide
-2. Configure DNS for dashboard.lexmakesit.com
+2. Configure DNS for dashboard.innovationdevelopmentsolutions.com
 3. Set up SSL/TLS certificates (Let's Encrypt)
 4. Deploy using Vercel, Docker, or PM2+Nginx
 5. Configure environment variables (see `.env.production`)
@@ -217,9 +217,10 @@ The verification script runs automatically on every push to `main` branch:
 **Current Status:** ✅ READY FOR PRODUCTION DEPLOYMENT  
 **Latest Commit:** fd0b192 - "Fix verification script - make commit message check more flexible"  
 **GitHub URL:** https://github.com/as4584/damianwebsite.git  
-**Branch:** main (fully synced with origin)
+**Branch:** main (fully synced with origin)  
+**Deployment:** GitHub → Vercel (Automatic)
 
-**Recommendation:** Proceed with production deployment to dashboard.lexmakesit.com following the steps in [PRODUCTION_DEPLOYMENT.md](PRODUCTION_DEPLOYMENT.md).
+**Recommendation:** Proceed with production deployment to dashboard.innovationdevelopmentsolutions.com following the steps in [PRODUCTION_DEPLOYMENT.md](PRODUCTION_DEPLOYMENT.md).
 
 ---
 
