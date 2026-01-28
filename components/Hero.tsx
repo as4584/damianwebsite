@@ -21,56 +21,32 @@ const Hero = () => {
 
       <div className="container-custom relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
+          <div>
             <div className="inline-block px-5 py-2.5 bg-white/50 backdrop-blur-md border border-blue-200/40 rounded-full shadow-lg shadow-blue-500/15 mb-8">
               <span className="text-sm font-semibold text-slate-700 uppercase tracking-wider">
                 National <span className="text-blue-600">Growth</span> & Business Infrastructure Firm
               </span>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="heading-1 mb-8"
-          >
+          <h1 className="heading-1 mb-8">
             The one-stop business development solution for new and existing businesses.
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="body-large mb-10 max-w-2xl mx-auto"
-          >
+          <p className="body-large mb-10 max-w-2xl mx-auto">
             From first-time founders to established enterprises, we support businesses at every stage — from the beginning to the elite level.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
-          >
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
             <Link href="/contact" className="btn-primary text-lg">
               Start Scaling Today
             </Link>
             <Link href="/services" className="btn-secondary text-lg">
               Our Infrastructure
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="card-premium p-8 max-w-3xl mx-auto"
-          >
+          <div className="card-premium p-8 max-w-3xl mx-auto">
             <div className="grid grid-cols-3 gap-8">
               <div className="text-center">
                 <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">Multi-State</div>
@@ -85,7 +61,7 @@ const Hero = () => {
                 <div className="text-sm text-slate-600 font-medium">Infrastructure Built</div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

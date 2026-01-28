@@ -1,0 +1,106 @@
+{
+  "pages": {
+    "/": {
+      "title": "Home",
+      "purpose": "Overview of business formation and scaling services",
+      "key_points": [
+        "Multi-state business formation",
+        "50+ states active",
+        "Scalable infrastructure",
+        "One coordinated system"
+      ],
+      "sections": [
+        "Scalable Business Infrastructure",
+        "Built for Scaling and Growth"
+      ]
+    },
+    "/services": {
+      "title": "Services",
+      "purpose": "Complete list of offerings",
+      "sections": {
+        "formation": {
+          "name": "Formation & Licensing",
+          "services": ["LLC formation", "S-Corp election", "Multi-state registration", "EIN acquisition"],
+          "anchor": "#formation"
+        },
+        "compliance": {
+          "name": "Compliance",
+          "services": ["Registered agent", "Annual reports", "BOI filing", "Good standing maintenance"],
+          "anchor": "#compliance"
+        },
+        "digital": {
+          "name": "Growth Infrastructure",
+          "services": ["Websites", "Social media", "Email systems", "Market expansion"],
+          "anchor": "#digital"
+        },
+        "ai": {
+          "name": "Scalable AI Systems",
+          "services": ["Custom apps", "AI chatbots", "Workflow automation", "Distributed tools"],
+          "anchor": "#ai"
+        }
+      }
+    },
+    "/starting-a-business": {
+      "title": "Starting a Business",
+      "purpose": "Formation process and entity selection guides",
+      "topics": [
+        "LLC vs S-Corp vs C-Corp comparison",
+        "Multi-state expansion strategies",
+        "Compliance requirements by state",
+        "Formation timeline and process"
+      ]
+    },
+    "/who-we-serve": {
+      "title": "Who We Serve",
+      "purpose": "Client types and use cases",
+      "segments": [
+        "First-time founders",
+        "Established businesses expanding",
+        "Multi-location operations",
+        "Growth-stage companies"
+      ]
+    },
+    "/contact": {
+      "title": "Contact",
+      "purpose": "Schedule consultation",
+      "action": "Book consultation call"
+    }
+  },
+  "faqs": {
+    "pricing": "Pricing varies based on your specific needs. LLC formation typically starts around $500-1000. Multi-state setups vary by number of states. We provide clear quotes during consultations.",
+    "timeline": "Business formation typically takes 24-48 hours once information is complete. EIN issuance is often same-day. Website and system development varies by complexity but typically 2-4 weeks.",
+    "states": "We serve businesses in all 50 states and coordinate multi-state registrations.",
+    "llc_vs_corp": "An LLC offers liability protection with tax flexibility. A corporation provides strong structure for investors and stock issuance. The right choice depends on your growth plans and funding needs.",
+    "registered_agent": "A registered agent receives legal documents for your business. It's required in every state you operate. We provide registered agent service in all 50 states.",
+    "ein": "An EIN (Employer Identification Number) is like a social security number for your business. You need it to open bank accounts, hire employees, and file taxes. We obtain this for you.",
+    "multi_state": "Multi-state operations require coordinated registration and compliance in each state. We handle the filings, maintain good standing, and track requirements.",
+    "compliance": "Business compliance includes annual reports (varies by state), registered agent service, BOI filing (federal), and maintaining good standing. We handle all of this.",
+    "website": "We build custom business websites that are mobile-responsive, SEO optimized, and connected to your business systems. Domain, hosting, and maintenance included.",
+    "custom_app": "We build custom business applications tailored to your needs - internal tools, customer portals, automation workflows, and AI-powered features.",
+    "ai_tools": "We integrate AI into your business through custom chatbots, document processing, data analysis, workflow automation, and customer service tools."
+  },
+  "navigation_hints": {
+    "form_business": "/starting-a-business",
+    "see_services": "/services",
+    "who_uses": "/who-we-serve",
+    "schedule": "/contact",
+    "learn_more": "/services"
+  },
+  "clarity_signals": [
+    "llc",
+    "s-corp",
+    "c-corp",
+    "corporation",
+    "register",
+    "formation",
+    "start a business",
+    "multi-state",
+    "compliance",
+    "entity",
+    "ein",
+    "registered agent",
+    "ready to start",
+    "want to form",
+    "need to register"
+  ]
+}
