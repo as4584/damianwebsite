@@ -110,10 +110,12 @@ for (const { name, url } of TEST_URLS) {
         
         const elementAtPoint = await page.evaluate(([x, y]) => {
           const el = document.elementFromPoint(x, y);
+          const button = el?.closest('button');
           return {
             tagName: el?.tagName,
+            buttonTagName: button?.tagName,
             className: el?.className,
-            ariaLabel: el?.getAttribute('aria-label'),
+            ariaLabel: el?.getAttribute('aria-label') || button?.getAttribute('aria-label'),
             zIndex: window.getComputedStyle(el!).zIndex
           };
         }, [centerX, centerY]);
@@ -121,8 +123,8 @@ for (const { name, url } of TEST_URLS) {
         console.log('\n=== Element at button center ===');
         console.log(JSON.stringify(elementAtPoint, null, 2));
         
-        // The element at the center should be the button itself
-        expect(elementAtPoint.tagName).toBe('BUTTON');
+        // The element at the center should be the button itself (or one of its children like SVG path)
+        expect(elementAtPoint.buttonTagName || elementAtPoint.tagName).toBe('BUTTON');
         expect(elementAtPoint.ariaLabel).toContain('chat');
       }
     });
