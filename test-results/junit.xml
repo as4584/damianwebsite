@@ -1,68 +1,260 @@
-<testsuites id="" name="" tests="5" failures="0" skipped="0" errors="0" time="8.335644">
-<testsuite name="chatbot-visual-validation.spec.ts" timestamp="2026-01-28T17:11:59.177Z" hostname="chromium" tests="5" failures="0" skipped="0" time="33.977" errors="0">
-<testcase name="Chatbot Visual Validation - Production › should render with correct size and position" classname="chatbot-visual-validation.spec.ts" time="6.785">
-<system-out>
-<![CDATA[
-=== Production Chat Button Dimensions ===
-Position: x=1844, y=1004
-Size: 56x56px
-Expected: 56-64px square at bottom-right
-Distance from right edge: 20px
-Distance from bottom edge: 20px
+<testsuites id="" name="" tests="2" failures="2" skipped="0" errors="0" time="7.5532189999999995">
+<testsuite name="chatbot-intake-flow.spec.ts" timestamp="2026-01-29T03:20:32.111Z" hostname="chromium" tests="2" failures="2" skipped="0" time="1.345" errors="0">
+<testcase name="Chatbot Deterministic Intake Flow › should start with the welcome message and the first intake question" classname="chatbot-intake-flow.spec.ts" time="0.678">
+<failure message="chatbot-intake-flow.spec.ts:11:7 should start with the welcome message and the first intake question" type="FAILURE">
+<![CDATA[  [chromium] › chatbot-intake-flow.spec.ts:11:7 › Chatbot Deterministic Intake Flow › should start with the welcome message and the first intake question 
 
-=== Computed Styles ===
-{
-  "display": "flex",
-  "position": "fixed",
-  "bottom": "20px",
-  "right": "20px",
-  "width": "56px",
-  "height": "56px",
-  "zIndex": "10000",
-  "backgroundColor": "rgba(0, 0, 0, 0)",
-  "borderRadius": "9999px",
-  "opacity": "1"
-}
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3001/
+    Call log:
+      - navigating to "http://localhost:3001/", waiting until "load"
 
-✅ Screenshot saved: chatbot-visual-production.png
+
+      3 | test.describe('Chatbot Deterministic Intake Flow', () => {
+      4 |   test.beforeEach(async ({ page }) => {
+    > 5 |     await page.goto('/');
+        |                ^
+      6 |     await page.evaluate(() => sessionStorage.clear());
+      7 |     await page.reload();
+      8 |     await page.waitForLoadState('networkidle');
+        at /root/damaian/e2e/chatbot-intake-flow.spec.ts:5:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/chatbot-intake-flow-Chatbo-e01ad-d-the-first-intake-question-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/chatbot-intake-flow-Chatbo-e01ad-d-the-first-intake-question-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3001/
+    Call log:
+      - navigating to "http://localhost:3001/", waiting until "load"
+
+
+      3 | test.describe('Chatbot Deterministic Intake Flow', () => {
+      4 |   test.beforeEach(async ({ page }) => {
+    > 5 |     await page.goto('/');
+        |                ^
+      6 |     await page.evaluate(() => sessionStorage.clear());
+      7 |     await page.reload();
+      8 |     await page.waitForLoadState('networkidle');
+        at /root/damaian/e2e/chatbot-intake-flow.spec.ts:5:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/chatbot-intake-flow-Chatbo-e01ad-d-the-first-intake-question-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/chatbot-intake-flow-Chatbo-e01ad-d-the-first-intake-question-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../test-results/chatbot-intake-flow-Chatbo-e01ad-d-the-first-intake-question-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace ../test-results/chatbot-intake-flow-Chatbo-e01ad-d-the-first-intake-question-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3001/
+    Call log:
+      - navigating to "http://localhost:3001/", waiting until "load"
+
+
+      3 | test.describe('Chatbot Deterministic Intake Flow', () => {
+      4 |   test.beforeEach(async ({ page }) => {
+    > 5 |     await page.goto('/');
+        |                ^
+      6 |     await page.evaluate(() => sessionStorage.clear());
+      7 |     await page.reload();
+      8 |     await page.waitForLoadState('networkidle');
+        at /root/damaian/e2e/chatbot-intake-flow.spec.ts:5:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/chatbot-intake-flow-Chatbo-e01ad-d-the-first-intake-question-chromium-retry2/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/chatbot-intake-flow-Chatbo-e01ad-d-the-first-intake-question-chromium-retry2/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #3 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3001/
+    Call log:
+      - navigating to "http://localhost:3001/", waiting until "load"
+
+
+      3 | test.describe('Chatbot Deterministic Intake Flow', () => {
+      4 |   test.beforeEach(async ({ page }) => {
+    > 5 |     await page.goto('/');
+        |                ^
+      6 |     await page.evaluate(() => sessionStorage.clear());
+      7 |     await page.reload();
+      8 |     await page.waitForLoadState('networkidle');
+        at /root/damaian/e2e/chatbot-intake-flow.spec.ts:5:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/chatbot-intake-flow-Chatbo-e01ad-d-the-first-intake-question-chromium-retry3/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/chatbot-intake-flow-Chatbo-e01ad-d-the-first-intake-question-chromium-retry3/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
 ]]>
-</system-out>
-</testcase>
-<testcase name="Chatbot Visual Validation - Production › should not be covered by other elements" classname="chatbot-visual-validation.spec.ts" time="6.77">
+</failure>
 <system-out>
 <![CDATA[
-=== Element at button center ===
-{
-  "tagName": "path",
-  "buttonTagName": "BUTTON",
-  "className": {},
-  "ariaLabel": "Open chat",
-  "zIndex": "auto"
-}
+[[ATTACHMENT|chatbot-intake-flow-Chatbo-e01ad-d-the-first-intake-question-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|chatbot-intake-flow-Chatbo-e01ad-d-the-first-intake-question-chromium/video.webm]]
+
+[[ATTACHMENT|chatbot-intake-flow-Chatbo-e01ad-d-the-first-intake-question-chromium-retry1/test-failed-1.png]]
+
+[[ATTACHMENT|chatbot-intake-flow-Chatbo-e01ad-d-the-first-intake-question-chromium-retry1/video.webm]]
+
+[[ATTACHMENT|chatbot-intake-flow-Chatbo-e01ad-d-the-first-intake-question-chromium-retry1/trace.zip]]
+
+[[ATTACHMENT|chatbot-intake-flow-Chatbo-e01ad-d-the-first-intake-question-chromium-retry2/test-failed-1.png]]
+
+[[ATTACHMENT|chatbot-intake-flow-Chatbo-e01ad-d-the-first-intake-question-chromium-retry2/video.webm]]
+
+[[ATTACHMENT|chatbot-intake-flow-Chatbo-e01ad-d-the-first-intake-question-chromium-retry3/test-failed-1.png]]
+
+[[ATTACHMENT|chatbot-intake-flow-Chatbo-e01ad-d-the-first-intake-question-chromium-retry3/video.webm]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="Chatbot Visual Validation - Production › should be clickable by real users" classname="chatbot-visual-validation.spec.ts" time="7.289">
-<system-out>
-<![CDATA[✅ Button is clickable with normal user interaction
+<testcase name="Chatbot Deterministic Intake Flow › should handle user input and maintain the flow" classname="chatbot-intake-flow.spec.ts" time="0.667">
+<failure message="chatbot-intake-flow.spec.ts:24:7 should handle user input and maintain the flow" type="FAILURE">
+<![CDATA[  [chromium] › chatbot-intake-flow.spec.ts:24:7 › Chatbot Deterministic Intake Flow › should handle user input and maintain the flow 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3001/
+    Call log:
+      - navigating to "http://localhost:3001/", waiting until "load"
+
+
+      3 | test.describe('Chatbot Deterministic Intake Flow', () => {
+      4 |   test.beforeEach(async ({ page }) => {
+    > 5 |     await page.goto('/');
+        |                ^
+      6 |     await page.evaluate(() => sessionStorage.clear());
+      7 |     await page.reload();
+      8 |     await page.waitForLoadState('networkidle');
+        at /root/damaian/e2e/chatbot-intake-flow.spec.ts:5:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/chatbot-intake-flow-Chatbo-6547c-input-and-maintain-the-flow-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/chatbot-intake-flow-Chatbo-6547c-input-and-maintain-the-flow-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3001/
+    Call log:
+      - navigating to "http://localhost:3001/", waiting until "load"
+
+
+      3 | test.describe('Chatbot Deterministic Intake Flow', () => {
+      4 |   test.beforeEach(async ({ page }) => {
+    > 5 |     await page.goto('/');
+        |                ^
+      6 |     await page.evaluate(() => sessionStorage.clear());
+      7 |     await page.reload();
+      8 |     await page.waitForLoadState('networkidle');
+        at /root/damaian/e2e/chatbot-intake-flow.spec.ts:5:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/chatbot-intake-flow-Chatbo-6547c-input-and-maintain-the-flow-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/chatbot-intake-flow-Chatbo-6547c-input-and-maintain-the-flow-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../test-results/chatbot-intake-flow-Chatbo-6547c-input-and-maintain-the-flow-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace ../test-results/chatbot-intake-flow-Chatbo-6547c-input-and-maintain-the-flow-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3001/
+    Call log:
+      - navigating to "http://localhost:3001/", waiting until "load"
+
+
+      3 | test.describe('Chatbot Deterministic Intake Flow', () => {
+      4 |   test.beforeEach(async ({ page }) => {
+    > 5 |     await page.goto('/');
+        |                ^
+      6 |     await page.evaluate(() => sessionStorage.clear());
+      7 |     await page.reload();
+      8 |     await page.waitForLoadState('networkidle');
+        at /root/damaian/e2e/chatbot-intake-flow.spec.ts:5:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/chatbot-intake-flow-Chatbo-6547c-input-and-maintain-the-flow-chromium-retry2/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/chatbot-intake-flow-Chatbo-6547c-input-and-maintain-the-flow-chromium-retry2/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #3 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3001/
+    Call log:
+      - navigating to "http://localhost:3001/", waiting until "load"
+
+
+      3 | test.describe('Chatbot Deterministic Intake Flow', () => {
+      4 |   test.beforeEach(async ({ page }) => {
+    > 5 |     await page.goto('/');
+        |                ^
+      6 |     await page.evaluate(() => sessionStorage.clear());
+      7 |     await page.reload();
+      8 |     await page.waitForLoadState('networkidle');
+        at /root/damaian/e2e/chatbot-intake-flow.spec.ts:5:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/chatbot-intake-flow-Chatbo-6547c-input-and-maintain-the-flow-chromium-retry3/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/chatbot-intake-flow-Chatbo-6547c-input-and-maintain-the-flow-chromium-retry3/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
 ]]>
-</system-out>
-</testcase>
-<testcase name="Chatbot Visual Validation - Production › should have proper CSS loaded" classname="chatbot-visual-validation.spec.ts" time="6.722">
+</failure>
 <system-out>
 <![CDATA[
-=== CSS Validation ===
-Has gradient background: true
-Has box shadow: true
-]]>
-</system-out>
-</testcase>
-<testcase name="Chatbot Visual Validation - Production › should be visible on mobile viewport" classname="chatbot-visual-validation.spec.ts" time="6.411">
-<system-out>
-<![CDATA[
-=== Mobile (375x667) ===
-Size: 56x56px
-Position: x=303, y=595
+[[ATTACHMENT|chatbot-intake-flow-Chatbo-6547c-input-and-maintain-the-flow-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|chatbot-intake-flow-Chatbo-6547c-input-and-maintain-the-flow-chromium/video.webm]]
+
+[[ATTACHMENT|chatbot-intake-flow-Chatbo-6547c-input-and-maintain-the-flow-chromium-retry1/test-failed-1.png]]
+
+[[ATTACHMENT|chatbot-intake-flow-Chatbo-6547c-input-and-maintain-the-flow-chromium-retry1/video.webm]]
+
+[[ATTACHMENT|chatbot-intake-flow-Chatbo-6547c-input-and-maintain-the-flow-chromium-retry1/trace.zip]]
+
+[[ATTACHMENT|chatbot-intake-flow-Chatbo-6547c-input-and-maintain-the-flow-chromium-retry2/test-failed-1.png]]
+
+[[ATTACHMENT|chatbot-intake-flow-Chatbo-6547c-input-and-maintain-the-flow-chromium-retry2/video.webm]]
+
+[[ATTACHMENT|chatbot-intake-flow-Chatbo-6547c-input-and-maintain-the-flow-chromium-retry3/test-failed-1.png]]
+
+[[ATTACHMENT|chatbot-intake-flow-Chatbo-6547c-input-and-maintain-the-flow-chromium-retry3/video.webm]]
 ]]>
 </system-out>
 </testcase>

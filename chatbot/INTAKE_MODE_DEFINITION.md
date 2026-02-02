@@ -1,42 +1,44 @@
-# Intake Mode Definition — Architectural Invariants
+# Intake Mode Definition — Deterministic Intake Assistant
 
-**Version**: 1.0  
-**Status**: Conceptual (Mode Exists, Fields Not Yet Implemented)  
-**Purpose**: Define Intake Mode as a distinct conversational phase
+**Version**: 2.0 (HARD RESET)
+**Status**: ACTIVE — FULLY IMPLEMENTED
+**Purpose**: Define the 8-step Deterministic Intake Assistant role.
 
 ---
 
 ## WHAT INTAKE MODE IS
 
-Intake Mode is a **structured conversational phase** where the chatbot collects specific, predetermined information needed to complete a business formation intake form.
+Intake Mode is a **deterministic sequence** where the chatbot guides a user through 8 specific steps to collect a qualified business lead.
 
 ### Characteristics
 
-1. **Explicit Entry**
-   - Intake Mode is entered through Golden Frame 61 (Qualification → Intake Transition)
-   - User must consent before entry
-   - Transition is acknowledged explicitly
+1. **Immediate Entry**
+   - The bot introduces itself as an intake assistant from the first turn.
+   - Entry is the default state of the new system.
 
-2. **Structured Progression**
-   - Questions follow a predetermined sequence
-   - Each question maps to a specific form field
-   - Progress is trackable and resumable
+2. **Sequential Flow (8 Steps)**
+   - 1. Full Legal Name (Required)
+   - 2. Preferred Name
+   - 3. Email
+   - 4. Phone
+   - 5. Business Name Check
+   - 6. Business Name Options
+   - 7. Business Type
+   - 8. EIN Status
+   - 9. Readiness
 
-3. **Field-Focused**
-   - Each interaction aims to collect or clarify a form field
-   - Fields have known requirements (required, optional, format)
-   - Missing fields are tracked explicitly
+3. **Empathetic & Human**
+   - Uses GPT-4o-mini to acknowledge user statements with "Sweet, thoughtful, empathetic" tone.
+   - Bridges the gap between a rigid form and a natural conversation.
 
-4. **User-Accommodating**
-   - User can skip questions with "I don't know"
-   - User can request explanations ("why do you need this?")
-   - User can pause and resume
-   - User can backtrack to correct previous answers
+4. **Task-Specific Extraction**
+   - GPT extracts JSON data from natural language.
+   - Advances only when specific data is provided or a decision is made.
 
-5. **Transparent**
-   - Purpose of each field is explainable
-   - Progress indicators available
-   - Exit is always available without penalty
+5. **Lead Capture Integration**
+   - Once the name is collected, it is eligible for lead capture.
+   - Final save occurs at the "COMPLETED" state.
+
 
 ---
 

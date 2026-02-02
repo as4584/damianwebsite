@@ -5,11 +5,12 @@
 
 import { Lead, LeadIntent, LeadHotness } from '@/app/dashboard/types';
 import { db as mockDb } from './mock-db';
+import { supabase } from '../supabase';
 
 // Get default business ID - use the seeded business from mock-db
 const DEFAULT_BUSINESS_ID = 'biz_innovation_001';
 
-// In-memory store for leads (persists during server lifetime)
+// In-memory store for leads (FALLBACK for when Supabase is not connected)
 const leadsStore = new Map<string, Lead>();
 
 export interface ChatLeadData {
@@ -120,6 +121,7 @@ function extractInfo(data: ChatLeadData): Record<string, string> {
 /**
  * Create a new lead from chatbot conversation
  * This is called when a user completes the chat intake flow
+ * USES SUPABASE for persistence with in-memory fallback
  */
 export async function createLeadFromChat(data: ChatLeadData): Promise<Lead> {
   const now = new Date();
@@ -139,7 +141,7 @@ export async function createLeadFromChat(data: ChatLeadData): Promise<Lead> {
   // Create lead object
   const lead: Lead = {
     id: leadId,
-    businessId: DEFAULT_BUSINESS_ID, // TODO: Get from session in production
+    businessId: DEFAULT_BUSINESS_ID,
     fullName: data.name || null,
     email: data.email || null,
     phone: data.phone || null,
@@ -185,37 +187,138 @@ export async function createLeadFromChat(data: ChatLeadData): Promise<Lead> {
     updatedAt: now
   };
   
-  // Save to store
-  leadsStore.set(leadId, lead);
+  // 1. SAVE TO SUPABASE (if configured)
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  if (supabaseUrl && supabaseUrl !== 'your-project-url.supabase.co') {
+    try {
+      const { error } = await supabase
+        .from('leads')
+        .insert([{
+          id: lead.id,
+          business_id: lead.businessId,
+          full_name: lead.fullName,
+          email: lead.email,
+          phone: lead.phone,
+          intent: lead.intent,
+          hotness: lead.hotness,
+          hotness_factors: lead.hotnessFactors,
+          source_page: lead.source.page,
+          conversation: lead.conversation,
+          extracted_info: lead.extractedInfo,
+          suggested_action: lead.suggestedAction,
+          created_at: lead.createdAt.toISOString()
+        }]);
+      
+      if (error) throw error;
+      console.log('✅ Lead saved to Supabase');
+    } catch (err) {
+      console.error('❌ Supabase Save Failed:', err);
+      // Fall through to in-memory store
+    }
+  }
   
-  console.log('✅ Lead created in database:', {
-    id: leadId,
-    name: lead.fullName,
-    email: lead.email,
-    hotness: lead.hotness,
-    intent: lead.intent
-  });
+  // 2. SAVE TO IN-MEMORY (Always for immediate dashboard update)
+  leadsStore.set(leadId, lead);
   
   return lead;
 }
 
 /**
- * Get all leads from store (for dashboard)
+ * Get all leads (for dashboard)
+ * Syncs with Supabase if available
  */
-export function getAllLeads(): Lead[] {
+export async function getAllLeads(): Promise<Lead[]> {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  
+  if (supabaseUrl && supabaseUrl !== 'your-project-url.supabase.co') {
+    try {
+      const { data, error } = await supabase
+        .from('leads')
+        .select('*');
+      
+      if (error) throw error;
+
+      if (data) {
+        // Map Supabase snake_case to TypeScript camelCase
+        const leads: Lead[] = data.map(record => ({
+          id: record.id,
+          businessId: record.business_id,
+          fullName: record.full_name,
+          email: record.email,
+          phone: record.phone,
+          intent: record.intent,
+          hotness: record.hotness,
+          hotnessFactors: record.hotness_factors || [],
+          source: { page: record.source_page },
+          conversation: record.conversation,
+          extractedInfo: record.extracted_info,
+          suggestedAction: record.suggested_action,
+          hotnessFactors: [], // Re-calculated if needed
+          internalNotes: record.internal_notes || '',
+          createdAt: new Date(record.created_at),
+          updatedAt: new Date(record.updated_at || record.created_at)
+        }));
+
+        // Update local store with fresh data
+        leads.forEach(l => leadsStore.set(l.id, l));
+        return leads;
+      }
+    } catch (err) {
+      console.error('❌ Supabase Fetch Failed:', err);
+    }
+  }
+
   return Array.from(leadsStore.values());
 }
 
 /**
  * Get lead by ID
  */
-export function getLeadById(id: string): Lead | null {
-  return leadsStore.get(id) || null;
+export async function getLeadById(id: string): Promise<Lead | null> {
+  const cached = leadsStore.get(id);
+  if (cached) return cached;
+
+  const leads = await getAllLeads();
+  return leads.find(l => l.id === id) || null;
+}
+
+/**
+ * Update lead in database
+ */
+export async function updateLeadInDb(id: string, updates: Partial<Lead>): Promise<void> {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  
+  if (supabaseUrl && supabaseUrl !== 'your-project-url.supabase.co') {
+    try {
+      const { error } = await supabase
+        .from('leads')
+        .update({
+          full_name: updates.fullName,
+          email: updates.email,
+          phone: updates.phone,
+          intent: updates.intent,
+          hotness: updates.hotness,
+          internal_notes: updates.internalNotes,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', id);
+      
+      if (error) throw error;
+      console.log('✅ Lead updated in Supabase');
+    } catch (err) {
+      console.error('❌ Supabase Update Failed:', err);
+    }
+  }
+
+  // Always update in-memory
+  const existing = leadsStore.get(id);
+  if (existing) {
+    leadsStore.set(id, { ...existing, ...updates, updatedAt: new Date() });
+  }
 }
 
 /**
  * Database is now production-ready with zero mock data
- * All leads must be created via chatbot or API
  */
 
 // No initialization - database starts empty

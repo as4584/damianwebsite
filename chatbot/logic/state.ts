@@ -41,9 +41,40 @@ export type ChatMode = 'DIAGNOSTIC' | 'INTAKE';
  * SCHEDULING: Time slot selection within business hours
  * CONFIRMED: Task complete, input locked, no further execution
  */
-export type TaskPhase = 'ORIENT' | 'DISCOVERY' | 'INTAKE' | 'SCHEDULING' | 'CONFIRMED';
+export type TaskPhase = 'ORIENT' | 'DISCOVERY' | 'INTAKE' | 'SCHEDULING' | 'CONFIRMED' | 'BUSINESS_INTAKE';
+
+export type IntakeStep =
+  | 'FULL_LEGAL_NAME'
+  | 'PREFERRED_NAME'
+  | 'EMAIL'
+  | 'PHONE'
+  | 'BUSINESS_NAME_CHECK'
+  | 'BUSINESS_NAME_OPTIONS'
+  | 'BUSINESS_TYPE'
+  | 'EIN_STATUS'
+  | 'READINESS'
+  | 'COMPLETED';
+
+export interface BusinessIntakeData {
+  fullLegalName?: string;
+  preferredName?: string;
+  email?: string;
+  phone?: string;
+  hasBusinessName?: boolean;
+  businessNameOptions?: string[];
+  businessType?: string;
+  hasEIN?: 'Yes' | 'No' | 'Not sure';
+  readiness?: 'Yes' | 'No' | 'Just exploring';
+}
 
 export interface SessionData {
+  // CRITICAL: New intake flow data
+  businessIntake?: {
+    step: IntakeStep;
+    data: BusinessIntakeData;
+    lastQuestionAsked?: string;
+  };
+
   // CRITICAL: Chat mode controls frame execution
   // DIAGNOSTIC (default) = GPT asks questions, NO frames fire
   // INTAKE = Golden Frames execute, formal data collection
@@ -99,7 +130,7 @@ export interface SessionData {
   bootstrapCompleted?: boolean; // Golden Frame 00 executed
   
   // Intake Mode State
-  intakeMode: IntakeModeState;
+  intakeMode?: IntakeModeState;
 }
 
 export interface ConversationStateData {

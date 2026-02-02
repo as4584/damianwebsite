@@ -15,14 +15,15 @@ import { requireBusinessId } from '@/lib/auth/session';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     // SECURITY: Get businessId from authenticated session
     const businessId = await requireBusinessId();
     
     // SECURITY: Service validates ownership before returning data
-    const result = await getLeadById(params.id, businessId);
+    const result = await getLeadById(id, businessId);
     
     if (!result.success) {
       return NextResponse.json(result, { status: 404 });
@@ -47,16 +48,17 @@ export async function GET(
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     // SECURITY: Get businessId from authenticated session
     const businessId = await requireBusinessId();
     
     const body = await request.json();
     
     // SECURITY: Service validates ownership before allowing update
-    const result = await updateLead(params.id, businessId, body);
+    const result = await updateLead(id, businessId, body);
     
     if (!result.success) {
       return NextResponse.json(result, { status: 404 });

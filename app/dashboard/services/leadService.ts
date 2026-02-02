@@ -5,7 +5,7 @@
  */
 
 import { Lead, LeadCardPreview, LeadUpdatePayload, ApiResponse, DashboardMetrics, ChartDataPoint } from '../types';
-import { getAllLeads, getLeadById as getLeadFromDb } from '@/lib/db/leads-db';
+import { getAllLeads, getLeadById as getLeadFromDb, updateLeadInDb } from '@/lib/db/leads-db';
 
 /**
  * Get leads for a specific business
@@ -25,7 +25,8 @@ export async function getLeads(
   
   // SECURITY: Filter by businessId FIRST (fail-closed architecture)
   // Get REAL leads from database (created by chatbot)
-  let leads = getAllLeads().filter(lead => lead.businessId === businessId);
+  const allLeads = await getAllLeads();
+  let leads = allLeads.filter(lead => lead.businessId === businessId);
   
   // Filter by hotness
   if (filter !== 'all') {
@@ -58,7 +59,8 @@ export async function getLeads(
 export async function getLeadPreviews(businessId: string): Promise<ApiResponse<LeadCardPreview[]>> {
   // SECURITY: Filter by businessId FIRST
   // Get REAL leads from database
-  const leads = getAllLeads().filter(lead => lead.businessId === businessId);
+  const allLeads = await getAllLeads();
+  const leads = allLeads.filter(lead => lead.businessId === businessId);
   
   const previews: LeadCardPreview[] = leads
     .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
@@ -85,7 +87,7 @@ export async function getLeadPreviews(businessId: string): Promise<ApiResponse<L
  */
 export async function getLeadById(id: string, businessId: string): Promise<ApiResponse<Lead>> {
   // Get REAL lead from database
-  const lead = getLeadFromDb(id);
+  const lead = await getLeadFromDb(id);
   
   // SECURITY: Validate ownership (fail-closed: deny if no lead OR wrong business)
   if (!lead || lead.businessId !== businessId) {
@@ -107,7 +109,7 @@ export async function getLeadById(id: string, businessId: string): Promise<ApiRe
  */
 export async function updateLead(id: string, businessId: string, updates: LeadUpdatePayload): Promise<ApiResponse<Lead>> {
   // Get REAL lead from database
-  const lead = getLeadFromDb(id);
+  const lead = await getLeadFromDb(id);
   
   // SECURITY: Validate ownership (fail-closed: deny if no lead OR wrong business)
   if (!lead || lead.businessId !== businessId) {
@@ -124,8 +126,8 @@ export async function updateLead(id: string, businessId: string, updates: LeadUp
     updatedAt: new Date()
   };
   
-  // In a real database, we would save here
-  // For now, the update is in-memory only
+  // Save to database
+  await updateLeadInDb(id, updates);
   
   return {
     success: true,
@@ -141,7 +143,8 @@ export async function updateLead(id: string, businessId: string, updates: LeadUp
 export async function getDashboardMetrics(businessId: string): Promise<ApiResponse<DashboardMetrics>> {
   // SECURITY: Filter leads by businessId for metrics calculation
   // Get REAL leads from database
-  const allLeads = getAllLeads().filter(lead => lead.businessId === businessId);
+  const leads = await getAllLeads();
+  const allLeads = leads.filter(lead => lead.businessId === businessId);
   
   // Generate realistic chart data for last 7 days
   const generateChartData = (baseValue: number, variance: number): ChartDataPoint[] => {
@@ -207,7 +210,8 @@ export async function getDashboardMetrics(businessId: string): Promise<ApiRespon
 export async function getLeadCounts(businessId: string): Promise<ApiResponse<{ hot: number; warm: number; cold: number; total: number }>> {
   // SECURITY: Filter by businessId FIRST
   // Get REAL leads from database
-  const leads = getAllLeads().filter(lead => lead.businessId === businessId);
+  const allLeads = await getAllLeads();
+  const leads = allLeads.filter(lead => lead.businessId === businessId);
   
   return {
     success: true,

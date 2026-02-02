@@ -4,6 +4,8 @@
  */
 
 import { SessionData } from './state';
+import { SITE_CONTEXT } from '../kb/siteContext';
+import { publicKB } from '../kb/public';
 
 // HARD LIMITS
 const MAX_LLM_CALLS_PER_MESSAGE = 2;
@@ -119,10 +121,16 @@ Respond with ONLY the intent name (e.g., "ENTITY_HELP").`;
     });
     
     if (!response.ok) {
-      throw new Error(`OpenAI API error: ${response.status}`);
+      const err = await response.json().catch(() => ({}));
+      throw new Error(`OpenAI API error: ${response.status} - ${JSON.stringify(err)}`);
     }
     
     const data = await response.json();
+
+    if (data.error) {
+      console.error('OpenAI Error (Intent):', data.error);
+      return detectIntentFallback(userInput);
+    }
     
     // Track usage
     const tokens = data.usage?.total_tokens || 0;
@@ -155,7 +163,7 @@ Respond with ONLY the intent name (e.g., "ENTITY_HELP").`;
 function detectIntentFallback(input: string): Intent {
   const lower = input.toLowerCase();
   
-  if (lower.match(/\b(llc|corp|s-corp|c-corp|entity|structure|partnership)\b/)) {
+  if (lower.match(/\b(llc|corp|s-corp|c-corp|entity|structure|partnership|difference)\b/)) {
     return 'ENTITY_HELP';
   }
   if (lower.match(/\b(price|cost|fee|how much|pricing|expensive|cheap)\b/)) {
@@ -201,49 +209,30 @@ export async function generateResponseGPT(
   const truncatedInput = userInput.slice(0, MAX_INPUT_LENGTH);
   
   // Count Q&A exchanges
-  const qaCount = sessionData.conversationHistory?.filter(msg => {
-    const text = msg.message || '';
-    return text.toLowerCase().includes('answer') || text.toLowerCase().includes('question');
-  }).length || 0;
+  const qaCount = sessionData.discoveryTurns || 0;
   
   const shouldNudgeConsultation = qaCount >= 2;
   
-  const systemPrompt = `You are a helpful assistant for Innovation Business Development Solutions, a national business formation firm.
+  const systemPrompt = `You are a helpful assistant for Innovation Business Development Solutions.
 
-COMPANY SERVICES:
-- Business formation (LLC, S-Corp, C-Corp, multi-state)
-- Compliance (registered agent, annual reports, BOI filing)
-- Websites and custom applications
-- AI tools integration
-- Email infrastructure
+SITE KNOWLEDGE:
+${SITE_CONTEXT}
 
-${siteContext}
+DETAILED KNOWLEDGE BASE:
+${JSON.stringify(publicKB)}
 
-DIAGNOSTIC MODE (you are in this mode now):
-Your job is to understand the user's situation through clarifying questions.
-You are NOT collecting formal data yet. You are diagnosing needs.
+DIAGNOSTIC MODE:
+Your job is to answer the user's question FIRST using ONLY the site knowledge provided above. 
 
-TONE: Warm, patient, conversational. Like a helpful guide.
-LENGTH: 1-2 sentences maximum.
-GOAL: ${shouldNudgeConsultation ? 'Suggest moving forward after understanding their needs.' : 'Ask ONE clarifying question to understand their situation.'}
+RULES:
+1. If the answer is in the KNOWLEDGE BASE, provide a brief, helpful answer (1-2 sentences).
+2. If the answer is NOT in the knowledge base, politely say: "That's a great question—I don't have those specific details handy, but it's something our specialists can discuss in depth during a consultation."
+3. After answering (or deferring), ask ONE clarifying question to understand their needs better.
+4. If the user has already answered 2+ questions, nudge them to get started with an intake/consultation.
+5. TONE: Warm, human, empathetic. NEVER robotic.
+6. LENGTH: Keep total response under 150 tokens.
 
-YOUR PERMISSION:
-- Ask ONE clarifying question per response
-- Focus on understanding: Starting vs. expanding? Alone or with partners? What industry?
-- Help confused users step by step
-
-YOUR RESTRICTIONS:
-- NEVER say "let me connect you with a specialist" or "escalate to a specialist"
-- NEVER ask for consent to collect information
-- NEVER restart welcome messages
-- NEVER give legal or tax advice
-- NEVER invent specific prices (say "pricing varies, typically starts around $500-1000 for LLC formation")
-- Keep responses under 150 tokens
-
-INSTEAD OF ESCALATION, SAY:
-"I can help you figure this out step by step."
-
-Intent: ${intent}${shouldNudgeConsultation ? '\nNOTE: User has answered 2+ questions. Suggest moving forward: "Based on what you\'ve told me, it sounds like we should discuss your specific situation in detail. Want to move forward?"' : ''}`;
+Intent: ${intent}${shouldNudgeConsultation ? '\nNOTE: User has answered 2+ questions. Suggest moving forward.' : ''}`;
 
   try {
     const response = await fetch(`${gptConfig.baseURL}/chat/completions`, {
@@ -265,10 +254,16 @@ Intent: ${intent}${shouldNudgeConsultation ? '\nNOTE: User has answered 2+ quest
     });
     
     if (!response.ok) {
-      throw new Error(`OpenAI API error: ${response.status}`);
+      const err = await response.json().catch(() => ({}));
+      throw new Error(`OpenAI API error: ${response.status} - ${JSON.stringify(err)}`);
     }
     
     const data = await response.json();
+
+    if (data.error) {
+      console.error('OpenAI Error (Response):', data.error);
+      return getFallbackResponse(intent);
+    }
     
     // Track usage
     const tokens = data.usage?.total_tokens || 0;
@@ -291,14 +286,14 @@ Intent: ${intent}${shouldNudgeConsultation ? '\nNOTE: User has answered 2+ quest
  */
 function getFallbackResponse(intent: Intent): string {
   const fallbacks: Record<Intent, string> = {
-    ENTITY_HELP: "Got it — that's a common question. Are you starting this business on your own, or with partners?",
-    PRICING: "Pricing varies based on your needs. LLC formation typically starts around $500-1000. What type of business are you setting up?",
-    TIMELINE: "Formation typically takes 24-48 hours, with same-day EIN issuance. Are you ready to start soon?",
-    CONSULTATION: "I can help you figure out what you need. Are you starting a new business or expanding an existing one?",
-    SERVICES: "We handle formation, compliance, websites, and custom apps. What are you looking to do?",
-    READY_FOR_INTAKE: "Great! Let me ask a couple questions first. Are you starting a new business or already operating?",
-    GENERAL_INFO: "I can help you figure this out step by step. What's on your mind?",
-    OFF_TOPIC: "I'm here to help with business formation questions. What would you like to know?"
+    ENTITY_HELP: "The main difference is that an LLC offers simplicity and flexible tax treatment, while a Corporation is better for raising capital and issuing stock. Which of those sounds more aligned with your goals?",
+    PRICING: "Our formation services typically start around $500-1000 depending on the state and entity type. What kind of business are you starting?",
+    TIMELINE: "Formation typically takes 24-48 hours once we have your details. Are you looking to get started right away?",
+    CONSULTATION: "A consultation is the best way to review your unique situation and recommend the right structure. Are you starting a new business or expanding an existing one?",
+    SERVICES: "We handle entity formation, compliance, websites, and custom business applications. What can we help you build today?",
+    READY_FOR_INTAKE: "I'd be happy to help with that. Are you starting a new business or already operating?",
+    GENERAL_INFO: "I'm here to guide you through the business formation process step by step. What's on your mind?",
+    OFF_TOPIC: "I'm here to help with business formation and development questions. What would you like to know about our services?"
   };
   
   return fallbacks[intent] || fallbacks.GENERAL_INFO;

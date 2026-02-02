@@ -5,6 +5,8 @@ Governing Contract: CHATBOT_ENGINEERING_CONTRACT.md v1.3 (HARDENED)
 
 This README exists to protect the chatbot from regression, invisibility, and accidental breakage.
 
+The chatbot is a **Deterministic Business Intake Assistant** (as of May 2024 Hard Reset).
+
 The chatbot is a user-facing UI system, not a background service.
 
 If a human cannot see, click, type into, and receive responses from the chatbot in a real browser session, the chatbot is considered broken, regardless of test results or logs.

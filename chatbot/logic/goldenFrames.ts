@@ -4,7 +4,7 @@
  * NO fallback responses allowed
  */
 
-import { IntakeModeState } from './intakeMode';
+import { IntakeModeState, initializeIntakeMode } from './intakeMode';
 import { SessionData } from './state';
 
 export type GoldenFrameId = 0 | 61 | 62;
@@ -48,7 +48,7 @@ export function executeFrame00(
       nextAction: 'bootstrap_complete',
       requiresInput: true
     },
-    updatedIntakeState: sessionData.intakeMode, // No intake state changes
+    updatedIntakeState: sessionData.intakeMode || initializeIntakeMode(),
     updatedSessionData: {
       ...sessionData,
       bootstrapCompleted: true

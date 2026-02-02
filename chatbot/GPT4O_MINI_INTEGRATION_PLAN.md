@@ -1,102 +1,46 @@
-# GPT-4o-mini Integration Plan
-## Chatbot Intelligence Upgrade — $10/Month Budget
+# GPT-4o-mini Integration: Deterministic Intake Assistant
+## Chatbot Intelligence Protocol
 
-**Date**: January 28, 2026  
-**Target**: Intelligent responses while maintaining <$10/month operational cost  
-**Model**: GPT-4o-mini  
-**Current State**: Rule-based Golden Frames system with intake mode architecture
-
----
-
-## PHASE 1 — CURRENT STATE UNDERSTANDING
-
-### What Currently Works (DO NOT CHANGE)
-
-✅ **UI Components** (Keep as-is):
-- `ChatBubble.tsx` - Floating launcher button
-- `ChatModal.tsx` - Chat interface with message history
-- `ChatWidget.tsx` - State management
-- `ChatWidgetPortal.tsx` - Portal rendering to body
-- sessionStorage persistence
-- Framer Motion animations
-- Message styling and scrolling
-
-✅ **Infrastructure** (Keep as-is):
-- Next.js 14 App Router setup
-- Edge runtime API routes
-- `/app/api/chat/route.ts` endpoint
-- TypeScript type safety
-- React Portal architecture
-
-✅ **Intake Mode System** (Keep core, enhance):
-- Golden Frames dispatcher (`chatbot/logic/goldenFrames.ts`)
-- Mode state engine (`chatbot/logic/intakeMode.ts`)
-- Frame 61: Qualification → Intake transition
-- Frame 62: Name collection
-- Metadata emission system
-- Consent gating
-- Field state tracking
-
-✅ **Router Architecture** (Enhance):
-- `chatbot/logic/router.ts` - Main conversation flow
-- `chatbot/logic/routerEnhanced.ts` - Intake mode integration
-- State machine for conversation states
-
-### What Needs Intelligence
-
-❌ **Current Problems**:
-1. Scripted responses feel robotic
-2. Cannot understand nuanced user questions
-3. No context awareness of website content
-4. Cannot handle unexpected inputs gracefully
-5. Question answering system is keyword-based
-6. No natural conversation flow
-7. Repeats same canned messages
-
-❌ **User Frustration Points**:
-- "How was your day?" → Gets generic business message
-- "What time are you open?" → Gets formation info
-- Nonsense input → Gets generic fallback
-- Mid-conversation topic changes → Lost context
-
-### Reusable Architecture
-
-✅ **Keep and Enhance**:
-```typescript
-// Existing flow we can inject GPT into:
-export async function routeConversation(
-  userInput: string,
-  currentState: ConversationState,
-  sessionData: SessionData
-): Promise<ConversationResult>
-
-// Add GPT layer here for intent + response generation
-```
-
-✅ **Preserve**:
-- All Golden Frame definitions (61, 62, etc.)
-- Intake mode transitions
-- Consent gating logic
-- Metadata emission
-- Field collection system
+**Date**: May 22, 2024 (Revised)
+**Architecture**: Human-Centered Deterministic Intake
+**Model**: GPT-4o-mini (JSON Response Mode)
 
 ---
 
-## PHASE 2 — GPT-4o-mini INTEGRATION REFINEMENT
+## MISSION: Empathy + Extraction
+Instead of "Shadow AI" discovery, GPT-4o-mini is now utilized as the intelligence layer for a **Deterministic 8-Step Intake Flow**.
 
-### Integration Points (3 Strategic Locations)
+### Core Functional Role
+GPT-4o-mini is called via `callIntakeGPT` in `intakeAssistant.ts` for every user turn. It performs three simultaneous functions:
 
-#### 2.1 Intent Detection (Replace keyword matching)
+1. **Empathetic Feedback**: Acknowledges what the user just said (even if off-topic) with kindness and professionalism.
+2. **Context Retention**: Maintains the thread of conversation while steering the user back to the intake step.
+3. **Structured Extraction**: Extracts specific business data (Names, Emails, Phone, etc.) from natural language and returns it as JSON.
 
-**Current** (router.ts ~line 100):
-```typescript
-// Keyword-based detection
-function detectIntent(userInput: string): Intent {
-  if (input.includes('llc') || input.includes('entity')) return 'ENTITY_HELP';
-  if (input.includes('price') || input.includes('cost')) return 'PRICING';
-  // ... 10 more keyword checks
-}
-```
+### Request/Response Pattern
+We use `response_format: { type: "json_object" }` to ensure the model provides a machine-readable decision on:
+- `extractedValue`: The piece of data collected (e.g., "John Doe").
+- `isStepComplete`: Boolean flag to advance the intake state machine.
+- `empatheticResponse`: The message to display to the user.
+
+---
+
+## CONTEXT INJECTION (Knowledge Base)
+To stay "calm and kind" and answer business questions while collecting info, the GPT prompt is injected with:
+- **Global Context**: Who "IDS" is (Innovation Development Solutions).
+- **Step Context**: Why we are asking this specific question.
+- **Rules**: "Never judge," "Always acknowledge," "Gently return to the task."
+
+## PERFORMANCE & COST
+- **Model**: `gpt-4o-mini`
+- **Cost Efficiency**: High. Single-turn extraction is cheaper than long-running discovery phases.
+- **Latency**: <2s per turn for intake responses.
+
+## REPLACED SYSTEMS
+- Intent Detection (Keyword-based) -> GPT-extracted JSON.
+- Golden Frames -> LLM extraction logic.
+- Discovery Router -> Linear Intake Machine.
+
 
 **New** (GPT-enhanced):
 ```typescript

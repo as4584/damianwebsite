@@ -74,33 +74,22 @@ export default function ChatModal({ isOpen, onClose }: ChatModalProps) {
   // Show greeting only ONCE when chat opens for the first time AND no messages exist
   useEffect(() => {
     if (isOpen && messages.length === 0 && hasLoadedMessages.current) {
-      // Get page context
-      const path = typeof window !== 'undefined' ? window.location.pathname : '/';
-      
-      // Natural, conversational greeting
-      let greeting = "Hey there! 👋 ";
-      
-      if (path === '/' || path === '') {
-        greeting += "I help businesses get set up and scale. Whether you're thinking about forming an LLC, need compliance help, or just want to know your options - I'm here. What's on your mind?";
-      } else if (path.includes('services')) {
-        greeting += "Looking at what we offer? I can break down any of our services or help you figure out what makes sense for your business. What are you curious about?";
-      } else if (path.includes('starting-a-business')) {
-        greeting += "Starting something new? Exciting! I can walk you through formation, registration, compliance - all of it. Where are you in the process?";
-      } else if (path.includes('industries')) {
-        greeting += "Checking out industry-specific solutions? Tell me about your business and I can show you how we help companies like yours.";
-      } else if (path.includes('who-we-serve')) {
-        greeting += "Want to know if we're a fit for you? Tell me a bit about your business and I'll let you know how we can help.";
-      } else if (path.includes('contact')) {
-        greeting += "Ready to talk? I can get you scheduled or answer any questions first. What works better for you?";
-      } else {
-        greeting += "I'm here to help with business formation, growth, compliance - whatever you need. What brings you here?";
-      }
+      const greeting = "Hello! I'm here to help you through our business intake process. I'll guide you through a few short steps so we can get everything ready for you. To get started, could you please tell me your full legal name? This is just what we'll need for official paperwork later.";
       
       setMessages([{
         role: 'bot',
         content: greeting,
         timestamp: Date.now()
       }]);
+
+      setSessionData(prev => ({
+        ...prev,
+        bootstrapCompleted: true,
+        businessIntake: {
+          step: 'FULL_LEGAL_NAME',
+          data: {}
+        }
+      }));
     }
   }, [isOpen, messages.length]);
   

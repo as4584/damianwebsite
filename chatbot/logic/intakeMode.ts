@@ -209,19 +209,20 @@ export function hasUserConsented(intakeState: IntakeModeState): boolean {
 export function generateMetadata(
   intakeState: IntakeModeState,
   frameId: GoldenFrameId | null,
-  escalation: boolean = false
+  escalation: boolean = false,
+  businessIntake?: { step: string; data: any }
 ): ConversationMetadata {
   const currentFieldStatus = intakeState.currentField 
     ? getFieldStatus(intakeState, intakeState.currentField)
     : null;
 
   return {
-    mode: intakeState.mode,
+    mode: businessIntake ? 'INTAKE_ACTIVE' as any : intakeState.mode,
     frame_id: frameId,
-    currentField: intakeState.currentField,
-    fieldStatus: currentFieldStatus,
+    currentField: businessIntake?.step || intakeState.currentField,
+    fieldStatus: businessIntake ? 'in_progress' as any : currentFieldStatus,
     escalation,
-    toneScore: null, // Reserved for future implementation
+    toneScore: null,
     ...(intakeState.transitionTimestamp && {
       transitionTrigger: 'Golden Frame 61'
     }),

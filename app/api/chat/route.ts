@@ -107,32 +107,31 @@ export async function POST(request: NextRequest) {
       console.log('Intake fields collected:', response.sessionData.intakeMode.fieldsCollected);
     }
     
-    // Log lead capture for backend processing (in production, save to database)
-    if (response.nextState === 'CONFIRMATION' && response.sessionData.email) {
+    // Log lead capture for backend processing
+    const intakeData = response.sessionData.businessIntake?.data;
+    const isCompleted = response.nextState === 'CONFIRMATION';
+
+    if (isCompleted && intakeData?.fullLegalName) {
       const leadData = {
-        name: response.sessionData.name,
-        email: response.sessionData.email,
-        phone: response.sessionData.phone,
-        businessType: response.sessionData.businessType,
-        location: response.sessionData.location,
-        hasPartners: response.sessionData.hasPartners,
-        multiState: response.sessionData.multiState,
-        intakeData: response.sessionData.intakeMode?.fieldsCollected || {},
+        name: intakeData.fullLegalName,
+        email: intakeData.email,
+        phone: intakeData.phone,
+        businessType: intakeData.businessType,
+        intakeData: intakeData,
         sourcePage: '/chat',
         conversationHistory: response.sessionData.conversationHistory?.map((msg: any) => ({
-          role: msg.role,
-          content: msg.content,
+          role: msg.role === 'bot' ? 'assistant' : msg.role,
+          content: msg.message,
           timestamp: new Date(msg.timestamp || Date.now())
         })) || []
       };
       
-      console.log('Lead captured:', leadData);
+      console.log('Lead captured from Business Intake Assistant:', leadData);
       
       // Save lead to database via API call
       try {
-        // In edge runtime, we use fetch to call our own API
-        const origin = request.headers.get('origin') || 'http://localhost:3000';
-        await fetch(`${origin}/api/leads/create`, {
+        const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || request.headers.get('origin') || 'http://localhost:3000';
+        await fetch(`${baseUrl}/api/leads/create`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(leadData)
@@ -140,7 +139,6 @@ export async function POST(request: NextRequest) {
         console.log('✅ Lead saved to database');
       } catch (err) {
         console.error('Failed to save lead:', err);
-        // Don't fail the chat response if lead save fails
       }
     }
     
