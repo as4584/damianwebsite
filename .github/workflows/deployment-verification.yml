@@ -31,14 +31,16 @@ jobs:
         run: |
           chmod +x scripts/verify-deployment.sh
           scripts/verify-deployment.sh
-      
+          
       - name: Upload Verification Report
         if: always()
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: deployment-verification-report
           path: test-results/deployment-verification-*.txt
-          retention-days: 30
+          retention-days: 7
+          if-no-files-found: ignore
       
       - name: Comment on Commit (Success)
         if: success()
@@ -79,10 +81,12 @@ jobs:
       
       - name: Upload Test Results
         if: always()
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: confidence-test-results
           path: |
             playwright-report/
             test-results/
-          retention-days: 30
+          retention-days: 7
+          if-no-files-found: ignore
