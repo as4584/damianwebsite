@@ -52,6 +52,14 @@ jobs:
     name: 🏗️ Global Build Contract
     needs: pre-flight
     runs-on: ubuntu-latest
+    env:
+      # CI build environment - prevent Supabase network calls during SSR
+      CI: true
+      SUPABASE_DISABLED: true
+      NEXT_PUBLIC_SUPABASE_URL: https://mock.supabase.co
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: mock-anon-key
+      NEXTAUTH_URL: http://localhost:3000
+      NEXTAUTH_SECRET: ci-build-secret-key-for-testing
     steps:
       - uses: actions/checkout@v4
       
@@ -77,7 +85,15 @@ jobs:
             exit 1
           fi
           
-          echo "✅ Build contract satisfied. Artifact created."
+          # Verify .next has actual content
+          NEXT_SIZE=$(du -s .next | cut -f1)
+          if [ "$NEXT_SIZE" -lt 1000 ]; then
+            echo "❌ BUILD CONTRACT VIOLATION: .next directory is suspiciously small ($NEXT_SIZE KB)"
+            ls -la .next/
+            exit 1
+          fi
+          
+          echo "✅ Build contract satisfied. Artifact size: $NEXT_SIZE KB"
       
       - name: Package Build Artifacts
         uses: actions/upload-artifact@v4
@@ -87,8 +103,11 @@ jobs:
             .next/
             public/
             package.json
+            package-lock.json
             next.config.mjs
+            playwright.config.ts
           retention-days: 1
+          include-hidden-files: true
 
   test:
     name: 🧪 E2E Suite (${{ matrix.project }})
@@ -100,6 +119,15 @@ jobs:
       matrix:
         project: [chromium, mobile-chrome, tablet]
     
+    env:
+      # Global env for all steps in this job
+      CI: true
+      PORT: 3001
+      NODE_ENV: production
+      SUPABASE_DISABLED: true
+      NEXTAUTH_URL: http://localhost:3001
+      NEXTAUTH_SECRET: UDQ0C5vC8y9LpuALAFij+g7LzQWlkXCd6jiwNJtcI6g=
+    
     steps:
       - uses: actions/checkout@v4
       
@@ -108,23 +136,32 @@ jobs:
           node-version: '20'
           cache: 'npm'
       
+      # CRITICAL: Install ALL dependencies first (including Playwright)
+      - name: Install All Dependencies
+        run: npm ci
+      
+      # CRITICAL: Install browsers BEFORE any Next.js operations
+      - name: Playwright Browser Contract
+        run: |
+          echo "📦 Installing Playwright browsers..."
+          npx playwright install chromium webkit --with-deps
+          echo "✅ Playwright browsers installed."
+      
       - name: Restore Build Artifacts
         uses: actions/download-artifact@v4
         with:
           name: next-build
+          # Download to workspace root - artifact preserves directory structure
 
-      - name: Install Runtime Dependencies
+      - name: Verify Build Artifacts
         run: |
-          npm ci --omit=dev
-          npm install @playwright/test @types/node tsx
-      
-      - name: Playwright Browser Contract
-        run: |
-          # Install all required browsers - chromium for Chrome/mobile, webkit for iPad
-          npx playwright install chromium webkit --with-deps || {
-            echo "❌ BROWSER CONTRACT VIOLATION: Failed to install Playwright browsers."
+          if [ ! -d ".next" ]; then
+            echo "❌ ARTIFACT ERROR: .next directory missing after download"
+            ls -la
             exit 1
-          }
+          fi
+          echo "✅ Build artifacts restored successfully"
+          ls -la .next/
       
       - name: Start Application (Isolation Contract)
         run: |
@@ -134,20 +171,13 @@ jobs:
           echo "SERVER_PID=$SERVER_PID" >> $GITHUB_ENV
           
           # Verify process started
-          sleep 2
+          sleep 3
           if ! kill -0 $SERVER_PID 2>/dev/null; then
             echo "❌ ISOLATION CONTRACT VIOLATION: Server process failed to start."
             exit 1
           fi
           
           echo "✅ Server started (PID: $SERVER_PID)"
-        env:
-          NODE_ENV: production
-          PORT: 3001
-          CI: true
-          SUPABASE_DISABLED: true
-          NEXTAUTH_URL: http://localhost:3001
-          NEXTAUTH_SECRET: UDQ0C5vC8y9LpuALAFij+g7LzQWlkXCd6jiwNJtcI6g=
 
       - name: Readiness Contract Enforcement
         run: |
