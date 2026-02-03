@@ -133,9 +133,10 @@ check_file_not_contains "No 'Sample User'" \
     "lib/db/leads-db.ts" \
     "Sample User"
 
-check_file_contains "Production-ready comment" \
+# Check for seeding function (should exist)
+check_file_contains "Has seedSampleLeadsIfEmpty function" \
     "lib/db/leads-db.ts" \
-    "production-ready"
+    "seedSampleLeadsIfEmpty"
 
 echo ""
 echo -e "${YELLOW}=== 3. Dashboard UI Updates ===${NC}"
@@ -208,12 +209,12 @@ check_file_contains "NextAuth config has redirect callback" \
     "lib/auth/config.ts" \
     "async redirect"
 
-check_file_contains "Middleware uses getToken" \
-    "middleware.ts" \
+check_file_contains "Proxy (middleware) uses getToken" \
+    "proxy.ts" \
     "getToken"
 
 check_file_contains "Protected routes defined" \
-    "middleware.ts" \
+    "proxy.ts" \
     "PROTECTED_ROUTES"
 
 echo ""
