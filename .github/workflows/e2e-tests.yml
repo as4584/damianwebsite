@@ -120,7 +120,8 @@ jobs:
       
       - name: Playwright Browser Contract
         run: |
-          npx playwright install --with-deps ${{ matrix.project }} || {
+          # Install all required browsers - chromium for Chrome/mobile, webkit for iPad
+          npx playwright install chromium webkit --with-deps || {
             echo "❌ BROWSER CONTRACT VIOLATION: Failed to install Playwright browsers."
             exit 1
           }
