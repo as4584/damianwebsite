@@ -15,10 +15,12 @@ import { scoreLead, getHotnessExplanation } from '../services/scoringService';
 import { extractIntent, extractKeyInfo, summarizeConversation } from '../utils/intentExtraction';
 import { suggestNextAction, getActionPriority } from '../utils/actionSuggestion';
 
+const TEST_BUSINESS_ID = 'biz_innovation_001';
+
 describe('Dashboard Integration', () => {
   describe('Lead Pipeline', () => {
     it('should load leads with full scoring applied', async () => {
-      const result = await getLeads();
+      const result = await getLeads(TEST_BUSINESS_ID);
       
       expect(result.success).toBe(true);
       expect(result.data!.length).toBeGreaterThan(0);
@@ -41,10 +43,10 @@ describe('Dashboard Integration', () => {
     });
     
     it('should maintain consistency between list and detail view', async () => {
-      const listResult = await getLeads();
+      const listResult = await getLeads(TEST_BUSINESS_ID);
       const firstLead = listResult.data![0];
       
-      const detailResult = await getLeadById(firstLead.id);
+      const detailResult = await getLeadById(firstLead.id, TEST_BUSINESS_ID);
       
       expect(detailResult.success).toBe(true);
       expect(detailResult.data!.id).toBe(firstLead.id);
@@ -53,24 +55,24 @@ describe('Dashboard Integration', () => {
     });
     
     it('should persist note updates', async () => {
-      const listResult = await getLeads();
+      const listResult = await getLeads(TEST_BUSINESS_ID);
       const leadId = listResult.data![0].id;
       
       const testNote = `Integration test note - ${Date.now()}`;
       
-      const updateResult = await updateLead(leadId, { internalNotes: testNote });
+      const updateResult = await updateLead(leadId, TEST_BUSINESS_ID, { internalNotes: testNote });
       expect(updateResult.success).toBe(true);
       expect(updateResult.data!.internalNotes).toBe(testNote);
       
       // Verify persistence
-      const verifyResult = await getLeadById(leadId);
+      const verifyResult = await getLeadById(leadId, TEST_BUSINESS_ID);
       expect(verifyResult.data!.internalNotes).toBe(testNote);
     });
   });
   
   describe('Scoring Pipeline', () => {
     it('should never expose numeric scores in explanation', async () => {
-      const result = await getLeads();
+      const result = await getLeads(TEST_BUSINESS_ID);
       
       result.data!.forEach(lead => {
         const explanation = getHotnessExplanation(lead.hotness, lead.hotnessFactors);
@@ -160,7 +162,7 @@ describe('Dashboard Integration', () => {
   
   describe('Action Suggestion Pipeline', () => {
     it('should suggest call for hot leads with phone', async () => {
-      const result = await getLeads({ filter: 'hot' });
+      const result = await getLeads(TEST_BUSINESS_ID, { filter: 'hot' });
       
       result.data!.forEach(lead => {
         if (lead.phone) {
@@ -179,7 +181,7 @@ describe('Dashboard Integration', () => {
   
   describe('Metrics Pipeline', () => {
     it('should return all required metrics', async () => {
-      const result = await getDashboardMetrics();
+      const result = await getDashboardMetrics(TEST_BUSINESS_ID);
       
       expect(result.success).toBe(true);
       expect(result.data).toHaveProperty('visits');
@@ -189,8 +191,8 @@ describe('Dashboard Integration', () => {
     });
     
     it('should have counts matching filtered leads', async () => {
-      const countsResult = await getLeadCounts();
-      const allLeadsResult = await getLeads({ filter: 'all' });
+      const countsResult = await getLeadCounts(TEST_BUSINESS_ID);
+      const allLeadsResult = await getLeads(TEST_BUSINESS_ID, { filter: 'all' });
       
       const manualHot = allLeadsResult.data!.filter(l => l.hotness === 'hot').length;
       const manualWarm = allLeadsResult.data!.filter(l => l.hotness === 'warm').length;
@@ -205,8 +207,8 @@ describe('Dashboard Integration', () => {
   
   describe('Data Consistency', () => {
     it('should have matching preview and full lead data', async () => {
-      const previewsResult = await getLeadPreviews();
-      const leadsResult = await getLeads();
+      const previewsResult = await getLeadPreviews(TEST_BUSINESS_ID);
+      const leadsResult = await getLeads(TEST_BUSINESS_ID);
       
       const previewIds = previewsResult.data!.map(p => p.id);
       const leadIds = leadsResult.data!.map(l => l.id);
@@ -218,10 +220,10 @@ describe('Dashboard Integration', () => {
     });
     
     it('should sync hotness between preview and lead', async () => {
-      const previewsResult = await getLeadPreviews();
+      const previewsResult = await getLeadPreviews(TEST_BUSINESS_ID);
       
       for (const preview of previewsResult.data!) {
-        const leadResult = await getLeadById(preview.id);
+        const leadResult = await getLeadById(preview.id, TEST_BUSINESS_ID);
         expect(leadResult.data!.hotness).toBe(preview.hotness);
       }
     });

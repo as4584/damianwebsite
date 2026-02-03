@@ -10,6 +10,13 @@ export const metadata: Metadata = {
   description: 'Track and manage your incoming leads from the Innovation Development Solutions website.',
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+};
+
 export default function DashboardLayout({
   children,
 }: {

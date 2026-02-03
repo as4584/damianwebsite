@@ -37,6 +37,7 @@ export default function ChatModal({ isOpen, onClose }: ChatModalProps) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const hasLoadedMessages = useRef(false);
+  const hasBootstrapped = useRef(false);
   
   // Load messages from sessionStorage on mount
   useEffect(() => {
@@ -71,27 +72,55 @@ export default function ChatModal({ isOpen, onClose }: ChatModalProps) {
     }
   }, []);
   
-  // Show greeting only ONCE when chat opens for the first time AND no messages exist
+  // Bootstrap the conversation via API once per fresh session.
+  // This keeps UI and router state aligned, and allows tests to mock fetch.
   useEffect(() => {
-    if (isOpen && messages.length === 0 && hasLoadedMessages.current) {
-      const greeting = "Hello! I'm here to help you through our business intake process. I'll guide you through a few short steps so we can get everything ready for you. To get started, could you please tell me your full legal name? This is just what we'll need for official paperwork later.";
-      
-      setMessages([{
-        role: 'bot',
-        content: greeting,
-        timestamp: Date.now()
-      }]);
+    if (!isOpen) return;
+    if (!hasLoadedMessages.current) return;
+    if (messages.length > 0) return;
+    if (hasBootstrapped.current) return;
 
-      setSessionData(prev => ({
-        ...prev,
-        bootstrapCompleted: true,
-        businessIntake: {
-          step: 'FULL_LEGAL_NAME',
-          data: {}
-        }
-      }));
-    }
-  }, [isOpen, messages.length]);
+    hasBootstrapped.current = true;
+
+    (async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: '',
+            currentState: 'WELCOME',
+            sessionData
+          })
+        });
+
+        const data = await response.json();
+
+        setMessages([{
+          role: 'bot',
+          content: data.message,
+          timestamp: Date.now(),
+          options: data.options,
+          showCTA: data.showCTA,
+          ctaText: data.ctaText,
+          ctaAction: data.ctaAction
+        }]);
+
+        setCurrentState(data.nextState || 'WELCOME');
+        setSessionData(data.sessionData || sessionData);
+      } catch (error) {
+        console.error('Failed to bootstrap chat:', error);
+        setMessages([{
+          role: 'bot',
+          content: 'Sorry, something went wrong. Please try again.',
+          timestamp: Date.now()
+        }]);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
+  }, [isOpen, messages.length, sessionData]);
   
   // Scroll to bottom when new messages arrive
   useEffect(() => {

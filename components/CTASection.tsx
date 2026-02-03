@@ -6,12 +6,9 @@ import Link from 'next/link'
 const CTASection = () => {
   return (
     <section className="section-padding bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 text-white relative overflow-hidden">
-      {/* Background texture overlay */}
+      {/* Background texture overlay - gradient fallback */}
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-[0.08] blur-sm"
-        style={{
-          backgroundImage: 'url(/assets/brand/B11539F4-9B72-4431-9008-75876F774AEF.jpeg)',
-        }}
+        className="absolute inset-0 bg-gradient-to-br from-indigo-600/10 to-purple-600/10 blur-sm"
       />
       
       {/* Blue ambient glow */}

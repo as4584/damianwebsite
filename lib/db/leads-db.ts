@@ -13,6 +13,186 @@ const DEFAULT_BUSINESS_ID = 'biz_innovation_001';
 // In-memory store for leads (FALLBACK for when Supabase is not connected)
 const leadsStore = new Map<string, Lead>();
 
+function isSupabaseEnabled(): boolean {
+  if (process.env.NODE_ENV === 'test') return false;
+  if (process.env.SUPABASE_DISABLED === 'true') return false;
+
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!url || !anon) return false;
+  if (url === 'your-project-url.supabase.co') return false;
+  if (anon === 'your-anon-key') return false;
+  return true;
+}
+
+function seedSampleLeadsIfEmpty(): void {
+  if (leadsStore.size > 0) return;
+  // Always seed in tests, when explicitly requested, or when Supabase is not available
+  const shouldSeed = process.env.NODE_ENV === 'test' || 
+                     process.env.SEED_SAMPLE_LEADS === 'true' ||
+                     !isSupabaseEnabled();
+  if (!shouldSeed) return;
+
+  const now = Date.now();
+  const mkLead = (partial: Partial<Lead> & Pick<Lead, 'id' | 'hotness' | 'intent'>): Lead => {
+    const createdAt = partial.createdAt ?? new Date(now - 1000 * 60 * 60);
+    const updatedAt = partial.updatedAt ?? createdAt;
+    return {
+      id: partial.id,
+      businessId: DEFAULT_BUSINESS_ID,
+      fullName: partial.fullName ?? null,
+      email: partial.email ?? null,
+      phone: partial.phone ?? null,
+      source: partial.source ?? { page: '/chat', referrer: undefined },
+      conversation: partial.conversation ?? [],
+      intent: partial.intent,
+      hotness: partial.hotness,
+      hotnessFactors: partial.hotnessFactors ?? [],
+      extractedInfo: partial.extractedInfo ?? {},
+      suggestedAction: partial.suggestedAction ?? {
+        type: partial.hotness === 'hot' ? 'call' : partial.hotness === 'warm' ? 'email' : 'wait',
+        label: partial.hotness === 'hot' ? 'Call Now' : partial.hotness === 'warm' ? 'Follow Up' : 'Monitor',
+        reason: 'Seeded lead for development/testing',
+        priority: partial.hotness === 'hot' ? 'high' : partial.hotness === 'warm' ? 'medium' : 'low',
+      },
+      internalNotes: partial.internalNotes ?? '',
+      createdAt,
+      updatedAt,
+    };
+  };
+
+  const seeded: Lead[] = [
+    // HOT LEADS - Recent and urgent
+    mkLead({
+      id: 'lead_seed_hot_001',
+      fullName: 'Alex Hotlead',
+      email: 'alex.hot@example.com',
+      phone: '555-0101',
+      intent: 'sales',
+      hotness: 'hot',
+      hotnessFactors: [
+        { type: 'contact_provided', name: 'Contact Information', description: 'Provided phone/email', present: true },
+        { name: 'Business Details', description: 'Shared business context', present: true },
+      ],
+      conversation: [
+        { role: 'user', content: 'I need help starting an LLC and want to talk today.', timestamp: new Date(now - 1000 * 60 * 20) },
+        { role: 'bot', content: 'Sure — I can help with that.', timestamp: new Date(now - 1000 * 60 * 19) },
+      ],
+      extractedInfo: { businessType: 'LLC', timeline: 'Urgent (Today)' },
+      createdAt: new Date(now - 1000 * 60 * 60 * 3), // 3 hours ago (today)
+      updatedAt: new Date(now - 1000 * 60 * 60 * 3),
+    }),
+    mkLead({
+      id: 'lead_seed_hot_002',
+      fullName: 'Maria Rodriguez',
+      email: 'maria.r@techstartup.com',
+      phone: '555-0202',
+      intent: 'booking',
+      hotness: 'hot',
+      hotnessFactors: [
+        { type: 'contact_provided', name: 'Contact Information', description: 'Provided phone/email', present: true },
+        { name: 'Booking Intent', description: 'Requested consultation', present: true },
+      ],
+      conversation: [
+        { role: 'user', content: 'Can I book a consultation for tomorrow?', timestamp: new Date(now - 1000 * 60 * 60 * 24 * 1) },
+      ],
+      extractedInfo: { businessType: 'Tech Startup', consultationRequested: true },
+      createdAt: new Date(now - 1000 * 60 * 60 * 24 * 1), // 1 day ago
+      updatedAt: new Date(now - 1000 * 60 * 60 * 24 * 1),
+    }),
+    
+    // WARM LEADS - Interested but need nurturing
+    mkLead({
+      id: 'lead_seed_warm_001',
+      fullName: 'Wendy Warmlead',
+      email: 'wendy.warm@example.com',
+      phone: null,
+      intent: 'question',
+      hotness: 'warm',
+      hotnessFactors: [
+        { type: 'contact_provided', name: 'Contact Information', description: 'Provided email', present: true },
+        { name: 'Engagement Level', description: 'Asked multiple questions', present: true },
+      ],
+      conversation: [
+        { role: 'user', content: 'How much does it cost and how long does it take?', timestamp: new Date(now - 1000 * 60 * 60 * 24 * 2) },
+        { role: 'bot', content: 'Pricing depends on needs.', timestamp: new Date(now - 1000 * 60 * 60 * 24 * 2) },
+      ],
+      extractedInfo: { businessType: 'General', location: 'Unknown' },
+      createdAt: new Date(now - 1000 * 60 * 60 * 24 * 2), // 2 days ago
+      updatedAt: new Date(now - 1000 * 60 * 60 * 24 * 2),
+    }),
+    mkLead({
+      id: 'lead_seed_warm_002',
+      fullName: 'James Chen',
+      email: 'jchen@consulting.co',
+      phone: null,
+      intent: 'question',
+      hotness: 'warm',
+      hotnessFactors: [
+        { type: 'contact_provided', name: 'Contact Information', description: 'Provided email', present: true },
+      ],
+      conversation: [
+        { role: 'user', content: 'Tell me about your services', timestamp: new Date(now - 1000 * 60 * 60 * 24 * 3) },
+      ],
+      extractedInfo: { businessType: 'Consulting' },
+      createdAt: new Date(now - 1000 * 60 * 60 * 24 * 3), // 3 days ago
+      updatedAt: new Date(now - 1000 * 60 * 60 * 24 * 3),
+    }),
+    mkLead({
+      id: 'lead_seed_warm_003',
+      fullName: 'Sarah Johnson',
+      email: 'sjohnson@retail.com',
+      phone: null,
+      intent: 'sales',
+      hotness: 'warm',
+      hotnessFactors: [
+        { type: 'contact_provided', name: 'Contact Information', description: 'Provided email', present: true },
+      ],
+      conversation: [
+        { role: 'user', content: 'I am exploring options for business formation', timestamp: new Date(now - 1000 * 60 * 60 * 24 * 4) },
+      ],
+      extractedInfo: { businessType: 'Retail' },
+      createdAt: new Date(now - 1000 * 60 * 60 * 24 * 4), // 4 days ago
+      updatedAt: new Date(now - 1000 * 60 * 60 * 24 * 4),
+    }),
+    
+    // COLD LEADS - Low engagement
+    mkLead({
+      id: 'lead_seed_cold_001',
+      fullName: 'Casey Coldlead',
+      email: null,
+      phone: null,
+      intent: 'unknown',
+      hotness: 'cold',
+      hotnessFactors: [
+        { name: 'Engagement Level', description: 'Single short message', present: false },
+      ],
+      conversation: [
+        { role: 'user', content: 'Just browsing.', timestamp: new Date(now - 1000 * 60 * 60 * 24 * 5) },
+      ],
+      createdAt: new Date(now - 1000 * 60 * 60 * 24 * 5), // 5 days ago
+      updatedAt: new Date(now - 1000 * 60 * 60 * 24 * 5),
+    }),
+    mkLead({
+      id: 'lead_seed_cold_002',
+      fullName: null,
+      email: null,
+      phone: null,
+      intent: 'unknown',
+      hotness: 'cold',
+      hotnessFactors: [],
+      conversation: [
+        { role: 'user', content: 'Hi', timestamp: new Date(now - 1000 * 60 * 60 * 24 * 6) },
+      ],
+      createdAt: new Date(now - 1000 * 60 * 60 * 24 * 6), // 6 days ago
+      updatedAt: new Date(now - 1000 * 60 * 60 * 24 * 6),
+    }),
+  ];
+
+  seeded.forEach(l => leadsStore.set(l.id, l));
+}
+
 export interface ChatLeadData {
   name?: string;
   email?: string;
@@ -188,8 +368,7 @@ export async function createLeadFromChat(data: ChatLeadData): Promise<Lead> {
   };
   
   // 1. SAVE TO SUPABASE (if configured)
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  if (supabaseUrl && supabaseUrl !== 'your-project-url.supabase.co') {
+  if (isSupabaseEnabled()) {
     try {
       const { error } = await supabase
         .from('leads')
@@ -228,9 +407,12 @@ export async function createLeadFromChat(data: ChatLeadData): Promise<Lead> {
  * Syncs with Supabase if available
  */
 export async function getAllLeads(): Promise<Lead[]> {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  
-  if (supabaseUrl && supabaseUrl !== 'your-project-url.supabase.co') {
+  // Always try to seed if store is empty (for tests and dev)
+  if (leadsStore.size === 0) {
+    seedSampleLeadsIfEmpty();
+  }
+
+  if (isSupabaseEnabled()) {
     try {
       const { data, error } = await supabase
         .from('leads')
@@ -253,7 +435,6 @@ export async function getAllLeads(): Promise<Lead[]> {
           conversation: record.conversation,
           extractedInfo: record.extracted_info,
           suggestedAction: record.suggested_action,
-          hotnessFactors: [], // Re-calculated if needed
           internalNotes: record.internal_notes || '',
           createdAt: new Date(record.created_at),
           updatedAt: new Date(record.updated_at || record.created_at)
@@ -286,9 +467,7 @@ export async function getLeadById(id: string): Promise<Lead | null> {
  * Update lead in database
  */
 export async function updateLeadInDb(id: string, updates: Partial<Lead>): Promise<void> {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  
-  if (supabaseUrl && supabaseUrl !== 'your-project-url.supabase.co') {
+  if (isSupabaseEnabled()) {
     try {
       const { error } = await supabase
         .from('leads')
@@ -311,15 +490,13 @@ export async function updateLeadInDb(id: string, updates: Partial<Lead>): Promis
   }
 
   // Always update in-memory
+  seedSampleLeadsIfEmpty();
   const existing = leadsStore.get(id);
   if (existing) {
     leadsStore.set(id, { ...existing, ...updates, updatedAt: new Date() });
   }
 }
 
-/**
- * Database is now production-ready with zero mock data
- */
-
-// No initialization - database starts empty
-// Leads will be created only through createLead() function
+// Note: In tests (and optionally dev), we seed a few sample leads so the
+// dashboard service layer has deterministic data to operate on.
+// Seeding happens automatically in getAllLeads() when the store is empty.

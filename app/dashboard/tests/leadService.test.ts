@@ -12,10 +12,12 @@ import {
   getLeadCounts 
 } from '../services/leadService';
 
+const TEST_BUSINESS_ID = 'biz_innovation_001';
+
 describe('Lead Service', () => {
   describe('getLeads', () => {
     it('should return all leads', async () => {
-      const result = await getLeads();
+      const result = await getLeads(TEST_BUSINESS_ID);
       
       expect(result.success).toBe(true);
       expect(result.data).toBeDefined();
@@ -24,9 +26,9 @@ describe('Lead Service', () => {
     });
     
     it('should filter by hotness', async () => {
-      const hotResult = await getLeads({ filter: 'hot' });
-      const warmResult = await getLeads({ filter: 'warm' });
-      const coldResult = await getLeads({ filter: 'cold' });
+      const hotResult = await getLeads(TEST_BUSINESS_ID, { filter: 'hot' });
+      const warmResult = await getLeads(TEST_BUSINESS_ID, { filter: 'warm' });
+      const coldResult = await getLeads(TEST_BUSINESS_ID, { filter: 'cold' });
       
       expect(hotResult.success).toBe(true);
       hotResult.data!.forEach(lead => {
@@ -43,7 +45,7 @@ describe('Lead Service', () => {
     });
     
     it('should sort by createdAt descending by default', async () => {
-      const result = await getLeads({ sortBy: 'createdAt' });
+      const result = await getLeads(TEST_BUSINESS_ID, { sortBy: 'createdAt' });
       
       expect(result.success).toBe(true);
       const dates = result.data!.map(l => l.createdAt.getTime());
@@ -53,7 +55,7 @@ describe('Lead Service', () => {
     });
     
     it('should sort by hotness', async () => {
-      const result = await getLeads({ sortBy: 'hotness' });
+      const result = await getLeads(TEST_BUSINESS_ID, { sortBy: 'hotness' });
       
       expect(result.success).toBe(true);
       const hotnessOrder = { hot: 0, warm: 1, cold: 2 };
@@ -66,7 +68,7 @@ describe('Lead Service', () => {
   
   describe('getLeadPreviews', () => {
     it('should return preview cards', async () => {
-      const result = await getLeadPreviews();
+      const result = await getLeadPreviews(TEST_BUSINESS_ID);
       
       expect(result.success).toBe(true);
       expect(result.data).toBeDefined();
@@ -80,7 +82,7 @@ describe('Lead Service', () => {
     });
     
     it('should include unread activity flag', async () => {
-      const result = await getLeadPreviews();
+      const result = await getLeadPreviews(TEST_BUSINESS_ID);
       
       expect(result.success).toBe(true);
       result.data!.forEach(preview => {
@@ -91,10 +93,10 @@ describe('Lead Service', () => {
   
   describe('getLeadById', () => {
     it('should return a specific lead', async () => {
-      const allLeads = await getLeads();
+      const allLeads = await getLeads(TEST_BUSINESS_ID);
       const firstLead = allLeads.data![0];
       
-      const result = await getLeadById(firstLead.id);
+      const result = await getLeadById(firstLead.id, TEST_BUSINESS_ID);
       
       expect(result.success).toBe(true);
       expect(result.data).toBeDefined();
@@ -102,8 +104,8 @@ describe('Lead Service', () => {
     });
     
     it('should have all required lead properties', async () => {
-      const allLeads = await getLeads();
-      const result = await getLeadById(allLeads.data![0].id);
+      const allLeads = await getLeads(TEST_BUSINESS_ID);
+      const result = await getLeadById(allLeads.data![0].id, TEST_BUSINESS_ID);
       
       expect(result.data).toHaveProperty('id');
       expect(result.data).toHaveProperty('hotness');
@@ -115,7 +117,7 @@ describe('Lead Service', () => {
     });
     
     it('should return error for non-existent lead', async () => {
-      const result = await getLeadById('non-existent-id');
+      const result = await getLeadById('non-existent-id', TEST_BUSINESS_ID);
       
       expect(result.success).toBe(false);
       expect(result.error).toBe('Lead not found');
@@ -124,10 +126,10 @@ describe('Lead Service', () => {
   
   describe('updateLead', () => {
     it('should update internal notes', async () => {
-      const allLeads = await getLeads();
+      const allLeads = await getLeads(TEST_BUSINESS_ID);
       const leadId = allLeads.data![0].id;
       
-      const result = await updateLead(leadId, { 
+      const result = await updateLead(leadId, TEST_BUSINESS_ID, { 
         internalNotes: 'Test note for follow-up' 
       });
       
@@ -136,20 +138,20 @@ describe('Lead Service', () => {
     });
     
     it('should update timestamp on change', async () => {
-      const allLeads = await getLeads();
+      const allLeads = await getLeads(TEST_BUSINESS_ID);
       const leadId = allLeads.data![0].id;
       const originalUpdatedAt = allLeads.data![0].updatedAt;
       
       // Small delay to ensure timestamp difference
       await new Promise(resolve => setTimeout(resolve, 10));
       
-      const result = await updateLead(leadId, { internalNotes: 'Updated' });
+      const result = await updateLead(leadId, TEST_BUSINESS_ID, { internalNotes: 'Updated' });
       
       expect(result.data!.updatedAt.getTime()).toBeGreaterThanOrEqual(originalUpdatedAt.getTime());
     });
     
     it('should return error for non-existent lead', async () => {
-      const result = await updateLead('fake-id', { internalNotes: 'Test' });
+      const result = await updateLead('fake-id', TEST_BUSINESS_ID, { internalNotes: 'Test' });
       
       expect(result.success).toBe(false);
       expect(result.error).toBe('Lead not found');
@@ -158,7 +160,7 @@ describe('Lead Service', () => {
   
   describe('getDashboardMetrics', () => {
     it('should return all metrics', async () => {
-      const result = await getDashboardMetrics();
+      const result = await getDashboardMetrics(TEST_BUSINESS_ID);
       
       expect(result.success).toBe(true);
       expect(result.data).toHaveProperty('visits');
@@ -168,14 +170,14 @@ describe('Lead Service', () => {
     });
     
     it('should include trend data', async () => {
-      const result = await getDashboardMetrics();
+      const result = await getDashboardMetrics(TEST_BUSINESS_ID);
       
       expect(result.data!.visits.trend).toMatch(/^(up|down|stable)$/);
       expect(typeof result.data!.visits.trendPercentage).toBe('number');
     });
     
     it('should include chart data points', async () => {
-      const result = await getDashboardMetrics();
+      const result = await getDashboardMetrics(TEST_BUSINESS_ID);
       
       expect(result.data!.visits.chartData).toBeDefined();
       expect(Array.isArray(result.data!.visits.chartData)).toBe(true);
@@ -190,7 +192,7 @@ describe('Lead Service', () => {
   
   describe('getLeadCounts', () => {
     it('should return counts by hotness', async () => {
-      const result = await getLeadCounts();
+      const result = await getLeadCounts(TEST_BUSINESS_ID);
       
       expect(result.success).toBe(true);
       expect(typeof result.data!.hot).toBe('number');
@@ -200,7 +202,7 @@ describe('Lead Service', () => {
     });
     
     it('should have total equal sum of all categories', async () => {
-      const result = await getLeadCounts();
+      const result = await getLeadCounts(TEST_BUSINESS_ID);
       
       const sum = result.data!.hot + result.data!.warm + result.data!.cold;
       expect(result.data!.total).toBe(sum);

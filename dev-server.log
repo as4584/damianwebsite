@@ -1,0 +1,39 @@
+
+> innovation-business-services@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://10.255.255.254:3000
+- Environments: .env.local, .env
+
+✓ Starting...
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+✓ Ready in 372ms
+⚠ Unsupported metadata viewport is configured in metadata export in /dashboard. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+⏳ Waiting for client mount...
+ GET /dashboard 200 in 1509ms (compile: 1176ms, proxy.ts: 139ms, render: 194ms)
+✅ Test users seeded:
+   - test@innovation.com / King1000$
+   - demo@innovationdevelopmentsolutions.com / demo1234
+❌ Supabase Fetch Failed: {
+  message: 'Invalid API key',
+  hint: 'Double check the provided API key for typos. This API key might also be owned by another Supabase project.'
+}
+ GET /dashboard/api/analytics 200 in 642ms (compile: 166ms, proxy.ts: 18ms, render: 459ms)
+❌ Supabase Fetch Failed: {
+  message: 'Invalid API key',
+  hint: 'Double check the provided API key for typos. This API key might also be owned by another Supabase project.'
+}
+ GET /dashboard/api/metrics 200 in 693ms (compile: 219ms, proxy.ts: 9ms, render: 465ms)
+❌ Supabase Fetch Failed: {
+  message: 'Invalid API key',
+  hint: 'Double check the provided API key for typos. This API key might also be owned by another Supabase project.'
+}
+ GET /dashboard/api/metrics?type=counts 200 in 698ms (compile: 234ms, proxy.ts: 13ms, render: 450ms)
+❌ Supabase Fetch Failed: {
+  message: 'Invalid API key',
+  hint: 'Double check the provided API key for typos. This API key might also be owned by another Supabase project.'
+}
+ GET /dashboard/api/leads?view=preview 200 in 701ms (compile: 233ms, proxy.ts: 12ms, render: 457ms)
