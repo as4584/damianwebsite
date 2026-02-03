@@ -130,8 +130,10 @@ export async function POST(request: NextRequest) {
       
       // Save lead to database via API call
       try {
-        const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || request.headers.get('origin') || 'http://localhost:3000';
-        await fetch(`${baseUrl}/api/leads/create`, {
+        // Use environment variable or current origin, fallback to relative URL
+        const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || request.headers.get('origin') || '';
+        const leadUrl = baseUrl ? `${baseUrl}/api/leads/create` : '/api/leads/create';
+        await fetch(leadUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(leadData)

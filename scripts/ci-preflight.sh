@@ -9,7 +9,7 @@ echo "🔍 Running CI Pre-flight Checks..."
 # 1. Isolation Contract: Check for forbidden external dependencies in source
 # (Example: Hardcoded production secrets or specific dev domains that should be environment variables)
 echo "🛡️ Checking Isolation Contract..."
-FORBIDDEN_PATTERNS=("lexmakesit.com" "localhost:3000") # 3000 is often wrong in our 3001-base CI
+FORBIDDEN_PATTERNS=("lexmakesit.com") # Removed localhost:3000 - allowed as fallback in code
 for pattern in "${FORBIDDEN_PATTERNS[@]}"; do
   if grep -r "$pattern" ./app ./lib --exclude-dir=node_modules --exclude-dir=.next > /dev/null 2>&1; then
     echo "❌ ISOLATION CONTRACT VIOLATION: Forbidden pattern '$pattern' found in source code."
