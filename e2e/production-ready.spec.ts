@@ -29,7 +29,7 @@ test.describe('Production Ready Dashboard - Zero Mock Data', () => {
     
     // Go to homepage
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     // Find and click chatbot button
     const chatButton = page.locator('button, [role="button"]').filter({
@@ -126,7 +126,7 @@ test.describe('Production Ready Dashboard - Zero Mock Data', () => {
     await page.waitForURL('/dashboard');
     
     // Wait for data to load (signal-based)
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     await expect(page.getByRole('heading', { name: /Innovation Business Development Solutions|Overview/i }).first()).toBeVisible({ timeout: 15000 });
     
     // Get page content
@@ -180,7 +180,7 @@ test.describe('Production Ready Dashboard - Zero Mock Data', () => {
     await page.click('button[type="submit"]');
     await page.waitForURL('/dashboard');
     
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     await page.waitForTimeout(3000);
     
     // Search for our test lead

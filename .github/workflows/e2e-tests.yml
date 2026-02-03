@@ -144,6 +144,10 @@ jobs:
         env:
           NODE_ENV: production
           PORT: 3001
+          CI: true
+          SUPABASE_DISABLED: true
+          NEXTAUTH_URL: http://localhost:3001
+          NEXTAUTH_SECRET: UDQ0C5vC8y9LpuALAFij+g7LzQWlkXCd6jiwNJtcI6g=
 
       - name: Readiness Contract Enforcement
         run: |
@@ -182,6 +186,9 @@ jobs:
         env:
           CI: true
           PORT: 3001
+          SUPABASE_DISABLED: true
+          NEXTAUTH_URL: http://localhost:3001
+          NEXTAUTH_SECRET: UDQ0C5vC8y9LpuALAFij+g7LzQWlkXCd6jiwNJtcI6g=
 
       - name: Cleanup Contract Enforcement
         if: always()

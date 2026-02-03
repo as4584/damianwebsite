@@ -17,7 +17,7 @@ test.describe('Chatbot Visibility - Desktop', () => {
   test('should display chatbot widget on desktop', async ({ page }) => {
     // Visit homepage
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     // Find chatbot button/widget
     const chatbotWidget = page.locator('button, [role="button"]').filter({ 
@@ -56,7 +56,7 @@ test.describe('Chatbot Visibility - Desktop', () => {
   
   test('should not obstruct main content on desktop', async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     // Check that chatbot doesn't cover hero section
     const heroHeading = page.locator('h1').first();
@@ -81,7 +81,7 @@ test.describe('Chatbot Visibility - Tablet', () => {
   
   test('should display chatbot widget on tablet', async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     // Find chatbot
     const chatbotWidget = page.locator('button, [role="button"]').filter({ 
@@ -127,7 +127,7 @@ test.describe('Chatbot Visibility - Mobile', () => {
   
   test('should display chatbot widget on mobile', async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     // Find chatbot - may be smaller on mobile
     const chatbotWidget = page.locator('button, [role="button"]').filter({ 
@@ -183,7 +183,7 @@ test.describe('Chatbot Visibility - Mobile', () => {
   
   test('should not cover navigation on mobile', async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     // Check that chatbot doesn't cover mobile navigation
     const nav = page.locator('nav, [role="navigation"]').first();
@@ -210,7 +210,7 @@ test.describe('Chatbot Visibility - Mobile', () => {
   
   test('should be accessible with touch gestures', async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     const chatbotWidget = page.locator('button, [role="button"]').filter({ 
       hasText: /chat|help/i 
@@ -245,7 +245,7 @@ test.describe('Chatbot Visibility - All Pages', () => {
   for (const pagePath of pages) {
     test(`should display chatbot on ${pagePath}`, async ({ page }) => {
       await page.goto(pagePath);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       
       // Find chatbot
       const chatbotWidget = page.locator('button, [role="button"]').filter({ 
@@ -267,7 +267,7 @@ test.describe('Chatbot Accessibility', () => {
   
   test('should be keyboard accessible', async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     // Tab to chatbot button
     await page.keyboard.press('Tab');
@@ -294,7 +294,7 @@ test.describe('Chatbot Accessibility', () => {
   
   test('should have proper ARIA labels', async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     // Check for aria-label or accessible name
     const chatbotWidget = page.locator('button, [role="button"]').filter({ 

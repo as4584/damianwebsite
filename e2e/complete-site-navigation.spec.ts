@@ -59,7 +59,7 @@ test.describe('Public Site Navigation', () => {
     if (linkCount > 0) {
       // Click first service link
       await serviceLinks.first().click();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       expect(page.url()).toContain('/');
     }
   });
@@ -119,7 +119,7 @@ test.describe('Dashboard Authentication Guard', () => {
     await page.locator('button[type="submit"]').click();
     
     // Wait for redirect
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     await page.waitForTimeout(2000);
     
     // Should be on dashboard
@@ -144,11 +144,11 @@ test.describe('Dashboard Authentication Guard', () => {
     await page.fill('input[type="email"]', 'test@innovation.com');
     await page.fill('input[type="password"]', 'King1000$');
     await page.locator('button[type="submit"]').click();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     // Reload page
     await page.reload();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     // Should still be on dashboard (not redirected to login)
     await page.waitForTimeout(2000);
@@ -165,7 +165,7 @@ test.describe('Dashboard UI Elements', () => {
     await page.fill('input[type="email"]', 'test@innovation.com');
     await page.fill('input[type="password"]', 'King1000$');
     await page.locator('button[type="submit"]').click();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     await page.waitForTimeout(2000);
   });
 
@@ -180,7 +180,7 @@ test.describe('Dashboard UI Elements', () => {
     
     // Click and verify navigation to homepage
     await backButton.click();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     await expect(page).toHaveURL('/');
   });
 
@@ -216,7 +216,7 @@ test.describe('Analytics Dashboard Section', () => {
     await page.fill('input[type="email"]', 'test@innovation.com');
     await page.fill('input[type="password"]', 'King1000$');
     await page.locator('button[type="submit"]').click();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     await page.waitForTimeout(2000);
   });
 
@@ -346,7 +346,7 @@ test.describe('Mobile Responsiveness', () => {
     await page.fill('input[type="email"]', 'test@innovation.com');
     await page.fill('input[type="password"]', 'King1000$');
     await page.locator('button[type="submit"]').click();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     await page.waitForTimeout(2000);
     
     // Verify dashboard renders on mobile

@@ -2,7 +2,7 @@ import { test } from '@playwright/test';
 
 test('debug viewport issue', async ({ page }) => {
   await page.goto('/');
-  await page.waitForLoadState('networkidle');
+  await page.waitForLoadState('load');
   
   const chatButton = page.getByRole('button', { name: 'Open chat' });
   

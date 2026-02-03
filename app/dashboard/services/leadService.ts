@@ -8,6 +8,23 @@ import { Lead, LeadCardPreview, LeadUpdatePayload, ApiResponse, DashboardMetrics
 import { getAllLeads, getLeadById as getLeadFromDb, updateLeadInDb } from '@/lib/db/leads-db';
 
 /**
+ * Safely convert a value to a Date object
+ * Handles strings, Date objects, and undefined/null
+ */
+function toDate(value: Date | string | undefined | null): Date {
+  if (!value) return new Date();
+  if (value instanceof Date) return value;
+  return new Date(value);
+}
+
+/**
+ * Safely get timestamp from a date value
+ */
+function getTimestamp(value: Date | string | undefined | null): number {
+  return toDate(value).getTime();
+}
+
+/**
  * Get leads for a specific business
  * SECURITY: businessId is REQUIRED and used to filter data
  * USES REAL DATA: Gets actual leads created by chatbot conversations
@@ -35,7 +52,7 @@ export async function getLeads(
   
   // Sort
   if (sortBy === 'createdAt') {
-    leads.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+    leads.sort((a, b) => getTimestamp(b.createdAt) - getTimestamp(a.createdAt));
   } else if (sortBy === 'hotness') {
     const hotnessOrder = { hot: 0, warm: 1, cold: 2 };
     leads.sort((a, b) => hotnessOrder[a.hotness] - hotnessOrder[b.hotness]);
@@ -63,7 +80,7 @@ export async function getLeadPreviews(businessId: string): Promise<ApiResponse<L
   const leads = allLeads.filter(lead => lead.businessId === businessId);
   
   const previews: LeadCardPreview[] = leads
-    .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+    .sort((a, b) => getTimestamp(b.createdAt) - getTimestamp(a.createdAt))
     .map(lead => ({
       id: lead.id,
       fullName: lead.fullName,
@@ -71,7 +88,7 @@ export async function getLeadPreviews(businessId: string): Promise<ApiResponse<L
       hotness: lead.hotness,
       sourcePage: lead.source.page,
       createdAt: lead.createdAt,
-      hasUnreadActivity: lead.updatedAt.getTime() > Date.now() - 3600000
+      hasUnreadActivity: getTimestamp(lead.updatedAt) > Date.now() - 3600000
     }));
   
   return {

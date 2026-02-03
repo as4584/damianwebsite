@@ -9,7 +9,7 @@ test('DEBUG: What is actually on the page?', async ({ page }) => {
   page.on('console', msg => console.log('BROWSER LOG:', msg.text()));
   
   await page.goto('http://localhost:3001');
-  await page.waitForLoadState('networkidle');
+  await page.waitForLoadState('load');
   
   console.log('=== PAGE LOADED ===');
   

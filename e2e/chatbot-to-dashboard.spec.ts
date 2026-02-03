@@ -34,7 +34,7 @@ test.describe('Chatbot to Dashboard Integration', () => {
     await page.goto('/');
     
     // Wait for page to load
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     // Step 2: Find and open chatbot widget
     console.log('Looking for chatbot widget...');
@@ -110,7 +110,7 @@ test.describe('Chatbot to Dashboard Integration', () => {
     
     // Wait for dashboard to load
     await page.waitForURL('/dashboard', { timeout: 10000 });
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     console.log('✅ Logged into dashboard');
     
@@ -154,7 +154,7 @@ test.describe('Chatbot to Dashboard Integration', () => {
     
     // Step 12: Click into lead details
     await leadCards.first().click();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     // Verify lead details page loaded
     await expect(page).toHaveURL(/\/dashboard\/leads\/lead_\d+/);
@@ -177,7 +177,7 @@ test.describe('Chatbot to Dashboard Integration', () => {
   test('should show correct hotness for engaged lead', async ({ page }) => {
     // Create a lead with high engagement via chatbot
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     // Open chatbot
     const chatbotButton = page.locator('button, [role="button"]').filter({ 
@@ -240,7 +240,7 @@ test.describe('Chatbot Error Handling', () => {
   test('should handle incomplete lead data gracefully', async ({ page }) => {
     // Try to create lead without email or phone
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     const chatbotButton = page.locator('button, [role="button"]').filter({ 
       hasText: /chat|help/i 

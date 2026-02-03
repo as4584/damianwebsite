@@ -36,7 +36,7 @@ test.describe('Authentication & Dashboard Security', () => {
     
     // Wait for navigation to complete (signal-based)
     await expect(page).toHaveURL(/\/dashboard/);
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     const currentUrl = page.url();
     console.log('📍 Current URL after login:', currentUrl);
@@ -56,7 +56,7 @@ test.describe('Authentication & Dashboard Security', () => {
         // Force navigate to dashboard to see what happens
         console.log('🔄 Attempting manual navigation to /dashboard');
         await page.goto('/dashboard');
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('load');
         console.log('📍 URL after manual navigation:', page.url());
       }
       
@@ -83,7 +83,7 @@ test.describe('Authentication & Dashboard Security', () => {
     await page.waitForURL('/dashboard');
     
     // Wait for dashboard to fully load
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     // Verify dashboard header is visible
     await expect(page.getByRole('heading', { name: /Innovation Business Development Solutions/i })).toBeVisible({ timeout: 15000 });
@@ -129,7 +129,7 @@ test.describe('Authentication & Dashboard Security', () => {
     await page.waitForURL('/dashboard');
     
     // Wait for dashboard to load
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     // Verify dashboard header
     await expect(page.getByRole('heading', { name: /Innovation Business Development Solutions/i })).toBeVisible({ timeout: 15000 });

@@ -16,7 +16,7 @@ for (const { name, url } of TEST_URLS) {
     test('should render with correct size and position', async ({ page }) => {
       await page.setViewportSize({ width: 1920, height: 1080 });
       await page.goto(url);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       await page.waitForTimeout(5000); // Wait for full hydration
       
       // Find the chat button
@@ -93,7 +93,7 @@ for (const { name, url } of TEST_URLS) {
     test('should not be covered by other elements', async ({ page }) => {
       await page.setViewportSize({ width: 1920, height: 1080 });
       await page.goto(url);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       await page.waitForTimeout(5000);
       
       const chatButton = page.locator('button[aria-label="Open chat"]');
@@ -132,7 +132,7 @@ for (const { name, url } of TEST_URLS) {
     test('should be clickable by real users', async ({ page }) => {
       await page.setViewportSize({ width: 1920, height: 1080 });
       await page.goto(url);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       await page.waitForTimeout(5000);
       
       const chatButton = page.locator('button[aria-label="Open chat"]');
@@ -153,7 +153,7 @@ for (const { name, url } of TEST_URLS) {
     test('should have proper CSS loaded', async ({ page }) => {
       await page.setViewportSize({ width: 1920, height: 1080 });
       await page.goto(url);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       await page.waitForTimeout(5000);
       
       // Check if Tailwind classes are working
@@ -183,7 +183,7 @@ for (const { name, url } of TEST_URLS) {
     test('should be visible on mobile viewport', async ({ page }) => {
       await page.setViewportSize({ width: 375, height: 667 });
       await page.goto(url);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       await page.waitForTimeout(5000);
       
       const chatButton = page.locator('button[aria-label="Open chat"]');

@@ -19,7 +19,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Chatbot Human Usability Tests (Contract v1.3)', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
   });
 
   test('HUMAN USABILITY TEST 1: Chat widget is visibly rendered and clickable by a human', async ({ page }) => {
@@ -110,7 +110,7 @@ test.describe('Chatbot Human Usability Tests (Contract v1.3)', () => {
     
     // Cold reload
     await page.reload();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     // REQUIREMENT: Chat must work after cold reload
     const chatButtonAfterRefresh = page.getByRole('button', { name: 'Open chat' });
@@ -132,7 +132,7 @@ test.describe('Chatbot Human Usability Tests (Contract v1.3)', () => {
   test('HUMAN USABILITY TEST 5: Chat works on different pages', async ({ page }) => {
     // Navigate to services page
     await page.goto('/services');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     
     // Chat button must be visible
     const chatButton = page.getByRole('button', { name: 'Open chat' });

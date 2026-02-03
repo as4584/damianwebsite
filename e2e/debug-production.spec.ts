@@ -10,7 +10,7 @@ test('DEBUG: Production chatbot check', async ({ page }) => {
   
   console.log('=== Checking Production Site ===');
   await page.goto('https://innovationdevelopmentsolutions.com/');
-  await page.waitForLoadState('networkidle');
+  await page.waitForLoadState('load');
   
   console.log('=== PAGE LOADED ===');
   

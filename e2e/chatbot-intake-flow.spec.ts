@@ -5,7 +5,7 @@ test.describe('Chatbot Deterministic Intake Flow', () => {
     await page.goto('/');
     await page.evaluate(() => sessionStorage.clear());
     await page.reload();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
   });
 
   test('should start with the welcome message and the first intake question', async ({ page }) => {
