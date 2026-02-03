@@ -209,13 +209,13 @@ check_file_contains "NextAuth config has redirect callback" \
     "lib/auth/config.ts" \
     "async redirect"
 
-check_file_contains "Proxy (middleware) uses getToken" \
-    "proxy.ts" \
+check_file_contains "Middleware uses getToken" \
+    "middleware.ts" \
     "getToken"
 
 check_file_contains "Protected routes defined" \
-    "proxy.ts" \
-    "PROTECTED_ROUTES"
+    "middleware.ts" \
+    "matcher"
 
 echo ""
 echo -e "${YELLOW}=== 8. Code Quality ===${NC}"
