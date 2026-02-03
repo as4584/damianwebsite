@@ -24,7 +24,8 @@ const intentLabels: Record<LeadIntent, string> = {
   unknown: '💭 Exploring'
 };
 
-function formatRelativeTime(date: Date): string {
+function formatRelativeTime(dateInput: Date | string): string {
+  const date = typeof dateInput === 'string' ? new Date(dateInput) : dateInput;
   const now = new Date();
   const diffMs = now.getTime() - date.getTime();
   const diffMins = Math.floor(diffMs / 60000);

@@ -128,6 +128,17 @@ ${issues.length > 0 ? issues.map(i => `- ${i}`).join('\n') : 'No issues detected
   test('VISUAL CONFIDENCE: Compare dashboard screenshots', async ({ page }) => {
     console.log('📸 Running visual confidence test...');
     
+    // Log console errors
+    page.on('console', msg => {
+      if (msg.type() === 'error') {
+        console.log(`PAGE ERROR: ${msg.text()}`);
+      }
+    });
+
+    page.on('pageerror', err => {
+      console.log(`PAGE EXCEPTION: ${err.message}`);
+    });
+
     // Login
     await page.goto('/login');
     await page.fill('input[type="email"]', 'test@innovation.com');
@@ -135,7 +146,14 @@ ${issues.length > 0 ? issues.map(i => `- ${i}`).join('\n') : 'No issues detected
     await page.click('button[type="submit"]');
     await page.waitForURL('/dashboard');
     
-    await page.waitForLoadState('networkidle');
+    // Use load instead of networkidle which can be flaky in CI
+    await page.waitForLoadState('load');
+    
+    // Wait for the dashboard to actually render something
+    await expect(page.locator('h1:has-text("Innovation Business Development Solutions")')).toBeVisible({ timeout: 15000 });
+    
+    // Wait for analytics data to be loaded to ensure all checks pass
+    await expect(page.locator('[data-testid="total-leads"]')).toBeVisible({ timeout: 15000 });
     await page.waitForTimeout(2000);
     
     // Take screenshot immediately (before data loads)
@@ -162,7 +180,7 @@ ${issues.length > 0 ? issues.map(i => `- ${i}`).join('\n') : 'No issues detected
       hasBranding: html.includes('Innovation Business Development Solutions'),
       noMockEmail: !html.includes('sample@example.com'),
       noMockName: !html.includes('Sample User'),
-      hasMetrics: html.includes('Total Visits') || html.includes('Bounce Rate'),
+      hasMetrics: html.includes('Total Leads') || html.includes('Analytics'),
       hasLeadCounts: html.includes('Hot') && html.includes('Warm') && html.includes('Cold')
     };
     

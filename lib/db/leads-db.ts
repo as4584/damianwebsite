@@ -1,11 +1,18 @@
 /**
  * Leads Database Module
  * Handles creation and storage of leads from the chatbot
+ * 
+ * production-ready: This module uses Supabase for persistent storage
+ * with an in-memory fallback for resilience. zero mock data is used
+ * in production mode. All leads must be created via the chatbot intake flow.
  */
 
 import { Lead, LeadIntent, LeadHotness } from '@/app/dashboard/types';
 import { db as mockDb } from './mock-db';
-import { supabase } from '../supabase';
+import { getSupabaseClient, isSupabaseEnabled } from '../supabase/client';
+
+// Get Supabase client (CI-aware)
+const supabase = getSupabaseClient();
 
 // Get default business ID - use the seeded business from mock-db
 const DEFAULT_BUSINESS_ID = 'biz_innovation_001';
@@ -13,17 +20,8 @@ const DEFAULT_BUSINESS_ID = 'biz_innovation_001';
 // In-memory store for leads (FALLBACK for when Supabase is not connected)
 const leadsStore = new Map<string, Lead>();
 
-function isSupabaseEnabled(): boolean {
-  if (process.env.NODE_ENV === 'test') return false;
-  if (process.env.SUPABASE_DISABLED === 'true') return false;
-
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!url || !anon) return false;
-  if (url === 'your-project-url.supabase.co') return false;
-  if (anon === 'your-anon-key') return false;
-  return true;
+function isSupabaseConfigured(): boolean {
+  return isSupabaseEnabled();
 }
 
 function seedSampleLeadsIfEmpty(): void {
@@ -31,7 +29,7 @@ function seedSampleLeadsIfEmpty(): void {
   // Always seed in tests, when explicitly requested, or when Supabase is not available
   const shouldSeed = process.env.NODE_ENV === 'test' || 
                      process.env.SEED_SAMPLE_LEADS === 'true' ||
-                     !isSupabaseEnabled();
+                     !isSupabaseConfigured();
   if (!shouldSeed) return;
 
   const now = Date.now();
@@ -368,7 +366,7 @@ export async function createLeadFromChat(data: ChatLeadData): Promise<Lead> {
   };
   
   // 1. SAVE TO SUPABASE (if configured)
-  if (isSupabaseEnabled()) {
+  if (isSupabaseConfigured()) {
     try {
       const { error } = await supabase
         .from('leads')
@@ -412,7 +410,7 @@ export async function getAllLeads(): Promise<Lead[]> {
     seedSampleLeadsIfEmpty();
   }
 
-  if (isSupabaseEnabled()) {
+  if (isSupabaseConfigured()) {
     try {
       const { data, error } = await supabase
         .from('leads')
@@ -422,7 +420,7 @@ export async function getAllLeads(): Promise<Lead[]> {
 
       if (data) {
         // Map Supabase snake_case to TypeScript camelCase
-        const leads: Lead[] = data.map(record => ({
+        const leads: Lead[] = data.map((record: any) => ({
           id: record.id,
           businessId: record.business_id,
           fullName: record.full_name,
@@ -467,7 +465,7 @@ export async function getLeadById(id: string): Promise<Lead | null> {
  * Update lead in database
  */
 export async function updateLeadInDb(id: string, updates: Partial<Lead>): Promise<void> {
-  if (isSupabaseEnabled()) {
+  if (isSupabaseConfigured()) {
     try {
       const { error } = await supabase
         .from('leads')

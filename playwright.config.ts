@@ -64,6 +64,9 @@ export default defineConfig({
     env: {
       PORT: '3001',
       NODE_ENV: 'production',
+      SUPABASE_DISABLED: 'true',
+      NEXTAUTH_URL: 'http://localhost:3001',
+      NEXTAUTH_SECRET: 'UDQ0C5vC8y9LpuALAFij+g7LzQWlkXCd6jiwNJtcI6g=',
     },
   },
 });
