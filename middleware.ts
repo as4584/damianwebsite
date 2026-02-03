@@ -34,3 +34,10 @@ export const config = {
     "/api/dashboard/:path*",
   ],
 };
+
+export const config = {
+  matcher: [
+    "/dashboard/:path*",
+    "/api/dashboard/:path*",
+  ],
+};
