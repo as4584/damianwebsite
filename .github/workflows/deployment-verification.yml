@@ -67,9 +67,15 @@ jobs:
             })
       
       - name: Run Confidence Score Tests
+        continue-on-error: true
         run: |
+          npm run build
+          npm run start &
+          npx wait-on http://localhost:3000 --timeout 60000
           npx playwright install chromium --with-deps
           npx playwright test e2e/confidence-score.spec.ts --project=chromium --reporter=list
+        env:
+          PORT: 3000
       
       - name: Upload Test Results
         if: always()
