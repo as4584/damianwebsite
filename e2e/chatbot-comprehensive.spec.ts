@@ -35,24 +35,18 @@ for (const { name, url } of TEST_URLS) {
       await page.goto(url);
       await page.waitForLoadState('networkidle');
       
-      // Give chatbot time to load (it might be dynamically rendered)
-      await page.waitForTimeout(3000);
-      
-      // Find chatbot button by aria-label (from debug test we know it has aria-label="Open chat")
+      // Find chatbot button (signal-based timeout replaces arbitrary sleep)
       const chatButton = page.locator('button[aria-label="Open chat"]');
-      await expect(chatButton).toBeVisible({ timeout: 10000 });
+      await expect(chatButton).toBeVisible({ timeout: 15000 });
       
       // Click directly via JavaScript since Playwright can't interact with fixed elements properly
       await page.evaluate(() => {
         const btn = document.querySelector('button[aria-label="Open chat"]') as HTMLButtonElement;
         if (btn) btn.click();
       });
-      await page.waitForTimeout(2000);
       
-      // Wait for chat modal to appear - look for specific modal elements
-      // The modal should have a header with "Chat with us"
-      const modalHeader = page.getByText('Chat with us');
-      await expect(modalHeader).toBeVisible({ timeout: 5000 });
+      // Wait for chat modal to appear (signal-based)
+      await expect(page.getByText('Chat with us')).toBeVisible({ timeout: 10000 });
       
       // Check for the greeting message - starts with "Hey there!"
       const greetingMessage = page.getByText(/Hey there/i);
@@ -107,18 +101,16 @@ for (const { name, url } of TEST_URLS) {
       await page.setViewportSize({ width: 1920, height: 1080 });
       await page.goto(url);
       await page.waitForLoadState('networkidle');
-      await page.waitForTimeout(3000);
       
       // Open chatbot using JavaScript click
       await page.evaluate(() => {
         const btn = document.querySelector('button[aria-label="Open chat"]') as HTMLButtonElement;
         if (btn) btn.click();
       });
-      await page.waitForTimeout(2000);
       
-      // Find input field - look for placeholder text
+      // Signal-based wait for input field
       const input = page.locator('input[placeholder*="Type" i], input[type="text"]').first();
-      await expect(input).toBeVisible({ timeout: 5000 });
+      await expect(input).toBeVisible({ timeout: 15000 });
       
       // Count initial messages
       const initialMessageCount = await page.locator('div').filter({ hasText: /hey there|hello/i }).count();
@@ -128,19 +120,18 @@ for (const { name, url } of TEST_URLS) {
       await input.fill('I want to start an LLC');
       await page.keyboard.press('Enter');
       
-      // Wait for response
-      await page.waitForTimeout(3000);
-      
-      // Verify user message appears
+      // Signal-based wait for user message
       const userMessage = page.locator('text="I want to start an LLC"');
-      await expect(userMessage).toBeVisible({ timeout: 5000 });
+      await expect(userMessage).toBeVisible({ timeout: 10000 });
       
-      // Verify bot responds
-      await page.waitForTimeout(2000);
-      const allMessages = await page.locator('div').filter({ hasText: /.+/i }).count();
-      expect(allMessages).toBeGreaterThan(initialMessageCount);
+      // Signal-based wait for bot response (count increases)
+      let finalMessageCount = 0;
+      await expect(async () => {
+        finalMessageCount = await page.locator('div').filter({ hasText: /.+/i }).count();
+        expect(finalMessageCount).toBeGreaterThan(initialMessageCount);
+      }).toPass({ timeout: 10000 });
       
-      console.log(`✅ Message interaction successful: ${initialMessageCount} → ${allMessages} messages`);
+      console.log(`✅ Message interaction successful: ${initialMessageCount} → ${finalMessageCount} messages`);
     });
     
     /**
@@ -151,40 +142,36 @@ for (const { name, url } of TEST_URLS) {
       await page.setViewportSize({ width: 1920, height: 1080 });
       await page.goto(url);
       await page.waitForLoadState('networkidle');
-      await page.waitForTimeout(3000);
       
       // Find chat button
       const chatButton = page.locator('button[aria-label="Open chat"]');
-      await expect(chatButton).toBeVisible();
+      await expect(chatButton).toBeVisible({ timeout: 10000 });
       
       // Click to open using JavaScript
       await page.evaluate(() => {
         const btn = document.querySelector('button[aria-label="Open chat"]') as HTMLButtonElement;
         if (btn) btn.click();
       });
-      await page.waitForTimeout(1500);
       
-      // Verify modal is open - look for header
+      // Verify modal is open (signal-based)
       const modalHeader = page.getByText('Chat with us');
-      await expect(modalHeader).toBeVisible({ timeout: 5000 });
+      await expect(modalHeader).toBeVisible({ timeout: 10000 });
       
       console.log('✅ Chat opened successfully');
       
-      // Find close button in modal header (not the bubble button)
-      const closeButton = page.locator('button[aria-label="Close chat"]').nth(1); // Second one is in modal
+      // Find close button in modal header
+      const closeButton = page.locator('button[aria-label="Close chat"]').nth(1);
       
       if (await closeButton.isVisible()) {
         await page.evaluate(() => {
-          // Click the close button in the modal header
           const buttons = document.querySelectorAll('button[aria-label="Close chat"]');
           if (buttons.length > 1) {
-            (buttons[1] as HTMLButtonElement).click(); // Modal close button
+            (buttons[1] as HTMLButtonElement).click();
           }
         });
-        await page.waitForTimeout(1000);
         
-        // Verify modal closed - header should not be visible
-        await expect(modalHeader).not.toBeVisible();
+        // Verify modal closed (signal-based)
+        await expect(modalHeader).not.toBeVisible({ timeout: 10000 });
         console.log('✅ Chat closed successfully');
       } else {
         console.log('Close button not found, trying bubble toggle');
@@ -192,10 +179,8 @@ for (const { name, url } of TEST_URLS) {
           const btn = document.querySelector('button[aria-label="Open chat"]') as HTMLButtonElement;
           if (btn) btn.click();
         });
-        await page.waitForTimeout(1000);
         
-        const isStillVisible = await modalHeader.isVisible().catch(() => false);
-        expect(isStillVisible).toBe(false);
+        await expect(modalHeader).not.toBeVisible({ timeout: 10000 });
         console.log('✅ Chat toggled closed successfully');
       }
     });
@@ -209,22 +194,20 @@ for (const { name, url } of TEST_URLS) {
       await page.setViewportSize({ width: 1920, height: 1080 });
       await page.goto(url);
       await page.waitForLoadState('networkidle');
-      await page.waitForTimeout(3000);
       
       await page.evaluate(() => {
         const btn = document.querySelector('button[aria-label="Open chat"]') as HTMLButtonElement;
         if (btn) btn.click();
       });
-      await page.waitForTimeout(1500);
       
       const chatModal = page.getByText('Chat with us').locator('..');
+      await expect(chatModal).toBeVisible({ timeout: 10000 });
       
       const desktopBox = await chatModal.boundingBox();
       expect(desktopBox).not.toBeNull();
       
       console.log('Desktop chat size:', desktopBox);
       
-      // Should not take up full screen on desktop
       if (desktopBox) {
         expect(desktopBox.width).toBeLessThan(1920);
         expect(desktopBox.height).toBeLessThan(1080);
@@ -234,22 +217,20 @@ for (const { name, url } of TEST_URLS) {
       await page.setViewportSize({ width: 375, height: 667 });
       await page.goto(url);
       await page.waitForLoadState('networkidle');
-      await page.waitForTimeout(3000);
       
       await page.evaluate(() => {
         const btn = document.querySelector('button[aria-label="Open chat"]') as HTMLButtonElement;
         if (btn) btn.click();
       });
-      await page.waitForTimeout(1500);
       
       const chatModalMobile = page.getByText('Chat with us').locator('..');
+      await expect(chatModalMobile).toBeVisible({ timeout: 10000 });
       
       const mobileBox = await chatModalMobile.boundingBox();
       expect(mobileBox).not.toBeNull();
       
       console.log('Mobile chat size:', mobileBox);
       
-      // Should adapt to mobile screen
       if (mobileBox) {
         expect(mobileBox.width).toBeLessThanOrEqual(375);
         expect(mobileBox.height).toBeLessThanOrEqual(667);

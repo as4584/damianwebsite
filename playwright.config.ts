@@ -55,11 +55,15 @@ export default defineConfig({
     },
   ],
   
-  // webServer disabled - running manually
-  // webServer: {
-  //   command: 'npm run dev',
-  //   url: 'http://localhost:3001',
-  //   reuseExistingServer: !process.env.CI,
-  //   timeout: 120000,
-  // },
+  // webServer configuration handles startup and readiness signals
+  webServer: {
+    command: 'npm run start',
+    url: 'http://localhost:3001/api/health',
+    reuseExistingServer: !process.env.CI,
+    timeout: 120000,
+    env: {
+      PORT: '3001',
+      NODE_ENV: 'production',
+    },
+  },
 });

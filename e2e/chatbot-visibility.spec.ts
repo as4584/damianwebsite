@@ -38,13 +38,12 @@ test.describe('Chatbot Visibility - Desktop', () => {
     
     // Click to open
     await chatbotWidget.click();
-    await page.waitForTimeout(1000);
     
-    // Verify chat window opened
+    // Verify chat window opened (signal-based visibility check)
     const chatWindow = page.locator('[class*="chat"], [role="dialog"]').filter({ 
       hasText: /message|chat|type/i 
     });
-    await expect(chatWindow).toBeVisible();
+    await expect(chatWindow).toBeVisible({ timeout: 10000 });
     
     // Take screenshot
     await page.screenshot({ 
@@ -108,11 +107,10 @@ test.describe('Chatbot Visibility - Tablet', () => {
     
     // Click to open
     await chatbotWidget.click();
-    await page.waitForTimeout(1000);
     
-    // Verify chat window is responsive
+    // Verify chat window is responsive (signal-based)
     const chatWindow = page.locator('[class*="chat"], [role="dialog"]');
-    await expect(chatWindow).toBeVisible();
+    await expect(chatWindow).toBeVisible({ timeout: 10000 });
     
     // Take screenshot
     await page.screenshot({ 
@@ -161,11 +159,10 @@ test.describe('Chatbot Visibility - Mobile', () => {
     
     // Click to open (tap on mobile)
     await chatbotWidget.click();
-    await page.waitForTimeout(1000);
     
-    // Verify chat window opens and is usable
+    // Verify chat window opens and is usable (signal-based)
     const chatWindow = page.locator('[class*="chat"], [role="dialog"]');
-    await expect(chatWindow).toBeVisible();
+    await expect(chatWindow).toBeVisible({ timeout: 10000 });
     
     // Verify chat input is accessible
     const chatInput = page.locator('input[type="text"], textarea').first();
@@ -221,11 +218,10 @@ test.describe('Chatbot Visibility - Mobile', () => {
     
     // Test tap gesture
     await chatbotWidget.tap();
-    await page.waitForTimeout(1000);
     
-    // Verify opened
+    // Verify opened (signal-based)
     const chatWindow = page.locator('[class*="chat"], [role="dialog"]');
-    await expect(chatWindow).toBeVisible();
+    await expect(chatWindow).toBeVisible({ timeout: 10000 });
     
     // Close button should be accessible
     const closeButton = chatWindow.locator('button').filter({ 
@@ -234,10 +230,9 @@ test.describe('Chatbot Visibility - Mobile', () => {
     
     if (await closeButton.count() > 0) {
       await closeButton.first().tap();
-      await page.waitForTimeout(500);
       
-      // Should close
-      await expect(chatWindow).not.toBeVisible();
+      // Should close (signal-based)
+      await expect(chatWindow).not.toBeVisible({ timeout: 5000 });
     }
     
     console.log('✅ Chatbot responds to touch gestures');
@@ -289,11 +284,10 @@ test.describe('Chatbot Accessibility', () => {
     
     // Press Enter to open
     await page.keyboard.press('Enter');
-    await page.waitForTimeout(1000);
     
-    // Verify opened
+    // Verify opened (signal-based)
     const chatWindow = page.locator('[class*="chat"], [role="dialog"]');
-    await expect(chatWindow).toBeVisible();
+    await expect(chatWindow).toBeVisible({ timeout: 10000 });
     
     console.log('✅ Chatbot is keyboard accessible');
   });

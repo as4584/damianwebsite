@@ -34,9 +34,9 @@ test.describe('Authentication & Dashboard Security', () => {
     const submitButton = page.locator('button[type="submit"]');
     await submitButton.click();
     
-    // Wait for navigation to complete (any navigation)
+    // Wait for navigation to complete (signal-based)
+    await expect(page).toHaveURL(/\/dashboard/);
     await page.waitForLoadState('networkidle');
-    await page.waitForTimeout(2000); // Give extra time for redirects
     
     const currentUrl = page.url();
     console.log('📍 Current URL after login:', currentUrl);
@@ -84,10 +84,9 @@ test.describe('Authentication & Dashboard Security', () => {
     
     // Wait for dashboard to fully load
     await page.waitForLoadState('networkidle');
-    await page.waitForTimeout(2000); // Give time for API calls
     
     // Verify dashboard header is visible
-    await expect(page.getByRole('heading', { name: /Innovation Business Development Solutions/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Innovation Business Development Solutions/i })).toBeVisible({ timeout: 15000 });
     
     // Get lead count badges (Hot, Warm, Cold)
     // These should be visible even if 0
@@ -131,10 +130,9 @@ test.describe('Authentication & Dashboard Security', () => {
     
     // Wait for dashboard to load
     await page.waitForLoadState('networkidle');
-    await page.waitForTimeout(2000);
     
     // Verify dashboard header
-      await expect(page.getByRole('heading', { name: /Innovation Business Development Solutions/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Innovation Business Development Solutions/i })).toBeVisible({ timeout: 15000 });
     // Verify Overview section exists (metrics may be loading)
     const overviewHeading = page.locator('text=/Overview/i');
     if (await overviewHeading.isVisible({ timeout: 5000 })) {

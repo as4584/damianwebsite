@@ -9,6 +9,7 @@ describe('Action Suggestion', () => {
   describe('suggestNextAction', () => {
     const createMockLead = (overrides: Partial<Lead>): Lead => ({
       id: 'test-lead',
+      businessId: 'test-business',
       fullName: 'John Doe',
       email: 'john@example.com',
       phone: '555-1234',

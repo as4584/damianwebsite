@@ -69,15 +69,29 @@ jobs:
             })
       
       - name: Run Confidence Score Tests
-        continue-on-error: true
         run: |
           npm run build
-          npm run start &
-          npx wait-on http://localhost:3000 --timeout 60000
+          PORT=3000 npm run start &
+          SERVER_PID=$!
+          
+          # Readiness Contract Enforcement
+          chmod +x scripts/wait-for-app.sh
+          scripts/wait-for-app.sh http://localhost:3000/api/health 120
+          
+          # Guardrail
+          if ! curl -s http://localhost:3000/api/health | grep -q '"ready":true'; then
+             echo "❌ READINESS CONTRACT VIOLATION"
+             kill $SERVER_PID || true
+             exit 1
+          fi
+          
           npx playwright install chromium --with-deps
           npx playwright test e2e/confidence-score.spec.ts --project=chromium --reporter=list
+          
+          kill $SERVER_PID || true
         env:
           PORT: 3000
+          NODE_ENV: production
       
       - name: Upload Test Results
         if: always()

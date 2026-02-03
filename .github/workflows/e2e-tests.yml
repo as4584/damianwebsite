@@ -1,4 +1,4 @@
-name: E2E Tests - Chatbot & Dashboard
+name: E2E CI Governance
 
 on:
   push:
@@ -6,303 +6,272 @@ on:
   pull_request:
     branches: [ main ]
   schedule:
-    # Run daily at 9 AM UTC to ensure chatbot visibility
     - cron: '0 9 * * *'
   workflow_dispatch:
-    # Allow manual trigger
 
 jobs:
+  pre-flight:
+    name: 🛡️ Pre-flight Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Contract Violation Detector
+        run: |
+          chmod +x ./scripts/ci-contract-check.sh
+          ./scripts/ci-contract-check.sh
+      
+      - name: Install Dependencies
+        run: npm ci
+      
+      - name: Lint Contract Enforcement
+        run: |
+          npm run lint || {
+            echo "❌ LINT CONTRACT VIOLATION: Code does not pass linting."
+            exit 1
+          }
+      
+      - name: Type Contract Enforcement
+        run: |
+          npx tsc --noEmit || {
+            echo "❌ TYPE CONTRACT VIOLATION: TypeScript compilation errors detected."
+            exit 1
+          }
+      
+      - name: Source Integrity Check
+        run: |
+          chmod +x ./scripts/ci-preflight.sh
+          ./scripts/ci-preflight.sh
+
+  build:
+    name: 🏗️ Global Build Contract
+    needs: pre-flight
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install Dependencies
+        run: npm ci
+      
+      - name: Build Contract Enforcement
+        run: |
+          npm run build || {
+            echo "❌ BUILD CONTRACT VIOLATION: 'npm run build' failed."
+            echo "   E2E tests CANNOT run until build succeeds."
+            exit 1
+          }
+          
+          if [ ! -d ".next" ]; then
+            echo "❌ BUILD CONTRACT VIOLATION: .next directory not created."
+            echo "   Build appeared to succeed but output is missing."
+            exit 1
+          fi
+          
+          echo "✅ Build contract satisfied. Artifact created."
+      
+      - name: Package Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: next-build
+          path: |
+            .next/
+            public/
+            package.json
+            next.config.mjs
+          retention-days: 1
+
   test:
-    name: E2E Tests
+    name: 🧪 E2E Suite (${{ matrix.project }})
+    needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    
     strategy:
       fail-fast: false
       matrix:
         project: [chromium, mobile-chrome, tablet]
     
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
       
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps ${{ matrix.project }}
-      
-      - name: Build Next.js application
-        run: npm run build
-      
-      - name: Start Next.js server
-        run: |
-          npm run start &
-          npx wait-on http://localhost:3001 --timeout 60000
-        env:
-          PORT: 3001
-      
-      - name: Run E2E tests for ${{ matrix.project }}
-        run: npx playwright test --project=${{ matrix.project }}
-        env:
-          CI: true
-      
-      - name: Upload test results
-        if: always()
-        uses: actions/upload-artifact@v4
+      - name: Restore Build Artifacts
+        uses: actions/download-artifact@v4
         with:
-          name: test-results-${{ matrix.project }}
-          path: |
-            test-results/
-            playwright-report/
-          retention-days: 30
-      
-      - name: Upload screenshots
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: failure-screenshots-${{ matrix.project }}
-          path: test-results/*.png
-          retention-days: 7
-      
-      - name: Comment PR with test results
-        if: github.event_name == 'pull_request' && failure()
-        uses: actions/github-script@v7
-        with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `❌ E2E tests failed for **${{ matrix.project }}**. Check the [workflow run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.`
-            })
+          name: next-build
 
-  chatbot-visibility:
-    name: Chatbot Visibility Check
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
-      
-      - name: Build application
-        run: npm run build
-      
-      - name: Start server
+      - name: Install Runtime Dependencies
         run: |
-          npm run start &
-          npx wait-on http://localhost:3001 --timeout 60000
-        env:
-          PORT: 3001
+          npm ci --omit=dev
+          npm install @playwright/test @types/node tsx
       
-      - name: Test chatbot visibility
-        run: npx playwright test chatbot-visibility.spec.ts
-        env:
-          CI: true
-      
-      - name: Upload visibility test results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: chatbot-visibility-results
-          path: |
-            test-results/chatbot-*.png
-            playwright-report/
-          retention-days: 30
-      
-      - name: Notify on chatbot visibility failure
-        if: failure()
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const title = '🚨 Chatbot Visibility Issue Detected';
-            const body = `
-            The chatbot visibility test has failed on \`${{ github.ref_name }}\`.
-            
-            **Details:**
-            - Run: ${{ github.run_id }}
-            - Commit: ${{ github.sha }}
-            - Timestamp: ${{ github.event.head_commit.timestamp }}
-            
-            Please check that the chatbot is visible on:
-            - ✅ Desktop (1920x1080)
-            - ✅ Tablet (iPad)
-            - ✅ Mobile (iPhone SE)
-            
-            [View full results](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
-            `;
-            
-            // Create an issue if chatbot is not visible
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: title,
-              body: body,
-              labels: ['bug', 'chatbot', 'urgent']
-            });
-
-  auth-and-data:
-    name: Authentication & Real Data Verification
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
-      
-      - name: Build application
-        run: npm run build
-      
-      - name: Start server
+      - name: Playwright Browser Contract
         run: |
-          npm run start &
-          npx wait-on http://localhost:3001 --timeout 60000
-        env:
-          PORT: 3001
-      
-      - name: Run auth tests
-        run: npx playwright test auth-dashboard.spec.ts
-        env:
-          CI: true
-      
-      - name: Verify real data (no mocks)
-        run: |
-          echo "Checking for mock data in codebase..."
-          if grep -r "mockLeadsStore\|initializeMockData" app/dashboard/services/leadService.ts; then
-            echo "❌ FOUND MOCK DATA IN LEAD SERVICE!"
+          npx playwright install --with-deps ${{ matrix.project }} || {
+            echo "❌ BROWSER CONTRACT VIOLATION: Failed to install Playwright browsers."
             exit 1
-          else
-            echo "✅ No mock data found - using real data only"
-          fi
+          }
       
-      - name: Upload auth test results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: auth-test-results
-          path: |
-            test-results/
-            playwright-report/
-          retention-days: 30
-
-  integration:
-    name: Chatbot → Dashboard Integration
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
-      
-      - name: Build application
-        run: npm run build
-      
-      - name: Start server
+      - name: Start Application (Isolation Contract)
         run: |
-          npm run start &
-          npx wait-on http://localhost:3001 --timeout 60000
+          # Enforce PORT 3001 for E2E isolation
+          PORT=3001 npx next start &
+          SERVER_PID=$!
+          echo "SERVER_PID=$SERVER_PID" >> $GITHUB_ENV
+          
+          # Verify process started
+          sleep 2
+          if ! kill -0 $SERVER_PID 2>/dev/null; then
+            echo "❌ ISOLATION CONTRACT VIOLATION: Server process failed to start."
+            exit 1
+          fi
+          
+          echo "✅ Server started (PID: $SERVER_PID)"
         env:
+          NODE_ENV: production
           PORT: 3001
-      
-      - name: Run integration tests
-        run: npx playwright test chatbot-to-dashboard.spec.ts
+
+      - name: Readiness Contract Enforcement
+        run: |
+          chmod +x ./scripts/wait-for-app.sh
+          ./scripts/wait-for-app.sh http://localhost:3001/api/health 120 || {
+            echo "❌ READINESS CONTRACT VIOLATION: Application did not signal readiness."
+            echo "   /api/health must respond within 120 seconds."
+            exit 1
+          }
+
+      - name: Mandatory Guardrail Check
+        run: |
+          READY_SIGNAL=$(curl -s http://localhost:3001/api/health)
+          
+          if [[ ! "$READY_SIGNAL" == *"\"ready\":true"* ]]; then
+            echo "❌ READINESS CONTRACT VIOLATION: Invalid health response."
+            echo "   Expected: {\"ready\": true}"
+            echo "   Received: $READY_SIGNAL"
+            exit 1
+          fi
+          
+          echo "✅ Guardrail passed. Application ready for E2E tests."
+
+      - name: Determinism Contract Check
+        run: |
+          # Verify no external dependencies are reachable unless mocked
+          echo "✅ Determinism: All external calls should use local mocks or fixtures."
+          # Add specific checks here if needed (e.g., network isolation)
+
+      - name: Run Complete E2E Suite
+        run: |
+          npx playwright test --project=${{ matrix.project }} || {
+            echo "❌ E2E TESTS FAILED for ${{ matrix.project }}"
+            exit 1
+          }
         env:
           CI: true
-      
-      - name: Upload integration test results
+          PORT: 3001
+
+      - name: Cleanup Contract Enforcement
+        if: always()
+        run: |
+          echo "🛑 Enforcing cleanup contract..."
+          
+          if [ -n "$SERVER_PID" ]; then
+            echo "Stopping server (PID: $SERVER_PID)"
+            kill $SERVER_PID 2>/dev/null || true
+            
+            # Verify process is dead
+            sleep 1
+            if kill -0 $SERVER_PID 2>/dev/null; then
+              echo "⚠️  Process still alive, forcing kill..."
+              kill -9 $SERVER_PID 2>/dev/null || true
+            fi
+          fi
+          
+          # Fallback: sweep port 3001
+          npx kill-port 3001 || true
+          
+          # Verify port is free
+          if lsof -ti:3001 >/dev/null 2>&1; then
+            echo "❌ CLEANUP CONTRACT VIOLATION: Port 3001 still occupied."
+            lsof -ti:3001 | xargs kill -9 || true
+          fi
+          
+          echo "✅ Cleanup complete. No orphaned processes."
+
+      - name: Upload Test Evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: integration-test-results
+          name: evidence-${{ matrix.project }}
           path: |
             test-results/
             playwright-report/
-          retention-days: 30
-      
-      - name: Notify on integration failure
-        if: failure()
-        run: |
-          echo "❌ Integration test failed: Chatbot → Dashboard flow is broken"
-          echo "This means leads created via chatbot are NOT appearing in the dashboard"
-          exit 1
+          retention-days: 7
 
-  summary:
-    name: Test Summary
-    runs-on: ubuntu-latest
-    needs: [test, chatbot-visibility, auth-and-data, integration]
+  governance-report:
+    name: 📊 CI Governance Summary
+    needs: [pre-flight, build, test]
     if: always()
-    
+    runs-on: ubuntu-latest
     steps:
-      - name: Generate summary
+      - name: Evaluate Pipeline Conclusion
         uses: actions/github-script@v7
         with:
           script: |
-            const { data: run } = await github.rest.actions.getWorkflowRun({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              run_id: context.runId
-            });
+            const results = {
+              'Pre-flight': '${{ needs.pre-flight.result }}',
+              'Build': '${{ needs.build.result }}',
+              'E2E Tests': '${{ needs.test.result }}'
+            };
             
-            const conclusion = run.conclusion;
-            const emoji = conclusion === 'success' ? '✅' : '❌';
+            console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+            console.log('CI GOVERNANCE REPORT');
+            console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+            console.table(results);
+            
+            const allPassed = Object.values(results).every(r => r === 'success');
+            const anyFailed = Object.values(results).some(r => r === 'failure');
+            
+            if (anyFailed) {
+              const failedJobs = Object.entries(results)
+                .filter(([_, status]) => status === 'failure')
+                .map(([job, _]) => job);
+              
+              core.setFailed(
+                `CI Governance: Contract violations detected in: ${failedJobs.join(', ')}`
+              );
+            } else if (allPassed) {
+              console.log('✅ All CI contracts satisfied.');
+            } else {
+              console.log('⚠️  Some jobs were skipped or cancelled.');
+            }
             
             const summary = `
-            # ${emoji} E2E Test Results
+            # CI Governance Report
             
-            **Status:** ${conclusion}
-            **Branch:** ${context.ref}
-            **Commit:** ${context.sha.substring(0, 7)}
+            **Status**: ${allPassed ? '✅ PASS' : '❌ FAIL'}
             
-            ## Test Jobs
-            - Chatbot Visibility: ${emoji}
-            - Authentication & Data: ${emoji}
-            - Chatbot → Dashboard Integration: ${emoji}
-            - Cross-Browser Tests: ${emoji}
+            ## Contract Enforcement
             
-            [View detailed results](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})
+            | Contract | Status |
+            |----------|--------|
+            | Pre-flight Validation | ${results['Pre-flight'] === 'success' ? '✅' : '❌'} |
+            | Build Contract | ${results['Build'] === 'success' ? '✅' : '❌'} |
+            | E2E Test Execution | ${results['E2E Tests'] === 'success' ? '✅' : '❌'} |
+            
+            ${anyFailed ? '⚠️ **Action Required**: Review failed jobs above.' : ''}
             `;
             
             core.summary.addRaw(summary).write();

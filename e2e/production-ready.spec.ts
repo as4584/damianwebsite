@@ -39,8 +39,8 @@ test.describe('Production Ready Dashboard - Zero Mock Data', () => {
     await expect(chatButton).toBeVisible({ timeout: 10000 });
     await chatButton.click();
     
-    // Wait for chat modal
-    await page.waitForTimeout(1000);
+    // Wait for chat modal (signal-based)
+    await expect(page.locator('[class*="chat"], [role="dialog"]')).toBeVisible({ timeout: 10000 });
     
     // Send initial message
     const chatInput = page.locator('input[type="text"], textarea').filter({
@@ -50,22 +50,25 @@ test.describe('Production Ready Dashboard - Zero Mock Data', () => {
     await chatInput.fill('I need help starting a business');
     await chatInput.press('Enter');
     
-    await page.waitForTimeout(2000);
+    // Wait for response to be processed (signal-based)
+    await expect(page.locator('text=/name|who|called/i')).toBeVisible({ timeout: 10000 });
     
     // Provide name
     await chatInput.fill(testLeadName);
     await chatInput.press('Enter');
-    await page.waitForTimeout(2000);
+    await expect(page.locator('text=/email|address/i')).toBeVisible({ timeout: 10000 });
     
     // Provide email
     await chatInput.fill(testLeadEmail);
     await chatInput.press('Enter');
-    await page.waitForTimeout(2000);
+    await expect(page.locator('text=/phone|number/i')).toBeVisible({ timeout: 10000 });
     
     // Provide phone
     await chatInput.fill('555-123-4567');
     await chatInput.press('Enter');
-    await page.waitForTimeout(2000);
+    
+    // Final verification (signal-based)
+    await expect(page.locator('text=/thank|received/i')).toBeVisible({ timeout: 10000 });
     
     console.log(`✅ Lead created: ${testLeadName} (${testLeadEmail})`);
   });
@@ -122,9 +125,9 @@ test.describe('Production Ready Dashboard - Zero Mock Data', () => {
     await page.click('button[type="submit"]');
     await page.waitForURL('/dashboard');
     
-    // Wait for data to load
+    // Wait for data to load (signal-based)
     await page.waitForLoadState('networkidle');
-    await page.waitForTimeout(3000);
+    await expect(page.getByRole('heading', { name: /Innovation Business Development Solutions|Overview/i }).first()).toBeVisible({ timeout: 15000 });
     
     // Get page content
     const content = await page.content();
