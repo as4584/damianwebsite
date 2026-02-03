@@ -60,13 +60,13 @@ function isPublicRoute(pathname: string): boolean {
 }
 
 /**
- * Main middleware function
+ * Main proxy function
  * Order of operations:
  * 1. Subdomain routing (CRITICAL - must run first)
  * 2. Authentication checks (validates session exists)
  * 3. Authorization checks (handled in server components)
  */
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   // STEP 1: Handle subdomain routing
   // This routes dashboard.* to /dashboard automatically
   const subdomainResponse = handleSubdomainRouting(request);

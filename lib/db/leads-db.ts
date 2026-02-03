@@ -97,7 +97,7 @@ function seedSampleLeadsIfEmpty(): void {
       conversation: [
         { role: 'user', content: 'Can I book a consultation for tomorrow?', timestamp: new Date(now - 1000 * 60 * 60 * 24 * 1) },
       ],
-      extractedInfo: { businessType: 'Tech Startup', consultationRequested: true },
+      extractedInfo: { businessType: 'Tech Startup' },
       createdAt: new Date(now - 1000 * 60 * 60 * 24 * 1), // 1 day ago
       updatedAt: new Date(now - 1000 * 60 * 60 * 24 * 1),
     }),
