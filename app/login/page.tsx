@@ -151,15 +151,15 @@ export default function LoginPage() {
             </p>
           </div>
 
-          {/* Forgot Password */}
-          <div className="mt-4 text-center">
+          {/* Forgot Password - Not yet implemented */}
+          {/* <div className="mt-4 text-center">
             <Link
               href="/forgot-password"
               className="text-sm text-gray-600 hover:text-gray-900"
             >
               Forgot your password?
             </Link>
-          </div>
+          </div> */}
         </div>
 
         {/* Demo Credentials (Development Only) */}
