@@ -169,7 +169,7 @@ export default function LoginPage() {
               Development Mode - Demo Credentials:
             </p>
             <p className="text-xs text-yellow-700 font-mono">
-              Email: demo@innovationdevelopmentsolutions.com<br />
+              Email: demo@{process.env.NEXT_PUBLIC_SITE_URL?.replace('https://', '').replace('http://', '') || 'example.com'}<br />
               Password: demo1234
             </p>
           </div>
