@@ -1,0 +1,6 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Run pre-push validation
+echo "🔍 Running pre-push validation..."
+./scripts/pre-push-validation.sh
