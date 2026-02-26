@@ -11,6 +11,8 @@ This registry tracks versioned documentation backup artifacts that are committed
 - **SHA256:** `6c6f8f38e7385a16932f86a89c461b8d48dfc543fc62dfbfae5b2939bbd70023`
 - **Repository:** `https://github.com/as4584/damianwebsite`
 - **Branch:** `main`
+- **Git Tag:** `docs-v2026.02.26-01`
+- **Commit:** `6e531d8`
 
 ## Agent Context
 

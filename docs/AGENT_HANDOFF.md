@@ -7,6 +7,8 @@ The documentation backup is committed to GitHub in this repository and tracked b
 - Registry: `docs/BACKUP_REGISTRY.md`
 - Latest Archive: `docs/backups/docs-backup-v2026.02.26-01.tar.gz`
 - Latest Checksum: `docs/backups/docs-backup-v2026.02.26-01.sha256`
+- Git Tag: `docs-v2026.02.26-01`
+- Commit: `6e531d8`
 
 ## Current Documentation Layout
 
