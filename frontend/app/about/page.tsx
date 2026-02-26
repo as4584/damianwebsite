@@ -31,15 +31,6 @@ const stats = [
   { number: 'Full-Stack', label: 'Infrastructure Platform' },
 ]
 
-const capabilities = [
-  'Business formation (LLC, nonprofit, multi-state)',
-  'Websites and custom domains',
-  'Custom applications tailored to your operations',
-  'AI tools (chatbots, receptionists, automation)',
-  'Email and digital communication infrastructure',
-  'Ongoing compliance and operational support',
-]
-
 export default function AboutPage() {
   return (
     <div className="pt-16 md:pt-20">
@@ -163,55 +154,6 @@ export default function AboutPage() {
                 <p className="body-regular">{value.description}</p>
               </motion.div>
             ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* What We Build Section */}
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
-            <div className="lg:col-span-4">
-              <motion.div initial="hidden" whileInView="visible" viewport={viewportConfig} variants={fadeIn}>
-                <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-400 mb-4">
-                  Capabilities
-                </p>
-                <h2 className="heading-2">What we build</h2>
-              </motion.div>
-            </div>
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={viewportConfig}
-              variants={staggerContainer}
-              className="lg:col-span-8"
-            >
-              <ul className="space-y-4">
-                {capabilities.map((item) => (
-                  <motion.li key={item} variants={fadeIn} className="flex items-start text-base md:text-lg text-neutral-600">
-                    <span className="w-1.5 h-1.5 bg-primary-900 rounded-full mr-4 mt-2.5 flex-shrink-0" />
-                    {item}
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="py-16 md:py-20 bg-neutral-50 border-y border-neutral-200">
-        <div className="container-custom">
-          <motion.div initial="hidden" whileInView="visible" viewport={viewportConfig} variants={fadeIn} className="max-w-3xl">
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-400 mb-4">
-              The Team
-            </p>
-            <h2 className="heading-2 mb-6">One team. Complete infrastructure.</h2>
-            <p className="body-large">
-              Our team includes formation specialists, developers, AI engineers, compliance 
-              coordinators, and infrastructure architects. We work as one team to build your 
-              complete business system.
-            </p>
           </motion.div>
         </div>
       </section>

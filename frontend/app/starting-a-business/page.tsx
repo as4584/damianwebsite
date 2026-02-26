@@ -85,19 +85,11 @@ const faqs = [
   },
   {
     question: 'How long does it take to get everything set up?',
-    answer: 'Business formation typically takes 24\u201348 hours once the intake information is completed accurately. Your EIN is often issued the same day. Website and system development timelines vary based on complexity, but typically take 2\u20134 weeks, as we work closely with you to ensure everything is built exactly the way you want it.',
-  },
-  {
-    question: 'Do I need a lawyer to start a business?',
-    answer: "Not for basic formation. We handle the paperwork and coordination. If you have complex legal questions or contracts, we can guide you on when to involve an attorney. But for straightforward LLC formation and setup, we handle it directly.",
+    answer: 'Business formation typically takes 24–48 hours once the intake information is completed accurately. Your EIN is often issued the same day. Website and system development timelines vary based on complexity, but typically take 2–4 weeks, as we work closely with you to ensure everything is built exactly the way you want it.',
   },
   {
     question: "What doesn't this include?",
-    answer: "We don't provide legal advice, tax preparation, or accounting services. We also don't handle highly specialized licenses (like medical or legal licenses) \u2014 though we coordinate with the right agencies. Our focus is building the infrastructure your business needs to operate.",
-  },
-  {
-    question: 'How is this different from ZenBusiness or LegalZoom?',
-    answer: "Those services stop after formation. We keep going. Formation, EIN, website, operational systems, and ongoing compliance \u2014 all coordinated by one team. No handoffs to other vendors. Everything works together.",
+    answer: "We don't provide legal advice, tax preparation, or accounting services. We also don't handle highly specialized licenses (like medical or legal licenses) — though we coordinate with the right agencies. Our focus is building the infrastructure your business needs to operate.",
   },
 ]
 
@@ -123,7 +115,6 @@ const whyStructure = [
 export default function StartingABusinessPage() {
   return (
     <div className="pt-16 md:pt-20">
-      {/* Hero Section */}
       <section className="bg-primary-900 py-20 md:py-28">
         <div className="container-custom">
           <motion.div
@@ -147,7 +138,6 @@ export default function StartingABusinessPage() {
         </div>
       </section>
 
-      {/* Why Structure Matters */}
       <section className="section-padding bg-white">
         <div className="container-custom">
           <motion.div initial="hidden" whileInView="visible" viewport={viewportConfig} variants={fadeIn} className="mb-16">
@@ -178,7 +168,6 @@ export default function StartingABusinessPage() {
         </div>
       </section>
 
-      {/* The Process */}
       <section className="section-padding bg-neutral-50 border-y border-neutral-200">
         <div className="container-custom">
           <motion.div initial="hidden" whileInView="visible" viewport={viewportConfig} variants={fadeIn} className="mb-16">
@@ -224,7 +213,6 @@ export default function StartingABusinessPage() {
         </div>
       </section>
 
-      {/* Common Questions */}
       <section className="section-padding bg-white">
         <div className="container-custom">
           <motion.div initial="hidden" whileInView="visible" viewport={viewportConfig} variants={fadeIn} className="mb-16">
@@ -254,31 +242,6 @@ export default function StartingABusinessPage() {
         </div>
       </section>
 
-      {/* No Vendor Handoffs */}
-      <section className="section-padding bg-neutral-50 border-y border-neutral-200">
-        <div className="container-custom">
-          <motion.div initial="hidden" whileInView="visible" viewport={viewportConfig} variants={fadeIn} className="max-w-3xl">
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-400 mb-4">
-              Our Approach
-            </p>
-            <h2 className="heading-2 mb-6">No vendor handoffs</h2>
-            <p className="body-regular mb-6">
-              Most formation services stop after filing paperwork. Then they tell you to find
-              a web designer. Then an accountant. Then a developer. Each vendor only knows
-              their piece.
-            </p>
-            <p className="body-regular mb-6">
-              We handle it all. Formation, EIN, website, systems, compliance. One team that
-              sees the complete picture and coordinates everything.
-            </p>
-            <p className="text-base font-medium text-primary-900">
-              This is what step-by-step guidance actually looks like.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
       <section className="py-24 md:py-32 bg-primary-900 text-white">
         <div className="container-custom">
           <motion.div initial="hidden" whileInView="visible" viewport={viewportConfig} variants={fadeIn} className="max-w-2xl">
@@ -289,20 +252,12 @@ export default function StartingABusinessPage() {
               Schedule a free consultation. {"We'll"} explain exactly what you need and guide
               you through every step.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center px-10 py-4 text-sm font-medium tracking-wide uppercase text-primary-900 bg-white border border-white hover:bg-neutral-100 transition-colors duration-200"
-              >
-                Schedule Consultation
-              </Link>
-              <Link
-                href="/services"
-                className="inline-flex items-center justify-center px-10 py-4 text-sm font-medium tracking-wide uppercase text-white border border-white/30 hover:border-white hover:bg-white/5 transition-colors duration-200"
-              >
-                See All Services
-              </Link>
-            </div>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center px-10 py-4 text-sm font-medium tracking-wide uppercase text-primary-900 bg-white border border-white hover:bg-neutral-100 transition-colors duration-200"
+            >
+              Schedule Consultation
+            </Link>
             <div className="mt-12">
               <ComplianceDisclaimer className="text-neutral-500" />
             </div>

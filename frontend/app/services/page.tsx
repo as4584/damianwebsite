@@ -167,10 +167,7 @@ export default function ServicesPage() {
                       {service.pricing}
                     </span>
                     <h2 className="heading-3 mt-2 mb-4">{service.title}</h2>
-                    <p className="body-regular mb-8">{service.longDescription}</p>
-                    <Link href="/contact" className="btn-primary text-xs">
-                      Discuss Your Needs
-                    </Link>
+                    <p className="body-regular">{service.longDescription}</p>
                   </div>
                   <div>
                     <p className="text-xs font-medium text-neutral-400 uppercase tracking-[0.15em] mb-4">

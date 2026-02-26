@@ -63,7 +63,7 @@ export default function SignupPage() {
   };
 
   const inputClasses =
-    'w-full px-4 py-3 bg-neutral-50 border border-neutral-300 rounded-sm text-primary-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-gold/40 focus:border-accent-gold transition-colors';
+    'w-full px-4 py-3 bg-neutral-50 border border-neutral-300 text-primary-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-gold/40 focus:border-accent-gold transition-colors';
 
   return (
     <div className="min-h-screen bg-neutral-50 flex flex-col">
@@ -85,7 +85,7 @@ export default function SignupPage() {
           </div>
 
           {/* Signup Card */}
-          <div className="bg-white border border-neutral-200 rounded-sm shadow-sm p-8 sm:p-10">
+          <div className="bg-white border border-neutral-200 p-8 sm:p-10">
             <h2 className="font-serif text-2xl text-primary-900 mb-8">
               Sign Up
             </h2>
@@ -180,7 +180,7 @@ export default function SignupPage() {
 
               {/* Error */}
               {error && (
-                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-sm text-sm">
+                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 text-sm">
                   {error}
                 </div>
               )}
@@ -189,7 +189,7 @@ export default function SignupPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-primary-900 text-white py-3.5 px-6 rounded-sm hover:bg-primary-800 focus:ring-2 focus:ring-accent-gold focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium text-sm tracking-wide uppercase"
+                className="w-full bg-primary-900 text-white py-3.5 px-6 hover:bg-primary-800 focus:ring-2 focus:ring-accent-gold focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium text-sm tracking-wide uppercase"
               >
                 {isLoading ? 'Creating account...' : 'Create Account'}
               </button>

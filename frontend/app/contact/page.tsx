@@ -127,12 +127,7 @@ function ContactInfo() {
 
       <div className="space-y-6 mb-12">
         <div className="flex items-start">
-          <div className="flex-shrink-0 w-10 h-10 bg-neutral-100 flex items-center justify-center">
-            <svg className="w-4 h-4 text-primary-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-          </div>
-          <div className="ml-4">
+          <div>
             <p className="text-xs font-medium uppercase tracking-[0.1em] text-neutral-400 mb-1">Email</p>
             <a
               href="mailto:info@innovationbusinessservices.com"
@@ -144,12 +139,7 @@ function ContactInfo() {
         </div>
 
         <div className="flex items-start">
-          <div className="flex-shrink-0 w-10 h-10 bg-neutral-100 flex items-center justify-center">
-            <svg className="w-4 h-4 text-primary-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-            </svg>
-          </div>
-          <div className="ml-4">
+          <div>
             <p className="text-xs font-medium uppercase tracking-[0.1em] text-neutral-400 mb-1">Phone</p>
             <a
               href="tel:+1234567890"
@@ -161,12 +151,7 @@ function ContactInfo() {
         </div>
 
         <div className="flex items-start">
-          <div className="flex-shrink-0 w-10 h-10 bg-neutral-100 flex items-center justify-center">
-            <svg className="w-4 h-4 text-primary-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <div className="ml-4">
+          <div>
             <p className="text-xs font-medium uppercase tracking-[0.1em] text-neutral-400 mb-1">Office Hours</p>
             <p className="text-sm text-neutral-600">Monday – Friday: 9:00 AM – 5:00 PM</p>
           </div>
@@ -209,10 +194,6 @@ function FAQSection() {
     {
       q: 'What information do I need to get started?',
       a: "You'll need your desired business name, business address, member information, and your state of formation. We'll guide you through everything else.",
-    },
-    {
-      q: 'Do you offer ongoing support after formation?',
-      a: 'Yes! We provide ongoing compliance support, annual report filing, and consultation services to help your business stay compliant as you grow.',
     },
     {
       q: 'What states do you serve?',

@@ -5,8 +5,7 @@
 
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 interface ChatBubbleProps {
   onClick: () => void;
@@ -15,8 +14,6 @@ interface ChatBubbleProps {
 }
 
 export default function ChatBubble({ onClick, isOpen, hasUnread = false }: ChatBubbleProps) {
-  const [isHovered, setIsHovered] = useState(false);
-  
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
       console.log('✅ ChatBubble rendered - should be visible at bottom-right');
@@ -26,9 +23,7 @@ export default function ChatBubble({ onClick, isOpen, hasUnread = false }: ChatB
   return (
     <button
       onClick={onClick}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 w-14 h-14 sm:w-16 sm:h-16 bg-primary-900 text-white rounded-full shadow-sm hover:shadow-md flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary-900 focus:ring-offset-2 transition-colors duration-200 touch-manipulation"
+      className="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 w-14 h-14 sm:w-16 sm:h-16 bg-primary-900 text-white rounded-full shadow-sm flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary-900 focus:ring-offset-2 transition-colors duration-200 touch-manipulation"
       aria-label={isOpen ? "Close chat" : "Open chat"}
       style={{ 
         pointerEvents: 'auto',

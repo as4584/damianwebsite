@@ -69,7 +69,7 @@ export default function LoginPage() {
           </div>
 
           {/* Login Card */}
-          <div className="bg-white border border-neutral-200 rounded-sm shadow-sm p-8 sm:p-10">
+          <div className="bg-white border border-neutral-200 p-8 sm:p-10">
             <h2 className="font-serif text-2xl text-primary-900 mb-8">
               Sign In
             </h2>
@@ -90,7 +90,7 @@ export default function LoginPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   autoComplete="email"
-                  className="w-full px-4 py-3 bg-neutral-50 border border-neutral-300 rounded-sm text-primary-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-gold/40 focus:border-accent-gold transition-colors"
+                  className="w-full px-4 py-3 bg-neutral-50 border border-neutral-300 text-primary-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-gold/40 focus:border-accent-gold transition-colors"
                   placeholder="you@example.com"
                   disabled={isLoading}
                 />
@@ -111,7 +111,7 @@ export default function LoginPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   autoComplete="current-password"
-                  className="w-full px-4 py-3 bg-neutral-50 border border-neutral-300 rounded-sm text-primary-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-gold/40 focus:border-accent-gold transition-colors"
+                  className="w-full px-4 py-3 bg-neutral-50 border border-neutral-300 text-primary-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-gold/40 focus:border-accent-gold transition-colors"
                   placeholder="••••••••"
                   disabled={isLoading}
                 />
@@ -119,7 +119,7 @@ export default function LoginPage() {
 
               {/* Error */}
               {error && (
-                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-sm text-sm">
+                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 text-sm">
                   {error}
                 </div>
               )}
@@ -128,7 +128,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-primary-900 text-white py-3.5 px-6 rounded-sm hover:bg-primary-800 focus:ring-2 focus:ring-accent-gold focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium text-sm tracking-wide uppercase"
+                className="w-full bg-primary-900 text-white py-3.5 px-6 hover:bg-primary-800 focus:ring-2 focus:ring-accent-gold focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium text-sm tracking-wide uppercase"
               >
                 {isLoading ? 'Signing in...' : 'Sign In'}
               </button>
@@ -150,7 +150,7 @@ export default function LoginPage() {
 
           {/* Demo Credentials (Development Only) */}
           {process.env.NODE_ENV === 'development' && (
-            <div className="mt-6 bg-amber-50 border border-amber-200 rounded-sm p-4">
+            <div className="mt-6 bg-amber-50 border border-amber-200 p-4">
               <p className="text-xs font-medium uppercase tracking-wide text-amber-700 mb-2">
                 Development Mode — Demo Credentials
               </p>
