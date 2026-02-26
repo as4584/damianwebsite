@@ -1,13 +1,25 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
+import { heroImages } from '@/lib/heroImages'
 
 const Hero = () => {
   return (
     <section className="relative min-h-[85vh] flex items-center pt-20 md:pt-24 bg-primary-900 overflow-hidden">
+      <Image
+        src={heroImages[0].src}
+        alt={heroImages[0].alt}
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
+      />
+
       {/* Subtle dark texture overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary-950/40 via-transparent to-primary-900/60" />
+      <div className="absolute inset-0 bg-primary-950/55" />
+      <div className="absolute inset-0 bg-gradient-to-b from-primary-950/45 via-primary-950/20 to-primary-900/70" />
 
       <div className="container-custom relative z-10">
         <div className="max-w-3xl">
