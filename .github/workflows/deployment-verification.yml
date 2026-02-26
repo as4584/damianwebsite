@@ -29,8 +29,8 @@ jobs:
       - name: Run Deployment Verification
         id: verify
         run: |
-          chmod +x scripts/verify-deployment.sh
-          scripts/verify-deployment.sh
+          chmod +x backend/scripts/verify-deployment.sh
+          backend/scripts/verify-deployment.sh
           
       - name: Upload Verification Report
         if: always()
@@ -75,8 +75,8 @@ jobs:
           SERVER_PID=$!
           
           # Readiness Contract Enforcement
-          chmod +x scripts/wait-for-app.sh
-          scripts/wait-for-app.sh http://localhost:3000/api/health 120
+          chmod +x backend/scripts/wait-for-app.sh
+          backend/scripts/wait-for-app.sh http://localhost:3000/api/health 120
           
           # Guardrail
           if ! curl -s http://localhost:3000/api/health | grep -q '"ready":true'; then
@@ -86,7 +86,7 @@ jobs:
           fi
           
           npx playwright install chromium --with-deps
-          npx playwright test e2e/confidence-score.spec.ts --project=chromium --reporter=list
+          npx playwright test testing/e2e/quality/confidence-score.spec.ts --project=chromium --reporter=list
           
           kill $SERVER_PID || true
         env:

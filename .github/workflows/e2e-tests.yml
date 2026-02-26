@@ -23,8 +23,8 @@ jobs:
       
       - name: Contract Violation Detector
         run: |
-          chmod +x ./scripts/ci-contract-check.sh
-          ./scripts/ci-contract-check.sh
+          chmod +x ./backend/scripts/ci-contract-check.sh
+          ./backend/scripts/ci-contract-check.sh
       
       - name: Install Dependencies
         run: npm ci
@@ -45,8 +45,8 @@ jobs:
       
       - name: Source Integrity Check
         run: |
-          chmod +x ./scripts/ci-preflight.sh
-          ./scripts/ci-preflight.sh
+          chmod +x ./backend/scripts/ci-preflight.sh
+          ./backend/scripts/ci-preflight.sh
 
   build:
     name: 🏗️ Global Build Contract
@@ -79,17 +79,17 @@ jobs:
             exit 1
           }
           
-          if [ ! -d ".next" ]; then
-            echo "❌ BUILD CONTRACT VIOLATION: .next directory not created."
+          if [ ! -d "frontend/.next" ]; then
+            echo "❌ BUILD CONTRACT VIOLATION: frontend/.next directory not created."
             echo "   Build appeared to succeed but output is missing."
             exit 1
           fi
           
-          # Verify .next has actual content
-          NEXT_SIZE=$(du -s .next | cut -f1)
+          # Verify frontend/.next has actual content
+          NEXT_SIZE=$(du -s frontend/.next | cut -f1)
           if [ "$NEXT_SIZE" -lt 1000 ]; then
-            echo "❌ BUILD CONTRACT VIOLATION: .next directory is suspiciously small ($NEXT_SIZE KB)"
-            ls -la .next/
+            echo "❌ BUILD CONTRACT VIOLATION: frontend/.next directory is suspiciously small ($NEXT_SIZE KB)"
+            ls -la frontend/.next/
             exit 1
           fi
           
@@ -100,11 +100,11 @@ jobs:
         with:
           name: next-build
           path: |
-            .next/
-            public/
+            frontend/.next/
+            frontend/public/
             package.json
             package-lock.json
-            next.config.mjs
+            frontend/next.config.mjs
             playwright.config.ts
           retention-days: 1
           include-hidden-files: true
@@ -155,18 +155,18 @@ jobs:
 
       - name: Verify Build Artifacts
         run: |
-          if [ ! -d ".next" ]; then
-            echo "❌ ARTIFACT ERROR: .next directory missing after download"
+          if [ ! -d "frontend/.next" ]; then
+            echo "❌ ARTIFACT ERROR: frontend/.next directory missing after download"
             ls -la
             exit 1
           fi
           echo "✅ Build artifacts restored successfully"
-          ls -la .next/
+          ls -la frontend/.next/
       
       - name: Start Application (Isolation Contract)
         run: |
           # Enforce PORT 3001 for E2E isolation
-          PORT=3001 npx next start &
+          PORT=3001 npx next start frontend &
           SERVER_PID=$!
           echo "SERVER_PID=$SERVER_PID" >> $GITHUB_ENV
           
@@ -181,8 +181,8 @@ jobs:
 
       - name: Readiness Contract Enforcement
         run: |
-          chmod +x ./scripts/wait-for-app.sh
-          ./scripts/wait-for-app.sh http://localhost:3001/api/health 120 || {
+          chmod +x ./backend/scripts/wait-for-app.sh
+          ./backend/scripts/wait-for-app.sh http://localhost:3001/api/health 120 || {
             echo "❌ READINESS CONTRACT VIOLATION: Application did not signal readiness."
             echo "   /api/health must respond within 120 seconds."
             exit 1

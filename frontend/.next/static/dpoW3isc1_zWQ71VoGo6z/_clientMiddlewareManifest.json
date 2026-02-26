@@ -1,0 +1,6 @@
+[
+  {
+    "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?(?:\\/((?!_next\\/static|_next\\/image|favicon.ico|api\\/health|api\\/chat|api\\/leads|api\\/auth).*))(\\\\.json)?[\\/#\\?]?$",
+    "originalSource": "/((?!_next/static|_next/image|favicon.ico|api/health|api/chat|api/leads|api/auth).*)"
+  }
+]

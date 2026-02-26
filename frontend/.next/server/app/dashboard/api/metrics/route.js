@@ -1,0 +1,10 @@
+var R=require("../../../../chunks/[turbopack]_runtime.js")("server/app/dashboard/api/metrics/route.js")
+R.c("server/chunks/[root-of-the-server]__a221d8f0._.js")
+R.c("server/chunks/95474_next_a78f82e3._.js")
+R.c("server/chunks/[root-of-the-server]__daba665b._.js")
+R.c("server/chunks/[root-of-the-server]__6a18ebed._.js")
+R.c("server/chunks/[root-of-the-server]__8bd3c1f7._.js")
+R.c("server/chunks/damianwebsite_frontend_lib_db_leads-db_ts_be55d246._.js")
+R.c("server/chunks/78a65_frontend__next-internal_server_app_dashboard_api_metrics_route_actions_7fa32846.js")
+R.m(41426)
+module.exports=R.m(41426).exports

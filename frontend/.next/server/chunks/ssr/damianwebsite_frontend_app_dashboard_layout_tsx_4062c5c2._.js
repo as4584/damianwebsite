@@ -1,0 +1,3 @@
+module.exports=[8929,a=>{"use strict";var b=a.i(56665);function c({children:a}){return(0,b.jsx)(b.Fragment,{children:a})}a.s(["default",()=>c,"metadata",0,{title:"Leads Dashboard | Innovation Development Solutions",description:"Track and manage your incoming leads from the Innovation Development Solutions website."},"viewport",0,{width:"device-width",initialScale:1,maximumScale:5,userScalable:!0}])}];
+
+//# sourceMappingURL=damianwebsite_frontend_app_dashboard_layout_tsx_4062c5c2._.js.map

@@ -1,0 +1,64 @@
+{
+  "version": 3,
+  "middleware": {
+    "/": {
+      "files": [
+        "server/edge/chunks/[root-of-the-server]__a2adaa12._.js",
+        "server/edge/chunks/95474_b3660bad._.js",
+        "server/edge/chunks/bc93b_next_dist_esm_build_templates_edge-wrapper_1734c185.js"
+      ],
+      "name": "middleware",
+      "page": "/",
+      "matchers": [
+        {
+          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?(?:\\/((?!_next\\/static|_next\\/image|favicon.ico|api\\/health|api\\/chat|api\\/leads|api\\/auth).*))(\\\\.json)?[\\/#\\?]?$",
+          "originalSource": "/((?!_next/static|_next/image|favicon.ico|api/health|api/chat|api/leads|api/auth).*)"
+        }
+      ],
+      "wasm": [],
+      "assets": [],
+      "env": {
+        "__NEXT_BUILD_ID": "dpoW3isc1_zWQ71VoGo6z",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "Cv+K6Ug1mdSabQVWOm2YI7oCaKoybdgg4tfGM2gHwoI=",
+        "__NEXT_PREVIEW_MODE_ID": "f4e8df566de239a5a3aad4261bc46915",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "d8c418a788dcbab3cc6664cedcc3ef50a3d8f52bc222db47a01e87faeff90d7d",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "c52655831479a08ed5de94443dd6b471c7c42d7ec35a4f725b03308073ad3f37"
+      }
+    }
+  },
+  "sortedMiddleware": [
+    "/"
+  ],
+  "functions": {
+    "/api/chat/route": {
+      "files": [
+        "server/middleware-build-manifest.js",
+        "server/interception-route-rewrite-manifest.js",
+        "required-server-files.js",
+        "server/server-reference-manifest.js",
+        "server/app/api/chat/route_client-reference-manifest.js",
+        "server/edge/chunks/damianwebsite_frontend__next-internal_server_app_api_chat_route_actions_c3ad8c34.js",
+        "server/edge/chunks/[root-of-the-server]__042c2ee8._.js",
+        "server/edge/chunks/damianwebsite_0e946471._.js",
+        "server/edge/chunks/bc93b_next_dist_esm_build_templates_edge-wrapper_3cbdc7b6.js"
+      ],
+      "name": "app/api/chat/route",
+      "page": "/api/chat/route",
+      "matchers": [
+        {
+          "regexp": "^/api/chat(?:/)?$",
+          "originalSource": "/api/chat"
+        }
+      ],
+      "wasm": [],
+      "assets": [],
+      "env": {
+        "__NEXT_BUILD_ID": "dpoW3isc1_zWQ71VoGo6z",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "Cv+K6Ug1mdSabQVWOm2YI7oCaKoybdgg4tfGM2gHwoI=",
+        "__NEXT_PREVIEW_MODE_ID": "f4e8df566de239a5a3aad4261bc46915",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "d8c418a788dcbab3cc6664cedcc3ef50a3d8f52bc222db47a01e87faeff90d7d",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "c52655831479a08ed5de94443dd6b471c7c42d7ec35a4f725b03308073ad3f37"
+      }
+    }
+  }
+}

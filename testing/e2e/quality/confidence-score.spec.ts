@@ -22,7 +22,7 @@ test.describe('Confidence Score - Code Quality Validation', () => {
     const issues: string[] = [];
     
     // Check leads-db.ts for mock data
-    const leadsDbPath = path.join(process.cwd(), 'lib/db/leads-db.ts');
+    const leadsDbPath = path.join(process.cwd(), 'frontend/lib/db/leads-db.ts');
     const leadsDbContent = readFileSync(leadsDbPath, 'utf-8');
     
     const mockPatterns = {
@@ -41,7 +41,7 @@ test.describe('Confidence Score - Code Quality Validation', () => {
     }
     
     // Check dashboard page for proper logout implementation
-    const dashboardPath = path.join(process.cwd(), 'app/dashboard/page.tsx');
+    const dashboardPath = path.join(process.cwd(), 'frontend/app/dashboard/page.tsx');
     const dashboardContent = readFileSync(dashboardPath, 'utf-8');
     
     if (!dashboardContent.includes('signOut')) {
@@ -83,8 +83,8 @@ test.describe('Confidence Score - Code Quality Validation', () => {
     
     console.log('\n=== DETAILED ANALYSIS ===');
     console.log('Files Checked:');
-    console.log('  - lib/db/leads-db.ts');
-    console.log('  - app/dashboard/page.tsx');
+    console.log('  - frontend/lib/db/leads-db.ts');
+    console.log('  - frontend/app/dashboard/page.tsx');
     console.log(`\nMock Patterns Searched: ${Object.keys(mockPatterns).length}`);
     console.log(`Patterns Found: ${issues.filter(i => i.includes('mock pattern')).length}`);
     
@@ -102,8 +102,8 @@ Generated: ${new Date().toISOString()}
 ${issues.length > 0 ? issues.map(i => `- ${i}`).join('\n') : 'No issues detected'}
 
 ### Files Analyzed:
-- lib/db/leads-db.ts
-- app/dashboard/page.tsx
+- frontend/lib/db/leads-db.ts
+- frontend/app/dashboard/page.tsx
 
 ### Validation Checks:
 - ✓ Mock data patterns
@@ -209,7 +209,7 @@ ${issues.length > 0 ? issues.map(i => `- ${i}`).join('\n') : 'No issues detected
   test('DATABASE CONFIDENCE: Verify empty on fresh start', async () => {
     console.log('🗄️  Testing database initialization...');
     
-    const leadsDbPath = path.join(process.cwd(), 'lib/db/leads-db.ts');
+    const leadsDbPath = path.join(process.cwd(), 'frontend/lib/db/leads-db.ts');
     const content = readFileSync(leadsDbPath, 'utf-8');
     
     // Check that initialization is commented out or removed
@@ -236,7 +236,7 @@ ${issues.length > 0 ? issues.map(i => `- ${i}`).join('\n') : 'No issues detected
   test('AUTHENTICATION CONFIDENCE: Verify middleware protection', async () => {
     console.log('🔐 Testing authentication enforcement...');
     
-    const middlewarePath = path.join(process.cwd(), 'middleware.ts');
+    const middlewarePath = path.join(process.cwd(), 'frontend/middleware.ts');
     const content = readFileSync(middlewarePath, 'utf-8');
     
     const securityChecks = {
@@ -261,7 +261,7 @@ test.describe('Production Deployment Confidence', () => {
   test('DOMAIN CONFIDENCE: Verify production domain support', async () => {
     console.log('🌐 Checking production domain configuration...');
     
-    const hostRouterPath = path.join(process.cwd(), 'app/dashboard/middleware/hostRouter.ts');
+    const hostRouterPath = path.join(process.cwd(), 'middleware/hostRouter.ts');
     const content = readFileSync(hostRouterPath, 'utf-8');
     
     // Should support both localhost (dev) and production domain
@@ -279,7 +279,7 @@ test.describe('Production Deployment Confidence', () => {
   test('ENVIRONMENT CONFIDENCE: Verify production settings', async () => {
     console.log('⚙️  Checking environment configuration...');
     
-    const authConfigPath = path.join(process.cwd(), 'lib/auth/config.ts');
+    const authConfigPath = path.join(process.cwd(), 'frontend/lib/auth/config.ts');
     const content = readFileSync(authConfigPath, 'utf-8');
     
     // Check for environment variable usage (not hardcoded secrets)
