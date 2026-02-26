@@ -4,6 +4,16 @@
 
 A full-stack, production-ready website has been built for Innovation Business Services.
 
+## 📝 Release Note Record
+
+### 2026-02-26 — Documentation Backup Published to GitHub
+- Centralized documentation under `docs/` and published backup artifacts to GitHub.
+- Backup version tag: `docs-v2026.02.26-01`
+- GitHub commit record: `6e009e2` (follows backup publish commit `6e531d8`)
+- Backup archive: `docs/backups/docs-backup-v2026.02.26-01.tar.gz`
+- Checksum file: `docs/backups/docs-backup-v2026.02.26-01.sha256`
+- Canonical backup context: `docs/BACKUP_REGISTRY.md` and `docs/AGENT_HANDOFF.md`
+
 ## 🎯 What Was Built
 
 ### Core Pages (All Complete)
