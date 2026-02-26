@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { fadeIn, staggerContainer, viewportConfig } from '@/lib/motionPresets'
+import ComplianceDisclaimer from '@/components/ComplianceDisclaimer'
 
 const values = [
   {
@@ -23,73 +25,89 @@ const values = [
 ]
 
 const stats = [
-  { number: '1000+', label: 'Systems Built' },
+  { number: '1,000+', label: 'Infrastructure Systems Deployed' },
   { number: '50', label: 'States Served' },
-  { number: 'Growth', label: 'Engineered' },
-  { number: 'All-in-One', label: 'Infrastructure' },
+  { number: 'Unified', label: 'Growth Architecture' },
+  { number: 'Full-Stack', label: 'Infrastructure Platform' },
+]
+
+const capabilities = [
+  'Business formation (LLC, nonprofit, multi-state)',
+  'Websites and custom domains',
+  'Custom applications tailored to your operations',
+  'AI tools (chatbots, receptionists, automation)',
+  'Email and digital communication infrastructure',
+  'Ongoing compliance and operational support',
 ]
 
 export default function AboutPage() {
   return (
-    <div className="pt-20 md:pt-24">
+    <div className="pt-16 md:pt-20">
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-neutral-50 to-white py-16 md:py-24">
+      <section className="bg-primary-900 py-20 md:py-28">
         <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="heading-1 mb-6"
-            >
-              Engineered for <span className="text-blue-600">Growth</span> & Multi-Location <span className="text-blue-600">Scaling</span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="body-large"
-            >
-              Innovation Business Services is a national business scaling firm. 
-              We assemble the legal, technical, and digital infrastructure your business needs to <span className="text-slate-900 font-semibold">grow</span> — as one coordinated system.
-            </motion.p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="max-w-3xl"
+          >
+            <p className="text-xs font-medium uppercase tracking-[0.25em] text-neutral-400 mb-6">
+              About the Firm
+            </p>
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-normal text-white leading-[1.1] mb-6">
+              Engineered for growth and multi-location scaling
+            </h1>
+            <p className="text-lg md:text-xl text-neutral-300 leading-relaxed max-w-2xl">
+              Innovation Business Development Solutions is a national business infrastructure firm. 
+              We assemble the legal, technical, and digital infrastructure your business needs to grow — as one coordinated system.
+            </p>
+          </motion.div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="section-padding bg-white">
+      <section className="py-16 md:py-20 bg-white border-b border-neutral-200">
         <div className="container-custom">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center"
-              >
-                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-blue-600 mb-2">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={staggerContainer}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-8"
+          >
+            {stats.map((stat) => (
+              <motion.div key={stat.label} variants={fadeIn} className="text-center md:text-left">
+                <div className="text-3xl md:text-4xl font-serif text-primary-900 mb-1">
                   {stat.number}
                 </div>
-                <div className="text-slate-600 font-medium">{stat.label}</div>
+                <div className="text-sm text-neutral-500 uppercase tracking-wide">{stat.label}</div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Story Section */}
-      <section className="section-padding bg-neutral-50">
+      <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+            <div className="lg:col-span-4">
+              <motion.div initial="hidden" whileInView="visible" viewport={viewportConfig} variants={fadeIn}>
+                <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-400 mb-4">
+                  Our Approach
+                </p>
+                <h2 className="heading-2">
+                  Why we exist
+                </h2>
+              </motion.div>
+            </div>
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="space-y-6 text-lg text-neutral-700 leading-relaxed"
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
+              variants={fadeIn}
+              className="lg:col-span-8 space-y-6 text-base md:text-lg text-neutral-600 leading-relaxed"
             >
               <p>
                 Most businesses are built in pieces. Formation through a lawyer. Website through 
@@ -103,7 +121,7 @@ export default function AboutPage() {
                 no one owns the complete picture.
               </p>
               <p>
-                We started Innovation Business Services to fix this. We build comprehensive growth 
+                We started Innovation Business Development Solutions to fix this. We build comprehensive growth 
                 infrastructure — from formation and multi-state licensing to scalable AI tools and 
                 digital visibility — all coordinated by one team. No handoffs. No gaps. 
                 One system engineered for expansion.
@@ -119,166 +137,111 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-neutral-50 border-y border-neutral-200">
         <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="heading-2 mb-6"
-            >
-              How We Operate
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="body-large"
-            >
-              Our approach to building business infrastructure
-            </motion.p>
-          </div>
+          <motion.div initial="hidden" whileInView="visible" viewport={viewportConfig} variants={fadeIn} className="mb-16">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-400 mb-4">
+              Operating Principles
+            </p>
+            <h2 className="heading-2 max-w-xl">How we operate</h2>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {values.map((value, index) => (
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={staggerContainer}
+            className="grid md:grid-cols-2 gap-px bg-neutral-200"
+          >
+            {values.map((value) => (
               <motion.div
                 key={value.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-neutral-50 rounded-xl p-8"
+                variants={fadeIn}
+                className="bg-white p-8 md:p-10"
               >
-                <h3 className="text-2xl font-semibold mb-4 text-neutral-900">
-                  {value.title}
-                </h3>
-                <p className="text-neutral-600 leading-relaxed">
-                  {value.description}
-                </p>
+                <h3 className="heading-3 mb-3">{value.title}</h3>
+                <p className="body-regular">{value.description}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* What We Build Section */}
-      <section className="section-padding bg-neutral-50 relative overflow-hidden">
-        {/* Background texture overlay */}
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-5 blur-sm"
-          style={{
-            backgroundImage: 'url(/assets/brand/EF869454-04FC-48B5-A7B4-F5929F708851.jpeg)',
-          }}
-        />
-
-        <div className="container-custom relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="heading-2 mb-6"
-            >
-              What We Build
-            </motion.h2>
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+            <div className="lg:col-span-4">
+              <motion.div initial="hidden" whileInView="visible" viewport={viewportConfig} variants={fadeIn}>
+                <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-400 mb-4">
+                  Capabilities
+                </p>
+                <h2 className="heading-2">What we build</h2>
+              </motion.div>
+            </div>
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="body-large space-y-4"
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
+              variants={staggerContainer}
+              className="lg:col-span-8"
             >
-              <p>
-                Business formation (LLC, nonprofit, multi-state)
-              </p>
-              <p>
-                Websites and custom domains
-              </p>
-              <p>
-                Custom applications tailored to your operations
-              </p>
-              <p>
-                AI tools (chatbots, receptionists, automation)
-              </p>
-              <p>
-                Email and digital communication infrastructure
-              </p>
-              <p>
-                Ongoing compliance and operational support
-              </p>
+              <ul className="space-y-4">
+                {capabilities.map((item) => (
+                  <motion.li key={item} variants={fadeIn} className="flex items-start text-base md:text-lg text-neutral-600">
+                    <span className="w-1.5 h-1.5 bg-primary-900 rounded-full mr-4 mt-2.5 flex-shrink-0" />
+                    {item}
+                  </motion.li>
+                ))}
+              </ul>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Team Section */}
-      <section className="section-padding bg-white">
+      <section className="py-16 md:py-20 bg-neutral-50 border-y border-neutral-200">
         <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="heading-2 mb-6"
-            >
-              One Team. Complete Infrastructure.
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="body-large mb-8"
-            >
+          <motion.div initial="hidden" whileInView="visible" viewport={viewportConfig} variants={fadeIn} className="max-w-3xl">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-400 mb-4">
+              The Team
+            </p>
+            <h2 className="heading-2 mb-6">One team. Complete infrastructure.</h2>
+            <p className="body-large">
               Our team includes formation specialists, developers, AI engineers, compliance 
               coordinators, and infrastructure architects. We work as one team to build your 
               complete business system.
-            </motion.p>
-          </div>
+            </p>
+          </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-neutral-900 text-white">
+      <section className="py-24 md:py-32 bg-primary-900 text-white">
         <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="heading-2 mb-6"
-            >
-              Let Us Build Your Infrastructure
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-xl text-neutral-300 mb-8"
-            >
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={fadeIn}
+            className="max-w-2xl"
+          >
+            <h2 className="font-serif text-3xl md:text-4xl font-normal text-white mb-6">
+              Let us build your infrastructure
+            </h2>
+            <p className="text-base md:text-lg text-neutral-300 leading-relaxed mb-8">
               Tell us what {"you're"} building. {"We'll"} handle the structure and systems.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center px-10 py-4 text-sm font-medium tracking-wide uppercase text-primary-900 bg-white border border-white hover:bg-neutral-100 transition-colors duration-200"
             >
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-md text-neutral-900 bg-white hover:bg-neutral-100 transition-colors duration-200"
-              >
-                Schedule a Consultation
-              </Link>
-            </motion.div>
-          </div>
+              Schedule a Consultation
+            </Link>
+            <div className="mt-12">
+              <ComplianceDisclaimer className="text-neutral-500" />
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

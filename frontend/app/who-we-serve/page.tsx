@@ -3,11 +3,12 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState } from 'react'
+import { fadeIn, staggerContainer, viewportConfig } from '@/lib/motionPresets'
+import ComplianceDisclaimer from '@/components/ComplianceDisclaimer'
 
 const industryCategories = [
   {
     category: 'Tech & Digital Startups',
-    icon: '💻',
     businesses: [
       'SaaS (niche software tools)', 'AI automation agencies', 'No-code app development',
       'Cybersecurity consulting', 'Data analytics services', 'CRM customization services',
@@ -20,7 +21,6 @@ const industryCategories = [
   },
   {
     category: 'Marketing, Media & Creative',
-    icon: '🧠',
     businesses: [
       'Digital marketing agency', 'Social media management', 'Influencer marketing agency',
       'Content creation studios', 'Podcast production', 'Video editing services',
@@ -32,7 +32,6 @@ const industryCategories = [
   },
   {
     category: 'Construction, Trades & Local Services',
-    icon: '🏗️',
     businesses: [
       'General contracting', 'Home remodeling', 'Roofing services',
       'Plumbing services', 'Electrical contracting', 'HVAC services',
@@ -45,7 +44,6 @@ const industryCategories = [
   },
   {
     category: 'Real Estate & Property',
-    icon: '🏠',
     businesses: [
       'Property management', 'Airbnb management', 'Real estate wholesaling',
       'Fix & flip operations', 'Home staging services', 'Inspection services',
@@ -56,19 +54,17 @@ const industryCategories = [
   },
   {
     category: 'E-Commerce & Physical Products',
-    icon: '🛍️',
     businesses: [
       'Private-label brands', 'Dropshipping stores', 'Amazon FBA brands',
       'Subscription box services', 'Print-on-demand apparel', 'Custom merch brands',
       'Eco-friendly product brands', 'Fitness product brands', 'Beauty & skincare lines',
       'Supplements (compliant)', 'Pet products', 'Smart kitchen gadgets',
-      'Home organization products', `Children's toys`, 'Educational kits',
+      'Home organization products', "Children's toys", 'Educational kits',
       'Office productivity tools', 'Personalized gifts', 'Packaging design services'
     ]
   },
   {
     category: 'Professional & Business Services',
-    icon: '🧾',
     businesses: [
       'Bookkeeping services', 'Accounting firms', 'Tax prep services',
       'Payroll services', 'Virtual CFO services', 'Legal document preparation',
@@ -79,7 +75,6 @@ const industryCategories = [
   },
   {
     category: 'Health, Wellness & Fitness',
-    icon: '💪',
     businesses: [
       'Personal training studios', 'Mobile fitness trainers', 'Boutique gyms',
       'Physical therapy clinics', 'Chiropractic clinics', 'Massage therapy',
@@ -90,7 +85,6 @@ const industryCategories = [
   },
   {
     category: 'Food, Beverage & Hospitality',
-    icon: '🍔',
     businesses: [
       'Food trucks', 'Ghost kitchens', 'Meal prep services',
       'Specialty coffee brands', 'Juice bars', 'Smoothie shops',
@@ -101,7 +95,6 @@ const industryCategories = [
   },
   {
     category: 'Lifestyle, Personal & Niche Services',
-    icon: '🐶',
     businesses: [
       'Pet grooming services', 'Dog walking businesses', 'Pet boarding',
       'Mobile vet services', 'Senior care services', 'Home health aides',
@@ -112,7 +105,6 @@ const industryCategories = [
   },
   {
     category: 'Education, Coaching & Info Products',
-    icon: '🎓',
     businesses: [
       'Online course businesses', 'Coaching programs', 'Tutoring services',
       'Test prep companies', 'Trade skill academies', 'Certification programs',
@@ -122,7 +114,6 @@ const industryCategories = [
   },
   {
     category: 'Sustainability & Future-Focused',
-    icon: '🌱',
     businesses: [
       'Renewable energy startups', 'EV charging installation', 'Battery recycling',
       'Carbon offset platforms', 'Sustainable packaging', 'Green construction',
@@ -135,7 +126,6 @@ const industryCategories = [
 const entityStructures = [
   {
     category: 'Individual / Unincorporated Structures',
-    icon: '👤',
     structures: [
       'Sole Proprietorship',
       'Sole Proprietorship with DBA (Doing Business As / Fictitious Name)',
@@ -145,7 +135,6 @@ const entityStructures = [
   },
   {
     category: 'Partnerships (General & Limited)',
-    icon: '🤝',
     structures: [
       'General Partnership (GP)',
       'Limited Partnership (LP)',
@@ -157,7 +146,6 @@ const entityStructures = [
   },
   {
     category: 'Limited Liability Companies (LLCs)',
-    icon: '🏢',
     structures: [
       'Standard LLC',
       'Single-Member LLC',
@@ -172,7 +160,6 @@ const entityStructures = [
   },
   {
     category: 'Corporations (For-Profit)',
-    icon: '🏛️',
     structures: [
       'C Corporation',
       'S Corporation (IRS tax election, not entity type)',
@@ -185,7 +172,6 @@ const entityStructures = [
   },
   {
     category: 'Social / Mission-Driven Entities',
-    icon: '🌱',
     structures: [
       'Benefit Corporation (B-Corp legal structure)',
       'Public Benefit Corporation (PBC) (Delaware & others)',
@@ -194,7 +180,6 @@ const entityStructures = [
   },
   {
     category: 'Nonprofit & Tax-Exempt Entities',
-    icon: '🏦',
     structures: [
       'Nonprofit Corporation',
       'Public Charity (501(c)(3))',
@@ -213,7 +198,6 @@ const entityStructures = [
   },
   {
     category: 'Trust-Based & Estate-Style Entities',
-    icon: '🧾',
     structures: [
       'Business Trust',
       'Statutory Trust',
@@ -225,7 +209,6 @@ const entityStructures = [
   },
   {
     category: 'Joint & Contractual Structures',
-    icon: '🏗️',
     structures: [
       'Joint Venture (can be contractual or entity-based)',
       'Strategic Alliance (contractual)',
@@ -235,7 +218,6 @@ const entityStructures = [
   },
   {
     category: 'Foreign & Cross-Border Structures',
-    icon: '🌍',
     structures: [
       'Foreign LLC (out-of-state registration)',
       'Foreign Corporation',
@@ -246,7 +228,6 @@ const entityStructures = [
   },
   {
     category: 'Cooperatives & Member-Owned Entities',
-    icon: '🧠',
     structures: [
       'Cooperative (Co-op)',
       'Worker Cooperative',
@@ -259,7 +240,6 @@ const entityStructures = [
   },
   {
     category: 'Holding & Complex Structures',
-    icon: '🏢',
     structures: [
       'Holding Company (LLC or Corp)',
       'Operating Company (OpCo)',
@@ -271,7 +251,6 @@ const entityStructures = [
   },
   {
     category: 'Government-Related & Quasi-Public',
-    icon: '🏛️',
     structures: [
       'Municipal Corporation',
       'Public Authority',
@@ -281,7 +260,6 @@ const entityStructures = [
   },
   {
     category: 'Rare / Edge-Case Structures',
-    icon: '🧪',
     structures: [
       'Unincorporated Association',
       'Mutual Benefit Corporation',
@@ -296,233 +274,186 @@ export default function WhoWeServePage() {
   const [activeTab, setActiveTab] = useState<'industries' | 'entities'>('industries')
 
   return (
-    <div className="pt-20 md:pt-24">
+    <div className="pt-16 md:pt-20">
       {/* Hero Section */}
-      <section className="relative py-16 md:py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-100/50 via-blue-50/30 to-purple-50/20" />
-        <div className="container-custom relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="heading-1 mb-6 text-blue-600"
-            >
-              Who We Serve
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="body-large"
-            >
-              We serve people who want to turn their ideas into reality — and those who have already built something meaningful.
-              From first-time entrepreneurs to experienced business owners, inherited businesses, partnerships, and professional services, we support organizations that are growing, expanding, or protecting what they’ve worked hard to build.
-              We also work with mission-driven entities, including nonprofits and organizations created to support a cause.
-            </motion.p>
-          </div>
+      <section className="bg-primary-900 py-20 md:py-28">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            <div className="grid lg:grid-cols-2 gap-12 items-end">
+              <div>
+                <p className="text-xs font-medium uppercase tracking-[0.25em] text-neutral-400 mb-6">
+                  Our Clients
+                </p>
+                <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-normal text-white leading-[1.1]">
+                  Who we serve
+                </h1>
+              </div>
+              <p className="text-lg text-neutral-300 leading-relaxed">
+                We serve people who want to turn their ideas into reality — and those who have already built something meaningful.
+                From first-time entrepreneurs to experienced business owners, inherited businesses, partnerships, and professional services.
+              </p>
+            </div>
+
+            {/* Executive Summary Stats */}
+            <div className="mt-16 pt-10 border-t border-white/10 grid grid-cols-3 gap-8">
+              <div>
+                <span className="font-serif text-3xl md:text-4xl text-white">200+</span>
+                <p className="text-sm text-neutral-400 mt-1">Business Types Supported</p>
+              </div>
+              <div>
+                <span className="font-serif text-3xl md:text-4xl text-white">78</span>
+                <p className="text-sm text-neutral-400 mt-1">Entity Structures</p>
+              </div>
+              <div>
+                <span className="font-serif text-3xl md:text-4xl text-white">50</span>
+                <p className="text-sm text-neutral-400 mt-1">States Covered</p>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Tab Navigation */}
-      <section className="section-padding bg-white/40 backdrop-blur-sm">
+      <section className="border-b border-neutral-200 bg-white sticky top-16 md:top-20 z-30">
         <div className="container-custom">
-          <div className="flex justify-center mb-16">
-            <div className="card-premium p-2 inline-flex gap-2">
-              <button
-                onClick={() => setActiveTab('industries')}
-                className={`px-8 py-3 rounded-lg font-semibold transition-all duration-300 ${
-                  activeTab === 'industries'
-                    ? 'bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-lg'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                Industries & Business Types
-              </button>
-              <button
-                onClick={() => setActiveTab('entities')}
-                className={`px-8 py-3 rounded-lg font-semibold transition-all duration-300 ${
-                  activeTab === 'entities'
-                    ? 'bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-lg'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                Entity Structures
-              </button>
-            </div>
+          <div className="flex gap-0">
+            <button
+              onClick={() => setActiveTab('industries')}
+              className={`px-6 py-4 text-sm font-medium uppercase tracking-[0.1em] border-b-2 transition-colors duration-200 ${
+                activeTab === 'industries'
+                  ? 'border-primary-900 text-primary-900'
+                  : 'border-transparent text-neutral-400 hover:text-neutral-700'
+              }`}
+            >
+              Industries & Business Types
+            </button>
+            <button
+              onClick={() => setActiveTab('entities')}
+              className={`px-6 py-4 text-sm font-medium uppercase tracking-[0.1em] border-b-2 transition-colors duration-200 ${
+                activeTab === 'entities'
+                  ? 'border-primary-900 text-primary-900'
+                  : 'border-transparent text-neutral-400 hover:text-neutral-700'
+              }`}
+            >
+              Entity Structures
+            </button>
           </div>
+        </div>
+      </section>
+
+      {/* Tab Content */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
 
           {/* Industries Content */}
           {activeTab === 'industries' && (
-            <div className="space-y-12">
-              {industryCategories.map((category, index) => (
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={staggerContainer}
+              className="space-y-px bg-neutral-200"
+            >
+              {industryCategories.map((category) => (
                 <motion.div
                   key={category.category}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.05 }}
-                  className="card-premium p-8 md:p-10"
+                  variants={fadeIn}
+                  className="bg-white p-8 md:p-10"
                 >
-                  <div className="flex items-center gap-4 mb-6">
-                    <span className="text-4xl">{category.icon}</span>
-                    <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
-                      {category.category}
-                    </h2>
-                  </div>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+                  <h2 className="heading-3 mb-6">{category.category}</h2>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-2">
                     {category.businesses.map((business) => (
-                      <div key={business} className="flex items-start gap-2 text-slate-600">
-                        <span className="text-blue-500 mt-1">•</span>
-                        <span>{business}</span>
-                      </div>
+                      <p key={business} className="text-sm text-neutral-600 py-1 flex items-center">
+                        <span className="w-1 h-1 bg-primary-900 rounded-full mr-3 flex-shrink-0" />
+                        {business}
+                      </p>
                     ))}
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           )}
 
           {/* Entity Structures Content */}
           {activeTab === 'entities' && (
-            <div className="space-y-8">
+            <div>
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="card-premium p-6 bg-blue-50/50"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+                className="bg-neutral-50 border border-neutral-200 p-6 mb-8"
               >
-                <p className="text-slate-700 leading-relaxed">
-                  <strong>Note:</strong> S-Corp and LLC taxed as S-Corp are tax elections, not new entities. 
-                  Many structures overlap legally but differ by state statute, tax treatment, or licensing rules. 
+                <p className="text-sm text-neutral-600 leading-relaxed">
+                  <span className="font-medium text-primary-900">Note:</span> S-Corp and LLC taxed as S-Corp are tax elections, not new entities.
+                  Many structures overlap legally but differ by state statute, tax treatment, or licensing rules.
                   Some entities (like L3C, Series LLC, Close Corporations) are state-restricted but federally recognized.
                 </p>
               </motion.div>
 
-              {entityStructures.map((category, index) => (
-                <motion.div
-                  key={category.category}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.05 }}
-                  className="card-premium p-8 md:p-10"
-                >
-                  <div className="flex items-center gap-4 mb-6">
-                    <span className="text-4xl">{category.icon}</span>
-                    <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
-                      {category.category}
-                    </h2>
-                  </div>
-                  <div className="grid md:grid-cols-2 gap-3">
-                    {category.structures.map((structure, idx) => (
-                      <div key={structure} className="flex items-start gap-2 text-slate-600">
-                        <span className="text-blue-500 font-semibold min-w-[2rem]">{idx + 1}.</span>
-                        <span>{structure}</span>
-                      </div>
-                    ))}
-                  </div>
-                  {(category as any).disclaimer && (
-                    <p className="mt-6 text-sm text-slate-500 italic border-t border-slate-100 pt-4">
-                      {(category as any).disclaimer}
-                    </p>
-                  )}
-                </motion.div>
-              ))}
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={staggerContainer}
+                className="space-y-px bg-neutral-200"
+              >
+                {entityStructures.map((category) => (
+                  <motion.div
+                    key={category.category}
+                    variants={fadeIn}
+                    className="bg-white p-8 md:p-10"
+                  >
+                    <h2 className="heading-3 mb-6">{category.category}</h2>
+                    <div className="grid md:grid-cols-2 gap-x-8 gap-y-2">
+                      {category.structures.map((structure, idx) => (
+                        <p key={structure} className="text-sm text-neutral-600 py-1 flex items-start">
+                          <span className="text-xs text-neutral-400 font-medium min-w-[2rem] mt-px">{String(idx + 1).padStart(2, '0')}</span>
+                          {structure}
+                        </p>
+                      ))}
+                    </div>
+                    {(category as any).disclaimer && (
+                      <p className="mt-6 text-xs text-neutral-400 border-t border-neutral-100 pt-4">
+                        {(category as any).disclaimer}
+                      </p>
+                    )}
+                  </motion.div>
+                ))}
+              </motion.div>
             </div>
           )}
         </div>
       </section>
 
-      {/* National Coverage */}
-      <section className="section-padding relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-50/30 to-transparent" />
-        <div className="container-custom relative z-10">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="heading-2 mb-6">National Coverage</h2>
-              <p className="body-large">
-                We serve businesses across all 50 states. Multi-state operations, 
-                distributed teams, and varying state requirements — all coordinated.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="card-premium p-8 md:p-12"
-            >
-              <div className="grid md:grid-cols-3 gap-8 text-center">
-                <div>
-                  <div className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">
-                    50
-                  </div>
-                  <div className="text-slate-600">States Covered</div>
-                </div>
-                <div className="border-l border-r border-blue-200/30">
-                  <div className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">
-                    200+
-                  </div>
-                  <div className="text-slate-600">Business Types Supported</div>
-                </div>
-                <div>
-                  <div className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">
-                    78
-                  </div>
-                  <div className="text-slate-600">Entity Structures</div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 text-white relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
-        <div className="container-custom relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="heading-2 mb-6"
+      <section className="py-24 md:py-32 bg-primary-900 text-white">
+        <div className="container-custom">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={fadeIn}
+            className="max-w-2xl"
+          >
+            <h2 className="font-serif text-3xl md:text-4xl font-normal text-white mb-6">
+              Tell us about your business
+            </h2>
+            <p className="text-base md:text-lg text-neutral-300 leading-relaxed mb-8">
+              {"We'll"} understand your industry requirements and build infrastructure that fits
+              your regulatory and operational needs.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center px-10 py-4 text-sm font-medium tracking-wide uppercase text-primary-900 bg-white border border-white hover:bg-neutral-100 transition-colors duration-200"
             >
-              Tell Us About Your Business
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-xl text-neutral-300 mb-8"
-            >
-              {`We'll understand your industry requirements and build infrastructure that fits 
-              your regulatory and operational needs.`}
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-semibold rounded-xl text-slate-900 bg-white shadow-xl shadow-blue-400/30 hover:shadow-2xl hover:shadow-blue-400/40 hover:scale-[1.02] transition-all duration-300"
-              >
-                Schedule a Consultation
-              </Link>
-            </motion.div>
-          </div>
+              Schedule a Consultation
+            </Link>
+            <div className="mt-12">
+              <ComplianceDisclaimer className="text-neutral-500" />
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

@@ -3,64 +3,49 @@
 import { motion } from 'framer-motion'
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
+import { fadeIn, viewportConfig } from '@/lib/motionPresets'
+import ComplianceDisclaimer from '@/components/ComplianceDisclaimer'
 
 function ContactForm() {
   const searchParams = useSearchParams()
   const isSubmitted = searchParams.get('success') === 'true'
 
   return (
-    <div className="bg-neutral-50 rounded-2xl p-8 md:p-10">
-      <h2 className="text-2xl font-semibold mb-6 text-blue-600">
-        Start Your Scaling Journey
-      </h2>
+    <div className="bg-neutral-50 border border-neutral-200 p-8 md:p-10">
+      <h2 className="heading-3 mb-6">Start Your Inquiry</h2>
 
       {isSubmitted ? (
-        <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
-          <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg
-              className="w-6 h-6 text-green-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
-          </div>
-          <h3 className="text-lg font-semibold text-green-900 mb-2">
-            Thank You!
+        <div className="bg-neutral-50 border border-neutral-200 p-6 text-center">
+          <h3 className="text-base font-medium text-primary-900 mb-2">
+            Thank You
           </h3>
-          <p className="text-green-700">
+          <p className="text-sm text-neutral-600">
             {"We've"} received your message and will get back to you within 24 hours.
           </p>
         </div>
       ) : (
-        <form 
-          action="https://formspree.io/f/xvzagvzb" 
-          method="POST" 
+        <form
+          action="https://formspree.io/f/xvzagvzb"
+          method="POST"
           className="space-y-6"
         >
           {/* Formspree configuration */}
-          <input 
-            type="hidden" 
-            name="_redirect" 
-            value="https://damianwebsite.vercel.app/contact?success=true" 
+          <input
+            type="hidden"
+            name="_redirect"
+            value="https://damianwebsite.vercel.app/contact?success=true"
           />
-          <input 
-            type="hidden" 
-            name="_subject" 
-            value="New Website Inquiry – Innovation Business Services" 
+          <input
+            type="hidden"
+            name="_subject"
+            value="New Website Inquiry \u2013 Innovation Business Services"
           />
           <input type="text" name="_gotcha" className="hidden" />
-          
+
           <div>
             <label
               htmlFor="name"
-              className="block text-sm font-medium text-neutral-700 mb-2"
+              className="block text-xs font-medium uppercase tracking-[0.1em] text-neutral-500 mb-2"
             >
               Full Name *
             </label>
@@ -69,7 +54,7 @@ function ContactForm() {
               id="name"
               name="name"
               required
-              className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-900 focus:border-transparent transition-colors"
+              className="w-full px-4 py-3 bg-white border border-neutral-300 focus:ring-1 focus:ring-primary-900 focus:border-primary-900 transition-colors text-sm"
               placeholder="John Smith"
             />
           </div>
@@ -77,7 +62,7 @@ function ContactForm() {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-neutral-700 mb-2"
+              className="block text-xs font-medium uppercase tracking-[0.1em] text-neutral-500 mb-2"
             >
               Email Address *
             </label>
@@ -86,7 +71,7 @@ function ContactForm() {
               id="email"
               name="email"
               required
-              className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-900 focus:border-transparent transition-colors"
+              className="w-full px-4 py-3 bg-white border border-neutral-300 focus:ring-1 focus:ring-primary-900 focus:border-primary-900 transition-colors text-sm"
               placeholder="john@example.com"
             />
           </div>
@@ -94,7 +79,7 @@ function ContactForm() {
           <div>
             <label
               htmlFor="message"
-              className="block text-sm font-medium text-neutral-700 mb-2"
+              className="block text-xs font-medium uppercase tracking-[0.1em] text-neutral-500 mb-2"
             >
               How can we help? *
             </label>
@@ -103,19 +88,19 @@ function ContactForm() {
               name="message"
               required
               rows={4}
-              className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-900 focus:border-transparent transition-colors"
+              className="w-full px-4 py-3 bg-white border border-neutral-300 focus:ring-1 focus:ring-primary-900 focus:border-primary-900 transition-colors text-sm"
               placeholder="Tell us about your business goals..."
             ></textarea>
           </div>
 
           <button
             type="submit"
-            className="w-full bg-neutral-900 text-white font-semibold py-4 rounded-lg hover:bg-neutral-800 transition-colors"
+            className="btn-primary w-full text-xs"
           >
             Send Message
           </button>
-          
-          <p className="text-sm text-neutral-600 text-center">
+
+          <p className="text-xs text-neutral-400 text-center">
             By submitting this form, you agree to our Privacy Policy
           </p>
         </form>
@@ -127,38 +112,31 @@ function ContactForm() {
 function ContactInfo() {
   return (
     <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.6 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
     >
-      <h2 className="heading-3 mb-6 text-blue-600">Get in Touch</h2>
-      <p className="body-regular mb-8">
-        Fill out the form and {"we'll"} get back to you within 24 hours. Or reach out 
+      <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-400 mb-4">
+        Contact
+      </p>
+      <h2 className="heading-2 mb-6">Get in touch</h2>
+      <p className="body-regular mb-10">
+        Fill out the form and {"we'll"} get back to you within 24 hours. Or reach out
         directly using the contact information below.
       </p>
 
-      <div className="space-y-6">
+      <div className="space-y-6 mb-12">
         <div className="flex items-start">
-          <div className="w-12 h-12 bg-neutral-100 rounded-lg flex items-center justify-center flex-shrink-0">
-            <svg
-              className="w-6 h-6 text-neutral-900"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-              />
+          <div className="flex-shrink-0 w-10 h-10 bg-neutral-100 flex items-center justify-center">
+            <svg className="w-4 h-4 text-primary-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
           </div>
           <div className="ml-4">
-            <h3 className="font-semibold text-neutral-900 mb-1">Email</h3>
+            <p className="text-xs font-medium uppercase tracking-[0.1em] text-neutral-400 mb-1">Email</p>
             <a
               href="mailto:info@innovationbusinessservices.com"
-              className="text-neutral-600 hover:text-neutral-900 transition-colors"
+              className="text-sm text-primary-900 hover:text-primary-700 transition-colors"
             >
               info@innovationbusinessservices.com
             </a>
@@ -166,26 +144,16 @@ function ContactInfo() {
         </div>
 
         <div className="flex items-start">
-          <div className="w-12 h-12 bg-neutral-100 rounded-lg flex items-center justify-center flex-shrink-0">
-            <svg
-              className="w-6 h-6 text-neutral-900"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-              />
+          <div className="flex-shrink-0 w-10 h-10 bg-neutral-100 flex items-center justify-center">
+            <svg className="w-4 h-4 text-primary-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
             </svg>
           </div>
           <div className="ml-4">
-            <h3 className="font-semibold text-neutral-900 mb-1">Phone</h3>
+            <p className="text-xs font-medium uppercase tracking-[0.1em] text-neutral-400 mb-1">Phone</p>
             <a
               href="tel:+1234567890"
-              className="text-neutral-600 hover:text-neutral-900 transition-colors"
+              className="text-sm text-primary-900 hover:text-primary-700 transition-colors"
             >
               (123) 456-7890
             </a>
@@ -193,50 +161,38 @@ function ContactInfo() {
         </div>
 
         <div className="flex items-start">
-          <div className="w-12 h-12 bg-neutral-100 rounded-lg flex items-center justify-center flex-shrink-0">
-            <svg
-              className="w-6 h-6 text-neutral-900"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
+          <div className="flex-shrink-0 w-10 h-10 bg-neutral-100 flex items-center justify-center">
+            <svg className="w-4 h-4 text-primary-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
           <div className="ml-4">
-            <h3 className="font-semibold text-neutral-900 mb-1">Office Hours</h3>
-            <p className="text-neutral-600">
-              Monday – Friday: 9:00 AM – 5:00 PM
-            </p>
+            <p className="text-xs font-medium uppercase tracking-[0.1em] text-neutral-400 mb-1">Office Hours</p>
+            <p className="text-sm text-neutral-600">Monday – Friday: 9:00 AM – 5:00 PM</p>
           </div>
         </div>
       </div>
 
-      <div className="mt-12 p-6 bg-neutral-50 rounded-xl">
-        <h3 className="font-semibold text-neutral-900 mb-3">
+      <div className="border border-neutral-200 p-6">
+        <p className="text-xs font-medium uppercase tracking-[0.1em] text-neutral-400 mb-3">
           What to Expect
-        </h3>
-        <ul className="space-y-2 text-neutral-600">
-          <li className="flex items-start">
-            <span className="mr-2">•</span>
-            <span>{"We'll"} respond within 24 hours</span>
+        </p>
+        <ul className="space-y-2">
+          <li className="flex items-center text-sm text-neutral-600">
+            <span className="w-1 h-1 bg-primary-900 rounded-full mr-3 flex-shrink-0" />
+            {"We'll"} respond within 24 hours
           </li>
-          <li className="flex items-start">
-            <span className="mr-2">•</span>
-            <span>Free initial consultation (30 minutes)</span>
+          <li className="flex items-center text-sm text-neutral-600">
+            <span className="w-1 h-1 bg-primary-900 rounded-full mr-3 flex-shrink-0" />
+            Free initial consultation (30 minutes)
           </li>
-          <li className="flex items-start">
-            <span className="mr-2">•</span>
-            <span>Clear pricing with no hidden fees</span>
+          <li className="flex items-center text-sm text-neutral-600">
+            <span className="w-1 h-1 bg-primary-900 rounded-full mr-3 flex-shrink-0" />
+            Clear pricing with no hidden fees
           </li>
-          <li className="flex items-start">
-            <span className="mr-2">•</span>
-            <span>Personalized service recommendations</span>
+          <li className="flex items-center text-sm text-neutral-600">
+            <span className="w-1 h-1 bg-primary-900 rounded-full mr-3 flex-shrink-0" />
+            Personalized service recommendations
           </li>
         </ul>
       </div>
@@ -265,38 +221,34 @@ function FAQSection() {
   ]
 
   return (
-    <section className="section-padding bg-neutral-50">
+    <section className="section-padding bg-neutral-50 border-t border-neutral-200">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="heading-2 mb-6">Common Questions</h2>
-            <p className="body-large">
-              Here are answers to some frequently asked questions
+          <motion.div initial="hidden" whileInView="visible" viewport={viewportConfig} variants={fadeIn} className="mb-12">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-400 mb-4">
+              FAQ
             </p>
+            <h2 className="heading-2">Common questions</h2>
           </motion.div>
 
-          <div className="space-y-6">
+          <div className="space-y-px bg-neutral-200">
             {faqs.map((faq, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl p-6 md:p-8"
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportConfig}
+                variants={fadeIn}
+                className="bg-white p-6 md:p-8"
               >
-                <h3 className="text-xl font-semibold mb-3 text-neutral-900">
-                  {faq.q}
-                </h3>
-                <p className="text-neutral-600 leading-relaxed">{faq.a}</p>
+                <h3 className="heading-3 mb-2">{faq.q}</h3>
+                <p className="text-sm text-neutral-500 leading-relaxed">{faq.a}</p>
               </motion.div>
             ))}
+          </div>
+
+          <div className="mt-8">
+            <ComplianceDisclaimer />
           </div>
         </div>
       </div>
@@ -306,28 +258,27 @@ function FAQSection() {
 
 export default function ContactPage() {
   return (
-    <div className="pt-20 md:pt-24">
+    <div className="pt-16 md:pt-20">
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-neutral-50 to-white py-16 md:py-24">
+      <section className="bg-primary-900 py-20 md:py-28">
         <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="heading-1 mb-6"
-            >
-              Let{"'"}s Scale Your <span className="text-blue-600">Business</span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="body-large"
-            >
-              Schedule a free consultation to discuss your <span className="text-slate-900 font-semibold">growth goals</span> and learn how our infrastructure scales with you.
-            </motion.p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="max-w-3xl"
+          >
+            <p className="text-xs font-medium uppercase tracking-[0.25em] text-neutral-400 mb-6">
+              Contact
+            </p>
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-normal text-white leading-[1.1] mb-6">
+              {"Let's"} discuss your business
+            </h1>
+            <p className="text-lg md:text-xl text-neutral-300 leading-relaxed max-w-2xl">
+              Schedule a free consultation to discuss your growth goals and learn how our
+              infrastructure scales with you.
+            </p>
+          </motion.div>
         </div>
       </section>
 
@@ -340,11 +291,11 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.15 }}
             >
-              <Suspense fallback={<div className="bg-neutral-50 rounded-2xl p-8 md:p-10 h-[400px] animate-pulse" />}>
+              <Suspense fallback={<div className="bg-neutral-50 border border-neutral-200 p-8 md:p-10 h-[400px]" />}>
                 <ContactForm />
               </Suspense>
             </motion.div>

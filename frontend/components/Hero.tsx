@@ -5,60 +5,56 @@ import Link from 'next/link'
 
 const Hero = () => {
   return (
-    <section className="relative min-h-[92vh] flex items-center pt-24 md:pt-28 overflow-hidden">
-      {/* Ambient blue glow background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-100/50 via-blue-50/30 to-purple-50/20" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-400/15 rounded-full blur-3xl" />
-      
-      {/* Background texture overlay - gradient fallback */}
-      <div
-        className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-purple-600/5"
-      />
+    <section className="relative min-h-[85vh] flex items-center pt-20 md:pt-24 bg-primary-900 overflow-hidden">
+      {/* Subtle dark texture overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-primary-950/40 via-transparent to-primary-900/60" />
 
       <div className="container-custom relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <div>
-            <div className="inline-block px-5 py-2.5 bg-white/50 backdrop-blur-md border border-blue-200/40 rounded-full shadow-lg shadow-blue-500/15 mb-8">
-              <span className="text-sm font-semibold text-slate-700 uppercase tracking-wider">
-                National <span className="text-blue-600">Growth</span> & Business Infrastructure Firm
-              </span>
-            </div>
-          </div>
+        <div className="max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+          >
+            <p className="text-xs font-medium uppercase tracking-[0.25em] text-neutral-400 mb-6">
+              National Business Infrastructure Firm
+            </p>
 
-          <h1 className="heading-1 mb-8">
-            The one-stop business development solution for new and existing businesses.
-          </h1>
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal tracking-normal text-white leading-[1.1] mb-8">
+              The one-stop business development solution for new and existing businesses.
+            </h1>
 
-          <p className="body-large mb-10 max-w-2xl mx-auto">
-            From first-time founders to established enterprises, we support businesses at every stage — from the beginning to the elite level.
-          </p>
+            <p className="text-lg md:text-xl text-neutral-300 leading-relaxed mb-10 max-w-2xl">
+              From first-time founders to established enterprises, we support businesses at every stage — from the beginning to the elite level.
+            </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-            <Link href="/contact" className="btn-primary text-lg">
-              Start Scaling Today
+            <Link href="/contact" className="inline-flex items-center justify-center px-10 py-4 text-sm font-medium tracking-wide uppercase text-primary-900 bg-white border border-white hover:bg-neutral-100 transition-colors duration-200">
+              Schedule a Consultation
             </Link>
-            <Link href="/services" className="btn-secondary text-lg">
-              Our Infrastructure
-            </Link>
-          </div>
+          </motion.div>
 
-          <div className="card-premium p-8 max-w-3xl mx-auto">
-            <div className="grid grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">Multi-State</div>
-                <div className="text-sm text-slate-600 font-medium">Operations Served</div>
+          {/* Institutional stats bar */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4, delay: 0.2, ease: 'easeOut' }}
+            className="mt-20 pt-8 border-t border-white/15"
+          >
+            <div className="grid grid-cols-3 gap-8 md:gap-16">
+              <div>
+                <div className="text-2xl md:text-3xl font-serif text-white mb-1">50</div>
+                <div className="text-xs text-neutral-400 uppercase tracking-[0.15em]">States Served</div>
               </div>
-              <div className="text-center border-l border-r border-blue-200/30">
-                <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">50+</div>
-                <div className="text-sm text-slate-600 font-medium">States Active</div>
+              <div>
+                <div className="text-2xl md:text-3xl font-serif text-white mb-1">Multi-State</div>
+                <div className="text-xs text-neutral-400 uppercase tracking-[0.15em]">Coordination</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">Scalable</div>
-                <div className="text-sm text-slate-600 font-medium">Infrastructure Built</div>
+              <div>
+                <div className="text-2xl md:text-3xl font-serif text-white mb-1">Enterprise</div>
+                <div className="text-xs text-neutral-400 uppercase tracking-[0.15em]">Infrastructure</div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

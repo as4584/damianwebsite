@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { fadeIn, staggerContainer, viewportConfig } from '@/lib/motionPresets'
+import ComplianceDisclaimer from '@/components/ComplianceDisclaimer'
 
 const industries = [
   {
@@ -66,251 +68,197 @@ const industries = [
   },
 ]
 
-const caseStudies = [
+const representativeEngagements = [
   {
-    industry: 'SaaS Startup',
+    sector: 'SaaS Startup',
     challenge: 'Needed formation, website, custom app, and AI chatbot — all coordinated quickly.',
-    solution: 'Built complete infrastructure in 3 weeks. Formation, custom domain, application platform, and AI support system deployed as one.',
-    result: '100% operational from day one. No vendor handoffs.',
+    approach: 'Built complete infrastructure in 3 weeks. Formation, custom domain, application platform, and AI support system deployed as one.',
+    outcome: '100% operational from day one. No vendor handoffs.',
   },
   {
-    industry: 'Professional Services Firm',
+    sector: 'Professional Services Firm',
     challenge: 'Multiple locations, inconsistent systems, compliance gaps.',
-    solution: 'Unified all locations under one infrastructure system. Coordinated state filings, built central website, deployed communication tools.',
-    result: 'One system. No gaps. Complete visibility.',
+    approach: 'Unified all locations under one infrastructure system. Coordinated state filings, built central website, deployed communication tools.',
+    outcome: 'One system. No gaps. Complete visibility.',
   },
   {
-    industry: 'Nonprofit Organization',
+    sector: 'Nonprofit Organization',
     challenge: '501(c)(3) application, donor management, and website needed simultaneously.',
-    solution: 'Handled nonprofit formation, built donor portal, deployed professional website — all managed as one project.',
-    result: 'Operational before first fundraising event.',
+    approach: 'Handled nonprofit formation, built donor portal, deployed professional website — all managed as one project.',
+    outcome: 'Operational before first fundraising event.',
   },
 ]
 
 export default function IndustriesPage() {
   return (
-    <div className="pt-20 md:pt-24">
+    <div className="pt-16 md:pt-20">
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-neutral-50 to-white py-16 md:py-24">
+      <section className="bg-primary-900 py-20 md:py-28">
         <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="heading-1 mb-6"
-            >
-              Industries We Serve
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="body-large"
-            >
-              Every industry has different infrastructure needs. We build complete systems 
-              tailored to how your business actually operates.
-            </motion.p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            <div className="grid lg:grid-cols-2 gap-12 items-end">
+              <div>
+                <p className="text-xs font-medium uppercase tracking-[0.25em] text-neutral-400 mb-6">
+                  Industries
+                </p>
+                <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-normal text-white leading-[1.1]">
+                  Sector-specific infrastructure
+                </h1>
+              </div>
+              <p className="text-lg text-neutral-300 leading-relaxed">
+                Every industry has different infrastructure needs. We build complete systems
+                tailored to how your business actually operates.
+              </p>
+            </div>
+
+            {/* National Reach Stats */}
+            <div className="mt-16 pt-10 border-t border-white/10 grid grid-cols-3 gap-8">
+              <div>
+                <span className="font-serif text-3xl md:text-4xl text-white">50</span>
+                <p className="text-sm text-neutral-400 mt-1">States Served</p>
+              </div>
+              <div>
+                <span className="font-serif text-3xl md:text-4xl text-white">Multi-State</span>
+                <p className="text-sm text-neutral-400 mt-1">Registration Support</p>
+              </div>
+              <div>
+                <span className="font-serif text-3xl md:text-4xl text-white">National</span>
+                <p className="text-sm text-neutral-400 mt-1">Compliance Coordination</p>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Industries Grid */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {industries.map((industry, index) => (
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={staggerContainer}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-neutral-200 border border-neutral-200"
+          >
+            {industries.map((industry) => (
               <motion.div
                 key={industry.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-neutral-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300"
+                variants={fadeIn}
+                className="bg-white p-8 md:p-10 hover:bg-neutral-50 transition-colors duration-200"
               >
-                <h3 className="text-2xl font-semibold mb-4 text-neutral-900">
-                  {industry.title}
-                </h3>
-                <p className="text-neutral-600 mb-6 leading-relaxed">
+                <h3 className="heading-3 mb-3">{industry.title}</h3>
+                <p className="text-sm text-neutral-500 leading-relaxed mb-6">
                   {industry.description}
                 </p>
-                <div className="space-y-2">
-                  <h4 className="text-sm font-semibold text-neutral-900 uppercase tracking-wide">
-                    Common Needs
-                  </h4>
-                  <ul className="space-y-2">
-                    {industry.needs.map((need) => (
-                      <li key={need} className="flex items-start text-sm">
-                        <svg
-                          className="w-4 h-4 text-neutral-900 mr-2 mt-0.5 flex-shrink-0"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                        <span className="text-neutral-600">{need}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <p className="text-xs font-medium text-neutral-400 uppercase tracking-[0.15em] mb-3">
+                  Common Needs
+                </p>
+                <ul className="space-y-2">
+                  {industry.needs.map((need) => (
+                    <li key={need} className="flex items-center text-sm text-neutral-600">
+                      <span className="w-1 h-1 bg-primary-900 rounded-full mr-3 flex-shrink-0" />
+                      {need}
+                    </li>
+                  ))}
+                </ul>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Case Studies */}
-      <section className="section-padding bg-neutral-50">
+      {/* Representative Engagements */}
+      <section className="section-padding bg-neutral-50 border-y border-neutral-200">
         <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="heading-2 mb-6"
-            >
-              How We Build Complete Systems
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="body-large"
-            >
-              Real infrastructure projects across different industries
-            </motion.p>
-          </div>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={fadeIn}
+            className="mb-16"
+          >
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-400 mb-4">
+              Representative Engagements
+            </p>
+            <h2 className="heading-2 max-w-xl">How we build complete systems</h2>
+          </motion.div>
 
-          <div className="space-y-8 max-w-4xl mx-auto">
-            {caseStudies.map((study, index) => (
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={staggerContainer}
+            className="space-y-px bg-neutral-200"
+          >
+            {representativeEngagements.map((study) => (
               <motion.div
-                key={study.industry}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl p-8 md:p-10"
+                key={study.sector}
+                variants={fadeIn}
+                className="bg-white p-8 md:p-12"
               >
-                <div className="inline-block px-3 py-1 bg-neutral-100 rounded-full mb-4">
-                  <span className="text-sm font-medium text-neutral-700">
-                    {study.industry}
-                  </span>
-                </div>
-                
-                <div className="space-y-4">
+                <p className="text-xs font-medium text-neutral-400 uppercase tracking-[0.15em] mb-4">
+                  {study.sector}
+                </p>
+                <div className="grid md:grid-cols-3 gap-8">
                   <div>
-                    <h4 className="text-sm font-semibold text-neutral-900 uppercase tracking-wide mb-2">
+                    <h4 className="text-xs font-medium text-primary-900 uppercase tracking-[0.1em] mb-2">
                       Challenge
                     </h4>
-                    <p className="text-neutral-700">{study.challenge}</p>
+                    <p className="text-sm text-neutral-600 leading-relaxed">{study.challenge}</p>
                   </div>
-                  
                   <div>
-                    <h4 className="text-sm font-semibold text-neutral-900 uppercase tracking-wide mb-2">
-                      Solution
+                    <h4 className="text-xs font-medium text-primary-900 uppercase tracking-[0.1em] mb-2">
+                      Approach
                     </h4>
-                    <p className="text-neutral-700">{study.solution}</p>
+                    <p className="text-sm text-neutral-600 leading-relaxed">{study.approach}</p>
                   </div>
-                  
                   <div>
-                    <h4 className="text-sm font-semibold text-neutral-900 uppercase tracking-wide mb-2">
-                      Result
+                    <h4 className="text-xs font-medium text-primary-900 uppercase tracking-[0.1em] mb-2">
+                      Outcome
                     </h4>
-                    <p className="text-neutral-700 font-medium">{study.result}</p>
+                    <p className="text-sm text-neutral-700 font-medium leading-relaxed">{study.outcome}</p>
                   </div>
                 </div>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
+          </motion.div>
 
-      {/* National Reach Section */}
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="heading-2 mb-6">National Infrastructure Firm</h2>
-              <p className="body-large">
-                We serve businesses across all 50 states. Multi-state registration, 
-                distributed operations, and national compliance — all coordinated as one system.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="grid md:grid-cols-3 gap-6"
-            >
-              <div className="text-center p-6 bg-neutral-50 rounded-xl">
-                <div className="text-4xl font-bold text-neutral-900 mb-2">50</div>
-                <div className="text-neutral-600">States Served</div>
-              </div>
-              <div className="text-center p-6 bg-neutral-50 rounded-xl">
-                <div className="text-4xl font-bold text-neutral-900 mb-2">Multi-State</div>
-                <div className="text-neutral-600">Registration Support</div>
-              </div>
-              <div className="text-center p-6 bg-neutral-50 rounded-xl">
-                <div className="text-4xl font-bold text-neutral-900 mb-2">National</div>
-                <div className="text-neutral-600">Compliance Coordination</div>
-              </div>
-            </motion.div>
-          </div>
+          <p className="text-xs text-neutral-400 mt-6">
+            The engagements above are representative of work performed and do not constitute guarantees of future results.
+          </p>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-neutral-900 text-white">
+      <section className="py-24 md:py-32 bg-primary-900 text-white">
         <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="heading-2 mb-6"
-            >
-              Let Us Build Your Infrastructure
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-xl text-neutral-300 mb-8"
-            >
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={fadeIn}
+            className="max-w-2xl"
+          >
+            <h2 className="font-serif text-3xl md:text-4xl font-normal text-white mb-6">
+              Let us build your infrastructure
+            </h2>
+            <p className="text-base md:text-lg text-neutral-300 leading-relaxed mb-8">
               No matter your industry, we build complete business systems tailored to your operations.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center px-10 py-4 text-sm font-medium tracking-wide uppercase text-primary-900 bg-white border border-white hover:bg-neutral-100 transition-colors duration-200"
             >
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-md text-neutral-900 bg-white hover:bg-neutral-100 transition-colors duration-200"
-              >
-                Discuss Your System
-              </Link>
-            </motion.div>
-          </div>
+              Discuss Your System
+            </Link>
+            <div className="mt-12">
+              <ComplianceDisclaimer className="text-neutral-500" />
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

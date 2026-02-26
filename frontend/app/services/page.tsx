@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { fadeIn, staggerContainer, viewportConfig } from '@/lib/motionPresets'
+import ComplianceDisclaimer from '@/components/ComplianceDisclaimer'
 
 const services = [
   {
@@ -98,22 +100,22 @@ const services = [
 
 const processSteps = [
   {
-    step: 1,
+    step: '01',
     title: 'Discovery',
     description: "We learn what you're building, what systems you need, and what infrastructure gaps exist.",
   },
   {
-    step: 2,
+    step: '02',
     title: 'System Design',
     description: 'We design your complete business infrastructure — formation, websites, apps, compliance, and tools.',
   },
   {
-    step: 3,
+    step: '03',
     title: 'Build & Deploy',
     description: 'We build and deploy everything as one coordinated system, not separate vendor projects.',
   },
   {
-    step: 4,
+    step: '04',
     title: 'Ongoing Support',
     description: 'We maintain your infrastructure, handle compliance, and support your business as it grows.',
   },
@@ -121,80 +123,64 @@ const processSteps = [
 
 export default function ServicesPage() {
   return (
-    <div className="pt-20 md:pt-24">
+    <div className="pt-16 md:pt-20">
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-neutral-50 to-white py-16 md:py-24">
+      <section className="bg-primary-900 py-20 md:py-28">
         <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="heading-1 mb-6"
-            >
-              Scalable <span className="text-blue-600">Growth</span> Infrastructure
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="body-large"
-            >
-              Formation. <span className="text-slate-900 font-semibold">Licensing</span>. Growth Systems. AI Automation. <span className="text-slate-900 font-semibold">Compliance</span>. 
-              Everything your business needs to <span className="text-blue-600 font-semibold">scale</span> — built and managed as one system.
-            </motion.p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="max-w-3xl"
+          >
+            <p className="text-xs font-medium uppercase tracking-[0.25em] text-neutral-400 mb-6">
+              Services
+            </p>
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-normal text-white leading-[1.1] mb-6">
+              Scalable growth infrastructure
+            </h1>
+            <p className="text-lg md:text-xl text-neutral-300 leading-relaxed max-w-2xl">
+              Formation. Licensing. Growth Systems. AI Automation. Compliance. 
+              Everything your business needs to scale — built and managed as one system.
+            </p>
+          </motion.div>
         </div>
       </section>
 
       {/* Services Grid */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="space-y-16">
-            {services.map((service, index) => (
+          <div className="space-y-px bg-neutral-200">
+            {services.map((service) => (
               <motion.div
                 key={service.id}
                 id={service.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-neutral-50 rounded-2xl p-8 md:p-12 lg:p-16"
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportConfig}
+                variants={fadeIn}
+                className="bg-white"
               >
-                <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 p-8 md:p-12 lg:p-16">
                   <div>
-                    <div className="inline-block px-4 py-1 bg-white rounded-full mb-4">
-                      <span className="text-sm font-medium text-neutral-600">
-                        {service.pricing}
-                      </span>
-                    </div>
-                    <h2 className="heading-3 mb-4">{service.title}</h2>
-                    <p className="body-regular mb-6">{service.longDescription}</p>
-                    <Link href="/contact" className="btn-primary">
+                    <span className="text-xs font-medium text-neutral-400 uppercase tracking-[0.15em]">
+                      {service.pricing}
+                    </span>
+                    <h2 className="heading-3 mt-2 mb-4">{service.title}</h2>
+                    <p className="body-regular mb-8">{service.longDescription}</p>
+                    <Link href="/contact" className="btn-primary text-xs">
                       Discuss Your Needs
                     </Link>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold mb-4 text-neutral-900">
-                      {"What's"} Included
-                    </h3>
+                    <p className="text-xs font-medium text-neutral-400 uppercase tracking-[0.15em] mb-4">
+                      Included
+                    </p>
                     <ul className="space-y-3">
                       {service.features.map((feature) => (
-                        <li key={feature} className="flex items-start">
-                          <svg
-                            className="w-5 h-5 text-neutral-900 mr-3 mt-0.5 flex-shrink-0"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                          <span className="text-neutral-700">{feature}</span>
+                        <li key={feature} className="flex items-center text-sm text-neutral-600">
+                          <span className="w-1 h-1 bg-primary-900 rounded-full mr-3 flex-shrink-0" />
+                          {feature}
                         </li>
                       ))}
                     </ul>
@@ -207,88 +193,55 @@ export default function ServicesPage() {
       </section>
 
       {/* Process Section */}
-      <section className="section-padding bg-neutral-50">
+      <section className="section-padding bg-neutral-50 border-y border-neutral-200">
         <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="heading-2 mb-6"
-            >
-              How We Build Your System
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="body-large"
-            >
-              A coordinated approach to building complete business infrastructure
-            </motion.p>
-          </div>
+          <motion.div initial="hidden" whileInView="visible" viewport={viewportConfig} variants={fadeIn} className="mb-16">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-400 mb-4">
+              Methodology
+            </p>
+            <h2 className="heading-2 max-w-xl">How we build your system</h2>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {processSteps.map((step, index) => (
-              <motion.div
-                key={step.step}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center"
-              >
-                <div className="w-16 h-16 bg-neutral-900 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={staggerContainer}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-neutral-200"
+          >
+            {processSteps.map((step) => (
+              <motion.div key={step.step} variants={fadeIn} className="bg-white p-8">
+                <span className="text-xs font-medium text-neutral-400 tracking-[0.15em]">
                   {step.step}
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-neutral-900">
-                  {step.title}
-                </h3>
-                <p className="text-neutral-600">{step.description}</p>
+                </span>
+                <h3 className="heading-3 mt-2 mb-3">{step.title}</h3>
+                <p className="text-sm text-neutral-500 leading-relaxed">{step.description}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-neutral-900 text-white">
+      <section className="py-24 md:py-32 bg-primary-900 text-white">
         <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="heading-2 mb-6"
-            >
-              Let Us Build Your Business System
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-xl text-neutral-300 mb-8"
-            >
+          <motion.div initial="hidden" whileInView="visible" viewport={viewportConfig} variants={fadeIn} className="max-w-2xl">
+            <h2 className="font-serif text-3xl md:text-4xl font-normal text-white mb-6">
+              Let us build your business system
+            </h2>
+            <p className="text-base md:text-lg text-neutral-300 leading-relaxed mb-8">
               Tell us what {"you're"} building. {"We'll"} design and deploy the infrastructure you need.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center px-10 py-4 text-sm font-medium tracking-wide uppercase text-primary-900 bg-white border border-white hover:bg-neutral-100 transition-colors duration-200"
             >
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-md text-neutral-900 bg-white hover:bg-neutral-100 transition-colors duration-200"
-              >
-                Schedule a Consultation
-              </Link>
-            </motion.div>
-          </div>
+              Schedule a Consultation
+            </Link>
+            <div className="mt-12">
+              <ComplianceDisclaimer className="text-neutral-500" />
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

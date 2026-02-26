@@ -5,17 +5,17 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 0% 9%;
-    --blue-glow: 210 100% 95%;
-    --electric-blue: 210 100% 58%;
+    --foreground: 220 26% 14%;
+    --navy: 222 44% 20%;
+    --accent-gold: 43 91% 38%;
   }
 
   * {
-    @apply border-slate-200/50;
+    @apply border-neutral-200;
   }
 
   body {
-    @apply bg-gradient-to-br from-[#eef5ff] via-[#e6f0ff] to-[#eef5ff] text-slate-900 antialiased;
+    @apply bg-white text-slate-900 antialiased;
   }
 
   html {
@@ -25,51 +25,55 @@
 
 @layer components {
   .container-custom {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
   .section-padding {
-    @apply py-20 md:py-28 lg:py-36;
+    @apply py-24 md:py-32 lg:py-40;
   }
 
+  /* Institutional typography — serif headings */
   .heading-1 {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900;
+    @apply font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal tracking-normal text-primary-900;
   }
 
   .heading-2 {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900;
+    @apply font-serif text-3xl md:text-4xl font-normal tracking-normal text-primary-900;
   }
 
   .heading-3 {
-    @apply text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-slate-900;
+    @apply font-serif text-xl md:text-2xl font-normal tracking-normal text-primary-900;
   }
 
   .body-large {
-    @apply text-lg md:text-xl text-slate-600 leading-relaxed;
+    @apply text-lg md:text-xl text-neutral-600 leading-relaxed;
   }
 
   .body-regular {
-    @apply text-base md:text-lg text-slate-600 leading-relaxed;
+    @apply text-base md:text-lg text-neutral-600 leading-normal;
   }
 
+  /* Institutional buttons — flat, restrained */
   .btn-primary {
-    @apply inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-semibold rounded-xl text-white bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300;
+    @apply inline-flex items-center justify-center px-8 py-3.5 text-sm font-medium tracking-wide uppercase text-white bg-primary-900 border border-primary-900 hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900 transition-colors duration-200;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-8 py-4 border-2 border-blue-200/50 text-base font-semibold rounded-xl text-slate-700 bg-white/40 backdrop-blur-md shadow-md shadow-blue-500/10 hover:shadow-lg hover:shadow-blue-500/20 hover:border-blue-300/60 hover:bg-white/60 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300;
+    @apply inline-flex items-center justify-center px-8 py-3.5 text-sm font-medium tracking-wide uppercase text-primary-900 bg-transparent border border-primary-900 hover:bg-primary-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900 transition-colors duration-200;
   }
 
+  /* Solid institutional cards — no glassmorphism */
   .card-premium {
-    @apply bg-white/40 backdrop-blur-xl rounded-2xl shadow-xl shadow-blue-500/10 border border-white/50;
+    @apply bg-white border border-neutral-200 shadow-sm;
   }
 
   .glass-surface {
-    @apply bg-white/30 backdrop-blur-lg border border-white/40 shadow-lg shadow-blue-500/15;
+    @apply bg-neutral-50 border border-neutral-200;
   }
 
-  .ambient-glow {
-    @apply relative before:absolute before:inset-0 before:bg-gradient-radial before:from-blue-400/20 before:to-transparent before:blur-3xl before:-z-10;
+  /* Divider line */
+  .section-divider {
+    @apply border-t border-neutral-200 max-w-6xl mx-auto;
   }
 
   /* Mobile safe areas for notched devices */
