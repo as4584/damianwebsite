@@ -75,7 +75,8 @@ export async function detectIntentGPT(
   currentPage: string = '/'
 ): Promise<Intent> {
   if (!gptConfig) {
-    throw new Error('GPT not initialized. Call initializeGPT() first.');
+    console.warn('GPT not initialized — using keyword fallback for intent detection');
+    return detectIntentFallback(userInput);
   }
   
   // Check budget
@@ -196,7 +197,8 @@ export async function generateResponseGPT(
   siteContext: string
 ): Promise<string> {
   if (!gptConfig) {
-    throw new Error('GPT not initialized. Call initializeGPT() first.');
+    console.warn('GPT not initialized — using fallback response');
+    return getFallbackResponse(intent);
   }
   
   // Check budget

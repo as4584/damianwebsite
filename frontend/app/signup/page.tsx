@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * Signup Page
+ * Signup Page — Institutional Design
  * 
  * SECURITY:
  * - Password input has type="password" (masked)
@@ -27,7 +27,6 @@ export default function SignupPage() {
     e.preventDefault();
     setError('');
 
-    // Client-side validation
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       return;
@@ -41,17 +40,10 @@ export default function SignupPage() {
     setIsLoading(true);
 
     try {
-      // Call signup API
       const response = await fetch('/api/auth/signup', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          password,
-          name,
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, name }),
       });
 
       const data = await response.json();
@@ -62,7 +54,6 @@ export default function SignupPage() {
         return;
       }
 
-      // Success - redirect to login
       router.push('/login?signup=success');
     } catch (err) {
       console.error('Signup error:', err);
@@ -71,141 +62,161 @@ export default function SignupPage() {
     }
   };
 
+  const inputClasses =
+    'w-full px-4 py-3 bg-neutral-50 border border-neutral-300 rounded-sm text-primary-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-gold/40 focus:border-accent-gold transition-colors';
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 flex items-center justify-center p-4">
-      <div className="max-w-md w-full">
-        {/* Logo / Brand */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">
-            Innovation
-          </h1>
-          <p className="text-slate-300">
-            Business Development Solutions
-          </p>
-        </div>
+    <div className="min-h-screen bg-neutral-50 flex flex-col">
+      {/* Top accent bar */}
+      <div className="h-1 bg-accent-gold w-full" />
 
-        {/* Signup Card */}
-        <div className="bg-white rounded-2xl shadow-2xl p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">
-            Create Account
-          </h2>
+      <div className="flex-1 flex items-center justify-center px-4 py-16">
+        <div className="max-w-md w-full">
+          {/* Brand */}
+          <div className="text-center mb-10">
+            <Link href="/" className="inline-block mb-4">
+              <h1 className="font-serif text-3xl tracking-tight text-primary-900">
+                Innovation Development
+              </h1>
+            </Link>
+            <p className="text-sm text-neutral-500 tracking-wide uppercase">
+              Create Your Account
+            </p>
+          </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Name Field */}
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Full Name
-              </label>
-              <input
-                id="name"
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                autoComplete="name"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="John Smith"
+          {/* Signup Card */}
+          <div className="bg-white border border-neutral-200 rounded-sm shadow-sm p-8 sm:p-10">
+            <h2 className="font-serif text-2xl text-primary-900 mb-8">
+              Sign Up
+            </h2>
+
+            <form onSubmit={handleSubmit} className="space-y-5">
+              {/* Name */}
+              <div>
+                <label
+                  htmlFor="name"
+                  className="block text-xs font-medium tracking-wide uppercase text-neutral-500 mb-2"
+                >
+                  Full Name
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  autoComplete="name"
+                  className={inputClasses}
+                  placeholder="John Smith"
+                  disabled={isLoading}
+                />
+              </div>
+
+              {/* Email */}
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-xs font-medium tracking-wide uppercase text-neutral-500 mb-2"
+                >
+                  Email Address
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  autoComplete="email"
+                  className={inputClasses}
+                  placeholder="you@example.com"
+                  disabled={isLoading}
+                />
+              </div>
+
+              {/* Password */}
+              <div>
+                <label
+                  htmlFor="password"
+                  className="block text-xs font-medium tracking-wide uppercase text-neutral-500 mb-2"
+                >
+                  Password
+                </label>
+                <input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  autoComplete="new-password"
+                  className={inputClasses}
+                  placeholder="••••••••"
+                  disabled={isLoading}
+                />
+                <p className="text-xs text-neutral-400 mt-1.5">
+                  Must be at least 8 characters
+                </p>
+              </div>
+
+              {/* Confirm Password */}
+              <div>
+                <label
+                  htmlFor="confirmPassword"
+                  className="block text-xs font-medium tracking-wide uppercase text-neutral-500 mb-2"
+                >
+                  Confirm Password
+                </label>
+                <input
+                  id="confirmPassword"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                  autoComplete="new-password"
+                  className={inputClasses}
+                  placeholder="••••••••"
+                  disabled={isLoading}
+                />
+              </div>
+
+              {/* Error */}
+              {error && (
+                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-sm text-sm">
+                  {error}
+                </div>
+              )}
+
+              {/* Submit */}
+              <button
+                type="submit"
                 disabled={isLoading}
-              />
-            </div>
-
-            {/* Email Field */}
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="w-full bg-primary-900 text-white py-3.5 px-6 rounded-sm hover:bg-primary-800 focus:ring-2 focus:ring-accent-gold focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium text-sm tracking-wide uppercase"
               >
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                autoComplete="email"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="you@example.com"
-                disabled={isLoading}
-              />
-            </div>
+                {isLoading ? 'Creating account...' : 'Create Account'}
+              </button>
+            </form>
 
-            {/* Password Field */}
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                autoComplete="new-password"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="••••••••"
-                disabled={isLoading}
-              />
-              <p className="text-xs text-gray-500 mt-1">
-                Must be at least 8 characters
+            {/* Divider */}
+            <div className="mt-8 pt-6 border-t border-neutral-200 text-center">
+              <p className="text-sm text-neutral-500">
+                Already have an account?{' '}
+                <Link
+                  href="/login"
+                  className="text-accent-gold hover:text-primary-900 font-medium transition-colors"
+                >
+                  Sign in
+                </Link>
               </p>
             </div>
+          </div>
 
-            {/* Confirm Password Field */}
-            <div>
-              <label
-                htmlFor="confirmPassword"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Confirm Password
-              </label>
-              <input
-                id="confirmPassword"
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-                autoComplete="new-password"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="••••••••"
-                disabled={isLoading}
-              />
-            </div>
-
-            {/* Error Message */}
-            {error && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
-                {error}
-              </div>
-            )}
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
+          {/* Back link */}
+          <div className="mt-8 text-center">
+            <Link
+              href="/"
+              className="text-sm text-neutral-400 hover:text-primary-900 transition-colors"
             >
-              {isLoading ? 'Creating account...' : 'Create Account'}
-            </button>
-          </form>
-
-          {/* Divider */}
-          <div className="mt-6 text-center">
-            <p className="text-sm text-gray-600">
-              Already have an account?{' '}
-              <Link
-                href="/login"
-                className="text-blue-600 hover:text-blue-700 font-medium"
-              >
-                Sign in
-              </Link>
-            </p>
+              &larr; Back to website
+            </Link>
           </div>
         </div>
       </div>

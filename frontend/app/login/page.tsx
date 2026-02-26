@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * Login Page
+ * Login Page — Institutional Design
  * 
  * SECURITY:
  * - Password input has type="password" (masked)
@@ -28,24 +28,20 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      // Call NextAuth signIn
-      // SECURITY: This posts to /api/auth/signin with CSRF protection
       const result = await signIn('credentials', {
         email,
         password,
-        redirect: false, // We handle redirect manually for better UX
+        redirect: false,
       });
 
       if (result?.error) {
-        // Authentication failed
         setError('Invalid email or password');
         setIsLoading(false);
         return;
       }
 
-      // Success - redirect to dashboard
       router.push('/dashboard');
-      router.refresh(); // Refresh to load authenticated state
+      router.refresh();
     } catch (err) {
       console.error('Login error:', err);
       setError('An error occurred. Please try again.');
@@ -54,126 +50,127 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Animated background orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-20 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-      </div>
+    <div className="min-h-screen bg-neutral-50 flex flex-col">
+      {/* Top accent bar */}
+      <div className="h-1 bg-accent-gold w-full" />
 
-      <div className="max-w-md w-full relative z-10">
-        {/* Logo / Brand */}
-        <div className="text-center mb-8">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
-            Innovation
-          </h1>
-          <p className="text-gray-600 font-medium">
-            Business Development Solutions
-          </p>
-        </div>
-
-        {/* Login Card - Glass morphism */}
-        <div className="backdrop-blur-xl bg-white/80 rounded-3xl shadow-2xl shadow-blue-200/50 p-8 border border-white/20">
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8">
-            Sign In
-          </h2>
-
-          <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Email Field */}
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-bold text-gray-700 mb-2"
-              >
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                autoComplete="email"
-                className="w-full px-5 py-3 backdrop-blur-xl bg-white/50 border border-white/20 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-lg shadow-blue-100/50 transition-all duration-300 focus:shadow-xl focus:shadow-blue-200/50"
-                placeholder="you@example.com"
-                disabled={isLoading}
-              />
-            </div>
-
-            {/* Password Field */}
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-bold text-gray-700 mb-2"
-              >
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                autoComplete="current-password"
-                className="w-full px-5 py-3 backdrop-blur-xl bg-white/50 border border-white/20 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-lg shadow-blue-100/50 transition-all duration-300 focus:shadow-xl focus:shadow-blue-200/50"
-                placeholder="••••••••"
-                disabled={isLoading}
-              />
-            </div>
-
-            {/* Error Message */}
-            {error && (
-              <div className="backdrop-blur-xl bg-red-50/80 border border-red-200/50 text-red-700 px-5 py-4 rounded-xl font-medium shadow-lg shadow-red-100/50">
-                {error}
-              </div>
-            )}
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-6 rounded-xl hover:from-blue-700 hover:to-purple-700 focus:ring-4 focus:ring-blue-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 font-bold text-lg shadow-xl shadow-blue-300/50 hover:shadow-2xl hover:shadow-blue-400/50 hover:scale-[1.02]"
-            >
-              {isLoading ? 'Signing in...' : 'Sign In'}
-            </button>
-          </form>
-
-          {/* Divider */}
-          <div className="mt-6 text-center">
-            <p className="text-sm text-gray-600">
-              Don&apos;t have an account?{' '}
-              <Link
-                href="/signup"
-                className="text-blue-600 hover:text-blue-700 font-medium"
-              >
-                Sign up
-              </Link>
-            </p>
-          </div>
-
-          {/* Forgot Password - Not yet implemented */}
-          {/* <div className="mt-4 text-center">
-            <Link
-              href="/forgot-password"
-              className="text-sm text-gray-600 hover:text-gray-900"
-            >
-              Forgot your password?
+      <div className="flex-1 flex items-center justify-center px-4 py-16">
+        <div className="max-w-md w-full">
+          {/* Brand */}
+          <div className="text-center mb-10">
+            <Link href="/" className="inline-block mb-4">
+              <h1 className="font-serif text-3xl tracking-tight text-primary-900">
+                Innovation Development
+              </h1>
             </Link>
-          </div> */}
-        </div>
-
-        {/* Demo Credentials (Development Only) */}
-        {process.env.NODE_ENV === 'development' && (
-          <div className="mt-4 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-            <p className="text-sm text-yellow-800 font-medium mb-2">
-              Development Mode - Demo Credentials:
-            </p>
-            <p className="text-xs text-yellow-700 font-mono">
-              Email: demo@{process.env.NEXT_PUBLIC_SITE_URL?.replace('https://', '').replace('http://', '') || 'example.com'}<br />
-              Password: demo1234
+            <p className="text-sm text-neutral-500 tracking-wide uppercase">
+              Client Portal
             </p>
           </div>
-        )}
+
+          {/* Login Card */}
+          <div className="bg-white border border-neutral-200 rounded-sm shadow-sm p-8 sm:p-10">
+            <h2 className="font-serif text-2xl text-primary-900 mb-8">
+              Sign In
+            </h2>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Email */}
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-xs font-medium tracking-wide uppercase text-neutral-500 mb-2"
+                >
+                  Email Address
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  autoComplete="email"
+                  className="w-full px-4 py-3 bg-neutral-50 border border-neutral-300 rounded-sm text-primary-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-gold/40 focus:border-accent-gold transition-colors"
+                  placeholder="you@example.com"
+                  disabled={isLoading}
+                />
+              </div>
+
+              {/* Password */}
+              <div>
+                <label
+                  htmlFor="password"
+                  className="block text-xs font-medium tracking-wide uppercase text-neutral-500 mb-2"
+                >
+                  Password
+                </label>
+                <input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  autoComplete="current-password"
+                  className="w-full px-4 py-3 bg-neutral-50 border border-neutral-300 rounded-sm text-primary-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-gold/40 focus:border-accent-gold transition-colors"
+                  placeholder="••••••••"
+                  disabled={isLoading}
+                />
+              </div>
+
+              {/* Error */}
+              {error && (
+                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-sm text-sm">
+                  {error}
+                </div>
+              )}
+
+              {/* Submit */}
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full bg-primary-900 text-white py-3.5 px-6 rounded-sm hover:bg-primary-800 focus:ring-2 focus:ring-accent-gold focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium text-sm tracking-wide uppercase"
+              >
+                {isLoading ? 'Signing in...' : 'Sign In'}
+              </button>
+            </form>
+
+            {/* Divider */}
+            <div className="mt-8 pt-6 border-t border-neutral-200 text-center">
+              <p className="text-sm text-neutral-500">
+                Don&apos;t have an account?{' '}
+                <Link
+                  href="/signup"
+                  className="text-accent-gold hover:text-primary-900 font-medium transition-colors"
+                >
+                  Sign up
+                </Link>
+              </p>
+            </div>
+          </div>
+
+          {/* Demo Credentials (Development Only) */}
+          {process.env.NODE_ENV === 'development' && (
+            <div className="mt-6 bg-amber-50 border border-amber-200 rounded-sm p-4">
+              <p className="text-xs font-medium uppercase tracking-wide text-amber-700 mb-2">
+                Development Mode — Demo Credentials
+              </p>
+              <p className="text-xs text-amber-600 font-mono">
+                Email: test@innovation.com<br />
+                Password: King1000$
+              </p>
+            </div>
+          )}
+
+          {/* Back link */}
+          <div className="mt-8 text-center">
+            <Link
+              href="/"
+              className="text-sm text-neutral-400 hover:text-primary-900 transition-colors"
+            >
+              &larr; Back to website
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
