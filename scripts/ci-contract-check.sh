@@ -11,14 +11,16 @@ VIOLATIONS=0
 # 1. Detect arbitrary sleeps in E2E tests (if any exist)
 echo ""
 echo "📋 Contract 1: No arbitrary time-based waits allowed"
-if [ -f "e2e/chatbot-comprehensive.spec.ts" ]; then
-  if grep -r "waitForTimeout" e2e/*.spec.ts 2>/dev/null | grep -v "playwright-report" | head -5; then
+if [ -d "testing/e2e" ]; then
+  if grep -r "waitForTimeout" testing/e2e --include="*.spec.ts" 2>/dev/null | grep -v "playwright-report" | head -5; then
     echo "⚠️  WARNING: Found waitForTimeout() calls in E2E tests."
     echo "   These should be replaced with signal-based waits (expect().toBeVisible())."
     VIOLATIONS=$((VIOLATIONS + 1))
+  else
+    echo "✅ No waitForTimeout() violations found in testing/e2e."
   fi
 else
-  echo "✅ No waitForTimeout() violations found (chatbot-comprehensive removed)."
+  echo "✅ No E2E directory found at testing/e2e (skipping waitForTimeout check)."
 fi
 
 # 2. Detect missing health endpoint references

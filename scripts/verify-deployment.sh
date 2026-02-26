@@ -165,26 +165,26 @@ echo -e "${YELLOW}=== 4. Test Files Exist ===${NC}"
 echo ""
 
 check "Confidence score test exists" \
-    "[ -f 'e2e/confidence-score.spec.ts' ]"
+    "[ -f 'testing/e2e/quality/confidence-score.spec.ts' ]"
 
 check "Production ready test exists" \
-    "[ -f 'e2e/production-ready.spec.ts' ]"
+    "[ -f 'testing/e2e/production/production-ready.spec.ts' ]"
 
 check "Auth dashboard test exists" \
-    "[ -f 'e2e/auth-dashboard.spec.ts' ]"
+    "[ -f 'testing/e2e/auth/auth-dashboard.spec.ts' ]"
 
 echo ""
 echo -e "${YELLOW}=== 5. Documentation Files ===${NC}"
 echo ""
 
 check "Production deployment guide exists" \
-    "[ -f 'PRODUCTION_DEPLOYMENT.md' ]"
+    "[ -f 'docs/PRODUCTION_DEPLOYMENT.md' ]"
 
 check "Test summary report exists" \
-    "[ -f 'TEST_SUMMARY_REPORT.md' ]"
+    "[ -f 'docs/TEST_SUMMARY_REPORT.md' ]"
 
 check_file_contains "Deployment guide has correct domain" \
-    "PRODUCTION_DEPLOYMENT.md" \
+    "docs/PRODUCTION_DEPLOYMENT.md" \
     "innovationdevelopmentsolutions.com"
 
 echo ""
@@ -223,15 +223,15 @@ echo ""
 
 # Check that confidence test validates no mock data
 check_file_contains "Confidence test checks mock patterns" \
-    "e2e/confidence-score.spec.ts" \
+    "testing/e2e/quality/confidence-score.spec.ts" \
     "initializeSampleLead"
 
 check_file_contains "Confidence test validates score" \
-    "e2e/confidence-score.spec.ts" \
+    "testing/e2e/quality/confidence-score.spec.ts" \
     "confidenceScore"
 
 check_file_contains "Visual confidence test exists" \
-    "e2e/confidence-score.spec.ts" \
+    "testing/e2e/quality/confidence-score.spec.ts" \
     "VISUAL CONFIDENCE"
 
 echo ""
@@ -243,13 +243,13 @@ check "No lexmakesit.com in .env.production" \
     "! grep -q 'lexmakesit.com' '.env.production'"
 
 check "No lexmakesit.com in PRODUCTION_DEPLOYMENT.md" \
-    "! grep -q 'lexmakesit.com' 'PRODUCTION_DEPLOYMENT.md'"
+    "! grep -q 'lexmakesit.com' 'docs/PRODUCTION_DEPLOYMENT.md'"
 
 check "SOURCE_OF_TRUTH.md exists" \
-    "[ -f 'SOURCE_OF_TRUTH.md' ]"
+    "[ -f 'docs/SOURCE_OF_TRUTH.md' ]"
 
 check_file_contains "SOURCE_OF_TRUTH has correct domain" \
-    "SOURCE_OF_TRUTH.md" \
+    "docs/SOURCE_OF_TRUTH.md" \
     "innovationdevelopmentsolutions.com"
 
 echo ""

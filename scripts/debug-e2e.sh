@@ -31,12 +31,12 @@ echo ""
 
 # 3. Check test files exist
 echo "📂 Checking test files..."
-TEST_COUNT=$(find e2e -name "*.spec.ts" 2>/dev/null | wc -l)
+TEST_COUNT=$(find testing/e2e -name "*.spec.ts" 2>/dev/null | wc -l)
 if [ "$TEST_COUNT" -gt 0 ]; then
   echo "✅ Found $TEST_COUNT test files"
-  find e2e -name "*.spec.ts" | head -5
+  find testing/e2e -name "*.spec.ts" | head -5
 else
-  echo "❌ No test files found in e2e/"
+  echo "❌ No test files found in testing/e2e/"
   exit 1
 fi
 echo ""
@@ -61,7 +61,7 @@ echo "🧪 Running diagnostic test (confidence-score)..."
 echo "   This will show detailed output..."
 echo ""
 
-npx playwright test e2e/confidence-score.spec.ts --reporter=list || {
+npx playwright test testing/e2e/quality/confidence-score.spec.ts --reporter=list || {
   echo ""
   echo "❌ Test failed. Common issues:"
   echo "   1. Server not starting - Check if port 3001 is available"

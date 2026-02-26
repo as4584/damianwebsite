@@ -15,6 +15,7 @@
     "validate": "./scripts/pre-push-validation.sh",
     "fix": "./scripts/fix-ci-issues.sh",
     "debug:e2e": "./scripts/debug-e2e.sh",
+    "diagnose:errors": "node scripts/error-diagnostic-agent.mjs",
     "chat": "tsx chatbot_cli.ts",
     "chat:dev": "tsx watch chatbot_cli.ts",
     "prepare": "husky install"

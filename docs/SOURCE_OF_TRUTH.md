@@ -1,6 +1,6 @@
 # 🎯 SOURCE OF TRUTH - Project Configuration
 
-**Last Updated:** January 28, 2026  
+**Last Updated:** February 26, 2026  
 **Purpose:** Single source of truth to prevent configuration mistakes
 
 ---
@@ -90,7 +90,10 @@ NODE_ENV=development
 │   ├── db/                      # In-memory databases
 │   └── auth/                    # Authentication helpers
 ├── middleware.ts                # Route protection & subdomain routing
-├── e2e/                         # Playwright E2E tests
+├── testing/
+│   └── e2e/                     # Playwright E2E tests (compartmentalized by website area)
+├── docs/                        # Centralized documentation
+│   └── backups/                 # Versioned docs backup artifacts (tracked in GitHub)
 └── scripts/                     # Deployment scripts
 ```
 
@@ -142,15 +145,15 @@ if (hostname === 'dashboard.innovationdevelopmentsolutions.com' ||
 ## 🧪 TESTING
 
 ### Test Suites
-1. **Confidence Score Tests:** `e2e/confidence-score.spec.ts`
+1. **Confidence Score Tests:** `testing/e2e/quality/confidence-score.spec.ts`
    - Validates mock data elimination
    - Code quality checks (100/100 target)
 
-2. **Auth Dashboard Tests:** `e2e/auth-dashboard.spec.ts`
+2. **Auth Dashboard Tests:** `testing/e2e/auth/auth-dashboard.spec.ts`
    - Authentication flow validation
    - Protected route access
 
-3. **Production Ready Tests:** `e2e/production-ready.spec.ts`
+3. **Production Ready Tests:** `testing/e2e/production/production-ready.spec.ts`
    - End-to-end production validation
    - Real data flow testing
 
@@ -160,7 +163,7 @@ if (hostname === 'dashboard.innovationdevelopmentsolutions.com' ||
 npx playwright test
 
 # Specific suite
-npx playwright test e2e/confidence-score.spec.ts
+npx playwright test testing/e2e/quality/confidence-score.spec.ts
 
 # With UI
 npx playwright test --ui
@@ -191,6 +194,13 @@ npx playwright test --headed
 ---
 
 ## 🔄 DEPLOYMENT WORKFLOW
+
+## 🗂️ DOCUMENTATION BACKUPS
+
+- **Registry:** `docs/BACKUP_REGISTRY.md`
+- **Agent handoff:** `docs/AGENT_HANDOFF.md`
+- **Latest backup version:** `docs-v2026.02.26-01`
+- **Latest backup artifact:** `docs/backups/docs-backup-v2026.02.26-01.tar.gz`
 
 ### Automatic (GitHub → Vercel)
 1. Push to `main` branch on GitHub

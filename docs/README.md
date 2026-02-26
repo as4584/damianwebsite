@@ -2,6 +2,13 @@
 
 A modern, production-ready website for Innovation Business Services - a professional business services company specializing in LLC formation, business setup, compliance, and entrepreneurial guidance.
 
+## 📚 Documentation Governance
+
+- **Canonical docs location:** `docs/`
+- **Backup registry:** `docs/BACKUP_REGISTRY.md`
+- **Agent context handoff:** `docs/AGENT_HANDOFF.md`
+- **Latest backup version:** `docs-v2026.02.26-01`
+
 ## 🚀 Tech Stack
 
 - **Framework**: Next.js 14 (App Router)
@@ -60,7 +67,11 @@ A modern, production-ready website for Innovation Business Services - a professi
 ├── public/
 │   └── assets/
 │       └── brand/            # Brand images (used as textures)
-├── SUBDOMAIN_DEPLOYMENT.md   # 🆕 Production subdomain deployment guide
+├── docs/                     # Centralized documentation
+│   ├── BACKUP_REGISTRY.md    # Versioned docs backups tracked on GitHub
+│   └── AGENT_HANDOFF.md      # Future-agent context and backup instructions
+├── testing/
+│   └── e2e/                  # Compartmentalized end-to-end tests by website area
 └── Configuration files
 ```
 

@@ -68,7 +68,7 @@ run_check "Unit Tests" "npm run test:ci"
 # 6. E2E Tests (Quick validation only - not full suite)
 echo "📋 Running: E2E Quick Validation"
 echo "   (Testing confidence score only...)"
-if npx playwright test e2e/confidence-score.spec.ts > /tmp/e2e_output.log 2>&1; then
+if npx playwright test testing/e2e/quality/confidence-score.spec.ts > /tmp/e2e_output.log 2>&1; then
   echo -e "${GREEN}✅ PASSED:${NC} E2E Quick Validation"
   echo ""
 else

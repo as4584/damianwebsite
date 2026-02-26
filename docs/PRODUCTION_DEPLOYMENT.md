@@ -205,7 +205,7 @@ npm run test:e2e
 
 ### 5. Run Confidence Tests
 ```bash
-npx playwright test e2e/confidence-score.spec.ts
+npx playwright test testing/e2e/quality/confidence-score.spec.ts
 ```
 
 ## Monitoring

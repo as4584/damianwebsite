@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-  testDir: './e2e',
+  testDir: './testing/e2e',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   
@@ -51,7 +51,7 @@ export default defineConfig({
     },
     {
       name: 'tablet',
-      use: { ...devices['iPad'] },
+      use: { ...devices['iPad Pro 11'] },
     },
   ],
   

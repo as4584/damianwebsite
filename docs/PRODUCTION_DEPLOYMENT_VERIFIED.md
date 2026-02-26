@@ -30,7 +30,7 @@
 
 ### Test Execution
 ```bash
-npx playwright test e2e/chatbot-comprehensive.spec.ts --grep "Production"
+npx playwright test testing/e2e/chatbot --grep "Production"
 ```
 
 ### Results: 14/14 PASSING ✅
@@ -168,7 +168,7 @@ chunks/521-7c0606d98e3453f5.js  ← Chat logic
 1. ✅ Rebuilt `.next` production bundle
 2. ✅ Updated `chatbot/components/ChatBubble.tsx` (z-index fix)
 3. ✅ Updated `chatbot/components/ChatModal.tsx` (z-index fix)
-4. ✅ Created `e2e/debug-production.spec.ts` (verification test)
+4. ✅ Created `testing/e2e/debug/debug-production.spec.ts` (verification test)
 5. ✅ Updated `CHATBOT_TEST_RESULTS.md` (documentation)
 
 ### Git Commits
@@ -184,7 +184,7 @@ f11c530 - 🔧 Production Fix: Rebuild with chatbot
 ### How to Check if Chatbot is Working
 ```bash
 # Run automated test
-npx playwright test e2e/chatbot-comprehensive.spec.ts --grep "Production"
+npx playwright test testing/e2e/chatbot --grep "Production"
 
 # Quick check for button
 curl -s https://innovationdevelopmentsolutions.com/ | grep 'aria-label="Open chat"'
@@ -194,7 +194,7 @@ curl -s https://innovationdevelopmentsolutions.com/ | grep 'aria-label="Open cha
 1. Check if code pushed to main branch
 2. Verify deployment completed (check build logs)
 3. Clear browser cache (Ctrl+Shift+R)
-4. Run debug test: `npx playwright test e2e/debug-production.spec.ts`
+4. Run debug test: `npx playwright test testing/e2e/debug/debug-production.spec.ts`
 
 ### Common Issues
 - **Cache:** Browser/CDN may serve old version (wait or hard refresh)

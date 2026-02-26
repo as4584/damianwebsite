@@ -1,5 +1,12 @@
 # Project Status Report: Dashboard Overhaul & E2E Testing
 
+## 📦 Documentation Backup Status
+
+- **Backup storage:** GitHub repository `main` branch
+- **Backup registry:** `docs/BACKUP_REGISTRY.md`
+- **Latest docs backup version:** `docs-v2026.02.26-01`
+- **Backup artifact:** `docs/backups/docs-backup-v2026.02.26-01.tar.gz`
+
 ## ✅ COMPLETED WORK
 
 ### 1. UI Redesign - Frutiger Aero Styling ✅
@@ -49,7 +56,7 @@
 **Status:** COMPLETE (Tests created, debugging authentication)
 
 **Test Files Created:**
-1. `/e2e/auth-dashboard.spec.ts` (125 lines)
+1. `/testing/e2e/auth/auth-dashboard.spec.ts` (125 lines)
    - Login authentication test
    - Real data verification
    - Unauthorized access prevention
@@ -57,7 +64,7 @@
    - Session logout test
    - Error handling test
 
-2. `/e2e/chatbot-to-dashboard.spec.ts` (255 lines)
+2. `/testing/e2e/chatbot/chatbot-to-dashboard.spec.ts` (255 lines)
    - Full chatbot → dashboard integration test
    - Lead creation verification
    - Data accuracy validation
@@ -65,7 +72,7 @@
    - High engagement lead test
    - Error handling test
 
-3. `/e2e/chatbot-visibility.spec.ts` (290 lines)
+3. `/testing/e2e/chatbot/chatbot-visibility.spec.ts` (290 lines)
    - Desktop visibility (1920x1080)
    - Tablet visibility (iPad)
    - Mobile visibility (iPhone SE)
@@ -306,9 +313,9 @@ users.set('user_test_001', {
 - `/app/dashboard/services/leadService.ts` - Real data service (NO MOCKS)
 
 ### Tests
-- `/e2e/auth-dashboard.spec.ts` - Authentication tests
-- `/e2e/chatbot-to-dashboard.spec.ts` - Integration tests
-- `/e2e/chatbot-visibility.spec.ts` - Visibility tests
+- `/testing/e2e/auth/auth-dashboard.spec.ts` - Authentication tests
+- `/testing/e2e/chatbot/chatbot-to-dashboard.spec.ts` - Integration tests
+- `/testing/e2e/chatbot/chatbot-visibility.spec.ts` - Visibility tests
 - `/playwright.config.ts` - Test configuration
 
 ### CI/CD

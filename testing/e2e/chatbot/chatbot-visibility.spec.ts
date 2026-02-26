@@ -1,5 +1,8 @@
 import { test, expect, devices } from '@playwright/test';
 
+const { defaultBrowserType: _tabletBrowserType, ...tabletDevice } = devices['iPad Pro 11'];
+const { defaultBrowserType: _mobileBrowserType, ...mobileDevice } = devices['iPhone SE'];
+
 /**
  * E2E Test: Chatbot Visibility Across Devices
  * 
@@ -77,7 +80,7 @@ test.describe('Chatbot Visibility - Desktop', () => {
 });
 
 test.describe('Chatbot Visibility - Tablet', () => {
-  test.use(devices['iPad']);
+  test.use(tabletDevice);
   
   test('should display chatbot widget on tablet', async ({ page }) => {
     await page.goto('/');
@@ -123,7 +126,7 @@ test.describe('Chatbot Visibility - Tablet', () => {
 });
 
 test.describe('Chatbot Visibility - Mobile', () => {
-  test.use(devices['iPhone SE']);
+  test.use(mobileDevice);
   
   test('should display chatbot widget on mobile', async ({ page }) => {
     await page.goto('/');

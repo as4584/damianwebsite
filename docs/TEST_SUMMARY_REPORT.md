@@ -234,10 +234,10 @@ See `PRODUCTION_DEPLOYMENT.md` for complete instructions.
 
 ## 📚 Documentation
 
-- `PRODUCTION_DEPLOYMENT.md` - Complete deployment guide
-- `e2e/confidence-score.spec.ts` - Confidence scoring tests
-- `e2e/production-ready.spec.ts` - Production validation tests
-- `e2e/auth-dashboard.spec.ts` - Authentication tests
+- `docs/PRODUCTION_DEPLOYMENT.md` - Complete deployment guide
+- `testing/e2e/quality/confidence-score.spec.ts` - Confidence scoring tests
+- `testing/e2e/production/production-ready.spec.ts` - Production validation tests
+- `testing/e2e/auth/auth-dashboard.spec.ts` - Authentication tests
 
 ---
 
@@ -245,13 +245,13 @@ See `PRODUCTION_DEPLOYMENT.md` for complete instructions.
 
 ```bash
 # Run confidence tests
-npx playwright test e2e/confidence-score.spec.ts
+npx playwright test testing/e2e/quality/confidence-score.spec.ts
 
 # Run auth tests
-npx playwright test e2e/auth-dashboard.spec.ts
+npx playwright test testing/e2e/auth/auth-dashboard.spec.ts
 
 # Run production tests
-npx playwright test e2e/production-ready.spec.ts
+npx playwright test testing/e2e/production/production-ready.spec.ts
 
 # Run all tests
 npx playwright test

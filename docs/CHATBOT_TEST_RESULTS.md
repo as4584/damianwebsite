@@ -133,22 +133,22 @@ All tests generate screenshots for visual verification:
 
 ### Run All Tests
 ```bash
-npx playwright test e2e/chatbot-comprehensive.spec.ts --project=chromium
+npx playwright test testing/e2e/chatbot --project=chromium
 ```
 
 ### Run Development Only
 ```bash
-npx playwright test e2e/chatbot-comprehensive.spec.ts --grep "Development"
+npx playwright test testing/e2e/chatbot --grep "Development"
 ```
 
 ### Run Production Only
 ```bash
-npx playwright test e2e/chatbot-comprehensive.spec.ts --grep "Production"
+npx playwright test testing/e2e/chatbot --grep "Production"
 ```
 
 ### Run with HTML Report
 ```bash
-npx playwright test e2e/chatbot-comprehensive.spec.ts && npx playwright show-report
+npx playwright test testing/e2e/chatbot && npx playwright show-report
 ```
 
 ---
