@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { heroImages } from '@/lib/heroImages'
+import { fadeIn, sectionReveal } from '@/lib/motionPresets'
 
 const Hero = () => {
   return (
@@ -24,9 +25,9 @@ const Hero = () => {
       <div className="container-custom relative z-10">
         <div className="max-w-3xl">
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
+            initial="hidden"
+            animate="visible"
+            variants={sectionReveal}
           >
             <p className="text-xs font-medium uppercase tracking-[0.25em] text-neutral-400 mb-6">
               National Business Infrastructure Firm
@@ -47,9 +48,9 @@ const Hero = () => {
 
           {/* Institutional stats bar */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.2, ease: 'easeOut' }}
+            initial="hidden"
+            animate="visible"
+            variants={fadeIn}
             className="mt-20 pt-8 border-t border-white/15"
           >
             <div className="grid grid-cols-3 gap-8 md:gap-16">

@@ -23,4 +23,8 @@ export const heroImages = [
     src: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=2200&q=80',
     alt: 'Corporate team in a high-end lobby preparing for a strategy meeting',
   },
+  {
+    src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2200&q=80',
+    alt: 'Modern high-rise business district representing national-scale operations',
+  },
 ]

@@ -1,9 +1,11 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
-import { fadeIn, staggerContainer, viewportConfig } from '@/lib/motionPresets'
+import { fadeIn, sectionReveal, staggerContainer, viewportConfig } from '@/lib/motionPresets'
 import ComplianceDisclaimer from '@/components/ComplianceDisclaimer'
+import { heroImages } from '@/lib/heroImages'
 
 const services = [
   {
@@ -125,12 +127,23 @@ export default function ServicesPage() {
   return (
     <div className="pt-16 md:pt-20">
       {/* Hero Section */}
-      <section className="bg-primary-900 py-20 md:py-28">
-        <div className="container-custom">
+      <section className="relative bg-primary-900 py-20 md:py-28 overflow-hidden">
+        <Image
+          src={heroImages[2].src}
+          alt={heroImages[2].alt}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-primary-950/55" />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary-950/45 via-primary-950/20 to-primary-900/70" />
+
+        <div className="container-custom relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
+            initial="hidden"
+            animate="visible"
+            variants={sectionReveal}
             className="max-w-3xl"
           >
             <p className="text-xs font-medium uppercase tracking-[0.25em] text-neutral-400 mb-6">

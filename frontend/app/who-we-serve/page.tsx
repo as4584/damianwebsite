@@ -1,9 +1,11 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
-import { fadeIn, staggerContainer, viewportConfig } from '@/lib/motionPresets'
+import { fadeIn, sectionReveal, staggerContainer, viewportConfig } from '@/lib/motionPresets'
 import ComplianceDisclaimer from '@/components/ComplianceDisclaimer'
+import { heroImages } from '@/lib/heroImages'
 
 const industryCategories = [
   {
@@ -143,12 +145,23 @@ const entityStructures = [
 export default function WhoWeServePage() {
   return (
     <div className="pt-16 md:pt-20">
-      <section className="bg-primary-900 py-20 md:py-28">
-        <div className="container-custom">
+      <section className="relative bg-primary-900 py-20 md:py-28 overflow-hidden">
+        <Image
+          src={heroImages[3].src}
+          alt={heroImages[3].alt}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-primary-950/55" />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary-950/45 via-primary-950/20 to-primary-900/70" />
+
+        <div className="container-custom relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
+            initial="hidden"
+            animate="visible"
+            variants={sectionReveal}
           >
             <div className="grid lg:grid-cols-2 gap-12 items-end">
               <div>
@@ -230,10 +243,10 @@ export default function WhoWeServePage() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial="hidden"
+            whileInView="visible"
             viewport={viewportConfig}
-            transition={{ duration: 0.3 }}
+            variants={fadeIn}
             className="bg-white border border-neutral-200 p-6 mb-8"
           >
             <p className="text-sm text-neutral-600 leading-relaxed">
