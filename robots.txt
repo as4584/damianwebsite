@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Sitemap: https://innovationdevelopmentsolutions.com/sitemap.xml
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
