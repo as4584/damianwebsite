@@ -38,7 +38,7 @@
   const nav = document.getElementById('siteNav');
   if (nav) {
     const scrollThreshold = 80;
-    const hasHero = !!document.querySelector('.hero-bg');
+    const hasHero = !!document.querySelector('.hero');
 
     const syncNavState = () => {
       const currentScroll = window.scrollY;
