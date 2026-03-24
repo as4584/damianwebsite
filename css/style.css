@@ -211,11 +211,20 @@ h4, .h4 { font-size: var(--fs-h4); font-family: var(--ff-body); font-weight: var
   transition: all var(--duration-slow) var(--ease);
 }
 .site-nav.scrolled {
+  padding: 0.875rem 0;
+}
+/* Backdrop blur lives on a pseudo-element so .site-nav never becomes a
+   containing block for position:fixed children (backdrop-filter triggers that
+   behaviour in all major browsers, which clips the mobile slide-out panel). */
+.site-nav.scrolled::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  padding: 0.875rem 0;
   border-bottom: 1px solid var(--border-subtle);
+  z-index: -1;
 }
 .site-nav.scrolled .nav-logo,
 .site-nav.scrolled .nav-links a { color: var(--text-primary); }
