@@ -512,6 +512,23 @@ h4, .h4 { font-size: var(--fs-h4); font-family: var(--ff-body); font-weight: var
     width: 100%;
     white-space: normal;
   }
+  /* Stats — wrap into 2×2 grid so long words (Enterprise, Multi-State)
+     don't overflow the viewport edge on iPhone */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 1.25rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+  }
+  .hero-stat-number {
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+  }
+  .hero-stat-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+  }
   .site-nav {
     padding: 1rem 0;
   }
