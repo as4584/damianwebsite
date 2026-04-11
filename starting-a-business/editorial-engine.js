@@ -252,7 +252,7 @@ function layoutColumn(prepared, startCursor, regionX, regionY, regionW, regionH,
     lineTop += lineHeight
   }
 
-  return { lines, cursor }
+  return { lines, cursor, textExhausted }
 }
 
 function hitTestOrbs(orbs, px, py, activeCount, radiusScale) {
@@ -347,33 +347,37 @@ function scheduleRender() {
 }
 
 stage.addEventListener('pointerdown', event => {
+  const scrollY = window.scrollY || 0
   const activeOrbCount = window.innerWidth < NARROW_BREAKPOINT ? NARROW_ACTIVE_ORBS : st.orbs.length
   const radiusScale = window.innerWidth < NARROW_BREAKPOINT ? NARROW_ORB_SCALE : 1
-  if (hitTestOrbs(st.orbs, event.clientX, event.clientY, activeOrbCount, radiusScale) !== -1) {
+  if (hitTestOrbs(st.orbs, event.clientX, event.clientY + scrollY, activeOrbCount, radiusScale) !== -1) {
     event.preventDefault()
   }
-  st.events.pointerDown = { x: event.clientX, y: event.clientY }
+  st.events.pointerDown = { x: event.clientX, y: event.clientY + scrollY }
   scheduleRender()
 })
 
-stage.addEventListener('touchmove', event => { event.preventDefault() }, { passive: false })
+stage.addEventListener('touchmove', event => {
+  if (st.drag !== null) event.preventDefault()
+}, { passive: false })
 
 window.addEventListener('pointermove', event => {
-  st.events.pointerMove = { x: event.clientX, y: event.clientY }
+  st.events.pointerMove = { x: event.clientX, y: event.clientY + (window.scrollY || 0) }
   scheduleRender()
 })
 
 window.addEventListener('pointerup', event => {
-  st.events.pointerUp = { x: event.clientX, y: event.clientY }
+  st.events.pointerUp = { x: event.clientX, y: event.clientY + (window.scrollY || 0) }
   scheduleRender()
 })
 
 window.addEventListener('pointercancel', event => {
-  st.events.pointerUp = { x: event.clientX, y: event.clientY }
+  st.events.pointerUp = { x: event.clientX, y: event.clientY + (window.scrollY || 0) }
   scheduleRender()
 })
 
-window.addEventListener('resize', () => scheduleRender())
+window.addEventListener('scroll', () => scheduleRender(), { passive: true })
+window.addEventListener('resize', () => { recalcStageHeight(); scheduleRender() })
 
 // ── Render loop ───────────────────────────────────────────────────────────────
 function render(now) {
@@ -386,6 +390,7 @@ function render(now) {
   const orbRadiusScale = isNarrow ? NARROW_ORB_SCALE : 1
   const activeOrbCount = isNarrow ? Math.min(NARROW_ACTIVE_ORBS, st.orbs.length) : st.orbs.length
   const orbs = st.orbs
+  const scrollY = window.scrollY || 0
 
   let pointer = st.pointer
   let drag = st.drag
@@ -448,8 +453,8 @@ function render(now) {
     orb.y += orb.vy * dt
     if (orb.x - radius < 0)           { orb.x = radius;                   orb.vx =  Math.abs(orb.vx) }
     if (orb.x + radius > pageWidth)   { orb.x = pageWidth - radius;       orb.vx = -Math.abs(orb.vx) }
-    if (orb.y - radius < gutter * 0.5){ orb.y = radius + gutter * 0.5;    orb.vy =  Math.abs(orb.vy) }
-    if (orb.y + radius > pageHeight - bottomGap) { orb.y = pageHeight - bottomGap - radius; orb.vy = -Math.abs(orb.vy) }
+    if (orb.y - radius < scrollY + gutter * 0.5){ orb.y = scrollY + radius + gutter * 0.5;    orb.vy =  Math.abs(orb.vy) }
+    if (orb.y + radius > scrollY + pageHeight - bottomGap) { orb.y = scrollY + pageHeight - bottomGap - radius; orb.vy = -Math.abs(orb.vy) }
   }
 
   for (let i = 0; i < activeOrbCount; i++) {
@@ -483,7 +488,7 @@ function render(now) {
   const headlineHeight = headlineLines.length * headlineLineHeight
 
   const bodyTop = gutter + headlineHeight + (isNarrow ? 14 : 20)
-  const bodyHeight = pageHeight - bodyTop - bottomGap
+  const bodyHeight = stage.offsetHeight - bodyTop - bottomGap
 
   const columnCount = pageWidth > 1000 ? 3 : pageWidth > 640 ? 2 : 1
   const totalGutter = gutter * 2 + colGap * (columnCount - 1)
@@ -513,6 +518,7 @@ function render(now) {
 
   const allBodyLines = []
   let cursor = { segmentIndex: 0, graphemeIndex: 0 }
+  let allTextExhausted = false
   for (let colIdx = 0; colIdx < columnCount; colIdx++) {
     const columnX = contentLeft + colIdx * (columnWidth + colGap)
     const rects = []
@@ -524,6 +530,12 @@ function render(now) {
     const result = layoutColumn(preparedBody, cursor, columnX, bodyTop, columnWidth, bodyHeight, BODY_LINE_HEIGHT, circleObstacles, rects, isNarrow)
     allBodyLines.push(...result.lines)
     cursor = result.cursor
+    if (result.textExhausted) { allTextExhausted = true; break }
+  }
+  if (!allTextExhausted) {
+    stage.style.height = Math.ceil(stage.offsetHeight + pageHeight * 0.7) + 'px'
+    scheduleRender()
+    return false
   }
 
   const pullquoteLines = []
@@ -596,4 +608,43 @@ function render(now) {
   return stillAnimating
 }
 
+// ── Stage height calibration ──────────────────────────────────────────────────
+function recalcStageHeight() {
+  const w = window.innerWidth
+  const h = window.innerHeight
+  const isNarrow = w < NARROW_BREAKPOINT
+  const gutter = isNarrow ? NARROW_GUTTER : GUTTER
+  const colGap = isNarrow ? NARROW_COL_GAP : COL_GAP
+  const bottomGap = isNarrow ? NARROW_BOTTOM_GAP : BOTTOM_GAP
+  const columnCount = w > 1000 ? 3 : w > 640 ? 2 : 1
+  const maxContentWidth = Math.min(w, 1500)
+  const totalGutter = gutter * 2 + colGap * (columnCount - 1)
+  const columnWidth = Math.floor((maxContentWidth - totalGutter) / columnCount)
+  const contentLeft = Math.round((w - (columnCount * columnWidth + (columnCount - 1) * colGap)) / 2)
+  const { fontSize: hlSize, lines: hlLines } = fitHeadline(
+    Math.min(w - gutter * 2 - (isNarrow ? 12 : 0), 1000),
+    Math.floor(h * (isNarrow ? 0.2 : 0.24)),
+    isNarrow ? 38 : 92
+  )
+  const headlineLineHeight = Math.round(hlSize * 0.93)
+  const headlineHeight = hlLines.length * headlineLineHeight
+  const bodyTop = gutter + headlineHeight + (isNarrow ? 14 : 20)
+  let stageH = h
+  for (let attempt = 0; attempt < 20; attempt++) {
+    const bodyH = stageH - bodyTop - bottomGap
+    let cur = { segmentIndex: 0, graphemeIndex: 0 }
+    let done = false
+    for (let ci = 0; ci < columnCount; ci++) {
+      const cx = contentLeft + ci * (columnWidth + colGap)
+      const res = layoutColumn(preparedBody, cur, cx, bodyTop, columnWidth, bodyH, BODY_LINE_HEIGHT, [], [])
+      cur = res.cursor
+      if (res.textExhausted) { done = true; break }
+    }
+    if (done) { stageH = Math.ceil(stageH * 1.15); break }
+    stageH += h * 0.7
+  }
+  stage.style.height = stageH + 'px'
+}
+
+recalcStageHeight()
 scheduleRender()
