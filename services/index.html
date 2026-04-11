@@ -11,7 +11,7 @@
   <meta property="og:url" content="https://innovationdevelopmentsolutions.com/services/">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://innovationdevelopmentsolutions.com/services/">
-  <link rel="stylesheet" href="../css/style.css?v=5">
+  <link rel="stylesheet" href="../css/style.css?v=7">
 
   <!-- JSON-LD: Service schema (AEO) -->
   <script type="application/ld+json">
@@ -82,7 +82,11 @@
   }
   </script>
 </head>
-<body>
+<body class="services-page">
+
+  <video id="svcBgVideo" class="svc-bg-video" autoplay muted loop playsinline>
+    <source src="../services.mp4" type="video/mp4">
+  </video>
 
   <nav class="site-nav scrolled" id="siteNav">
     <div class="container nav-inner">
@@ -103,10 +107,9 @@
 
     <!-- ═══ Hero ═══ -->
     <section class="hero" style="min-height: 75vh;">
-      <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2200&q=80')"></div>
       <div class="container hero-content">
         <span class="eyebrow eyebrow-light">Services</span>
-        <h1 class="display text-balance">Scalable growth infrastructure.</h1>
+        <h1 class="display" id="svc-hero-headline" aria-label="Scalable growth infrastructure.">Scalable growth infrastructure.</h1>
         <p class="hero-sub">Formation. Licensing. Growth Systems. AI Automation. Compliance. Everything your business needs to scale built and managed as one system.</p>
       </div>
     </section>
@@ -205,13 +208,10 @@
     </section>
 
     <!-- ═══ Full-Bleed Break ═══ -->
-    <section class="full-bleed" style="min-height: 32rem;">
-      <div class="full-bleed-bg">
-        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2200&q=80" alt="National-scale business operations" loading="lazy">
-      </div>
+    <section class="full-bleed" style="min-height: 0; padding: clamp(2.5rem, 5vw, 5rem) 0;">
       <div class="container full-bleed-content reveal">
         <span class="eyebrow eyebrow-light">Methodology</span>
-        <h2>How we build your system.</h2>
+        <h2 id="svc-methodology-headline" aria-label="How we build your system.">How we build your system.</h2>
       </div>
     </section>
 
@@ -253,7 +253,7 @@
     <section class="cta-section">
       <div class="container reveal">
         <span class="eyebrow">Start Building</span>
-        <h2 class="text-balance">Let us build your business system.</h2>
+        <h2 class="text-balance" id="svc-cta-headline" aria-label="Let us build your business system.">Let us build your business system.</h2>
         <p>Tell us what you're building. We'll design and deploy the infrastructure you need.</p>
         <a href="/contact/" class="btn btn-primary btn-arrow">Schedule a Consultation</a>
       </div>
@@ -281,5 +281,6 @@
   </footer>
 
   <script src="../js/main.js" defer></script>
+  <script type="module" src="./services.js?v=2"></script>
 </body>
 </html>

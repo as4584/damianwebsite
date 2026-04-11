@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Starting a business requires the right legal and financial foundation. Damianos &amp; Associates shows you why structure is your first strategic decision.">
+  <title>Starting a Business — Damianos &amp; Associates</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    html, body {
+      background: radial-gradient(ellipse at 50% 40%, #0d1e38 0%, #0a1628 100%);
+      color: #e8e4dc; height: 100vh; overflow: hidden;
+    }
+    body { font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, serif; }
+
+    #stage { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
+
+    .line {
+      position: absolute; white-space: pre; z-index: 1; color: #ddd8cc;
+      user-select: text; -webkit-user-select: text;
+    }
+
+    .headline-line {
+      position: absolute; white-space: pre;
+      font-weight: 700; color: #f0ece3; letter-spacing: -0.5px; z-index: 2;
+      user-select: text; -webkit-user-select: text;
+    }
+
+    .orb {
+      position: absolute; border-radius: 50%; pointer-events: none; z-index: 10;
+      will-change: left, top;
+    }
+
+    .pullquote-box {
+      position: absolute; pointer-events: none; z-index: 3;
+      border-left: 3px solid #7a6043;
+      padding-left: 14px;
+    }
+
+    .pullquote-line {
+      position: absolute; white-space: pre;
+      font-style: italic; color: #b8977e;
+      user-select: text; -webkit-user-select: text;
+    }
+
+    .hint {
+      position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+      font: 400 13px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: rgba(255,255,255,0.22); z-index: 100;
+      background: rgba(0,0,0,0.45); padding: 8px 18px; border-radius: 999px;
+      pointer-events: none; white-space: nowrap;
+    }
+
+    #brand {
+      position: fixed; top: 16px; left: 24px; z-index: 100;
+      border-left: 3px solid #b8977e; padding-left: 12px;
+      pointer-events: none; text-decoration: none;
+    }
+    #brand .brand-name {
+      display: block;
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(240, 236, 226, 0.9); line-height: 1.4;
+    }
+    #brand .brand-sub {
+      display: block;
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: 10px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+      color: rgba(220, 210, 195, 0.5); margin-top: 2px;
+    }
+
+    #back {
+      position: fixed; bottom: 16px; left: 24px; z-index: 100;
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(220, 210, 195, 0.35); text-decoration: none;
+      transition: color 0.2s;
+    }
+    #back:hover { color: #b8977e; }
+
+    @media (max-width: 760px) {
+      .hint { display: none; }
+      #brand { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a id="brand" href="/">
+    <span class="brand-name">Innovation</span>
+    <span class="brand-sub">Business Development Solutions</span>
+  </a>
+  <div id="stage"></div>
+  <a id="back" href="/">&larr; Home</a>
+  <div class="hint">Drag the orbs · Click to pause · Zero DOM reads</div>
+  <script type="module" src="./editorial-engine.js"></script>
+</body>
+</html>

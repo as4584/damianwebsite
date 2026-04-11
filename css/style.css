@@ -1142,3 +1142,169 @@ h4, .h4 { font-size: var(--fs-h4); font-family: var(--ff-body); font-weight: var
   padding: 0; margin: -1px; overflow: hidden;
   clip: rect(0,0,0,0); white-space: nowrap; border: 0;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   Services page — fixed video wall + floating content
+   All rules scoped to body.services-page
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── 1. Fixed video fills the viewport exactly ── */
+.svc-bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── 2. Dark fallback colour when video is loading ── */
+body.services-page {
+  background: #060e1a;
+}
+
+/* ── 3. Semi-transparent tint sits above video, below content ── */
+body.services-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 14, 26, 0.50) 0%,
+    rgba(10, 22, 40, 0.40) 50%,
+    rgba(6, 14, 26, 0.60) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ── 4. Page content scrolls above video + tint ── */
+body.services-page main,
+body.services-page .site-footer {
+  position: relative;
+  z-index: 2;
+}
+body.services-page .site-nav {
+  position: fixed;
+  z-index: 1000;
+}
+
+/* ── 5. Strip every opaque background — video must show through ── */
+body.services-page .hero,
+body.services-page main,
+body.services-page .section,
+body.services-page .full-bleed,
+body.services-page .cta-section,
+body.services-page .bg-warm,
+body.services-page .bg-primary,
+body.services-page .bg-cool {
+  background: transparent !important;
+}
+
+/* ── 6. Hero: text floats directly over video — no gradient panel ── */
+body.services-page .hero::before { display: none; }
+body.services-page .hero-content {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  will-change: transform, opacity;
+}
+body.services-page .hero-content .display {
+  color: #fff;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55), 0 1px 6px rgba(0, 0, 0, 0.40);
+}
+body.services-page .hero-content .hero-sub {
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.50);
+  margin-top: 0.75rem;
+}
+body.services-page .hero-content .eyebrow {
+  color: var(--accent-light);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+}
+
+/* ── 7. Service cards — dark frosted glass ── */
+body.services-page .service-card {
+  background: rgba(6, 14, 26, 0.55) !important;
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #f0ece3;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  transition:
+    background var(--duration-normal) var(--ease),
+    border-color var(--duration-normal) var(--ease),
+    transform var(--duration-normal) var(--ease),
+    box-shadow var(--duration-normal) var(--ease);
+}
+body.services-page .service-card:hover {
+  background: rgba(6, 14, 26, 0.72) !important;
+  border-color: rgba(184, 151, 126, 0.55) !important;
+  transform: translateY(-4px);
+  box-shadow:
+    0 20px 48px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.11);
+}
+/* Proximity law: number + heading form one tight unit; list separates clearly */
+body.services-page .service-card-number {
+  color: var(--accent);
+  margin-bottom: 0.3rem;
+}
+body.services-page .service-card h2 {
+  color: #fff;
+  margin-bottom: 0.55rem;
+}
+body.services-page .service-card p      { color: rgba(240, 236, 227, 0.78); }
+body.services-page .service-card-list {
+  border-top-color: rgba(255, 255, 255, 0.10) !important;
+  margin-top: 1.25rem;
+  padding-top: 1.1rem;
+}
+body.services-page .service-card-list li { color: rgba(240, 236, 227, 0.70); }
+
+/* ── 8. Section eyebrow + headings ── */
+body.services-page .section .eyebrow,
+body.services-page .cta-section .eyebrow { color: var(--accent-light); }
+body.services-page .section h2 {
+  color: #fff;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.40);
+}
+
+/* ── 9. Methodology / full-bleed section ── */
+body.services-page .full-bleed-bg { display: none; }
+body.services-page .full-bleed-content {
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+}
+body.services-page .full-bleed-content .eyebrow { color: var(--accent-light); }
+
+/* ── 10. Process steps ── */
+body.services-page .process-step { border-bottom-color: rgba(255, 255, 255, 0.10); }
+body.services-page .process-number {
+  color: var(--accent);
+  text-shadow: 0 0 24px rgba(184, 151, 126, 0.40);
+}
+body.services-page .process-step h3 { color: #f0ece3; }
+body.services-page .process-step p  { color: rgba(240, 236, 227, 0.75); }
+
+/* ── 11. CTA: floating text, no dark slab ── */
+body.services-page .cta-section h2 {
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.55);
+}
+body.services-page .cta-section p {
+  color: rgba(240, 236, 227, 0.82);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
+}
+
+/* ── 12. Footer stays solid dark ── */
+body.services-page .site-footer { background: var(--bg-darker) !important; }
+
+/* ── 13. Mobile: no parallax JS animation ── */
+@media (max-width: 768px) {
+  body.services-page .hero-content { will-change: auto; }
+}
