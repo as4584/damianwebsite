@@ -79,7 +79,16 @@
     #back:hover { color: #b8977e; }
 
     @media (max-width: 760px) {
-      .hint { display: none; }
+      #orbHint { display: none; }
+      #orbHintMobile {
+        display: block !important;
+        top: auto;
+        bottom: 20px;
+        font-size: 12px;
+        padding: 10px 20px;
+        color: rgba(255,255,255,0.55);
+        background: rgba(0,0,0,0.6);
+      }
       #brand { display: none !important; }
     }
   </style>
@@ -91,7 +100,8 @@
   </a>
   <div id="stage"></div>
   <a id="back" href="/">&larr; Home</a>
-  <div class="hint">Drag the orbs · Click to pause · Zero DOM reads</div>
+  <div class="hint" id="orbHint">Drag the orbs· Click to pause · Zero DOM reads</div>
+  <div class="hint" id="orbHintMobile" style="display:none">Tap orb to pause · Drag to move</div>
   <script type="module" src="/starting-a-business/editorial-engine.js"></script>
 </body>
 </html>

@@ -323,7 +323,7 @@ h4, .h4 { font-size: var(--fs-h4); font-family: var(--ff-body); font-weight: var
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--duration-normal) var(--ease);
-  z-index: 1001;
+  z-index: 999;
 }
 .nav-overlay.open {
   opacity: 1;

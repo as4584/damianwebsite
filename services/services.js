@@ -95,3 +95,14 @@ if (heroContent && !prefersReduced) {
     }
   }, { passive: true })
 }
+
+// ── Video autoplay enforcement ────────────────────────────────────────────────
+// Some mobile browsers block autoplay even on muted videos; retry on first touch.
+const bgVideo = document.getElementById('svcBgVideo')
+if (bgVideo) {
+  const tryPlay = () => bgVideo.play().catch(() => {})
+  tryPlay()
+  bgVideo.addEventListener('pause', () => bgVideo.play().catch(() => {}))
+  document.addEventListener('touchstart', tryPlay, { once: true })
+  document.addEventListener('click', tryPlay, { once: true })
+}

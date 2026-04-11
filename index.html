@@ -21,7 +21,7 @@
 
   <link rel="canonical" href="https://innovationdevelopmentsolutions.com/">
 
-  <link rel="stylesheet" href="css/style.css?v=5">
+  <link rel="stylesheet" href="css/style.css?v=6">
 
   <!-- JSON-LD: Organization -->
   <script type="application/ld+json">
@@ -100,9 +100,19 @@
 
     <!-- ═══ Cinematic Hero ═══ -->
     <section class="hero">
-      <video class="hero-video" autoplay muted loop playsinline webkit-playsinline>
+      <video class="hero-video" autoplay muted loop playsinline webkit-playsinline id="heroVideo">
         <source src="landing_page.mp4" type="video/mp4">
       </video>
+      <script>
+        (function(){
+          var v=document.getElementById('heroVideo');
+          if(!v)return;
+          var p=function(){v.play().catch(function(){});};
+          p();
+          v.addEventListener('pause',p);
+          document.addEventListener('touchstart',p,{once:true});
+        })();
+      </script>
       <div style="position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(10,22,40,0.75) 0%,rgba(10,22,40,0.3) 60%,rgba(10,22,40,0.1) 100%);pointer-events:none;"></div>
       <div class="container hero-content" style="position:relative;z-index:2;">
         <span class="eyebrow eyebrow-light" style="display:none" aria-hidden="true">National Business Infrastructure Firm</span>
