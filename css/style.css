@@ -484,8 +484,8 @@ h4, .h4 { font-size: var(--fs-h4); font-family: var(--ff-body); font-weight: var
 @media (max-width: 960px) {
   .hero {
     display: block;
-    padding-top: 12rem !important;
-    padding-bottom: 4rem;
+    padding-top: 5rem !important;
+    padding-bottom: 3rem;
     min-height: 100svh;
   }
   /* iOS Safari: height:100% resolves to auto when the containing block only
@@ -502,6 +502,10 @@ h4, .h4 { font-size: var(--fs-h4); font-family: var(--ff-body); font-weight: var
     transform: translate(-50%, -50%) translateZ(0);
     -webkit-transform: translate(-50%, -50%) translateZ(0);
   }
+  /* Shrink headline floor so it doesn't break into 5+ lines on 375px screens */
+  .hero-content .display {
+    font-size: clamp(1.875rem, 8vw, 2.5rem);
+  }
   /* Stack CTA buttons vertically so they never overflow on narrow iPhones */
   .hero-cta-group {
     flex-direction: column;
@@ -512,23 +516,10 @@ h4, .h4 { font-size: var(--fs-h4); font-family: var(--ff-body); font-weight: var
     width: 100%;
     white-space: normal;
   }
-  /* Stats — wrap into 2×2 grid so long words (Enterprise, Multi-State)
-     don't overflow the viewport edge on iPhone */
-  .hero-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem 1.25rem;
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-  }
-  .hero-stat-number {
-    font-size: 0.875rem;
-    letter-spacing: 0.04em;
-  }
-  .hero-stat-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-  }
+  /* Hide stats inside the hero on mobile — they push the section
+     taller than 100svh and cause the grey overflow below the video.
+     Stats are still visible when the user scrolls past the hero. */
+  .hero-stats { display: none; }
   .site-nav {
     padding: 1rem 0;
   }
