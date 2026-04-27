@@ -86,6 +86,7 @@
         <li><a href="/who-we-serve/">Who We Serve</a></li>
         <li><a href="/industries/">Industries</a></li>
         <li><a href="/contact/">Contact</a></li>
+        <li><button class="nav-promo-btn promo-trigger">Hustler Promo</button></li>
       </ul>
       <div class="nav-cta-wrap">
         <a href="/contact/" class="nav-cta">Schedule a Consultation</a>
@@ -326,5 +327,33 @@
   </footer>
 
   <script src="js/main.js" defer></script>
+
+  <!-- ═══ Hustler Promo Popup ═══ -->
+  <div class="promo-overlay" id="promoOverlay" role="dialog" aria-modal="true" aria-labelledby="promoTitle" aria-hidden="true">
+    <div class="promo-modal">
+      <button class="promo-close" id="promoClose" aria-label="Close offer">&#x2715;</button>
+
+      <div class="promo-badge">Limited Time Only</div>
+
+      <span class="eyebrow eyebrow-light" style="margin-bottom: 1rem;">Exclusive Offer</span>
+
+      <h2 class="promo-title" id="promoTitle">Innovation Hustler<br>Promo Page Offer</h2>
+
+      <div class="promo-divider"></div>
+
+      <p class="promo-body">Built for the entrepreneur who moves fast and builds to last. Get access to exclusive tools, systems, and strategies — bundled into one high-impact package, available for a limited time only.</p>
+
+      <ul class="promo-features">
+        <li>Business formation fast-track</li>
+        <li>Growth infrastructure bundle</li>
+        <li>AI systems & automation setup</li>
+        <li>Priority consulting access</li>
+      </ul>
+
+      <a href="http://innovationhustlerpromopage.netlify.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-arrow promo-cta">Continue</a>
+
+      <p class="promo-disclaimer">Offer expires soon &mdash; limited spots available.</p>
+    </div>
+  </div>
 </body>
 </html>

@@ -196,6 +196,40 @@
     statElements.forEach(el => statObserver.observe(el));
   }
 
+  // ── Hustler Promo Popup ─────────────────────────────────
+  const promoOverlay = document.getElementById('promoOverlay');
+  const promoClose   = document.getElementById('promoClose');
+
+  if (promoOverlay && promoClose) {
+    const openPromo = () => {
+      promoOverlay.classList.add('open');
+      promoOverlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closePromo = () => {
+      promoOverlay.classList.remove('open');
+      promoOverlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    document.querySelectorAll('.promo-trigger').forEach((el) => {
+      el.addEventListener('click', openPromo);
+    });
+
+    promoClose.addEventListener('click', closePromo);
+
+    promoOverlay.addEventListener('click', (e) => {
+      if (e.target === promoOverlay) closePromo();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && promoOverlay.classList.contains('open')) {
+        closePromo();
+      }
+    });
+  }
+
   // ── Form validation (light) ─────────────────────────────
   const form = document.getElementById('contactForm');
   if (form) {
