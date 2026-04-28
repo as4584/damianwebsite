@@ -1270,16 +1270,39 @@ h4, .h4 { font-size: var(--fs-h4); font-family: var(--ff-body); font-weight: var
 
 /* ── Hustler Nav Button ─────────────────────────────────── */
 @keyframes hustle-flash {
-  0%   { color: #b8977e; opacity: 1; text-shadow: 0 0 8px rgba(184,151,126,0.4); }
-  18%  { color: #d4c5b0; opacity: 1; text-shadow: 0 0 12px rgba(212,197,176,0.5); }
-  36%  { color: #ffffff;  opacity: 1; text-shadow: 0 0 16px rgba(255,255,255,0.6); }
-  42%  { color: #ffffff;  opacity: 0.08; }
-  46%  { color: #d4c5b0; opacity: 1; text-shadow: 0 0 10px rgba(212,197,176,0.4); }
-  64%  { color: #b8977e; opacity: 1; text-shadow: 0 0 8px rgba(184,151,126,0.4); }
-  72%  { color: #9a7b62; opacity: 1; text-shadow: 0 0 6px rgba(154,123,98,0.3); }
-  78%  { color: #9a7b62; opacity: 0.08; }
-  83%  { color: #b8977e; opacity: 1; }
-  100% { color: #b8977e; opacity: 1; text-shadow: 0 0 8px rgba(184,151,126,0.4); }
+  0%   { color: #b8977e; opacity: 1; text-shadow: 0 0 10px rgba(184,151,126,0.7), 0 0 22px rgba(184,151,126,0.35); }
+  18%  { color: #d4c5b0; opacity: 1; text-shadow: 0 0 14px rgba(212,197,176,0.8), 0 0 30px rgba(212,197,176,0.45); }
+  36%  { color: #ffffff;  opacity: 1; text-shadow: 0 0 22px rgba(255,255,255,1),   0 0 44px rgba(255,255,255,0.55); }
+  42%  { color: #ffffff;  opacity: 0.06; text-shadow: none; }
+  46%  { color: #d4c5b0; opacity: 1; text-shadow: 0 0 12px rgba(212,197,176,0.6), 0 0 24px rgba(212,197,176,0.3); }
+  64%  { color: #b8977e; opacity: 1; text-shadow: 0 0 10px rgba(184,151,126,0.7), 0 0 22px rgba(184,151,126,0.35); }
+  72%  { color: #9a7b62; opacity: 1; text-shadow: 0 0 8px rgba(154,123,98,0.6); }
+  78%  { color: #9a7b62; opacity: 0.06; text-shadow: none; }
+  83%  { color: #b8977e; opacity: 1; text-shadow: 0 0 8px rgba(184,151,126,0.5); }
+  100% { color: #b8977e; opacity: 1; text-shadow: 0 0 10px rgba(184,151,126,0.7), 0 0 22px rgba(184,151,126,0.35); }
+}
+
+/* Social Setup nav button — same family, offset phase */
+@keyframes social-flash {
+  0%   { color: #b8977e; opacity: 1; text-shadow: 0 0 10px rgba(184,151,126,0.7), 0 0 22px rgba(184,151,126,0.35); }
+  12%  { color: #9a7b62; opacity: 0.06; text-shadow: none; }
+  18%  { color: #b8977e; opacity: 1; text-shadow: 0 0 8px rgba(184,151,126,0.5); }
+  42%  { color: #b8977e; opacity: 1; text-shadow: 0 0 10px rgba(184,151,126,0.7); }
+  60%  { color: #d4c5b0; opacity: 1; text-shadow: 0 0 14px rgba(212,197,176,0.8), 0 0 30px rgba(212,197,176,0.45); }
+  76%  { color: #ffffff;  opacity: 1; text-shadow: 0 0 22px rgba(255,255,255,1),   0 0 44px rgba(255,255,255,0.55); }
+  82%  { color: #ffffff;  opacity: 0.06; text-shadow: none; }
+  88%  { color: #d4c5b0; opacity: 1; text-shadow: 0 0 12px rgba(212,197,176,0.6); }
+  100% { color: #b8977e; opacity: 1; text-shadow: 0 0 10px rgba(184,151,126,0.7), 0 0 22px rgba(184,151,126,0.35); }
+}
+
+/* Service card social setup button glow */
+@keyframes social-btn-glow {
+  0%   { color: #b8977e; border-color: rgba(184,151,126,0.6); box-shadow: 0 0 8px rgba(184,151,126,0.25), 0 0 18px rgba(184,151,126,0.1); text-shadow: 0 0 8px rgba(184,151,126,0.4); }
+  38%  { color: #d4c5b0; border-color: rgba(212,197,176,0.8); box-shadow: 0 0 16px rgba(212,197,176,0.5), 0 0 32px rgba(212,197,176,0.2); text-shadow: 0 0 12px rgba(212,197,176,0.6); }
+  64%  { color: #ffffff;  border-color: rgba(255,255,255,0.9); box-shadow: 0 0 24px rgba(255,255,255,0.55), 0 0 48px rgba(255,255,255,0.2); text-shadow: 0 0 18px rgba(255,255,255,0.8); }
+  70%  { color: #e0d0ba; border-color: rgba(255,255,255,0.3); box-shadow: 0 0 6px rgba(255,255,255,0.15); opacity: 0.65; }
+  76%  { color: #d4c5b0; border-color: rgba(212,197,176,0.7); box-shadow: 0 0 14px rgba(212,197,176,0.4); opacity: 1; }
+  100% { color: #b8977e; border-color: rgba(184,151,126,0.6); box-shadow: 0 0 8px rgba(184,151,126,0.25), 0 0 18px rgba(184,151,126,0.1); text-shadow: 0 0 8px rgba(184,151,126,0.4); }
 }
 
 .nav-promo-btn {
@@ -1297,9 +1320,41 @@ h4, .h4 { font-size: var(--fs-h4); font-family: var(--ff-body); font-weight: var
   white-space: nowrap;
 }
 
+.nav-social-btn {
+  font-family: var(--ff-body);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 4px 0;
+  color: var(--accent);
+  animation: social-flash 1.9s ease-in-out infinite;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-social-glow {
+  border: 1.5px solid rgba(184,151,126,0.6) !important;
+  background: transparent !important;
+  color: #b8977e !important;
+  animation: social-btn-glow 2.5s ease-in-out infinite;
+}
+.btn-social-glow:hover {
+  animation-play-state: paused;
+  color: #ffffff !important;
+  border-color: rgba(255,255,255,0.9) !important;
+  box-shadow: 0 0 20px rgba(255,255,255,0.4);
+}
+.btn-social-glow::after { border-color: currentColor !important; }
+
 /* Mobile nav panel — give it its own line */
 @media (max-width: 960px) {
-  .nav-promo-btn {
+  .nav-promo-btn,
+  .nav-social-btn {
     font-size: var(--fs-body-sm);
     letter-spacing: 0.08em;
   }
