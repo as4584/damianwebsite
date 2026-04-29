@@ -1028,69 +1028,39 @@ h4, .h4 { font-size: var(--fs-h4); font-family: var(--ff-body); font-weight: var
   margin: 0 auto var(--gap-lg);
 }
 
-/* ── CTA Promo Cards ─────────────────────────────────────── */
-.promo-cards-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+/* ── CTA Promo Buttons ───────────────────────────────────── */
+.cta-promo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: var(--gap-md);
-  margin-top: var(--gap-xl);
-  text-align: left;
-  max-width: 52rem;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: var(--gap-lg);
 }
-.promo-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(184,151,126,0.25);
-  padding: clamp(1.5rem, 3vw, 2.25rem);
-  transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+.cta-promo-sep {
+  color: rgba(184,151,126,0.35);
+  font-size: 1.25rem;
+  user-select: none;
 }
-.promo-card:hover {
-  border-color: rgba(184,151,126,0.55);
-  background: rgba(255,255,255,0.07);
-}
-.promo-card-label {
-  display: block;
+.cta-promo-btn {
   font-family: var(--ff-body);
-  font-size: var(--fs-micro);
-  font-weight: var(--fw-bold);
-  letter-spacing: var(--ls-mega);
-  text-transform: uppercase;
-  color: var(--accent-light);
-  margin-bottom: var(--gap-sm);
-}
-.promo-card-title {
-  font-family: var(--ff-display);
-  font-size: var(--fs-h3);
-  font-weight: var(--fw-regular);
-  color: var(--text-inverse);
-  margin-bottom: var(--gap-sm);
-  line-height: var(--lh-heading);
-}
-.promo-card-body {
   font-size: var(--fs-body-sm);
-  color: var(--text-inverse-muted);
-  line-height: var(--lh-relaxed);
-  margin-bottom: var(--gap-md);
-}
-.promo-card-btn {
-  background: transparent;
-  border: 1px solid rgba(184,151,126,0.5);
-  color: var(--accent-light);
-  font-size: var(--fs-micro);
+  font-weight: var(--fw-bold);
   letter-spacing: var(--ls-wide);
   text-transform: uppercase;
-  padding: 0.65rem 1.25rem;
+  border: none;
+  background: none;
   cursor: pointer;
-  transition: border-color 0.2s var(--ease), color 0.2s var(--ease), background 0.2s var(--ease);
+  padding: 6px 0;
+  color: var(--accent);
+  animation: hustle-flash 1.6s ease-in-out infinite;
+  white-space: nowrap;
 }
-.promo-card-btn:hover {
-  border-color: rgba(184,151,126,0.9);
-  color: var(--text-inverse);
-  background: rgba(184,151,126,0.12);
+.cta-promo-btn:nth-child(3) {
+  animation-delay: 0.8s;
 }
-@media (max-width: 600px) {
-  .promo-cards-row { grid-template-columns: 1fr; }
+@media (max-width: 480px) {
+  .cta-promo-row { flex-direction: column; gap: var(--gap-sm); }
+  .cta-promo-sep { display: none; }
 }
 
 /* ── Footer ─────────────────────────────────────────────── */
