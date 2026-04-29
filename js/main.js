@@ -230,6 +230,40 @@
     });
   }
 
+  // ── Social Setup Popup ──────────────────────────────────
+  const socialOverlay = document.getElementById('socialOverlay');
+  const socialClose   = document.getElementById('socialClose');
+
+  if (socialOverlay && socialClose) {
+    const openSocial = () => {
+      socialOverlay.classList.add('open');
+      socialOverlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeSocial = () => {
+      socialOverlay.classList.remove('open');
+      socialOverlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    document.querySelectorAll('.social-trigger').forEach((el) => {
+      el.addEventListener('click', openSocial);
+    });
+
+    socialClose.addEventListener('click', closeSocial);
+
+    socialOverlay.addEventListener('click', (e) => {
+      if (e.target === socialOverlay) closeSocial();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && socialOverlay.classList.contains('open')) {
+        closeSocial();
+      }
+    });
+  }
+
   // ── Form validation (light) ─────────────────────────────
   const form = document.getElementById('contactForm');
   if (form) {

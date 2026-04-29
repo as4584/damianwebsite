@@ -21,7 +21,7 @@
 
   <link rel="canonical" href="https://innovationdevelopmentsolutions.com/">
 
-  <link rel="stylesheet" href="css/style.css?v=12">
+  <link rel="stylesheet" href="css/style.css?v=14">
 
   <!-- JSON-LD: Organization -->
   <script type="application/ld+json">
@@ -87,6 +87,7 @@
         <li><a href="/industries/">Industries</a></li>
         <li><a href="/contact/">Contact</a></li>
         <li><button class="nav-promo-btn promo-trigger">Hustler Promo</button></li>
+        <li><button class="nav-promo-btn social-trigger">Social Setup</button></li>
       </ul>
       <div class="nav-cta-wrap">
         <a href="/contact/" class="nav-cta">Schedule a Consultation</a>
@@ -190,7 +191,6 @@
               <li>Email infrastructure</li>
               <li>Market expansion tools</li>
             </ul>
-            <a href="https://innovationprosocialsetup.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn btn-social-glow btn-arrow" style="margin-top: var(--gap-md); font-size: var(--fs-body-sm);">Get Social Setup</a>
           </div>
           <div class="service-card reveal reveal-delay-3">
             <span class="service-card-number">03</span>
@@ -269,6 +269,22 @@
         <h2 class="text-balance">Ready to scale your business system?</h2>
         <p>Tell us about your growth goals. We handle the formation, infrastructure, and multi-state licensing so you can focus on scaling.</p>
         <a href="/contact/" class="btn btn-primary btn-arrow">Schedule a Consultation</a>
+
+        <!-- ═══ Promo Cards ═══ -->
+        <div class="promo-cards-row reveal">
+          <div class="promo-card">
+            <span class="promo-card-label">Exclusive Offer</span>
+            <h3 class="promo-card-title">Hustler Promo</h3>
+            <p class="promo-card-body">Fast-track package for the entrepreneur who moves fast. Formation, growth infrastructure, and AI systems bundled into one high-impact offer.</p>
+            <button class="btn promo-card-btn promo-trigger">View Offer →</button>
+          </div>
+          <div class="promo-card">
+            <span class="promo-card-label">Done For You</span>
+            <h3 class="promo-card-title">Social Setup</h3>
+            <p class="promo-card-body">Complete social media infrastructure — Facebook, Instagram, TikTok — plus two custom promo landing pages. Built and ready to launch.</p>
+            <button class="btn promo-card-btn social-trigger">Get Social Setup →</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -329,6 +345,34 @@
   </footer>
 
   <script src="js/main.js?v=2" defer></script>
+
+  <!-- ═══ Social Setup Popup ═══ -->
+  <div class="promo-overlay" id="socialOverlay" role="dialog" aria-modal="true" aria-labelledby="socialTitle" aria-hidden="true">
+    <div class="promo-modal">
+      <button class="promo-close" id="socialClose" aria-label="Close">&#x2715;</button>
+
+      <div class="promo-badge">Done For You</div>
+
+      <span class="eyebrow eyebrow-light" style="margin-bottom: 1rem;">Social Media Infrastructure</span>
+
+      <h2 class="promo-title" id="socialTitle">Innovation<br>Social Setup</h2>
+
+      <div class="promo-divider"></div>
+
+      <p class="promo-body">Complete social media presence built and delivered. We set up your Facebook, Instagram, and TikTok accounts professionally — plus two custom promo landing pages designed to convert.</p>
+
+      <ul class="promo-features">
+        <li>Facebook business page setup</li>
+        <li>Instagram professional profile</li>
+        <li>TikTok account configuration</li>
+        <li>2 custom promo landing pages</li>
+      </ul>
+
+      <a href="https://innovationprosocialsetup.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-arrow promo-cta">Get Started →</a>
+
+      <p class="promo-disclaimer">Turnkey setup &mdash; professional and ready to launch.</p>
+    </div>
+  </div>
 
   <!-- ═══ Hustler Promo Popup ═══ -->
   <div class="promo-overlay" id="promoOverlay" role="dialog" aria-modal="true" aria-labelledby="promoTitle" aria-hidden="true">

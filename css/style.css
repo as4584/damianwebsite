@@ -196,6 +196,7 @@ h4, .h4 { font-size: var(--fs-h4); font-family: var(--ff-body); font-weight: var
 .grid-6 { grid-template-columns: repeat(6, 1fr); }
 
 @media (max-width: 1024px) {
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
   .grid-4, .grid-6 { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 768px) {
@@ -867,16 +868,28 @@ h4, .h4 { font-size: var(--fs-h4); font-family: var(--ff-body); font-weight: var
 }
 
 /* ── Entity Structures Grid ─────────────────────────────── */
+.entity-groups-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 var(--gap-xl);
+}
+@media (max-width: 768px) {
+  .entity-groups-grid { grid-template-columns: 1fr; }
+}
 .entity-group {
   padding: var(--gap-lg) 0;
   border-bottom: 1px solid var(--border);
 }
 .entity-group:last-child { border-bottom: none; }
-.entity-group h3 { margin-bottom: var(--gap-md); }
+.entity-group h3 {
+  font-size: var(--fs-h4);
+  margin-bottom: var(--gap-md);
+  color: var(--text-primary);
+}
 .entity-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
-  gap: var(--gap-xs) var(--gap-lg);
+  grid-template-columns: 1fr;
+  gap: 0;
 }
 .entity-list li {
   font-size: var(--fs-body-sm);
@@ -884,7 +897,9 @@ h4, .h4 { font-size: var(--fs-h4); font-family: var(--ff-body); font-weight: var
   padding: 0.375rem 0;
   padding-left: 1.25rem;
   position: relative;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
 }
+.entity-list li:last-child { border-bottom: none; }
 .entity-list li::before {
   content: '';
   position: absolute;
@@ -1011,6 +1026,71 @@ h4, .h4 { font-size: var(--fs-h4); font-family: var(--ff-body); font-weight: var
   color: var(--text-inverse-muted);
   max-width: 32rem;
   margin: 0 auto var(--gap-lg);
+}
+
+/* ── CTA Promo Cards ─────────────────────────────────────── */
+.promo-cards-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-md);
+  margin-top: var(--gap-xl);
+  text-align: left;
+  max-width: 52rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.promo-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(184,151,126,0.25);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+}
+.promo-card:hover {
+  border-color: rgba(184,151,126,0.55);
+  background: rgba(255,255,255,0.07);
+}
+.promo-card-label {
+  display: block;
+  font-family: var(--ff-body);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-mega);
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: var(--gap-sm);
+}
+.promo-card-title {
+  font-family: var(--ff-display);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-regular);
+  color: var(--text-inverse);
+  margin-bottom: var(--gap-sm);
+  line-height: var(--lh-heading);
+}
+.promo-card-body {
+  font-size: var(--fs-body-sm);
+  color: var(--text-inverse-muted);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--gap-md);
+}
+.promo-card-btn {
+  background: transparent;
+  border: 1px solid rgba(184,151,126,0.5);
+  color: var(--accent-light);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  padding: 0.65rem 1.25rem;
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.promo-card-btn:hover {
+  border-color: rgba(184,151,126,0.9);
+  color: var(--text-inverse);
+  background: rgba(184,151,126,0.12);
+}
+@media (max-width: 600px) {
+  .promo-cards-row { grid-template-columns: 1fr; }
 }
 
 /* ── Footer ─────────────────────────────────────────────── */
