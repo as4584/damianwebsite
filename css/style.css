@@ -1028,39 +1028,70 @@ h4, .h4 { font-size: var(--fs-h4); font-family: var(--ff-body); font-weight: var
   margin: 0 auto var(--gap-lg);
 }
 
-/* ── CTA Promo Buttons ───────────────────────────────────── */
-.cta-promo-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* ── CTA Boxes ───────────────────────────────────────────── */
+.cta-boxes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--gap-md);
-  margin-top: var(--gap-lg);
+  margin-top: var(--gap-xl);
+  text-align: left;
 }
-.cta-promo-sep {
-  color: rgba(184,151,126,0.35);
-  font-size: 1.25rem;
-  user-select: none;
+.cta-box {
+  border: 1px solid rgba(184,151,126,0.22);
+  padding: clamp(1.5rem, 2.5vw, 2rem);
+  background: rgba(255,255,255,0.03);
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
 }
-.cta-promo-btn {
+.cta-box:hover {
+  border-color: rgba(184,151,126,0.5);
+  background: rgba(255,255,255,0.05);
+}
+.cta-box-label {
+  display: block;
   font-family: var(--ff-body);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-mega);
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: var(--gap-sm);
+}
+.cta-box-title {
+  font-family: var(--ff-display);
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-regular);
+  color: var(--text-inverse);
+  margin-bottom: var(--gap-xs);
+  line-height: var(--lh-heading);
+}
+.cta-box-body {
   font-size: var(--fs-body-sm);
+  color: var(--text-inverse-muted);
+  line-height: var(--lh-normal);
+  margin-bottom: var(--gap-md);
+  flex: 1;
+}
+.cta-box-btn {
+  display: inline-block;
+  font-family: var(--ff-body);
+  font-size: var(--fs-micro);
   font-weight: var(--fw-bold);
   letter-spacing: var(--ls-wide);
   text-transform: uppercase;
+  color: var(--accent-light);
+  text-decoration: none;
   border: none;
   background: none;
   cursor: pointer;
-  padding: 6px 0;
-  color: var(--accent);
-  animation: hustle-flash 1.6s ease-in-out infinite;
-  white-space: nowrap;
+  padding: 0;
+  transition: color 0.2s var(--ease);
+  align-self: flex-start;
 }
-.cta-promo-btn:nth-child(3) {
-  animation-delay: 0.8s;
-}
-@media (max-width: 480px) {
-  .cta-promo-row { flex-direction: column; gap: var(--gap-sm); }
-  .cta-promo-sep { display: none; }
+.cta-box-btn:hover { color: var(--text-inverse); }
+@media (max-width: 768px) {
+  .cta-boxes { grid-template-columns: 1fr; }
 }
 
 /* ── Footer ─────────────────────────────────────────────── */
