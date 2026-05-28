@@ -1635,3 +1635,120 @@ body.services-page .site-footer { background: var(--bg-darker) !important; }
 @media (max-width: 768px) {
   body.services-page .hero-content { will-change: auto; }
 }
+
+
+/* ═══════════════════════════════════════════════════════════
+   IBDS Powered-By Bar — appears below every page footer
+   ═══════════════════════════════════════════════════════════ */
+
+.ibds-bar {
+  position: relative;
+  z-index: 3;
+  background: linear-gradient(135deg, #c9a961 0%, #e2c896 30%, #f0ddb0 50%, #e2c896 70%, #c9a961 100%);
+  border-top: 1px solid rgba(43, 27, 44, .18);
+  overflow: hidden;
+  box-shadow:
+    rgba(255, 255, 255, .45) 0 1px 0 inset,
+    rgba(43, 27, 44, .10)   0 -1px 0 inset,
+    rgba(43, 27, 44, .18)   0 -8px 30px;
+}
+
+/* Animated light-sheen sweep */
+.ibds-shine {
+  position: absolute;
+  top: 0; left: -30%;
+  width: 35%; height: 100%;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0)    25%,
+    rgba(255, 255, 255, .55)  50%,
+    rgba(255, 255, 255, 0)    75%,
+    transparent 100%
+  );
+  transform: skewX(-22deg);
+  animation: ibds-sheen 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes ibds-sheen {
+  0%, 60%, 100% { left: -30%; }
+  80%           { left: 120%; }
+}
+
+.ibds-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-top: 1.375rem;
+  padding-bottom: 1.375rem;
+  flex-wrap: wrap;
+}
+
+/* Left: eyebrow + name + arrow */
+.ibds-main {
+  display: flex;
+  align-items: center;
+  gap: .625rem;
+  text-decoration: none;
+  color: #2b1b2c;
+  transition: opacity .2s;
+}
+.ibds-main:hover { opacity: .65; }
+
+.ibds-eyebrow {
+  font-size: .6rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(43, 27, 44, .6);
+  white-space: nowrap;
+}
+
+.ibds-name {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #2b1b2c;
+  white-space: nowrap;
+}
+
+.ibds-arrow {
+  display: flex;
+  align-items: center;
+  color: rgba(43, 27, 44, .5);
+  flex-shrink: 0;
+}
+
+/* Right: Instagram pill */
+.ibds-ig {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .45rem .9rem;
+  background: #2b1b2c;
+  border-radius: 2rem;
+  color: #f0ddb0;
+  text-decoration: none;
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background .2s, color .2s;
+}
+.ibds-ig:hover {
+  background: #3d2840;
+  color: #f0ddb0;
+}
+.ibds-ig-icon { display: flex; align-items: center; }
+
+@media (max-width: 600px) {
+  .ibds-inner        { justify-content: center; gap: .875rem; }
+  .ibds-eyebrow      { display: none; }
+  .ibds-name         { font-size: .7rem; }
+}
